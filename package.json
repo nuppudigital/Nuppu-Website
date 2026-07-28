@@ -10,7 +10,8 @@
     "lint": "eslint .",
     "server": "node api/index.js",
     "typecheck": "tsc --noEmit",
-    "build:app-preview": "cd app-prototype && npm run build && rm -rf ../public/app-preview && cp -r dist ../public/app-preview"
+    "build:app-preview": "cd app-prototype && npm run build && rm -rf ../public/app-preview && cp -r dist ../public/app-preview",
+    "build:admin": "cd admin-dashboard && npm run build && rm -rf ../public/admin && cp -r dist ../public/admin"
   },
   "dependencies": {
     "@emotion/react": "11.14.0",

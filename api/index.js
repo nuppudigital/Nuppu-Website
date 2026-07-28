@@ -35,7 +35,7 @@ const ADMIN_TOKEN = process.env.ADMIN_TOKEN;
 const CRON_SECRET = process.env.CRON_SECRET;
 const NODE_ENV = process.env.NODE_ENV ?? "development";
 const MONGODB_REQUIRED = process.env.MONGODB_REQUIRED === "true";
-const NUPPU_EMAIL = process.env.NUPPU_EMAIL ?? "hello@nuppu.app";
+const NUPPU_EMAIL = process.env.NUPPU_EMAIL ?? "nuppudigital@gmail.com";
 const MAIL_FROM = process.env.MAIL_FROM ?? "noreply@nuppu.app";
 const SMTP_HOST = process.env.SMTP_HOST;
 const SMTP_PORT = Number(process.env.SMTP_PORT ?? 587);
@@ -68,6 +68,11 @@ const allowedOrigins = new Set([
   CLIENT_URL,
   "http://localhost:5173",
   "http://127.0.0.1:5173",
+  // admin-dashboard/'s own standalone dev server (see that project's README) -
+  // Vite auto-increments to 5174 when 5173 (the main site) is already running.
+  // Not needed in production: there it's served same-origin from /admin.
+  "http://localhost:5174",
+  "http://127.0.0.1:5174",
 ]);
 
 const mailTransport = canSendEmail
@@ -267,7 +272,7 @@ async function anonymizeExpiredPayments() {
   const now = new Date();
   const result = await Payment.updateMany(
     { retentionExpiresAt: { $lte: now }, anonymizedAt: { $exists: false } },
-    { $set: { customerName: null, customerEmail: null, customerPhone: null, anonymizedAt: now } },
+    { $set: { customerName: null, customerEmail: null, customerPhone: null, customerMessage: null, anonymizedAt: now } },
     { runValidators: false },
   );
 
@@ -335,11 +340,15 @@ async function sendPaymentReceiptToCompany(payment) {
     `Amount: ${formatEuros(payment.amountCents)}`,
     `Customer: ${payment.customerName} <${payment.customerEmail}>`,
     payment.customerPhone ? `Phone: ${payment.customerPhone}` : null,
+    "",
+    "Message:",
+    payment.customerMessage,
+    "",
     `Paytrail transaction: ${payment.paytrailTransactionId}`,
     `Reference: ${payment.paytrailReference}`,
     `Paid at: ${(payment.paidAt ?? new Date()).toISOString()}`,
   ]
-    .filter(Boolean)
+    .filter((line) => line !== null)
     .join("\n");
 
   await mailTransport.sendMail({
@@ -369,7 +378,7 @@ async function sendPaymentReceiptToCustomer(payment) {
     "",
     "We'll be in touch shortly with next steps.",
     "",
-    `- The ${NUPPU_EMAIL.split("@")[1] ?? "Nuppu"} team`,
+    "- The Nuppu team",
   ].join("\n");
 
   const html = `
@@ -697,7 +706,7 @@ async function handlePaytrailReturn(req, res, { isWebhook }) {
 
 app.post("/api/payments/create", rateLimitPayments, requireDatabase, async (req, res) => {
   try {
-    const { service, customerName, customerEmail, customerPhone } = req.body ?? {};
+    const { service, customerName, customerEmail, customerPhone, customerMessage } = req.body ?? {};
 
     if (!service || !SERVICE_PRICES_CENTS[service]) {
       return res.status(400).json({ status: "error", message: "Unknown or missing service" });
@@ -712,6 +721,14 @@ app.post("/api/payments/create", rateLimitPayments, requireDatabase, async (req,
     const trimmedPhone = customerPhone ? String(customerPhone).trim() : "";
     if (trimmedPhone && !/^\+?[0-9\s-]{6,20}$/.test(trimmedPhone)) {
       return res.status(400).json({ status: "error", message: "Please enter a valid phone number" });
+    }
+    // Required - what product/package the customer wants, so the team knows
+    // before the consultation instead of finding out after payment.
+    if (!customerMessage || !String(customerMessage).trim()) {
+      return res.status(400).json({
+        status: "error",
+        message: "Please write a message describing what you're interested in before booking",
+      });
     }
 
     const amountCents = SERVICE_PRICES_CENTS[service];
@@ -728,6 +745,7 @@ app.post("/api/payments/create", rateLimitPayments, requireDatabase, async (req,
       customerName: String(customerName).trim().slice(0, 100),
       customerEmail: String(customerEmail).trim().toLowerCase(),
       customerPhone: trimmedPhone || undefined,
+      customerMessage: String(customerMessage).trim().slice(0, 2000),
       retentionExpiresAt: computeRetentionExpiry(now),
     });
 

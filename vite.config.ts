@@ -3,23 +3,24 @@ import path from 'path'
 import tailwindcss from '@tailwindcss/vite'
 import react from '@vitejs/plugin-react'
 
-// The /app-preview prototype is a separate SPA served as a static file from
-// public/app-preview. In dev, Vite's own SPA history fallback intercepts
+// /app-preview and /admin are separate standalone SPAs (app-prototype/ and
+// admin-dashboard/) served as static files from public/app-preview and
+// public/admin. In dev, Vite's own SPA history fallback intercepts
 // extensionless requests like "/app-preview/" before the static file is
 // reached and serves this site's index.html instead. Rewriting the request
 // to the explicit file here (registered without returning a function, so it
 // runs before Vite's internal middlewares) keeps the clean URL working in
 // dev the same way it does in production.
-function appPreviewFallback(): Plugin {
+function staticSpaFallback(prefix: string): Plugin {
   return {
-    name: 'app-preview-fallback',
+    name: `${prefix.slice(1)}-fallback`,
     configureServer(server) {
       server.middlewares.use((req, res, next) => {
-        if (req.url?.startsWith('/app-preview')) {
+        if (req.url?.startsWith(prefix)) {
           const pathname = req.url.split('?')[0];
           const lastSegment = pathname.split('/').pop() ?? '';
           if (!lastSegment.includes('.')) {
-            req.url = '/app-preview/index.html';
+            req.url = `${prefix}/index.html`;
           }
         }
         next();
@@ -30,7 +31,8 @@ function appPreviewFallback(): Plugin {
 
 export default defineConfig({
   plugins: [
-    appPreviewFallback(),
+    staticSpaFallback('/app-preview'),
+    staticSpaFallback('/admin'),
     // React and Tailwind plugins are required for this project setup.
     // Keep both plugins enabled unless the build setup is intentionally changed.
     react(),

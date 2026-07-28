@@ -12,6 +12,7 @@
     "gdpr": "GDPR-yhteensopiva",
     "adFree": "Mainokseton",
     "quickLinks": "Pikalinkit",
+    "admin": "Ylläpito",
     "getInTouch": "Ota yhteyttä",
     "waitlist": "Liity jonotuslistalle ja saat varhaisen pääsyn!",
     "rights": "Kaikki oikeudet pidätetään.",
@@ -164,6 +165,9 @@
       "emailPlaceholder": "sahkopostisi@esimerkki.fi",
       "phoneLabel": "Puhelinnumero (valinnainen — tekstiviestikuittausta varten)",
       "phonePlaceholder": "+358 40 123 4567",
+      "messageLabel": "Kirjoita viesti *",
+      "messagePlaceholder": "Kerro, mistä palvelusta tai paketista olet kiinnostunut, ja muuta hyödyllistä tietoa ohjausta varten.",
+      "messageHint": "Kerro, mistä olet kiinnostunut — tämä on täytettävä ennen maksua.",
       "redirecting": "Siirrytään turvalliseen maksuun…",
       "bookPay": "Varaa ja maksa — 29 €",
       "paytrailNote": "Sinut ohjataan Paytrailin turvalliseen maksupalveluun (pankki-, kortti- tai mobiilimaksu). Kortti- ja pankkitiedot käsittelee kokonaan Paytrail, eivätkä ne koskaan päädy Nupun palvelimille."
@@ -172,6 +176,7 @@
       "name": "Syötä nimesi",
       "email": "Syötä kelvollinen sähköpostiosoite",
       "phone": "Anna kelvollinen puhelinnumero tai jätä kenttä tyhjäksi",
+      "message": "Kirjoita viesti siitä, mistä olet kiinnostunut ennen varausta",
       "noRedirect": "Maksun ohjausosoitetta ei saatu.",
       "generic": "Jotain meni vikaan. Yritä myöhemmin uudelleen."
     },
@@ -388,7 +393,7 @@
     },
     "contact": {
       "title": "Yhteydenotot",
-      "text": "Oikeudellisissa asioissa ota yhteyttä: hello@nuppu.app."
+      "text": "Oikeudellisissa asioissa ota yhteyttä: nuppudigital@gmail.com."
     }
   },
   "privacy": {
@@ -422,7 +427,7 @@
     },
     "rights": {
       "title": "Oikeutesi",
-      "text": "Voit pyytää pääsyä tietoihisi, niiden oikaisua, poistamista (anonymisointia silloin, kun tietoja on säilytettävä kirjanpitoa varten) tai siirtämistä ottamalla yhteyttä osoitteeseen hello@nuppu.app."
+      "text": "Voit pyytää pääsyä tietoihisi, niiden oikaisua, poistamista (anonymisointia silloin, kun tietoja on säilytettävä kirjanpitoa varten) tai siirtämistä ottamalla yhteyttä osoitteeseen nuppudigital@gmail.com."
     }
   },
   "cookies": {

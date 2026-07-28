@@ -83,6 +83,7 @@ export const paymentsAPI = {
     customerName: string;
     customerEmail: string;
     customerPhone?: string;
+    customerMessage: string;
   }) => {
     return apiRequest<{
       status: string;

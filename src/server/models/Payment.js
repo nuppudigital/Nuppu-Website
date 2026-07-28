@@ -59,6 +59,15 @@ const paymentSchema = new mongoose.Schema(
       trim: true,
       maxlength: 20,
     },
+    // Required at the API layer (see POST /api/payments/create) - what
+    // product/package the customer wants, so the team can prepare before the
+    // consultation instead of finding out after payment.
+    customerMessage: {
+      type: String,
+      required: true,
+      trim: true,
+      maxlength: 2000,
+    },
     // No payment card, bank account, or Paytrail-side PII beyond what's needed for support/refunds
     paidAt: { type: Date },
     retentionExpiresAt: { type: Date, required: true },

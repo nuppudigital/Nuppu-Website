@@ -12,6 +12,7 @@
     "gdpr": "GDPR Compliant",
     "adFree": "Ad-Free",
     "quickLinks": "Quick Links",
+    "admin": "Admin",
     "getInTouch": "Get in Touch",
     "waitlist": "Join our waitlist to get early access!",
     "rights": "All rights reserved.",
@@ -164,6 +165,9 @@
       "emailPlaceholder": "youremail@example.com",
       "phoneLabel": "Phone Number (optional — for SMS receipt)",
       "phonePlaceholder": "+358 40 123 4567",
+      "messageLabel": "Write a Message *",
+      "messagePlaceholder": "Tell us which package or service you're interested in, and anything else that would help us prepare for your consultation.",
+      "messageHint": "Please tell us what you're interested in — you must fill this in before payment.",
       "redirecting": "Redirecting to secure payment…",
       "bookPay": "Book & Pay — €29",
       "paytrailNote": "You'll be redirected to Paytrail's secure checkout (bank, card, or mobile payment). Card and bank details are handled entirely by Paytrail and never touch Nuppu's servers."
@@ -172,6 +176,7 @@
       "name": "Please enter your name",
       "email": "Please enter a valid email address",
       "phone": "Please enter a valid phone number, or leave it empty",
+      "message": "Please write a message describing what you're interested in before booking",
       "noRedirect": "No payment redirect URL was returned.",
       "generic": "Something went wrong. Please try again later."
     },
@@ -388,7 +393,7 @@
     },
     "contact": {
       "title": "Contact",
-      "text": "For legal inquiries, contact hello@nuppu.app."
+      "text": "For legal inquiries, contact nuppudigital@gmail.com."
     }
   },
   "privacy": {
@@ -422,7 +427,7 @@
     },
     "rights": {
       "title": "Your Rights",
-      "text": "You can request access, correction, deletion (anonymisation, where records must be retained for bookkeeping purposes), or export of your personal data by contacting us at hello@nuppu.app."
+      "text": "You can request access, correction, deletion (anonymisation, where records must be retained for bookkeeping purposes), or export of your personal data by contacting us at nuppudigital@gmail.com."
     }
   },
   "cookies": {

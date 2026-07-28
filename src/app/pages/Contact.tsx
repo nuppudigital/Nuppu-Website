@@ -141,10 +141,10 @@ export default function Contact() {
                       {t("contact.emailUs")}
                     </h3>
                     <a
-                      href="mailto:hello@nuppu.app"
+                      href="mailto:nuppudigital@gmail.com"
                       className="text-[#6B9AC4] hover:underline"
                     >
-                      hello@nuppu.app
+                      nuppudigital@gmail.com
                     </a>
                   </div>
                 </motion.div>

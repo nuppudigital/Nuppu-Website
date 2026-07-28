@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Heart, Mail, Shield } from "lucide-react";
+import { Heart, Lock, Mail, Shield } from "lucide-react";
 import { useLanguage } from "../i18n/LanguageContext";
 
 export default function Footer() {
@@ -75,6 +75,20 @@ export default function Footer() {
                   {t("nav.contact")}
                 </Link>
               </li>
+              <li>
+                {/* /admin is a separate standalone app served outside the
+                    React router (see admin-dashboard/), so this needs a real
+                    page navigation rather than a router Link. */}
+                <a
+                  href="/admin"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[#718096] hover:text-[#6B9AC4] transition-colors inline-flex items-center gap-1.5"
+                >
+                  <Lock size={14} />
+                  {t("footer.admin")}
+                </a>
+              </li>
             </ul>
           </div>
 
@@ -86,11 +100,11 @@ export default function Footer() {
             <ul className="space-y-3">
               <li>
                 <a
-                  href="mailto:hello@nuppu.app"
+                  href="mailto:nuppudigital@gmail.com"
                   className="text-[#718096] hover:text-[#6B9AC4] transition-colors flex items-center gap-2"
                 >
                   <Mail size={16} />
-                  hello@nuppu.app
+                  nuppudigital@gmail.com
                 </a>
               </li>
               <li className="text-[#718096]">
