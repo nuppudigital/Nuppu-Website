@@ -8,6 +8,7 @@ import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
 import nodemailer from "nodemailer";
+import twilio from "twilio";
 import crypto from "node:crypto";
 import { Payment, computeRetentionExpiry } from "../src/server/models/Payment.js";
 import {
@@ -22,7 +23,7 @@ import {
   // status from Paytrail" action).
 } from "../src/server/payments/paytrailClient.js";
 
-dotenv.config();
+dotenv.config({ quiet: true });
 
 const app = express();
 const PORT = Number(process.env.PORT ?? 5050);
@@ -42,6 +43,24 @@ const SMTP_SECURE = process.env.SMTP_SECURE === "true";
 const SMTP_USER = process.env.SMTP_USER;
 const SMTP_PASS = process.env.SMTP_PASS;
 const canSendEmail = Boolean(SMTP_HOST && SMTP_USER && SMTP_PASS);
+
+// --- SMS (Twilio) ---
+// Use a plain Twilio phone number as TWILIO_FROM_NUMBER, not a branded
+// alphanumeric sender name. As of May 2026, Traficom (Finland's telecom
+// regulator) requires alphanumeric SMS sender IDs sent to Finnish numbers to
+// be pre-registered (Order 28 L/2025) or they're shown as "Tuntematon"
+// (Unknown) and, from Nov 2026, blocked as spam. A normal purchased number
+// sidesteps that registration process entirely.
+const TWILIO_ACCOUNT_SID = process.env.TWILIO_ACCOUNT_SID;
+const TWILIO_AUTH_TOKEN = process.env.TWILIO_AUTH_TOKEN;
+const TWILIO_FROM_NUMBER = process.env.TWILIO_FROM_NUMBER;
+const canSendSms = Boolean(TWILIO_ACCOUNT_SID && TWILIO_AUTH_TOKEN && TWILIO_FROM_NUMBER);
+const smsClient = canSendSms ? twilio(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN) : null;
+if (!canSendSms) {
+  console.warn(
+    "SMS receipts disabled: set TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN and TWILIO_FROM_NUMBER to enable them.",
+  );
+}
 
 let server;
 
@@ -248,7 +267,7 @@ async function anonymizeExpiredPayments() {
   const now = new Date();
   const result = await Payment.updateMany(
     { retentionExpiresAt: { $lte: now }, anonymizedAt: { $exists: false } },
-    { $set: { customerName: null, customerEmail: null, anonymizedAt: now } },
+    { $set: { customerName: null, customerEmail: null, customerPhone: null, anonymizedAt: now } },
     { runValidators: false },
   );
 
@@ -291,6 +310,126 @@ async function sendContactInterestEmail({ name, email, role, message, submittedA
     subject,
     text,
     html,
+  });
+}
+
+function formatEuros(amountCents) {
+  return `€${(amountCents / 100).toFixed(2)}`;
+}
+
+/**
+ * Notify the company that a real payment came through, so they can verify it
+ * against their own Paytrail merchant dashboard / bookkeeping.
+ */
+async function sendPaymentReceiptToCompany(payment) {
+  if (!mailTransport) {
+    console.warn("Payment notification to company skipped: SMTP is not configured");
+    return;
+  }
+
+  const subject = `New paid booking: ${payment.service} (${formatEuros(payment.amountCents)})`;
+  const text = [
+    "A new payment was confirmed by Paytrail.",
+    "",
+    `Service: ${payment.service}`,
+    `Amount: ${formatEuros(payment.amountCents)}`,
+    `Customer: ${payment.customerName} <${payment.customerEmail}>`,
+    payment.customerPhone ? `Phone: ${payment.customerPhone}` : null,
+    `Paytrail transaction: ${payment.paytrailTransactionId}`,
+    `Reference: ${payment.paytrailReference}`,
+    `Paid at: ${(payment.paidAt ?? new Date()).toISOString()}`,
+  ]
+    .filter(Boolean)
+    .join("\n");
+
+  await mailTransport.sendMail({
+    from: MAIL_FROM,
+    to: NUPPU_EMAIL,
+    subject,
+    text,
+  });
+}
+
+/** Send the customer their own payment receipt/confirmation by email. */
+async function sendPaymentReceiptToCustomer(payment) {
+  if (!mailTransport) {
+    console.warn("Payment receipt to customer skipped: SMTP is not configured");
+    return;
+  }
+
+  const subject = "Your Nuppu booking is confirmed";
+  const text = [
+    `Hi ${payment.customerName},`,
+    "",
+    "Thanks for your payment - your booking is confirmed!",
+    "",
+    `Service: ${payment.service}`,
+    `Amount paid: ${formatEuros(payment.amountCents)}`,
+    `Reference: ${payment.paytrailReference}`,
+    "",
+    "We'll be in touch shortly with next steps.",
+    "",
+    `- The ${NUPPU_EMAIL.split("@")[1] ?? "Nuppu"} team`,
+  ].join("\n");
+
+  const html = `
+    <p>Hi ${payment.customerName},</p>
+    <p>Thanks for your payment — your booking is confirmed!</p>
+    <p>
+      <strong>Service:</strong> ${payment.service}<br />
+      <strong>Amount paid:</strong> ${formatEuros(payment.amountCents)}<br />
+      <strong>Reference:</strong> ${payment.paytrailReference}
+    </p>
+    <p>We'll be in touch shortly with next steps.</p>
+  `;
+
+  await mailTransport.sendMail({
+    from: MAIL_FROM,
+    to: payment.customerEmail,
+    subject,
+    text,
+    html,
+  });
+}
+
+/** Send the customer an SMS receipt, if they provided a phone number. */
+async function sendPaymentReceiptSms(payment) {
+  if (!payment.customerPhone) {
+    return;
+  }
+  if (!smsClient) {
+    console.warn("SMS receipt skipped: Twilio is not configured");
+    return;
+  }
+
+  const body = `Nuppu: payment of ${formatEuros(payment.amountCents)} received, booking confirmed. Ref: ${payment.paytrailReference}`;
+
+  try {
+    await smsClient.messages.create({
+      to: payment.customerPhone,
+      from: TWILIO_FROM_NUMBER,
+      body,
+    });
+  } catch (error) {
+    // Don't let an SMS failure (e.g. bad number) break the payment flow -
+    // the email receipt above is the source of truth either way.
+    console.error("Error sending SMS receipt:", error);
+  }
+}
+
+/** Fire all payment-confirmed notifications. Failures here are logged, never thrown. */
+async function notifyPaymentConfirmed(payment) {
+  const results = await Promise.allSettled([
+    sendPaymentReceiptToCompany(payment),
+    sendPaymentReceiptToCustomer(payment),
+    sendPaymentReceiptSms(payment),
+  ]);
+
+  results.forEach((result, i) => {
+    if (result.status === "rejected") {
+      const label = ["company email", "customer email", "customer SMS"][i];
+      console.error(`Error sending payment ${label} notification:`, result.reason);
+    }
   });
 }
 
@@ -523,11 +662,26 @@ async function handlePaytrailReturn(req, res, { isWebhook }) {
 
   try {
     if (isMongoConnected() && transactionId) {
+      const existing = await Payment.findOne({ paytrailTransactionId: transactionId });
+      const wasAlreadyPaid = existing?.status === "paid";
+
       const update = { status: paymentStatus };
       if (paymentStatus === "paid") {
         update.paidAt = new Date();
       }
-      await Payment.findOneAndUpdate({ paytrailTransactionId: transactionId }, { $set: update });
+      const updated = await Payment.findOneAndUpdate(
+        { paytrailTransactionId: transactionId },
+        { $set: update },
+        { new: true },
+      );
+
+      if (updated && paymentStatus === "paid" && !wasAlreadyPaid) {
+        // Fire-and-forget: don't hold up the redirect/webhook response waiting
+        // on email/SMS delivery. Errors are caught and logged inside.
+        notifyPaymentConfirmed(updated).catch((error) =>
+          console.error("Unexpected error in notifyPaymentConfirmed:", error),
+        );
+      }
     }
   } catch (error) {
     console.error("Error updating payment record from Paytrail return:", error);
@@ -543,7 +697,7 @@ async function handlePaytrailReturn(req, res, { isWebhook }) {
 
 app.post("/api/payments/create", rateLimitPayments, requireDatabase, async (req, res) => {
   try {
-    const { service, customerName, customerEmail } = req.body ?? {};
+    const { service, customerName, customerEmail, customerPhone } = req.body ?? {};
 
     if (!service || !SERVICE_PRICES_CENTS[service]) {
       return res.status(400).json({ status: "error", message: "Unknown or missing service" });
@@ -553,6 +707,11 @@ app.post("/api/payments/create", rateLimitPayments, requireDatabase, async (req,
     }
     if (!customerEmail || !/\S+@\S+\.\S+/.test(customerEmail)) {
       return res.status(400).json({ status: "error", message: "Please enter a valid email address" });
+    }
+    // Optional - only validated (loosely, E.164-ish) if the customer provided one.
+    const trimmedPhone = customerPhone ? String(customerPhone).trim() : "";
+    if (trimmedPhone && !/^\+?[0-9\s-]{6,20}$/.test(trimmedPhone)) {
+      return res.status(400).json({ status: "error", message: "Please enter a valid phone number" });
     }
 
     const amountCents = SERVICE_PRICES_CENTS[service];
@@ -568,6 +727,7 @@ app.post("/api/payments/create", rateLimitPayments, requireDatabase, async (req,
       status: "pending",
       customerName: String(customerName).trim().slice(0, 100),
       customerEmail: String(customerEmail).trim().toLowerCase(),
+      customerPhone: trimmedPhone || undefined,
       retentionExpiresAt: computeRetentionExpiry(now),
     });
 
@@ -734,7 +894,7 @@ app.delete("/api/payments/:id/personal-data", requireAdmin, requireDatabase, asy
   try {
     const payment = await Payment.findByIdAndUpdate(
       req.params.id,
-      { $set: { customerName: null, customerEmail: null, anonymizedAt: new Date() } },
+      { $set: { customerName: null, customerEmail: null, customerPhone: null, anonymizedAt: new Date() } },
       { new: true, runValidators: false },
     );
 
@@ -774,6 +934,17 @@ if (MONGODB_REQUIRED) {
   });
 
   mongoose.connect(MONGODB_URI);
+}
+
+// On Vercel, this module is imported and invoked per-request by the platform's
+// Node.js runtime, so it must NOT bind a port there. For local development
+// (`npm run server`) and any other standalone Node host, start the HTTP server
+// here so the API is actually reachable - previously nothing ever called
+// app.listen(), so this file could not be run locally at all.
+if (!process.env.VERCEL) {
+  server = app.listen(PORT, () => {
+    console.log(`Nuppu API listening on http://localhost:${PORT}`);
+  });
 }
 
 export default app;

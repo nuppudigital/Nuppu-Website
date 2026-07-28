@@ -52,6 +52,13 @@ const paymentSchema = new mongoose.Schema(
       lowercase: true,
       match: [/\S+@\S+\.\S+/, "Please enter a valid email address"],
     },
+    // Optional - only collected if the customer wants an SMS receipt. Stored in
+    // E.164 format (e.g. +358401234567). Same GDPR anonymisation as name/email.
+    customerPhone: {
+      type: String,
+      trim: true,
+      maxlength: 20,
+    },
     // No payment card, bank account, or Paytrail-side PII beyond what's needed for support/refunds
     paidAt: { type: Date },
     retentionExpiresAt: { type: Date, required: true },

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { motion } from "motion/react";
+import { motion, AnimatePresence } from "motion/react";
 import {
   ArrowRight,
   Heart,
@@ -9,7 +9,7 @@ import {
   GraduationCap,
   Shield,
   ChevronLeft,
-  ChevronRight
+  ChevronRight,
 } from "lucide-react";
 import { ImageWithFallback } from "../components/media/ImageWithFallback";
 import { usePageMeta } from "../hooks/usePageMeta";
@@ -182,28 +182,30 @@ export default function Home() {
           {/* Carousel */}
           <div className="relative max-w-4xl mx-auto">
             <div className="overflow-hidden rounded-3xl">
-              <motion.div
-                key={currentSlide}
-                initial={{ opacity: 0, x: 100 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -100 }}
-                transition={{ duration: 0.5 }}
-                className="p-12 text-center"
-                style={{ backgroundColor: whyNuppuSlides[currentSlide].color }}
-              >
-                <div className="flex justify-center mb-6 text-white">
-                  {whyNuppuSlides[currentSlide].icon}
-                </div>
-                <h3
-                  className="text-2xl md:text-3xl text-white mb-4"
-                  style={{ fontFamily: 'Nunito, sans-serif' }}
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={currentSlide}
+                  initial={{ opacity: 0, x: 100 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -100 }}
+                  transition={{ duration: 0.5 }}
+                  className="p-12 text-center"
+                  style={{ backgroundColor: whyNuppuSlides[currentSlide].color }}
                 >
-                  {whyNuppuSlides[currentSlide].title}
-                </h3>
-                <p className="text-lg text-white/90 max-w-2xl mx-auto leading-relaxed">
-                  {whyNuppuSlides[currentSlide].description}
-                </p>
-              </motion.div>
+                  <div className="flex justify-center mb-6 text-white">
+                    {whyNuppuSlides[currentSlide].icon}
+                  </div>
+                  <h3
+                    className="text-2xl md:text-3xl text-white mb-4"
+                    style={{ fontFamily: 'Nunito, sans-serif' }}
+                  >
+                    {whyNuppuSlides[currentSlide].title}
+                  </h3>
+                  <p className="text-lg text-white/90 max-w-2xl mx-auto leading-relaxed">
+                    {whyNuppuSlides[currentSlide].description}
+                  </p>
+                </motion.div>
+              </AnimatePresence>
             </div>
 
             {/* Carousel Controls */}

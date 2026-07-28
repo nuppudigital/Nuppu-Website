@@ -9,11 +9,13 @@ import Terms from "./pages/Terms";
 import Cookies from "./pages/Cookies";
 import NotFound from "./pages/NotFound";
 import EmotionalSupport from "./pages/EmotionalSupport";
+import RouteError from "./components/RouteError";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     Component: Root,
+    ErrorBoundary: RouteError,
     children: [
       { index: true, Component: Home },
       { path: "characters", Component: Characters },

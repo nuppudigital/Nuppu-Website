@@ -37,6 +37,12 @@
     "heroImageAlt": "Iloinen ja rauhallinen hymyilevä lapsi",
     "contactUs": "Ota yhteyttä",
     "meetCharacters": "Tutustu hahmoihin",
+    "appPreview": {
+      "badge": "Interaktiivinen prototyyppi",
+      "title": "Tutustu visioomme Nuppu-sovelluksesta",
+      "subtitle": "Kokeile toimivaa Nuppu-mobiilisovelluksen prototyyppiä selaimessasi — tekoälyn luomia tarinoita, hengitysharjoituksia ja vinkkejä vanhemmille.",
+      "button": "Kokeile sovellusprototyyppiä"
+    },
     "why": {
       "title": "Miksi valita Nuppu?",
       "subtitle": "Turvallinen ja tutkimukseen perustuva tapa tukea lasten tunne-elämän hyvinvointia",
@@ -156,6 +162,8 @@
       "namePlaceholder": "Etu- ja sukunimi",
       "emailLabel": "Sähköpostiosoite *",
       "emailPlaceholder": "sahkopostisi@esimerkki.fi",
+      "phoneLabel": "Puhelinnumero (valinnainen — tekstiviestikuittausta varten)",
+      "phonePlaceholder": "+358 40 123 4567",
       "redirecting": "Siirrytään turvalliseen maksuun…",
       "bookPay": "Varaa ja maksa — 29 €",
       "paytrailNote": "Sinut ohjataan Paytrailin turvalliseen maksupalveluun (pankki-, kortti- tai mobiilimaksu). Kortti- ja pankkitiedot käsittelee kokonaan Paytrail, eivätkä ne koskaan päädy Nupun palvelimille."
@@ -163,6 +171,7 @@
     "errors": {
       "name": "Syötä nimesi",
       "email": "Syötä kelvollinen sähköpostiosoite",
+      "phone": "Anna kelvollinen puhelinnumero tai jätä kenttä tyhjäksi",
       "noRedirect": "Maksun ohjausosoitetta ei saatu.",
       "generic": "Jotain meni vikaan. Yritä myöhemmin uudelleen."
     },

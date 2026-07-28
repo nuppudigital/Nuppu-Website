@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Nunito:wght@300;400;500;600;700;800&display=swap');
+@import 'tailwindcss';
+
+:root {
+  /* Brand Primary (matches nuppu.fi website exactly) */
+  --nuppu-blue-deep: #6b9ac4;
+  --nuppu-blue-light: #a8d5e2;
+
+  /* Secondary / supporting */
+  --nuppu-mint: #b8ddb8;
+  --nuppu-mint-light: #c9ede1;
+  --nuppu-lavender: #d4c5f9;
+  --nuppu-butter: #f9e5a8;
+  --nuppu-peach: #ffd4c4;
+
+  /* Backgrounds */
+  --nuppu-ivory: #faf7f2;
+  --nuppu-cream: #f5f0e8;
+  --nuppu-off-white: #f7f6f3;
+  --nuppu-page-bg: #fffcf7;
+
+  /* Character accents (same hex as the website's Characters page) */
+  --nuppu-muru-gold: #e8c468;
+  --nuppu-hippu-sage: #b8d4c7;
+  --nuppu-lumo-coral: #f5b5a8;
+  --nuppu-nuppu-lavender: #d4c5f9;
+
+  /* Text */
+  --nuppu-dark-text: #2d3748;
+  --nuppu-secondary-text: #4a5568;
+  --nuppu-gray-text: #718096;
+}
+
+@theme inline {
+  --color-nuppu-blue-deep: var(--nuppu-blue-deep);
+  --color-nuppu-blue-light: var(--nuppu-blue-light);
+
+  --color-nuppu-mint: var(--nuppu-mint);
+  --color-nuppu-mint-light: var(--nuppu-mint-light);
+  --color-nuppu-lavender: var(--nuppu-lavender);
+  --color-nuppu-butter: var(--nuppu-butter);
+  --color-nuppu-peach: var(--nuppu-peach);
+
+  --color-nuppu-ivory: var(--nuppu-ivory);
+  --color-nuppu-cream: var(--nuppu-cream);
+  --color-nuppu-off-white: var(--nuppu-off-white);
+  --color-nuppu-page-bg: var(--nuppu-page-bg);
+
+  --color-nuppu-muru-gold: var(--nuppu-muru-gold);
+  --color-nuppu-hippu-sage: var(--nuppu-hippu-sage);
+  --color-nuppu-lumo-coral: var(--nuppu-lumo-coral);
+  --color-nuppu-nuppu-lavender: var(--nuppu-nuppu-lavender);
+
+  --color-nuppu-dark-text: var(--nuppu-dark-text);
+  --color-nuppu-secondary-text: var(--nuppu-secondary-text);
+  --color-nuppu-gray-text: var(--nuppu-gray-text);
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-10px);
+  }
+  75% {
+    transform: translateX(10px);
+  }
+}
+
+.animate-shake {
+  animation: shake 0.3s ease-in-out;
+}
+
+body {
+  background: var(--nuppu-page-bg);
+  color: var(--nuppu-dark-text);
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+}
+
+h1,
+h2,
+.font-heading {
+  font-family: 'Nunito', 'Poppins', sans-serif;
+}

@@ -1,15 +1,26 @@
 # ⚡ Quick Start Guide - Nuppu Website
 
-## 🎯 Get Running in 60 Seconds
+## 🎯 Get Running Locally
 
-### Step 1: View the Website
-The website is already built and ready to use! Just click the preview button to see it live.
+### Step 1: Install & Run
+
+```bash
+npm install
+npm run dev          # frontend, http://localhost:5173
+npm run server       # backend, node api/index.js (in a second terminal, optional)
+```
+
+Copy `.env.example` to `.env` first if you want the contact form or booking flow to work locally — see that file for the full variable list.
 
 ### Step 2: Navigate the Site
 - **Home (/)** - Main landing page with hero and carousel
 - **Characters (/characters)** - Meet the 4 Nuppu friends
 - **About (/about)** - Learn about our mission
-- **Contact (/contact)** - Get in touch form
+- **Contact (/contact)** - Contact form (submits to the real `/api/contact` endpoint)
+- **Emotional Support (/emotional-support)** - Paid consultation booking + Paytrail checkout
+- **Privacy / Terms / Cookies** - Legal pages
+
+The site is bilingual (Finnish default, English) — there's a language toggle in the nav, and the preference is remembered.
 
 ---
 
@@ -18,26 +29,40 @@ The website is already built and ready to use! Just click the preview button to 
 ### Main Pages
 ```
 /src/app/pages/
-├── Home.tsx          ← Landing page
-├── Characters.tsx    ← Character showcase
-├── About.tsx         ← About page
-├── Contact.tsx       ← Contact form
-└── NotFound.tsx      ← 404 page
+├── Home.tsx
+├── Characters.tsx
+├── About.tsx
+├── Contact.tsx
+├── EmotionalSupport.tsx  ← Booking + Paytrail checkout
+├── Privacy.tsx
+├── Terms.tsx
+├── Cookies.tsx
+└── NotFound.tsx
 ```
 
 ### Components
 ```
 /src/app/components/
 ├── Navigation.tsx    ← Sticky nav (desktop + mobile)
-└── Footer.tsx        ← Global footer
+├── Footer.tsx         ← Global footer
+├── CookieConsent.tsx ← Cookie consent banner
+└── RouteError.tsx    ← Router error boundary
 ```
 
 ### Configuration
 ```
 /src/app/
 ├── App.tsx           ← Router setup
-├── Root.tsx          ← Layout wrapper
-└── routes.tsx        ← Route configuration
+├── Root.tsx           ← Layout wrapper
+├── routes.tsx         ← Route configuration
+└── i18n/              ← LanguageContext + en.json / fi.json
+```
+
+### Backend
+```
+/api/index.js                       ← Express API (contact + Paytrail payments)
+/src/server/models/Payment.js       ← Payment model
+/src/server/payments/paytrailClient.js  ← Paytrail integration
 ```
 
 ---
@@ -48,9 +73,9 @@ The website is already built and ready to use! Just click the preview button to 
 Edit `/src/styles/theme.css`:
 ```css
 :root {
-  --nuppu-blue: #A8D5E2;     ← Change this
-  --nuppu-yellow: #F9E5A8;   ← Change this
-  --primary: #6B9AC4;        ← Change this
+  --nuppu-honey: #E8C468;       ← Change this
+  --nuppu-eucalyptus: #A8C5BA;  ← Change this
+  --primary: #A8C5BA;           ← Change this
 }
 ```
 
@@ -65,45 +90,37 @@ body {
 ```
 
 ### Change Images
-Replace Unsplash URLs in page components with your own images using ImageWithFallback component.
+Replace the files in `/src/assets` and update references in page components; images render via the `ImageWithFallback` component. All current images are local assets (no external image CDN is used).
 
 ### Change Text Content
-Edit the page files directly:
-- `/src/app/pages/Home.tsx` - Hero text, carousel content
-- `/src/app/pages/Characters.tsx` - Character descriptions
-- `/src/app/pages/About.tsx` - Mission statement
-- `/src/app/pages/Contact.tsx` - Contact info
+Almost all visible text lives in `/src/app/i18n/en.json` and `/src/app/i18n/fi.json` — edit both files together to keep languages in sync. A handful of hardcoded strings (e.g. the contact email) live directly in the page/component files.
 
 ---
 
 ## 🚀 Deploy to Production
 
-### Option 1: Vercel (Easiest)
-1. Push code to GitHub
-2. Connect repo to Vercel
-3. Deploy! ✅
+This is a **single Vercel deployment** — one project serves both the static frontend and the backend (`api/index.js` runs as a Vercel Serverless Function, no separate hosting needed).
 
-### Option 2: Netlify
 1. Push code to GitHub
-2. Connect repo to Netlify
-3. Build command: `npm run build`
-4. Publish directory: `dist`
-5. Deploy! ✅
+2. In Vercel: New Project → Import the repo (Vite build auto-detected)
+3. Add the environment variables from `.env.example` under Project → Settings → Environment Variables
+4. Deploy
 
-**See `/DEPLOYMENT.md` for detailed deployment instructions.**
+**See `/DEPLOYMENT.md` for the full walkthrough** (domain/DNS, MongoDB Atlas, Paytrail onboarding, the retention cron job).
 
 ---
 
-## 🔌 Connect Backend (Optional)
+## 🔌 Backend Status
 
 ### Current State
-✅ Contact form submits to real backend API
+✅ Contact form and the emotional-support booking flow both submit to the real `/api/index.js` backend — this is not mock/reference code.
 
-### To Enable Real Backend
-1. Deploy `/server.js` to Railway/Render/Heroku
-2. Set up MongoDB Atlas database
-3. Add frontend environment variable `VITE_API_BASE_URL` in your deployment settings
-4. Ensure backend allows your frontend domain with `CLIENT_URL`
+### To Run It in Production
+1. Deploy this repo to Vercel (backend deploys automatically alongside the frontend — see above)
+2. Set up MongoDB Atlas and set `MONGODB_URI` / `MONGODB_REQUIRED=true`
+3. Set `CLIENT_URL` to your production frontend origin
+4. Apply for a real Paytrail merchant agreement (or leave `PAYTRAIL_*` unset to keep using Paytrail's public test merchant)
+5. Configure `SMTP_*` for email notifications
 
 **See `/DEPLOYMENT.md` for complete backend setup.**
 
@@ -112,19 +129,13 @@ Edit the page files directly:
 ## 📱 Test Responsive Design
 
 ### Desktop (1920px+)
-- Full navigation bar
-- Multi-column layouts
-- Large images and text
+- Full navigation bar, multi-column layouts, large images and text
 
 ### Tablet (768px - 1024px)
-- Adjusted layouts
-- Readable text sizes
-- Touch-friendly buttons
+- Adjusted layouts, readable text sizes, touch-friendly buttons
 
 ### Mobile (< 768px)
-- Hamburger menu
-- Single column layouts
-- Optimized for touch
+- Hamburger menu, single column layouts, optimized for touch
 
 **Tip:** Use browser DevTools to test different screen sizes!
 
@@ -133,27 +144,25 @@ Edit the page files directly:
 ## ✅ What's Included
 
 ### Pages
-- ✅ Home page with hero & carousel
-- ✅ Characters page with 4 characters
-- ✅ About page with mission & values
-- ✅ Contact page with working form
-- ✅ 404 error page
+- ✅ Home, Characters, About, Contact, Emotional Support (booking), Privacy, Terms, Cookies, 404
 
 ### Features
 - ✅ Responsive design (mobile, tablet, desktop)
+- ✅ Bilingual (Finnish/English), 263 translation keys, fully in sync
 - ✅ Smooth animations
-- ✅ Form validation
+- ✅ Form validation (contact + booking)
+- ✅ Cookie consent banner
 - ✅ Mobile menu
-- ✅ SEO-friendly
+- ✅ SEO-friendly, per-page meta tags
 - ✅ Accessible (ARIA labels)
-- ✅ Production-ready code
 
-### Backend (Reference)
-- ✅ Node.js + Express server (`/server.js`)
-- ✅ MongoDB schema
-- ✅ API endpoints
-- ✅ CORS enabled
-- ✅ Error handling
+### Backend (Live, not reference code)
+- ✅ Node.js + Express server (`/api/index.js`)
+- ✅ MongoDB schema (contact messages + payments)
+- ✅ Paytrail payment integration
+- ✅ Email (Nodemailer) and optional SMS (Twilio) notifications
+- ✅ CORS + rate limiting
+- ✅ Daily cron job for GDPR data retention
 
 ---
 
@@ -166,17 +175,16 @@ Edit the page files directly:
    { path: "newpage", Component: NewPage }
    ```
 3. Add nav link in `/src/app/components/Navigation.tsx`
+4. Add any text you need to both `en.json` and `fi.json`
 
 ### Change Logo
-Edit the Navigation.tsx file and replace the logo div with your image.
+Edit `Navigation.tsx` and replace the logo div with your image.
 
 ### Update Contact Email
-1. Edit `/src/app/components/Footer.tsx`
-2. Edit `/src/app/pages/Contact.tsx`
-3. Change `hello@nuppu.app` to your email
+The email `hello@nuppu.app` appears in `Footer.tsx`, `Contact.tsx`, `en.json`, `fi.json`, `.env.example`, and `api/index.js` (`NUPPU_EMAIL`/`MAIL_FROM` defaults) — update all of them together.
 
 ### Add More Characters
-Edit `/src/app/pages/Characters.tsx` and add to the `characters` array.
+Edit `characters.*` in `en.json`/`fi.json` and the rendering logic in `/src/app/pages/Characters.tsx`.
 
 ---
 
@@ -186,6 +194,7 @@ Edit `/src/app/pages/Characters.tsx` and add to the `characters` array.
 |------|---------|
 | `/README.md` | Project overview & setup |
 | `/DEPLOYMENT.md` | Deployment instructions |
+| `/GDPR-NOTES.md` | Data-processing record for payments |
 | `/PROJECT_OVERVIEW.md` | Complete project details |
 | `/QUICK_START.md` | This file - quick reference |
 
@@ -193,40 +202,21 @@ Edit `/src/app/pages/Characters.tsx` and add to the `characters` array.
 
 ## 🆘 Need Help?
 
-### Check These Files First
-1. `/README.md` - General information
-2. `/DEPLOYMENT.md` - Deployment help
-3. `/PROJECT_OVERVIEW.md` - Detailed overview
-
 ### Common Issues
 
-**Issue:** Navigation not working  
+**Issue:** Navigation not working
 **Fix:** Make sure you're using React Router correctly
 
-**Issue:** Styles not loading  
+**Issue:** Styles not loading
 **Fix:** Check Tailwind CSS is properly configured
 
-**Issue:** Images not showing  
-**Fix:** Verify Unsplash URLs or use ImageWithFallback component
+**Issue:** Contact/booking form not submitting
+**Fix:** Check the browser console for errors; confirm `VITE_API_BASE_URL` points at a running backend, and that `MONGODB_URI`/`MONGODB_REQUIRED` are set if you need persistence
 
-**Issue:** Form not submitting  
-**Fix:** Check console for errors, ensure backend is deployed (if using real API)
-
----
-
-## 🎉 You're Ready!
-
-The Nuppu website is **launch-ready after environment setup**. You can:
-
-✅ Preview it now  
-✅ Customize the content  
-✅ Deploy to production  
-✅ Connect a backend (optional)  
-✅ Add more features  
-
-**Everything you need is in this project!**
+**Issue:** Paytrail checkout doesn't redirect back correctly
+**Fix:** Confirm `CLIENT_URL` on the backend matches the frontend's actual origin exactly (scheme + host, no trailing slash)
 
 ---
 
-Built with ❤️ for children's emotional wellbeing  
+Built with ❤️ for children's emotional wellbeing
 Contact: hello@nuppu.app

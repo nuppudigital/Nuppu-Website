@@ -82,6 +82,7 @@ export const paymentsAPI = {
     service: "emotional-support";
     customerName: string;
     customerEmail: string;
+    customerPhone?: string;
   }) => {
     return apiRequest<{
       status: string;

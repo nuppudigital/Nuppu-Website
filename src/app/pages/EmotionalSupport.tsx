@@ -17,7 +17,7 @@ export function EmotionalSupport() {
   const [searchParams, setSearchParams] = useSearchParams();
   const returnStatus = searchParams.get("payment"); // success | cancelled | pending | error | null
 
-  const [formData, setFormData] = useState({ name: "", email: "" });
+  const [formData, setFormData] = useState({ name: "", email: "", phone: "" });
   const [paymentState, setPaymentState] = useState<PaymentUiState>("idle");
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -48,6 +48,10 @@ export function EmotionalSupport() {
       setErrorMessage(t("emotionalSupport.errors.email"));
       return false;
     }
+    if (formData.phone.trim() && !/^\+?[0-9\s-]{6,20}$/.test(formData.phone.trim())) {
+      setErrorMessage(t("emotionalSupport.errors.phone"));
+      return false;
+    }
     return true;
   };
 
@@ -67,6 +71,7 @@ export function EmotionalSupport() {
         service: "emotional-support",
         customerName: formData.name.trim(),
         customerEmail: formData.email.trim(),
+        customerPhone: formData.phone.trim() || undefined,
       });
 
       const redirectUrl = response?.data?.url;
@@ -235,6 +240,21 @@ export function EmotionalSupport() {
                     disabled={paymentState === "loading"}
                     className="w-full px-4 py-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all"
                     placeholder={t("emotionalSupport.booking.emailPlaceholder")}
+                  />
+                </div>
+                <div className="sm:col-span-2">
+                  <label htmlFor="payer-phone" className="block text-gray-700 dark:text-gray-200 mb-2">
+                    {t("emotionalSupport.booking.phoneLabel")}
+                  </label>
+                  <input
+                    type="tel"
+                    id="payer-phone"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleInputChange}
+                    disabled={paymentState === "loading"}
+                    className="w-full px-4 py-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all"
+                    placeholder={t("emotionalSupport.booking.phonePlaceholder")}
                   />
                 </div>
               </div>

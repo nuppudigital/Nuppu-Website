@@ -7,7 +7,10 @@
     "build": "vite build",
     "dev": "vite",
     "vercel-build": "vite build",
-    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0"
+    "lint": "eslint .",
+    "server": "node api/index.js",
+    "typecheck": "tsc --noEmit",
+    "build:app-preview": "cd app-prototype && npm run build && rm -rf ../public/app-preview && cp -r dist ../public/app-preview"
   },
   "dependencies": {
     "@emotion/react": "11.14.0",
@@ -57,9 +60,11 @@
     "next-themes": "0.4.6",
     "node-fetch": "^2.7.0",
     "nodemailer": "^9.0.3",
+    "react": "18.3.1",
     "react-day-picker": "8.10.1",
     "react-dnd": "16.0.1",
     "react-dnd-html5-backend": "16.0.1",
+    "react-dom": "18.3.1",
     "react-hook-form": "7.55.0",
     "react-popper": "2.3.0",
     "react-resizable-panels": "2.1.7",
@@ -71,25 +76,23 @@
     "sonner": "2.0.3",
     "tailwind-merge": "3.2.0",
     "tw-animate-css": "1.3.8",
+    "twilio": "^5.13.1",
     "vaul": "1.1.2"
   },
   "devDependencies": {
+    "@eslint/js": "^9.39.4",
     "@tailwindcss/vite": "4.1.12",
+    "@types/react": "^18.3.1",
+    "@types/react-dom": "^18.3.1",
     "@vitejs/plugin-react": "4.7.0",
+    "eslint": "^9.39.4",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-react-refresh": "^0.5.3",
+    "globals": "^17.7.0",
     "tailwindcss": "4.1.12",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.63.0",
     "vite": "6.3.5"
-  },
-  "peerDependencies": {
-    "react": "18.3.1",
-    "react-dom": "18.3.1"
-  },
-  "peerDependenciesMeta": {
-    "react": {
-      "optional": true
-    },
-    "react-dom": {
-      "optional": true
-    }
   },
   "pnpm": {
     "overrides": {

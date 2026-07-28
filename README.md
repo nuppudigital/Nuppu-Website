@@ -1,18 +1,18 @@
 # Nuppu - Children's Emotional Learning App
 
-A safe, ad-free, GDPR-compliant digital platform for children's emotional learning and mindfulness.
+A safe, ad-free, GDPR-compliant digital platform for children's emotional learning and mindfulness, with a bookable paid emotional-support consultation for parents.
 
 ## 🌟 Project Overview
 
-Nuppu is a premium web application designed to help children develop emotional intelligence, mindfulness, and self-regulation skills through:
-- Personalized stories with friendly characters
+Nuppu is a bilingual (Finnish/English) marketing and booking site for a children's emotional-intelligence platform, offering:
+- Personalized stories with four friendly characters
 - Interactive emotional exercises
-- Parent micro-support tips
-- Classroom and healthcare integration
+- A paid 45-minute parent emotional-support consultation (booked and paid via Paytrail)
+- Classroom and healthcare integration messaging
 
 ## 🎨 Design Philosophy
 
-- **Warm & Child-Friendly**: Soft pastel colors (blues, yellows, greens)
+- **Warm & Child-Friendly**: Honey & eucalyptus pastel palette (gold, sage, ivory, cream)
 - **Trustworthy**: Built for parents, teachers, and healthcare professionals
 - **Safe**: GDPR-compliant, ad-free, psychologically sound
 
@@ -20,16 +20,19 @@ Nuppu is a premium web application designed to help children develop emotional i
 
 ### Frontend
 - **React 18.3** (Functional components, Hooks)
-- **React Router 7.13** (Multi-page architecture)
+- **React Router 7.13** (Multi-page architecture, `createBrowserRouter`)
 - **Tailwind CSS 4.1** (Modern styling, mobile-first)
 - **Motion (Framer Motion)** (Animations & transitions)
-- **TypeScript** (Type safety)
+- **TypeScript**
+- **Custom i18n** (`LanguageContext`) — Finnish (default) and English, 263 translation keys, kept in sync
 
-### Backend (Reference Implementation)
-- **Node.js** with Express
-- **MongoDB** with Mongoose
-- **CORS** enabled
-- **RESTful API**
+### Backend
+- **Node.js + Express 5** (`api/index.js`), deployed as a single Vercel serverless function
+- **MongoDB + Mongoose 9**
+- **Paytrail** payment integration (redirect checkout; falls back to Paytrail's published test merchant when no real credentials are set)
+- **Nodemailer** for contact/booking email notifications
+- **Twilio** for optional SMS payment receipts
+- **CORS**, rate limiting, and a Vercel Cron job for GDPR data retention
 
 ## 📁 Project Structure
 
@@ -39,34 +42,52 @@ Nuppu is a premium web application designed to help children develop emotional i
     /components
       - Navigation.tsx (Sticky nav with mobile menu)
       - Footer.tsx (Global footer)
-         /media
-            - ImageWithFallback.tsx (Image component)
-      /ui (Reusable UI components)
+      - CookieConsent.tsx (Cookie consent banner)
+      - RouteError.tsx (Router error boundary)
+      /media
+        - ImageWithFallback.tsx
+      /ui (shadcn/ui-based components)
     /pages
-      - Home.tsx (Hero, Why Nuppu carousel, Target audiences)
-      - Characters.tsx (4 Nuppu characters showcase)
-      - About.tsx (Mission, values, frameworks)
-      - Contact.tsx (Contact form with validation)
-      - NotFound.tsx (404 page)
-    - App.tsx (Router provider)
-    - Root.tsx (Layout wrapper)
-    - routes.tsx (Route configuration)
+      - Home.tsx
+      - Characters.tsx
+      - About.tsx
+      - Contact.tsx
+      - EmotionalSupport.tsx (paid consultation booking + Paytrail checkout)
+      - Privacy.tsx
+      - Terms.tsx
+      - Cookies.tsx
+      - NotFound.tsx
+    /i18n
+      - LanguageContext.tsx
+      - en.json / fi.json
+    /hooks
+      - usePageMeta.ts
+    /config
+      - api.ts
+    - App.tsx / Root.tsx / routes.tsx
+  /server
+    /models
+      - Payment.js
+    /payments
+      - paytrailClient.js
   /styles
     - fonts.css (Google Fonts: Poppins, Nunito)
     - theme.css (Custom color palette)
-    - tailwind.css
-    - index.css
+    - tailwind.css / index.css
 
-/server.js (Backend API - Node.js/Express/MongoDB)
+/api/index.js (Express backend, deployed as a Vercel serverless function)
 /.env.example (Environment variables template)
+/vercel.json (rewrites, security headers, cron schedule)
 ```
 
 ## 🎭 Characters
 
-1. **Hippu Cat** - Curious and observant
-2. **Lumo Fox** - Clever and guiding
-3. **Muru Bear** - Warm, comforting, grounded
-4. **Nuppu Bunny** - Energetic, learning balance
+| Character | Personality | Focus |
+|-----------|-------------|-------|
+| **Nuppu Bunny** | Emotional Guide and Friendship | Recognizing emotions, empathy, self-regulation |
+| **Muru Bear** | Safety & Comfort | Security, calming down, coping with disappointment |
+| **Hippu Cat** | Curiosity and Practicing Boundaries | Expressing one's own will, boundaries, courage |
+| **Lumo Fox** | Thinking and Problem-Solving | Handling disappointment, conflict resolution, flexibility |
 
 ## 🛠️ Setup Instructions
 
@@ -87,95 +108,87 @@ Nuppu is a premium web application designed to help children develop emotional i
    npm run build
    ```
 
-4. **Configure Frontend API URL**
+4. **Configure Environment**
    - Copy `.env.example` to `.env`
-   - Set `VITE_API_BASE_URL` to your backend API URL
+   - See `.env.example` for the full list of variables (API base URL, MongoDB, Paytrail, SMTP, Twilio, admin/cron tokens)
 
-### Backend Setup (Optional)
+### Backend Setup
 
-The backend is provided as a reference implementation. To run it:
+The backend is a real Express app at `api/index.js`, meant to run as a Vercel serverless function (see `DEPLOYMENT.md`). To run it locally:
 
-1. **Install Backend Dependencies**
-   ```bash
-   npm install express mongoose cors dotenv
-   ```
+```bash
+npm run server   # node api/index.js
+```
 
-2. **Configure Environment**
-   - Copy `.env.example` to `.env`
-   - Update `MONGODB_URI` with your MongoDB connection string
+Without `MONGODB_URI` set (and `MONGODB_REQUIRED=true`), database-backed routes will no-op or error gracefully — see `.env.example`.
 
-3. **Run Backend Server**
-   ```bash
-   node server.js
-   ```
+### API Endpoints
 
-4. **API Endpoints**
-   - `POST /api/contact` - Submit contact form
-   - `GET /api/contact` - Get all messages (admin)
-   - `PATCH /api/contact/:id` - Update message status
-   - `GET /api/health` - Health check
+- `GET /api/health` — Health check
+- `POST /api/contact` — Submit contact form (rate-limited)
+- `GET /api/contact` — List messages (admin)
+- `PATCH /api/contact/:id` — Update message status (admin)
+- `POST /api/payments/create` — Start a Paytrail checkout (rate-limited)
+- `GET /api/payments/success` / `GET /api/payments/cancel` — Paytrail redirect returns
+- `GET|POST /api/payments/callback` — Paytrail webhook
+- `GET /api/payments` — List payments (admin)
+- `GET /api/payments/:id` — Get a payment (admin)
+- `PATCH /api/payments/:id` — Update a payment (admin)
+- `DELETE /api/payments/:id/personal-data` — Anonymise a payment record (admin)
+- `GET /api/payments/export` — Export a customer's payment history by email (admin)
+- `GET /api/payments/anonymize-expired` — Retention sweep (cron or admin)
 
 ## 📱 Pages & Features
 
 ### Home Page (`/`)
-- Hero section with CTA
-- Interactive "Why Nuppu" carousel
-- Target audience section (Parents, Teachers, Healthcare)
-- Bottom CTA
+- Hero section with CTA, "Why Nuppu" carousel, target audience section, bottom CTA
 
 ### Characters Page (`/characters`)
-- Grid showcase of 4 characters
-- Hover animations
-- Character personalities & emotions
+- Grid showcase of the 4 characters with personalities and emotion focus
 
 ### About Page (`/about`)
-- Mission statement
-- Core values
-- Psychological frameworks
-- Privacy & security commitment
+- Mission, values, psychological frameworks, privacy & security commitment
 
 ### Contact Page (`/contact`)
-- Contact form with validation
-- Email & phone info cards
-- Loading & success states
-- Form submission to backend API
+- Contact form (name, email, role, message) submitting to the live `/api/contact` endpoint
+
+### Emotional Support Page (`/emotional-support`)
+- Paid 45-minute parent consultation, booking form, Paytrail checkout redirect, success/cancel banners
+
+### Privacy / Terms / Cookies (`/privacy`, `/terms`, `/cookies`)
+- Legal pages; see `GDPR-NOTES.md` for the underlying data-processing records
+
+### 404 (any unmatched route)
 
 ## 🎨 Color Palette
 
 ```css
---nuppu-blue: #A8D5E2;
---nuppu-yellow: #F9E5A8;
---nuppu-green: #B8DDB8;
---nuppu-peach: #FFD4C4;
---nuppu-lavender: #D4C5F9;
---nuppu-mint: #C9EDE1;
---primary: #6B9AC4;
+--nuppu-honey: #E8C468;
+--nuppu-eucalyptus: #A8C5BA;
+--nuppu-ivory: #FAF7F2;
+--nuppu-gold: #D4AF5E;
+--nuppu-sage: #B8D4C7;
+--nuppu-cream: #F5F0E8;
+--primary: #A8C5BA;
 ```
 
 ## 🔒 Security & Privacy
 
-- GDPR-compliant
-- No advertisements
-- Secure data handling
-- Age-appropriate content boundaries
-- Encrypted database storage
+- GDPR-compliant (see `GDPR-NOTES.md` for the full processing-activity record)
+- No advertisements, no non-essential cookies (cookie consent banner in place for future use)
+- Card/bank details never touch Nuppu's servers (handled entirely by Paytrail's redirect checkout)
+- 6-year payment record retention per Finnish bookkeeping law, then anonymised (not deleted) via a daily cron job
+- Security headers (HSTS, X-Content-Type-Options, X-Frame-Options, Referrer-Policy) set in `vercel.json`
 
 ## 🌐 Deployment
 
-### Frontend Deployment
-- Deploy to Vercel, Netlify, or any static hosting
-- Build command: `npm run build`
-- Output directory: `dist`
-- Required env: `VITE_API_BASE_URL`
+Single Vercel deployment serves both the static frontend and the backend (`api/index.js` as a serverless function) on one domain — see `DEPLOYMENT.md` for full instructions, DNS setup, MongoDB Atlas, and Paytrail onboarding steps.
 
-### Backend Deployment
-- Deploy to Heroku, Railway, Render, or AWS
-- Set environment variables
-- Connect to MongoDB Atlas
+> **Domain:** the final production domain (`.fi` vs `.app`) is still being confirmed — see `DEPLOYMENT.md`.
 
-## 📝 Database Schema
+## 📝 Database Models
 
-### ContactMessage Model
+### ContactMessage
 ```javascript
 {
   name: String (required, max 100 chars)
@@ -189,30 +202,50 @@ The backend is provided as a reference implementation. To run it:
 }
 ```
 
+### Payment (`src/server/models/Payment.js`)
+```javascript
+{
+  customerName: String
+  customerEmail: String
+  amountCents: Number
+  currency: String
+  status: String
+  paytrailTransactionId: String
+  paytrailReference: String
+  paidAt: Date
+  retentionExpiresAt: Date  // computed at creation, 6 years from fiscal year end
+  createdAt: Date (auto)
+  updatedAt: Date (auto)
+}
+```
+
 ## 🎯 Key Features
 
-✅ Multi-page architecture with React Router  
-✅ Responsive design (mobile, tablet, desktop)  
-✅ Smooth animations with Motion  
-✅ Interactive carousel  
-✅ Form validation & error handling  
-✅ Loading states & feedback  
-✅ Accessible (ARIA labels, semantic HTML)  
-✅ SEO-friendly  
-✅ Production-focused launch hardening  
+✅ Multi-page architecture with React Router
+✅ Bilingual (Finnish/English) with persisted language preference
+✅ Responsive design (mobile, tablet, desktop)
+✅ Smooth animations with Motion
+✅ Interactive carousel
+✅ Live contact form and Paytrail-backed booking/payment flow
+✅ Cookie consent banner
+✅ Accessible (ARIA labels, semantic HTML)
+✅ SEO-friendly
 
 ## ✅ Pre-Launch Checklist
 
+- Confirm the final production domain and update `index.html`'s Open Graph tags and `DEPLOYMENT.md` accordingly
 - Set `VITE_API_BASE_URL` in frontend hosting environment
-- Set backend `CLIENT_URL`, `MONGODB_URI`, and `ADMIN_TOKEN`
+- Set backend `CLIENT_URL`, `MONGODB_URI`, `MONGODB_REQUIRED=true`, `ADMIN_TOKEN`, `CRON_SECRET`
+- Apply for a real Paytrail merchant agreement and set `PAYTRAIL_MERCHANT_ID` / `PAYTRAIL_SECRET_KEY`
+- Set up a transactional email provider and fill in `SMTP_*` variables
 - Verify legal pages (`/privacy`, `/terms`, `/cookies`) in production
-- Submit a real contact form entry and verify DB persistence
+- Submit a real contact form entry and a test Paytrail payment; verify DB persistence
 - Confirm social preview image and metadata render correctly
+- Sign DPAs with MongoDB Atlas, Paytrail, and the chosen SMTP provider (see `GDPR-NOTES.md`)
 
 ## 📧 Contact
 
 - **Email**: hello@nuppu.app
-- **Website**: [Visit Nuppu](#)
 
 ## 📄 License
 

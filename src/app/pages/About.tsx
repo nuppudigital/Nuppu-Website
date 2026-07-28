@@ -10,6 +10,8 @@ import {
   Sparkles,
   Target,
   Lock,
+  Smartphone,
+  ArrowRight,
 } from "lucide-react";
 import { ImageWithFallback } from "../components/media/ImageWithFallback";
 import { usePageMeta } from "../hooks/usePageMeta";
@@ -548,6 +550,62 @@ export default function About() {
               </div>
             </motion.div>
           </div>
+        </div>
+      </section>
+
+      {/* App Preview CTA */}
+      <section className="py-20 bg-gradient-to-br from-[#2D2A5E] via-[#6E4FD1] to-[#0F9B8E] relative overflow-hidden">
+        <div className="absolute inset-0 opacity-20 pointer-events-none">
+          <div className="absolute -top-10 -left-10 w-64 h-64 bg-white rounded-full blur-3xl" />
+          <div className="absolute -bottom-16 -right-16 w-80 h-80 bg-white rounded-full blur-3xl" />
+        </div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="grid md:grid-cols-2 gap-10 items-center"
+          >
+            <div>
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/15 rounded-full mb-6">
+                <Sparkles size={16} className="text-white" />
+                <span className="text-white">{t("home.appPreview.badge")}</span>
+              </div>
+              <h2
+                className="text-3xl md:text-4xl text-white mb-4"
+                style={{ fontFamily: 'Nunito, sans-serif' }}
+              >
+                {t("home.appPreview.title")}
+              </h2>
+              <p className="text-lg text-white/85 mb-8 leading-relaxed max-w-xl">
+                {t("home.appPreview.subtitle")}
+              </p>
+              <a
+                href="/app-preview/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-[#6E4FD1] rounded-full hover:shadow-2xl hover:scale-105 transition-all duration-300"
+              >
+                <Smartphone size={20} />
+                {t("home.appPreview.button")}
+                <ArrowRight size={20} />
+              </a>
+            </div>
+
+            <motion.div
+              animate={{ y: [0, -14, 0] }}
+              transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
+              className="flex justify-center"
+            >
+              <div className="w-56 h-[420px] rounded-[2.5rem] border-4 border-white/30 bg-white/10 backdrop-blur-sm shadow-2xl flex flex-col items-center justify-center gap-3 p-6">
+                <div className="w-16 h-16 rounded-full bg-white/90 flex items-center justify-center">
+                  <Smartphone size={28} className="text-[#6E4FD1]" />
+                </div>
+                <p className="text-white text-center">{t("home.appPreview.badge")}</p>
+              </div>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
 

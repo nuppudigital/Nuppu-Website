@@ -15,26 +15,26 @@ Replace `nuppu.fi` everywhere below with the real registered domain once it's ch
 
 ---
 
-## 0. Before you start: rotate the Paytrail test key that leaked into git
+## 0. Repo hygiene: things that need a decision before launch
 
-While wiring up payments, I found that a `.env` file (with `PAYTRAIL_MERCHANT_ID` /
-`PAYTRAIL_SECRET_KEY` values already filled in) had been **committed to this git repository**
-(commit `cb477820`, June 14 2026). I've removed `.env` from tracking and added a `.gitignore`
-so this can't happen again, but removing a file from the working tree does not remove it from
-git history — anyone with access to this repo (or its remote, if pushed) can still retrieve the
-old value from history.
+**Note on an earlier version of this section:** a previous pass of this doc claimed a `.env`
+file with real Paytrail credentials had been committed at a specific commit hash. That commit
+does not exist in this repo's actual git history (checked 2026-07-18 — the repo has only three
+commits, and `.env` was never tracked in any of them; `.gitignore` already excludes it). That
+claim appears to have been written against a different repo state and should not be treated as
+a confirmed incident. If you know of a `.env` (or any real secret) having been committed and
+pushed anywhere at any point, rotate the relevant credentials regardless of what this doc says —
+but don't take the specific commit-hash claim above at face value.
 
-**Action required before launch:**
-- If those were ever real Paytrail production credentials, rotate the secret key in the
-  [Paytrail merchant panel](https://merchant.paytrail.com) immediately.
-- If you want the old value fully scrubbed from git history (not just future commits), that
-  requires rewriting history (`git filter-repo` or BFG Repo-Cleaner) and force-pushing — flagging
-  this as a decision for whoever owns the repo, since it's disruptive for any existing clones/PRs.
+**What is actually true right now, and does need attention:**
+- `node_modules/` (tens of thousands of files) is still tracked in git, even though
+  `.gitignore` already excludes it — untracking only stops *new* changes from being tracked, it
+  doesn't remove what's already committed. Clean up with `git rm -r --cached node_modules` in a
+  dedicated commit.
+- `dist/` (build output) is also still tracked for the same reason — same fix,
+  `git rm -r --cached dist`.
 - Going forward, only `.env.example` (placeholder values) should ever be committed. Real values
   live in Vercel's environment variable dashboard and each developer's local `.env`.
-
-I also found `node_modules/` was committed to git; I've untracked it via `.gitignore` as well
-(this alone doesn't shrink existing repo history, but stops it from growing further).
 
 ---
 
@@ -171,8 +171,11 @@ Pay — €29" → complete (or cancel) on Paytrail's test checkout → confirm 
 If you outgrow serverless functions, deploy `api/index.js` as a normal long-running Node
 process instead:
 
-1. Copy `backend-package.json` to `package.json` in a separate backend deploy (or point your
-   host's build at the existing `api/index.js` with `backend-package.json`'s dependencies).
+1. There is no separate `backend-package.json` in this repo — the backend's dependencies
+   (express, mongoose, cors, dotenv, nodemailer, twilio, node-fetch) live in the root
+   `package.json` alongside the frontend's. Point your host's build at `api/index.js` using
+   that file, or extract just the backend dependencies into a standalone `package.json` for
+   the separate deploy if you'd rather not ship frontend deps to that host.
 2. Deploy to Railway/Render/Fly, set the same environment variables as above, except:
    - `CLIENT_URL` stays the frontend's domain (`https://nuppu.fi`)
    - Add a DNS `CNAME`/`ALIAS` for `api.nuppu.fi` pointing at the host's provided address

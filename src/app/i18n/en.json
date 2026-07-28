@@ -37,6 +37,12 @@
     "heroImageAlt": "Happy calm child smiling",
     "contactUs": "Contact Us",
     "meetCharacters": "Meet the Characters",
+    "appPreview": {
+      "badge": "Interactive Prototype",
+      "title": "See our vision for the Nuppu app",
+      "subtitle": "Explore a live, click-through prototype of the Nuppu mobile app — AI-generated stories, breathing exercises, and micro-support tips for parents, right in your browser.",
+      "button": "Try the App Prototype"
+    },
     "why": {
       "title": "Why Choose Nuppu?",
       "subtitle": "A safe, research-backed approach to children's emotional wellbeing",
@@ -156,6 +162,8 @@
       "namePlaceholder": "First and Last Name",
       "emailLabel": "Email Address *",
       "emailPlaceholder": "youremail@example.com",
+      "phoneLabel": "Phone Number (optional — for SMS receipt)",
+      "phonePlaceholder": "+358 40 123 4567",
       "redirecting": "Redirecting to secure payment…",
       "bookPay": "Book & Pay — €29",
       "paytrailNote": "You'll be redirected to Paytrail's secure checkout (bank, card, or mobile payment). Card and bank details are handled entirely by Paytrail and never touch Nuppu's servers."
@@ -163,6 +171,7 @@
     "errors": {
       "name": "Please enter your name",
       "email": "Please enter a valid email address",
+      "phone": "Please enter a valid phone number, or leave it empty",
       "noRedirect": "No payment redirect URL was returned.",
       "generic": "Something went wrong. Please try again later."
     },
