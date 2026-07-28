@@ -30,9 +30,9 @@ not deleted, so the accounting trail (amount, date, status, transaction ID) surv
 personal data does not. A daily Vercel Cron job (`/api/payments/anonymize-expired`) performs
 this sweep — see `DEPLOYMENT.md` §8.
 
-**⚠️ FLAGGED — business decision needed:** retention is currently computed assuming a
-calendar-year fiscal year (Jan 1 – Dec 31). If Nuppu's actual fiscal year differs, update
-`computeRetentionExpiry()` accordingly. Confirm with the company's accountant/bookkeeper.
+**Open item:** retention is currently computed assuming a calendar-year fiscal year (Jan 1 – Dec
+31). If Nuppu's actual fiscal year differs, update `computeRetentionExpiry()` accordingly —
+confirm with the company's accountant.
 
 **Data subject rights implemented:**
 | Right | How |
@@ -43,10 +43,9 @@ calendar-year fiscal year (Jan 1 – Dec 31). If Nuppu's actual fiscal year diff
 | Portability/export | `GET /api/payments/export?email=...` — returns the customer's payment history as JSON |
 
 All of the above currently require the site operator's `ADMIN_TOKEN` — there is no self-service
-customer portal yet. **⚠️ FLAGGED:** if Nuppu wants customers to exercise these rights
-themselves (rather than emailing hello@nuppu.app and having staff run the request), that's a
-larger feature (customer auth) not built here — flagging as a product decision, not something to
-guess at.
+customer portal yet. A self-service portal (customers exercising these rights themselves instead
+of emailing hello@nuppu.app) would need customer auth, which doesn't exist here — that's a
+product decision for later, not something to build speculatively.
 
 ## Processors (Article 30 records)
 
@@ -57,11 +56,10 @@ guess at.
 | **Vercel** | Frontend hosting + serverless API + cron | HTTP request logs; no persistent customer data stored by Vercel itself | Vercel is a US company; request routing/edge may not be EU-only unless region-pinned. Not a data processor for *stored* personal data (no database), but flagging since it handles all traffic including payment redirects. |
 | SMTP provider (TBD — see `.env.example`) | Transactional email (contact form, booking confirmations) | Customer name/email, message content | Depends on provider chosen — confirm EU hosting when selecting one (e.g. SendGrid/Mailgun both have EU regions) |
 
-**⚠️ FLAGGED — needs a signed DPA:** a Data Processing Agreement should be in place with each
-processor above before launch. Paytrail's merchant agreement includes standard DPA terms;
-MongoDB Atlas and the eventual SMTP provider each publish standard DPAs that need to be reviewed
-and accepted (typically via their admin console, no negotiation needed for a company this size).
-This is a paperwork/business step, not something this codebase can do for you.
+**Open item:** a signed Data Processing Agreement should be in place with each processor above
+before launch. Paytrail's merchant agreement includes standard DPA terms; MongoDB Atlas and the
+eventual SMTP provider each publish standard DPAs that just need reviewing and accepting via
+their admin console.
 
 ## Cookie consent
 
@@ -69,16 +67,16 @@ A cookie consent banner (`src/app/components/CookieConsent.tsx`) was added, sinc
 confirmation pages are exactly where marketing pixels tend to get added later, and it's better
 to have consent infrastructure in place before that happens rather than retrofit it. At the time
 of writing, Nuppu sets **no non-essential cookies** (no analytics, no marketing pixels), so the
-banner currently records a preference but doesn't gate anything. **⚠️ FLAGGED:** if/when
-analytics (e.g. Plausible, mentioned in the original launch checklist) is added, it must be
-wired to only load after the visitor has accepted (`localStorage["nuppu-cookie-consent"] ===
-"accepted"`) — this is not automatic and needs to be done at integration time.
+banner currently records a preference but doesn't gate anything. If/when analytics (e.g.
+Plausible) gets added, wire it to only load after the visitor has accepted
+(`localStorage["nuppu-cookie-consent"] === "accepted"`) — that's not automatic and needs doing at
+integration time.
 
 ## Children's data
 
 Nuppu's marketing site itself does not collect data *from* children — the contact form and
-payment flow are both filled in by adults (parents/professionals) about themselves. If a future
-product (the actual app, per the launch checklist) collects data from children aged 3–8 directly,
-that triggers additional GDPR obligations (Article 8 — parental consent for information society
+payment flow are both filled in by adults (parents/professionals) about themselves. If the actual
+Nuppu app (see `app-prototype/`) ever collects data from children aged 3–8 directly, that
+triggers additional GDPR obligations (Article 8 — parental consent for information society
 services offered to children) that are out of scope for this marketing-site work and should be
 revisited when that product is built.

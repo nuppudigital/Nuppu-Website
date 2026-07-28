@@ -3,24 +3,22 @@ import path from 'path'
 import tailwindcss from '@tailwindcss/vite'
 import react from '@vitejs/plugin-react'
 
-// /app-preview and /admin are separate standalone SPAs (app-prototype/ and
-// admin-dashboard/) served as static files from public/app-preview and
-// public/admin. In dev, Vite's own SPA history fallback intercepts
-// extensionless requests like "/app-preview/" before the static file is
-// reached and serves this site's index.html instead. Rewriting the request
-// to the explicit file here (registered without returning a function, so it
-// runs before Vite's internal middlewares) keeps the clean URL working in
-// dev the same way it does in production.
-function staticSpaFallback(prefix: string): Plugin {
+// /admin is the admin-dashboard/ project, built separately and copied into
+// public/admin (see the build:admin script). In dev, Vite's own SPA history
+// fallback would otherwise intercept extensionless requests like "/admin"
+// before the static file is reached and serve this site's index.html instead.
+// Rewriting the request to the explicit file here keeps the clean URL working
+// in dev the same way it does in production.
+function adminFallback(): Plugin {
   return {
-    name: `${prefix.slice(1)}-fallback`,
+    name: 'admin-fallback',
     configureServer(server) {
       server.middlewares.use((req, res, next) => {
-        if (req.url?.startsWith(prefix)) {
+        if (req.url?.startsWith('/admin')) {
           const pathname = req.url.split('?')[0];
           const lastSegment = pathname.split('/').pop() ?? '';
           if (!lastSegment.includes('.')) {
-            req.url = `${prefix}/index.html`;
+            req.url = '/admin/index.html';
           }
         }
         next();
@@ -30,14 +28,7 @@ function staticSpaFallback(prefix: string): Plugin {
 }
 
 export default defineConfig({
-  plugins: [
-    staticSpaFallback('/app-preview'),
-    staticSpaFallback('/admin'),
-    // React and Tailwind plugins are required for this project setup.
-    // Keep both plugins enabled unless the build setup is intentionally changed.
-    react(),
-    tailwindcss(),
-  ],
+  plugins: [adminFallback(), react(), tailwindcss()],
   resolve: {
     alias: {
       // Alias @ to the src directory
