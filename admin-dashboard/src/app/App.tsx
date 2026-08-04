@@ -44,6 +44,27 @@ function messageStatusClasses(status: ContactMessage['status']) {
   }
 }
 
+type MessageSource = 'contact' | 'booking';
+
+interface UnifiedMessage {
+  id: string;
+  createdAt: string;
+  name: string;
+  email: string;
+  phone?: string;
+  source: MessageSource;
+  detail: string;
+  message: string;
+  statusLabel: string;
+  statusClasses: string;
+}
+
+function sourceClasses(source: MessageSource) {
+  return source === 'contact'
+    ? 'bg-blue-50 text-blue-700 border-blue-200'
+    : 'bg-violet-50 text-violet-700 border-violet-200';
+}
+
 function StatusBadge({ status, classes }: { status: string; classes: string }) {
   return (
     <span className={`inline-flex items-center rounded-md border px-2 py-0.5 text-xs font-medium capitalize ${classes}`}>
@@ -225,7 +246,42 @@ export default function App() {
   const newMessages = messages.filter((m) => m.status === 'new');
 
   const filteredPayments = paymentTab === 'all' ? payments : payments.filter((p) => p.status === paymentTab);
-  const filteredMessages = messageTab === 'all' ? messages : messages.filter((m) => m.status === messageTab);
+
+  // Messages panel combines contact-form submissions with the message every
+  // client writes when booking a paid consultation, so nothing gets missed
+  // by only checking one list.
+  const unifiedMessages: UnifiedMessage[] = [
+    ...messages.map((m) => ({
+      id: `contact-${m._id}`,
+      createdAt: m.createdAt,
+      name: m.name,
+      email: m.email,
+      source: 'contact' as const,
+      detail: m.role,
+      message: m.message,
+      statusLabel: m.status,
+      statusClasses: messageStatusClasses(m.status),
+    })),
+    ...payments
+      .filter((p) => p.customerMessage && p.customerMessage.trim())
+      .map((p) => ({
+        id: `booking-${p._id}`,
+        createdAt: p.createdAt,
+        name: p.customerName,
+        email: p.customerEmail,
+        phone: p.customerPhone,
+        source: 'booking' as const,
+        detail: p.service,
+        message: p.customerMessage as string,
+        statusLabel: p.status,
+        statusClasses: paymentStatusClasses(p.status),
+      })),
+  ].sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+
+  // The new/read/replied tabs are a contact-form triage workflow; bookings
+  // don't have that state, so they only surface under "All".
+  const filteredMessages =
+    messageTab === 'all' ? unifiedMessages : unifiedMessages.filter((m) => m.source === 'contact' && m.statusLabel === messageTab);
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -275,8 +331,8 @@ export default function App() {
           <StatTile
             icon={<Mail className="h-5 w-5" />}
             label="Messages"
-            value={String(messagesTotal)}
-            sublabel={`${newMessages.length} new`}
+            value={String(unifiedMessages.length)}
+            sublabel={`${newMessages.length} new · ${messagesTotal} contact, ${paymentsTotal} booking`}
           />
         </div>
 
@@ -332,6 +388,10 @@ export default function App() {
 
         <Card className="p-6">
           <h2 className="text-lg font-semibold mb-4">Messages</h2>
+          <p className="text-sm text-muted-foreground -mt-2 mb-4">
+            Every message from a client, whether they wrote in through the contact form or left a note while booking
+            a paid consultation.
+          </p>
           <TabBar tabs={MESSAGE_TABS} active={messageTab} onChange={setMessageTab} />
           <div className="overflow-x-auto mt-4">
             <table className="w-full text-sm">
@@ -339,7 +399,7 @@ export default function App() {
                 <tr className="border-b border-border text-left text-muted-foreground">
                   <th className="py-2 pr-4 font-medium">Date</th>
                   <th className="py-2 pr-4 font-medium">From</th>
-                  <th className="py-2 pr-4 font-medium">Role</th>
+                  <th className="py-2 pr-4 font-medium">Source</th>
                   <th className="py-2 pr-4 font-medium">Message</th>
                   <th className="py-2 pr-4 font-medium">Status</th>
                 </tr>
@@ -353,20 +413,27 @@ export default function App() {
                   </tr>
                 ) : (
                   filteredMessages.map((message) => (
-                    <tr key={message._id} className="border-b border-border last:border-0">
+                    <tr key={message.id} className="border-b border-border last:border-0">
                       <td className="py-3 pr-4 whitespace-nowrap text-muted-foreground">
                         {formatDate(message.createdAt)}
                       </td>
                       <td className="py-3 pr-4">
                         <div className="font-medium">{message.name}</div>
                         <div className="text-muted-foreground text-xs">{message.email}</div>
+                        {message.phone && <div className="text-muted-foreground text-xs">{message.phone}</div>}
                       </td>
-                      <td className="py-3 pr-4 capitalize">{message.role}</td>
+                      <td className="py-3 pr-4">
+                        <StatusBadge
+                          status={message.source === 'contact' ? 'Contact' : 'Booking'}
+                          classes={sourceClasses(message.source)}
+                        />
+                        <div className="text-muted-foreground text-xs mt-1 capitalize">{message.detail}</div>
+                      </td>
                       <td className="py-3 pr-4 max-w-xs truncate" title={message.message}>
                         {message.message}
                       </td>
                       <td className="py-3 pr-4">
-                        <StatusBadge status={message.status} classes={messageStatusClasses(message.status)} />
+                        <StatusBadge status={message.statusLabel} classes={message.statusClasses} />
                       </td>
                     </tr>
                   ))

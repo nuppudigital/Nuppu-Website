@@ -1,10 +1,11 @@
 import { motion } from "motion/react";
 import { Link } from "react-router-dom";
-import { Sparkles, Heart, Brain } from "lucide-react";
-import nuppuImg from "../../assets/NUPPU BUNNY.png";
-import muruImg from "../../assets/MURU BEAR.png";
-import hippuImg from "../../assets/HIPPU CAT.png";
-import lumoImg from "../../assets/LUMO FOX.png";
+import { Heart, Shield, Star, Lightbulb } from "lucide-react";
+import nuppuImg from "../../assets/NUPPU BUNNY.webp";
+import muruImg from "../../assets/MURU BEAR.webp";
+import hippuImg from "../../assets/HIPPU CAT.webp";
+import lumoImg from "../../assets/LUMO FOX.webp";
+import lineupImg from "../../assets/CHARACTERS LINEUP.webp";
 import { usePageMeta } from "../hooks/usePageMeta";
 import { useLanguage } from "../i18n/LanguageContext";
 
@@ -19,7 +20,7 @@ export default function Characters() {
       personality: t("characters.nuppu.personality"),
       description: t("characters.nuppu.description"),
       emotions: tList("characters.nuppu.emotions"),
-      color: "#D4C5F9",
+      color: "#F2984D",
       image: nuppuImg,
       icon: <Heart className="w-6 h-6" />,
     },
@@ -28,27 +29,27 @@ export default function Characters() {
       personality: t("characters.muru.personality"),
       description: t("characters.muru.description"),
       emotions: tList("characters.muru.emotions"),
-      color: "#E8C468",
+      color: "#F0B429",
       image: muruImg,
-      icon: <Heart className="w-6 h-6" />,
+      icon: <Shield className="w-6 h-6" />,
     },
     {
       name: "Hippu",
       personality: t("characters.hippu.personality"),
       description: t("characters.hippu.description"),
       emotions: tList("characters.hippu.emotions"),
-      color: "#B8D4C7",
+      color: "#EE7FB0",
       image: hippuImg,
-      icon: <Sparkles className="w-6 h-6" />,
+      icon: <Star className="w-6 h-6" />,
     },
     {
       name: "Lumo",
       personality: t("characters.lumo.personality"),
       description: t("characters.lumo.description"),
       emotions: tList("characters.lumo.emotions"),
-      color: "#F5B5A8",
+      color: "#4FB6E0",
       image: lumoImg,
-      icon: <Brain className="w-6 h-6" />,
+      icon: <Lightbulb className="w-6 h-6" />,
     },
   ];
 
@@ -73,6 +74,20 @@ export default function Characters() {
               {t("characters.heroSubtitle")}
             </p>
           </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.2 }}
+            className="mt-12 flex justify-center"
+          >
+            <img
+              src={lineupImg}
+              alt={t("characters.heroTitleHighlight")}
+              className="w-full max-w-2xl h-auto object-contain drop-shadow-xl"
+              loading="eager"
+            />
+          </motion.div>
         </div>
       </section>
 
@@ -91,16 +106,19 @@ export default function Characters() {
                 className="bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 border border-border"
               >
                 {/* Character Image */}
-                <div className="relative h-80 overflow-hidden bg-gradient-to-br from-white to-[#F7F6F3]">
+                <div
+                  className="relative h-96 overflow-hidden"
+                  style={{ background: `linear-gradient(to bottom right, white, ${character.color}14)` }}
+                >
                   <motion.div
-                    whileHover={{ scale: 1.1 }}
+                    whileHover={{ scale: 1.06 }}
                     transition={{ duration: 0.4 }}
-                    className="w-full h-full flex items-center justify-center"
+                    className="w-full h-full flex items-center justify-center p-4"
                   >
                     <img
                       src={character.image}
                       alt={character.name}
-                      className="w-64 h-64 object-contain"
+                      className="max-w-[70%] max-h-full w-auto h-auto object-contain drop-shadow-lg"
                       loading="lazy"
                       decoding="async"
                     />

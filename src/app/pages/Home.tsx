@@ -14,6 +14,7 @@ import {
 import { ImageWithFallback } from "../components/media/ImageWithFallback";
 import { usePageMeta } from "../hooks/usePageMeta";
 import { useLanguage } from "../i18n/LanguageContext";
+import lineupImg from "../../assets/CHARACTERS LINEUP.webp";
 
 export default function Home() {
   const { t, tList } = useLanguage();
@@ -154,6 +155,54 @@ export default function Home() {
                 className="absolute -bottom-8 -left-8 w-32 h-32 bg-[#B8DDB8] rounded-full opacity-60 blur-3xl"
               />
             </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Meet the Gang */}
+      <section className="py-20 bg-white overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-12"
+          >
+            <h2
+              className="text-3xl md:text-4xl text-[#2D3748] mb-4"
+              style={{ fontFamily: 'Nunito, sans-serif' }}
+            >
+              {t("home.meetGang.title")}
+            </h2>
+            <p className="text-lg text-[#718096] max-w-2xl mx-auto">
+              {t("home.meetGang.subtitle")}
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+            className="flex justify-center mb-10"
+          >
+            <img
+              src={lineupImg}
+              alt={t("home.meetGang.title")}
+              className="w-full max-w-2xl h-auto object-contain drop-shadow-xl"
+              loading="lazy"
+            />
+          </motion.div>
+
+          <div className="flex justify-center">
+            <Link
+              to="/characters"
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-[#6B9AC4] border-2 border-[#6B9AC4] rounded-full hover:bg-[#6B9AC4] hover:text-white transition-all duration-300"
+            >
+              {t("home.meetGang.cta")}
+              <ArrowRight size={20} />
+            </Link>
           </div>
         </div>
       </section>

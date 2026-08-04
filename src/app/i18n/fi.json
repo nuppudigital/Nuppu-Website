@@ -38,6 +38,11 @@
     "heroImageAlt": "Iloinen ja rauhallinen hymyilevä lapsi",
     "contactUs": "Ota yhteyttä",
     "meetCharacters": "Tutustu hahmoihin",
+    "meetGang": {
+      "title": "Tapaa Nupun ystävät",
+      "subtitle": "Nuppu, Muru, Hippu ja Lumo – neljä lämmintä hahmoa, jotka kulkevat lapsesi rinnalla jokaisessa tunteessa, uteliaisuudesta rauhoittumiseen.",
+      "cta": "Tutustu hahmoihin"
+    },
     "appPreview": {
       "badge": "Interaktiivinen prototyyppi",
       "title": "Tutustu visioomme Nuppu-sovelluksesta",

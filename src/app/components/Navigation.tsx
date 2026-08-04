@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
-import nuppuCharacter from "../../assets/NUPPU BUNNY.png";
+import nuppuCharacter from "../../assets/NUPPU BUNNY.webp";
 import { useLanguage, Lang } from "../i18n/LanguageContext";
 
 function LanguageToggle({ className = "" }: { className?: string }) {

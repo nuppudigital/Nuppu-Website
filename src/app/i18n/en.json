@@ -38,6 +38,11 @@
     "heroImageAlt": "Happy calm child smiling",
     "contactUs": "Contact Us",
     "meetCharacters": "Meet the Characters",
+    "meetGang": {
+      "title": "Meet Nuppu's Friends",
+      "subtitle": "Nuppu, Muru, Hippu, and Lumo — four warm-hearted characters who walk alongside your child through every emotion, from curiosity to calm.",
+      "cta": "Meet the Characters"
+    },
     "appPreview": {
       "badge": "Interactive Prototype",
       "title": "See our vision for the Nuppu app",
