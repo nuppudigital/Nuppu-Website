@@ -11,9 +11,9 @@ interface ButtonProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'siz
 }
 
 const variantClasses: Record<Variant, string> = {
-  primary: 'bg-gradient-to-r from-[#6B9AC4] to-[#A8D5E2] text-white shadow-md',
-  secondary: 'bg-gradient-to-r from-[#B8DDB8] to-[#C9EDE1] text-[#2D3748] shadow-md',
-  ghost: 'bg-white border-2 border-gray-200 text-[#2D3748] hover:border-[#A8D5E2]',
+  primary: 'bg-gradient-to-r from-[#6E4FD1] to-[#C9BBF5] text-white shadow-md',
+  secondary: 'bg-gradient-to-r from-[#B8DDB8] to-[#C9EDE1] text-[#35322B] shadow-md',
+  ghost: 'bg-white border-2 border-gray-200 text-[#35322B] hover:border-[#C9BBF5]',
 };
 
 const sizeClasses: Record<Size, string> = {

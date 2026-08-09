@@ -31,7 +31,7 @@ export interface StorySuggestion {
 
 const EMOTION_COLORS: Record<string, string> = {
   Happy: 'from-[#F9E5A8] to-[#FFD4C4]',
-  Sad: 'from-[#A8D5E2] to-[#C9EDE1]',
+  Sad: 'from-[#C9BBF5] to-[#C9EDE1]',
   Scared: 'from-[#D4C5F9] to-[#FFD4C4]',
   Angry: 'from-[#FFD4C4] to-[#F9E5A8]',
   Calm: 'from-[#B8DDB8] to-[#C9EDE1]',

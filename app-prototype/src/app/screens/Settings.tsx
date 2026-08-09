@@ -37,9 +37,9 @@ export function Settings() {
               className="w-9 h-9 rounded-full bg-white/40 flex items-center justify-center"
               aria-label="Back"
             >
-              <ArrowLeft className="w-4 h-4 text-[#2D3748]" />
+              <ArrowLeft className="w-4 h-4 text-[#35322B]" />
             </button>
-            <h1 className="text-lg font-bold text-[#2D3748]">Settings</h1>
+            <h1 className="text-lg font-bold text-[#35322B]">Settings</h1>
           </div>
 
           <div className="flex items-center gap-3 bg-white/60 rounded-2xl p-3">
@@ -51,29 +51,29 @@ export function Settings() {
               />
             </div>
             <div>
-              <p className="text-sm font-semibold text-[#2D3748]">{childData.name}</p>
-              <p className="text-xs text-[#4A5568]">{AGE_GROUPS[childData.ageGroup].label} · {AGE_GROUPS[childData.ageGroup].range}</p>
+              <p className="text-sm font-semibold text-[#35322B]">{childData.name}</p>
+              <p className="text-xs text-[#55504A]">{AGE_GROUPS[childData.ageGroup].label} · {AGE_GROUPS[childData.ageGroup].range}</p>
             </div>
           </div>
         </div>
 
         <div className="px-6 py-6">
           <div className="bg-white rounded-2xl border border-gray-100 p-4 mb-4 flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-[#A8D5E2]/20 flex items-center justify-center text-[#6B9AC4]">
+            <div className="w-10 h-10 rounded-xl bg-[#C9BBF5]/20 flex items-center justify-center text-[#6E4FD1]">
               <User className="w-5 h-5" />
             </div>
             <div className="flex-1">
-              <p className="text-sm font-semibold text-[#2D3748]">
+              <p className="text-sm font-semibold text-[#35322B]">
                 {childData.parentName || 'Parent Account'}
               </p>
-              <p className="text-xs text-[#718096]">{childData.parentEmail || 'parent@email.com'}</p>
+              <p className="text-xs text-[#6B6660]">{childData.parentEmail || 'parent@email.com'}</p>
               {childData.parentPhone && (
-                <p className="text-xs text-[#718096]">{childData.parentPhone}</p>
+                <p className="text-xs text-[#6B6660]">{childData.parentPhone}</p>
               )}
             </div>
           </div>
 
-          <p className="text-sm font-semibold text-[#4A5568] mb-3">Micro-Support Frequency</p>
+          <p className="text-sm font-semibold text-[#55504A] mb-3">Micro-Support Frequency</p>
           <div className="grid grid-cols-2 gap-2 mb-6">
             {FREQUENCIES.map((freq) => (
               <button
@@ -81,8 +81,8 @@ export function Settings() {
                 onClick={() => setFrequency(freq)}
                 className={`px-3 py-2.5 rounded-xl text-xs font-semibold transition-all ${
                   frequency === freq
-                    ? 'bg-gradient-to-r from-[#6B9AC4] to-[#A8D5E2] text-white shadow'
-                    : 'bg-white border border-gray-200 text-[#4A5568]'
+                    ? 'bg-gradient-to-r from-[#6E4FD1] to-[#C9BBF5] text-white shadow'
+                    : 'bg-white border border-gray-200 text-[#55504A]'
                 }`}
               >
                 {freq}
@@ -153,7 +153,7 @@ export function Settings() {
 }
 
 function SectionLabel({ children }: { children: React.ReactNode }) {
-  return <p className="text-xs font-semibold text-[#718096] uppercase tracking-wide mb-2 mt-2">{children}</p>;
+  return <p className="text-xs font-semibold text-[#6B6660] uppercase tracking-wide mb-2 mt-2">{children}</p>;
 }
 
 function SettingsGroup({ children }: { children: React.ReactNode }) {
@@ -173,9 +173,9 @@ function SettingsRow({
 }) {
   return (
     <button onClick={onClick} className="w-full flex items-center gap-3 px-4 py-3.5 text-left">
-      <span className="text-[#6B9AC4]">{icon}</span>
-      <span className="flex-1 text-sm text-[#2D3748]">{label}</span>
-      {value && <span className="text-xs text-[#718096]">{value}</span>}
+      <span className="text-[#6E4FD1]">{icon}</span>
+      <span className="flex-1 text-sm text-[#35322B]">{label}</span>
+      {value && <span className="text-xs text-[#6B6660]">{value}</span>}
       <ChevronRight className="w-4 h-4 text-gray-300" />
     </button>
   );
@@ -194,11 +194,11 @@ function SettingsToggleRow({
 }) {
   return (
     <div className="w-full flex items-center gap-3 px-4 py-3.5">
-      <span className="text-[#6B9AC4]">{icon}</span>
-      <span className="flex-1 text-sm text-[#2D3748]">{label}</span>
+      <span className="text-[#6E4FD1]">{icon}</span>
+      <span className="flex-1 text-sm text-[#35322B]">{label}</span>
       <button
         onClick={onChange}
-        className={`w-11 h-6 rounded-full relative transition-colors ${checked ? 'bg-gradient-to-r from-[#6B9AC4] to-[#A8D5E2]' : 'bg-gray-200'}`}
+        className={`w-11 h-6 rounded-full relative transition-colors ${checked ? 'bg-gradient-to-r from-[#6E4FD1] to-[#C9BBF5]' : 'bg-gray-200'}`}
         aria-label={`Toggle ${label}`}
       >
         <span

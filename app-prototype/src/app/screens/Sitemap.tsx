@@ -34,8 +34,8 @@ export function Sitemap() {
 
   return (
     <MobileScreen>
-      <div className="flex-1 overflow-y-auto bg-gradient-to-br from-[#D4C5F9]/30 via-[#A8D5E2]/10 to-white">
-        <div className="bg-gradient-to-r from-[#6B9AC4] to-[#A8D5E2] px-6 pt-8 pb-6 flex items-center gap-3">
+      <div className="flex-1 overflow-y-auto bg-gradient-to-br from-[#D4C5F9]/30 via-[#C9BBF5]/10 to-white">
+        <div className="bg-gradient-to-r from-[#6E4FD1] to-[#C9BBF5] px-6 pt-8 pb-6 flex items-center gap-3">
           <button
             onClick={() => navigate(-1)}
             className="w-9 h-9 rounded-full bg-white/20 flex items-center justify-center"
@@ -52,7 +52,7 @@ export function Sitemap() {
         <div className="px-6 py-6">
           {GROUPS.map((group) => (
             <div key={group} className="mb-6">
-              <p className="text-xs font-semibold text-[#718096] uppercase tracking-wide mb-2">{group}</p>
+              <p className="text-xs font-semibold text-[#6B6660] uppercase tracking-wide mb-2">{group}</p>
               <div className="bg-white rounded-2xl border border-gray-100 divide-y divide-gray-100">
                 {ROUTES.filter((r) => r.group === group).map((route) => (
                   <button
@@ -61,8 +61,8 @@ export function Sitemap() {
                     className="w-full flex items-center justify-between px-4 py-3.5 text-left"
                   >
                     <div>
-                      <p className="text-sm font-medium text-[#2D3748]">{route.label}</p>
-                      <p className="text-xs text-[#718096]">{route.path}</p>
+                      <p className="text-sm font-medium text-[#35322B]">{route.label}</p>
+                      <p className="text-xs text-[#6B6660]">{route.path}</p>
                     </div>
                     <ChevronRight className="w-4 h-4 text-gray-300" />
                   </button>

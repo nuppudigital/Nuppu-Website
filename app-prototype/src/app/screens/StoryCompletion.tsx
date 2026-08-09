@@ -35,26 +35,26 @@ export function StoryCompletion() {
               🎉
             </span>
           </div>
-          <h1 className="text-2xl font-bold text-[#2D3748]">Amazing, {childData.name}!</h1>
-          <p className="text-sm text-[#718096] mt-1">You finished your story</p>
+          <h1 className="text-2xl font-bold text-[#35322B]">Amazing, {childData.name}!</h1>
+          <p className="text-sm text-[#6B6660] mt-1">You finished your story</p>
         </div>
 
         <div className="bg-gradient-to-br from-[#F9E5A8]/50 to-[#FFD4C4]/30 rounded-2xl p-5 border border-[#F9E5A8] mb-6">
-          <p className="text-sm font-semibold text-[#2D3748] mb-4">Skills Practiced Today</p>
+          <p className="text-sm font-semibold text-[#35322B] mb-4">Skills Practiced Today</p>
           <div className="grid grid-cols-3 gap-3">
             {SKILLS.map((skill) => (
               <div key={skill.label} className="flex flex-col items-center gap-2">
                 <div className="w-12 h-12 rounded-2xl bg-white flex items-center justify-center text-[#D4AF5E] shadow-sm">
                   {skill.icon}
                 </div>
-                <span className="text-xs font-medium text-[#4A5568]">{skill.label}</span>
+                <span className="text-xs font-medium text-[#55504A]">{skill.label}</span>
               </div>
             ))}
           </div>
         </div>
 
         <div className="mb-6">
-          <p className="text-sm font-semibold text-[#4A5568] mb-3 text-center">How did this story make you feel?</p>
+          <p className="text-sm font-semibold text-[#55504A] mb-3 text-center">How did this story make you feel?</p>
           <div className="flex justify-center gap-3">
             {RATINGS.map((emoji, index) => (
               <button
@@ -73,17 +73,17 @@ export function StoryCompletion() {
         </div>
 
         {rating !== null && rating >= 3 && (
-          <div className="bg-white border border-[#A8D5E2]/60 rounded-2xl p-5 mb-6">
+          <div className="bg-white border border-[#C9BBF5]/60 rounded-2xl p-5 mb-6">
             <div className="flex items-center gap-2 mb-1">
-              <MessageCircleHeart className="w-4 h-4 text-[#6B9AC4]" />
-              <span className="text-[10px] font-bold uppercase tracking-wide text-[#6B9AC4]">
+              <MessageCircleHeart className="w-4 h-4 text-[#6E4FD1]" />
+              <span className="text-[10px] font-bold uppercase tracking-wide text-[#6E4FD1]">
                 Parent micro-support · {selTheme}
               </span>
             </div>
 
             {plan === 'premium' ? (
               <>
-                <p className="text-xs text-[#718096] mb-4">
+                <p className="text-xs text-[#6B6660] mb-4">
                   Today's story practiced <strong>{selTheme}</strong>. Here's how to keep the
                   conversation going, gently and without pressure.
                 </p>
@@ -95,17 +95,17 @@ export function StoryCompletion() {
               </>
             ) : (
               <div className="flex items-start gap-3 mt-2">
-                <div className="w-9 h-9 rounded-full bg-[#A8D5E2]/20 flex items-center justify-center shrink-0">
-                  <Lock className="w-4 h-4 text-[#6B9AC4]" />
+                <div className="w-9 h-9 rounded-full bg-[#C9BBF5]/20 flex items-center justify-center shrink-0">
+                  <Lock className="w-4 h-4 text-[#6E4FD1]" />
                 </div>
                 <div className="flex-1">
-                  <p className="text-xs text-[#4A5568] leading-relaxed mb-2">
+                  <p className="text-xs text-[#55504A] leading-relaxed mb-2">
                     Reflection questions, conversation starters, and practical tips for this story
                     are part of Nuppu Premium.
                   </p>
                   <button
                     onClick={() => navigate('/adult-corner/subscription')}
-                    className="text-xs font-semibold text-[#6B9AC4] underline underline-offset-2"
+                    className="text-xs font-semibold text-[#6E4FD1] underline underline-offset-2"
                   >
                     Unlock Premium
                   </button>
@@ -130,9 +130,9 @@ export function StoryCompletion() {
 
 function MicroTip({ label, body }: { label: string; body: string }) {
   return (
-    <div className="bg-[#A8D5E2]/10 rounded-xl p-3">
-      <p className="text-[10px] font-semibold uppercase tracking-wide text-[#6B9AC4] mb-1">{label}</p>
-      <p className="text-xs text-[#4A5568] leading-relaxed">{body}</p>
+    <div className="bg-[#C9BBF5]/10 rounded-xl p-3">
+      <p className="text-[10px] font-semibold uppercase tracking-wide text-[#6E4FD1] mb-1">{label}</p>
+      <p className="text-xs text-[#55504A] leading-relaxed">{body}</p>
     </div>
   );
 }

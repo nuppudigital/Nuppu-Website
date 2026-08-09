@@ -14,8 +14,8 @@ function LanguageToggle({ className = "" }: { className?: string }) {
       aria-pressed={lang === value}
       className={`px-3 py-1 text-sm rounded-full transition-colors ${
         lang === value
-          ? "bg-[#6B9AC4] text-white"
-          : "text-[#718096] hover:text-[#6B9AC4]"
+          ? "bg-[#6E4FD1] text-white"
+          : "text-[#6B6660] hover:text-[#6E4FD1]"
       }`}
     >
       {label}
@@ -24,7 +24,7 @@ function LanguageToggle({ className = "" }: { className?: string }) {
 
   return (
     <div
-      className={`flex items-center gap-1 border border-[#A8D5E2] rounded-full p-1 ${className}`}
+      className={`flex items-center gap-1 border border-[#C9BBF5] rounded-full p-1 ${className}`}
       role="group"
       aria-label="Language / Kieli"
     >
@@ -66,7 +66,7 @@ export default function Navigation() {
             className="flex items-center gap-2 group"
             aria-label="Nuppu home"
           >
-            <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#A8C5BA] to-[#A8C5BA]/60 flex items-center justify-center shadow-md group-hover:scale-105 transition-transform duration-300 overflow-hidden relative">
+            <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#6E4FD1] to-[#6E4FD1]/60 flex items-center justify-center shadow-md group-hover:scale-105 transition-transform duration-300 overflow-hidden relative">
               <img
                 src={nuppuCharacter}
                 alt="Nuppu"
@@ -74,7 +74,7 @@ export default function Navigation() {
               />
             </div>
             <span
-              className="text-2xl text-[#A8C5BA] group-hover:text-[#98B5AA] transition-colors duration-300"
+              className="text-2xl text-[#6E4FD1] group-hover:text-[#5E3FC0] transition-colors duration-300"
               style={{ fontFamily: 'Nunito, sans-serif' }}
             >
               Nuppu
@@ -89,15 +89,15 @@ export default function Navigation() {
                 to={link.path}
                 className={`relative py-2 transition-colors duration-300 ${
                   isActive(link.path)
-                    ? "text-[#6B9AC4]"
-                    : "text-[#718096] hover:text-[#6B9AC4]"
+                    ? "text-[#6E4FD1]"
+                    : "text-[#6B6660] hover:text-[#6E4FD1]"
                 }`}
               >
                 {link.name}
                 {isActive(link.path) && (
                   <motion.div
                     layoutId="activeTab"
-                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#6B9AC4] rounded-full"
+                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#6E4FD1] rounded-full"
                     transition={{ type: "spring", stiffness: 380, damping: 30 }}
                   />
                 )}
@@ -106,7 +106,7 @@ export default function Navigation() {
             <LanguageToggle />
             <Link
               to="/contact"
-              className="px-6 py-2.5 bg-gradient-to-r from-[#6B9AC4] to-[#A8D5E2] text-white rounded-full hover:shadow-lg hover:scale-105 transition-all duration-300"
+              className="px-6 py-2.5 bg-gradient-to-r from-[#6E4FD1] to-[#C9BBF5] text-white rounded-full hover:shadow-lg hover:scale-105 transition-all duration-300"
             >
               {t("nav.getStarted")}
             </Link>
@@ -117,7 +117,7 @@ export default function Navigation() {
             <LanguageToggle />
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 text-[#6B9AC4] hover:bg-[#F7F6F3] rounded-lg transition-colors"
+              className="p-2 text-[#6E4FD1] hover:bg-[#F2EDDE] rounded-lg transition-colors"
               aria-label="Toggle mobile menu"
               aria-expanded={mobileMenuOpen}
             >
@@ -145,8 +145,8 @@ export default function Navigation() {
                   onClick={() => setMobileMenuOpen(false)}
                   className={`block px-4 py-3 rounded-lg transition-colors ${
                     isActive(link.path)
-                      ? "bg-[#A8D5E2]/20 text-[#6B9AC4]"
-                      : "text-[#718096] hover:bg-[#F7F6F3]"
+                      ? "bg-[#C9BBF5]/20 text-[#6E4FD1]"
+                      : "text-[#6B6660] hover:bg-[#F2EDDE]"
                   }`}
                 >
                   {link.name}
@@ -155,7 +155,7 @@ export default function Navigation() {
               <Link
                 to="/contact"
                 onClick={() => setMobileMenuOpen(false)}
-                className="block text-center px-6 py-3 bg-gradient-to-r from-[#6B9AC4] to-[#A8D5E2] text-white rounded-full hover:shadow-lg transition-shadow"
+                className="block text-center px-6 py-3 bg-gradient-to-r from-[#6E4FD1] to-[#C9BBF5] text-white rounded-full hover:shadow-lg transition-shadow"
               >
                 {t("nav.getStarted")}
               </Link>

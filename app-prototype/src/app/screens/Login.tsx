@@ -37,8 +37,8 @@ export function Login() {
               className="w-full h-full object-cover"
             />
           </div>
-          <h1 className="text-2xl font-bold text-[#2D3748]">Welcome back</h1>
-          <p className="text-sm text-[#718096] mt-1">Log in to continue your journey</p>
+          <h1 className="text-2xl font-bold text-[#35322B]">Welcome back</h1>
+          <p className="text-sm text-[#6B6660] mt-1">Log in to continue your journey</p>
         </div>
 
         <div className="flex flex-col gap-4 flex-1">
@@ -64,7 +64,7 @@ export function Login() {
 
             <div
               className={`mt-3 rounded-xl border p-3 space-y-1.5 transition-colors ${
-                requirementsInvalid ? 'border-red-300 bg-red-50' : 'border-blue-200 bg-blue-50'
+                requirementsInvalid ? 'border-red-300 bg-red-50' : 'border-purple-200 bg-purple-50'
               }`}
             >
               <Requirement met={hasMinLength} label="At least 6 characters" invalid={requirementsInvalid} />
@@ -74,7 +74,7 @@ export function Login() {
           </div>
 
           <div className="text-right">
-            <button className="text-sm text-[#6B9AC4] font-medium">Forgot password?</button>
+            <button className="text-sm text-[#6E4FD1] font-medium">Forgot password?</button>
           </div>
 
           <Button fullWidth disabled={!formValid} onClick={handleSubmit} className="mt-2">
@@ -92,7 +92,7 @@ export function Login() {
           </Button>
         </div>
 
-        <div className="flex items-center justify-center gap-6 mt-10 text-xs text-[#4A5568]">
+        <div className="flex items-center justify-center gap-6 mt-10 text-xs text-[#55504A]">
           <div className="flex items-center gap-1.5">
             <span className="w-2 h-2 rounded-full bg-green-500" />
             <ShieldCheck className="w-3.5 h-3.5" />
@@ -107,7 +107,7 @@ export function Login() {
 
         <button
           onClick={() => navigate('/adult-corner')}
-          className="text-xs text-[#718096] underline underline-offset-2 mt-4 self-center"
+          className="text-xs text-[#6B6660] underline underline-offset-2 mt-4 self-center"
         >
           Adult Corner — subscriptions, tips & about Nuppu
         </button>
@@ -126,7 +126,7 @@ function Requirement({ met, label, invalid }: { met: boolean; label: string; inv
       >
         {met && <Check className="w-2.5 h-2.5 text-white" />}
       </span>
-      <span className={met ? 'text-[#2D3748]' : invalid ? 'text-red-500' : 'text-[#718096]'}>{label}</span>
+      <span className={met ? 'text-[#35322B]' : invalid ? 'text-red-500' : 'text-[#6B6660]'}>{label}</span>
     </div>
   );
 }

@@ -105,19 +105,19 @@ export default function About() {
 
   const whyItems = [
     {
-      icon: <Lock className="w-6 h-6 text-[#6B9AC4]" />,
-      bg: "bg-[#A8D5E2]/20",
+      icon: <Lock className="w-6 h-6 text-[#6E4FD1]" />,
+      bg: "bg-[#C9BBF5]/20",
       title: t("about.why.security.title"),
       description: t("about.why.security.description"),
     },
     {
-      icon: <Brain className="w-6 h-6 text-[#6B9AC4]" />,
+      icon: <Brain className="w-6 h-6 text-[#6E4FD1]" />,
       bg: "bg-[#B8DDB8]/20",
       title: t("about.why.development.title"),
       description: t("about.why.development.description"),
     },
     {
-      icon: <Target className="w-6 h-6 text-[#6B9AC4]" />,
+      icon: <Target className="w-6 h-6 text-[#6E4FD1]" />,
       bg: "bg-[#FFD4C4]/20",
       title: t("about.why.purpose.title"),
       description: t("about.why.purpose.description"),
@@ -127,7 +127,7 @@ export default function About() {
   return (
     <div className="w-full">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-[#A8D5E2]/20 via-[#F9E5A8]/10 to-[#B8DDB8]/20 py-20">
+      <section className="bg-gradient-to-br from-[#C9BBF5]/20 via-[#F9E5A8]/10 to-[#B8DDB8]/20 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -136,12 +136,12 @@ export default function About() {
             className="text-center"
           >
             <h1
-              className="text-4xl md:text-5xl lg:text-6xl text-[#2D3748] mb-6"
+              className="text-4xl md:text-5xl lg:text-6xl text-[#35322B] mb-6"
               style={{ fontFamily: "Nunito, sans-serif" }}
             >
-              {t("about.heroTitle")} <span className="text-[#6B9AC4]">{t("about.heroTitleHighlight")}</span>
+              {t("about.heroTitle")} <span className="text-[#6E4FD1]">{t("about.heroTitleHighlight")}</span>
             </h1>
-            <p className="text-lg md:text-xl text-[#718096] max-w-3xl mx-auto leading-relaxed">
+            <p className="text-lg md:text-xl text-[#6B6660] max-w-3xl mx-auto leading-relaxed">
               {t("about.heroSubtitle")}
             </p>
           </motion.div>
@@ -159,7 +159,7 @@ export default function About() {
             className="text-center mb-12"
           >
             <h2
-              className="text-3xl md:text-4xl text-[#2D3748] mb-4"
+              className="text-3xl md:text-4xl text-[#35322B] mb-4"
               style={{ fontFamily: "Nunito, sans-serif" }}
             >
               {t("about.background.title")}
@@ -173,10 +173,10 @@ export default function About() {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <p className="text-lg text-[#718096] mb-4 leading-relaxed">
+              <p className="text-lg text-[#6B6660] mb-4 leading-relaxed">
                 {t("about.background.p1")}
               </p>
-              <p className="text-lg text-[#718096] leading-relaxed">
+              <p className="text-lg text-[#6B6660] leading-relaxed">
                 {t("about.background.p2")}
               </p>
             </motion.div>
@@ -185,7 +185,7 @@ export default function About() {
       </section>
 
       {/* Founder Story */}
-      <section className="py-20 bg-gradient-to-b from-white to-[#F7F6F3]">
+      <section className="py-20 bg-gradient-to-b from-white to-[#F2EDDE]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <motion.div
@@ -211,24 +211,24 @@ export default function About() {
               transition={{ duration: 0.6 }}
             >
               <h2
-                className="text-3xl md:text-4xl text-[#2D3748] mb-4"
+                className="text-3xl md:text-4xl text-[#35322B] mb-4"
                 style={{ fontFamily: "Nunito, sans-serif" }}
               >
                 {t("about.founder.title")}
               </h2>
               <h3
-                className="text-xl text-[#A8C5BA] mb-6"
+                className="text-xl text-[#6E4FD1] mb-6"
                 style={{ fontFamily: "Nunito, sans-serif" }}
               >
                 {t("about.founder.name")}
               </h3>
-              <p className="text-lg text-[#718096] mb-4 leading-relaxed">
+              <p className="text-lg text-[#6B6660] mb-4 leading-relaxed">
                 {t("about.founder.p1")}
               </p>
-              <p className="text-lg text-[#718096] mb-4 leading-relaxed">
+              <p className="text-lg text-[#6B6660] mb-4 leading-relaxed">
                 {t("about.founder.p2")}
               </p>
-              <p className="text-lg text-[#718096] leading-relaxed">
+              <p className="text-lg text-[#6B6660] leading-relaxed">
                 {t("about.founder.p3")}
               </p>
             </motion.div>
@@ -237,7 +237,7 @@ export default function About() {
       </section>
 
       {/* Co-Founder Story */}
-      <section className="py-20 bg-gradient-to-b from-white to-[#F7F6F3]">
+      <section className="py-20 bg-gradient-to-b from-white to-[#F2EDDE]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <motion.div
@@ -263,27 +263,27 @@ export default function About() {
               transition={{ duration: 0.6 }}
             >
               <h2
-                className="text-3xl md:text-4xl text-[#2D3748] mb-4"
+                className="text-3xl md:text-4xl text-[#35322B] mb-4"
                 style={{ fontFamily: "Nunito, sans-serif" }}
               >
                 {t("about.cofounder.title")}
               </h2>
               <h3
-                className="text-xl text-[#A8C5BA] mb-6"
+                className="text-xl text-[#6E4FD1] mb-6"
                 style={{ fontFamily: "Nunito, sans-serif" }}
               >
                 {t("about.cofounder.name")}
               </h3>
-              <p className="text-lg text-[#718096] mb-4 leading-relaxed">
+              <p className="text-lg text-[#6B6660] mb-4 leading-relaxed">
                 {t("about.cofounder.p1")}
               </p>
-              <p className="text-lg text-[#718096] mb-4 leading-relaxed">
+              <p className="text-lg text-[#6B6660] mb-4 leading-relaxed">
                 {t("about.cofounder.p2")}
               </p>
-              <p className="text-lg text-[#718096] leading-relaxed">
+              <p className="text-lg text-[#6B6660] leading-relaxed">
                 {t("about.cofounder.p3")}
               </p>
-              <p className="text-lg text-[#718096] leading-relaxed">
+              <p className="text-lg text-[#6B6660] leading-relaxed">
                 {t("about.cofounder.p4")}
               </p>
             </motion.div>
@@ -302,12 +302,12 @@ export default function About() {
             className="max-w-4xl mx-auto text-center"
           >
             <h2
-              className="text-3xl md:text-4xl text-[#2D3748] mb-6"
+              className="text-3xl md:text-4xl text-[#35322B] mb-6"
               style={{ fontFamily: "Nunito, sans-serif" }}
             >
               {t("about.promise.title")}
             </h2>
-            <p className="text-lg text-[#718096] mb-6 leading-relaxed">
+            <p className="text-lg text-[#6B6660] mb-6 leading-relaxed">
               {t("about.promise.intro")}
             </p>
             <div className="bg-gradient-to-br from-[#A8C5BA]/10 to-[#E8C468]/10 rounded-3xl p-8 md:p-15">
@@ -337,7 +337,7 @@ export default function About() {
       </section>
 
       {/* Our Values */}
-      <section className="py-20 bg-gradient-to-b from-white to-[#F7F6F3]">
+      <section className="py-20 bg-gradient-to-b from-white to-[#F2EDDE]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -347,12 +347,12 @@ export default function About() {
             className="text-center mb-16"
           >
             <h2
-              className="text-3xl md:text-4xl text-[#2D3748] mb-4"
+              className="text-3xl md:text-4xl text-[#35322B] mb-4"
               style={{ fontFamily: "Nunito, sans-serif" }}
             >
               {t("about.values.title")}
             </h2>
-            <p className="text-lg text-[#718096] max-w-2xl mx-auto">
+            <p className="text-lg text-[#6B6660] max-w-2xl mx-auto">
               {t("about.values.subtitle")}
             </p>
           </motion.div>
@@ -375,12 +375,12 @@ export default function About() {
                   {value.icon}
                 </div>
                 <h3
-                  className="text-xl mb-3 text-[#2D3748]"
+                  className="text-xl mb-3 text-[#35322B]"
                   style={{ fontFamily: "Nunito, sans-serif" }}
                 >
                   {value.title}
                 </h3>
-                <p className="text-[#718096] leading-relaxed">
+                <p className="text-[#6B6660] leading-relaxed">
                   {value.description}
                 </p>
               </motion.div>
@@ -417,12 +417,12 @@ export default function About() {
               className="order-1 md:order-2"
             >
               <h2
-                className="text-3xl md:text-4xl text-[#2D3748] mb-6"
+                className="text-3xl md:text-4xl text-[#35322B] mb-6"
                 style={{ fontFamily: "Nunito, sans-serif" }}
               >
                 {t("about.brain.title")}
               </h2>
-              <p className="text-lg text-[#718096] mb-6 leading-relaxed">
+              <p className="text-lg text-[#6B6660] mb-6 leading-relaxed">
                 {t("about.brain.intro")}
               </p>
 
@@ -436,15 +436,15 @@ export default function About() {
                     transition={{ duration: 0.4, delay: index * 0.1 }}
                     className="flex gap-4"
                   >
-                    <div className="flex-shrink-0 w-2 h-2 rounded-full bg-[#6B9AC4] mt-2" />
+                    <div className="flex-shrink-0 w-2 h-2 rounded-full bg-[#6E4FD1] mt-2" />
                     <div>
                       <h4
-                        className="text-lg text-[#2D3748] mb-2"
+                        className="text-lg text-[#35322B] mb-2"
                         style={{ fontFamily: "Nunito, sans-serif" }}
                       >
                         {framework.title}
                       </h4>
-                      <p className="text-[#718096] leading-relaxed">
+                      <p className="text-[#6B6660] leading-relaxed">
                         {framework.description}
                       </p>
                     </div>
@@ -457,7 +457,7 @@ export default function About() {
       </section>
 
       {/* Visual Promise, UX, Value, and Technology */}
-      <section className="py-20 bg-gradient-to-b from-white to-[#F7F6F3]">
+      <section className="py-20 bg-gradient-to-b from-white to-[#F2EDDE]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-12">
             {features.map((feature, index) => (
@@ -474,16 +474,16 @@ export default function About() {
                     {feature.icon}
                   </div>
                   <h3
-                    className="text-2xl md:text-3xl text-[#2D3748]"
+                    className="text-2xl md:text-3xl text-[#35322B]"
                     style={{ fontFamily: "Nunito, sans-serif" }}
                   >
                     {feature.title}
                   </h3>
                 </div>
-                <p className="text-[#718096] leading-relaxed mb-4">
+                <p className="text-[#6B6660] leading-relaxed mb-4">
                   {feature.p1}
                 </p>
-                <p className="text-[#718096] leading-relaxed">
+                <p className="text-[#6B6660] leading-relaxed">
                   {feature.p2}
                 </p>
               </motion.div>
@@ -493,7 +493,7 @@ export default function About() {
       </section>
 
       {/* Why Nuppu Section */}
-      <section className="py-20 bg-gradient-to-b from-white to-[#F7F6F3]">
+      <section className="py-20 bg-gradient-to-b from-white to-[#F2EDDE]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <motion.div
@@ -503,12 +503,12 @@ export default function About() {
               transition={{ duration: 0.6 }}
             >
               <h2
-                className="text-3xl md:text-4xl text-[#2D3748] mb-6"
+                className="text-3xl md:text-4xl text-[#35322B] mb-6"
                 style={{ fontFamily: "Nunito, sans-serif" }}
               >
                 {t("about.why.title")}
               </h2>
-              <p className="text-lg text-[#718096] mb-4 leading-relaxed">
+              <p className="text-lg text-[#6B6660] mb-4 leading-relaxed">
                 {t("about.why.intro")}
               </p>
 
@@ -520,12 +520,12 @@ export default function About() {
                     </div>
                     <div>
                       <h4
-                        className="text-lg text-[#2D3748] mb-1"
+                        className="text-lg text-[#35322B] mb-1"
                         style={{ fontFamily: "Nunito, sans-serif" }}
                       >
                         {item.title}
                       </h4>
-                      <p className="text-[#718096]">
+                      <p className="text-[#6B6660]">
                         {item.description}
                       </p>
                     </div>
@@ -610,7 +610,7 @@ export default function About() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-[#6B9AC4] to-[#A8D5E2]">
+      <section className="py-20 bg-gradient-to-r from-[#6E4FD1] to-[#C9BBF5]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
@@ -629,7 +629,7 @@ export default function About() {
             </p>
             <Link
               to="/contact"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-white text-[#6B9AC4] rounded-full hover:shadow-2xl hover:scale-105 transition-all duration-300"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-white text-[#6E4FD1] rounded-full hover:shadow-2xl hover:scale-105 transition-all duration-300"
             >
               {t("about.cta.button")}
             </Link>

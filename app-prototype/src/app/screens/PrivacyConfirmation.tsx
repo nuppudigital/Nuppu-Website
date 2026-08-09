@@ -35,31 +35,31 @@ export function PrivacyConfirmation() {
 
   return (
     <MobileScreen>
-      <div className="flex-1 overflow-y-auto bg-gradient-to-br from-[#D4C5F9]/40 via-[#A8D5E2]/20 to-white px-6 py-8">
+      <div className="flex-1 overflow-y-auto bg-gradient-to-br from-[#D4C5F9]/40 via-[#C9BBF5]/20 to-white px-6 py-8">
         <ProgressBar step={4} />
 
         <div className="flex flex-col items-center text-center mt-6 mb-6">
-          <div className="w-16 h-16 rounded-full bg-[#A8D5E2]/25 flex items-center justify-center mb-3">
-            <ShieldCheck className="w-8 h-8 text-[#6B9AC4]" />
+          <div className="w-16 h-16 rounded-full bg-[#C9BBF5]/25 flex items-center justify-center mb-3">
+            <ShieldCheck className="w-8 h-8 text-[#6E4FD1]" />
           </div>
-          <h1 className="text-2xl font-bold text-[#2D3748]">Your family's privacy</h1>
-          <p className="text-sm text-[#718096] mt-1">GDPR compliant, always in your control</p>
+          <h1 className="text-2xl font-bold text-[#35322B]">Your family's privacy</h1>
+          <p className="text-sm text-[#6B6660] mt-1">GDPR compliant, always in your control</p>
         </div>
 
         <div className="flex flex-col gap-3 mb-8">
           {TOGGLES.map((item, index) => (
             <div key={item.title} className="bg-white rounded-2xl border border-gray-100 p-4 flex gap-3">
-              <div className="w-10 h-10 rounded-xl bg-[#A8D5E2]/15 text-[#6B9AC4] flex items-center justify-center shrink-0">
+              <div className="w-10 h-10 rounded-xl bg-[#C9BBF5]/15 text-[#6E4FD1] flex items-center justify-center shrink-0">
                 {item.icon}
               </div>
               <div className="flex-1">
-                <p className="text-sm font-semibold text-[#2D3748]">{item.title}</p>
-                <p className="text-xs text-[#718096] mt-1 leading-relaxed">{item.description}</p>
+                <p className="text-sm font-semibold text-[#35322B]">{item.title}</p>
+                <p className="text-xs text-[#6B6660] mt-1 leading-relaxed">{item.description}</p>
               </div>
               <button
                 onClick={() => toggle(index)}
                 className={`w-11 h-6 rounded-full shrink-0 relative transition-colors ${
-                  agreed[index] ? 'bg-gradient-to-r from-[#6B9AC4] to-[#A8D5E2]' : 'bg-gray-200'
+                  agreed[index] ? 'bg-gradient-to-r from-[#6E4FD1] to-[#C9BBF5]' : 'bg-gray-200'
                 }`}
                 aria-label={`Toggle ${item.title}`}
               >

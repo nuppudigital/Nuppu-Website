@@ -33,8 +33,8 @@ export function MicroSupportLibrary() {
 
   return (
     <MobileScreen>
-      <div className="flex-1 overflow-y-auto bg-gradient-to-br from-[#D4C5F9]/25 via-[#A8D5E2]/10 to-white">
-        <div className="bg-gradient-to-r from-[#6B9AC4] to-[#A8D5E2] px-6 pt-8 pb-6 flex items-center gap-3">
+      <div className="flex-1 overflow-y-auto bg-gradient-to-br from-[#D4C5F9]/25 via-[#C9BBF5]/10 to-white">
+        <div className="bg-gradient-to-r from-[#6E4FD1] to-[#C9BBF5] px-6 pt-8 pb-6 flex items-center gap-3">
           <button
             onClick={() => navigate(-1)}
             className="w-9 h-9 rounded-full bg-white/20 flex items-center justify-center"
@@ -51,7 +51,7 @@ export function MicroSupportLibrary() {
         <div className="px-6 py-6">
           {TIP_CATEGORIES.map((group) => (
             <div key={group.category} className="mb-6">
-              <p className="text-sm font-semibold text-[#4A5568] mb-3">{group.category}</p>
+              <p className="text-sm font-semibold text-[#55504A] mb-3">{group.category}</p>
               <div className="flex flex-col gap-2.5">
                 {group.tips.map((tip) => (
                   <div
@@ -59,7 +59,7 @@ export function MicroSupportLibrary() {
                     className="bg-white rounded-2xl border border-gray-100 p-4 flex gap-2.5"
                   >
                     <span className="shrink-0">💡</span>
-                    <p className="text-xs text-[#4A5568] leading-relaxed">{tip}</p>
+                    <p className="text-xs text-[#55504A] leading-relaxed">{tip}</p>
                   </div>
                 ))}
               </div>

@@ -43,8 +43,8 @@ export function Feedback() {
 
   return (
     <MobileScreen>
-      <div className="flex-1 overflow-y-auto bg-gradient-to-br from-[#D4C5F9]/25 via-[#A8D5E2]/10 to-white">
-        <div className="bg-gradient-to-r from-[#6B9AC4] to-[#A8D5E2] px-6 pt-8 pb-6 flex items-center gap-3">
+      <div className="flex-1 overflow-y-auto bg-gradient-to-br from-[#D4C5F9]/25 via-[#C9BBF5]/10 to-white">
+        <div className="bg-gradient-to-r from-[#6E4FD1] to-[#C9BBF5] px-6 pt-8 pb-6 flex items-center gap-3">
           <button
             onClick={() => navigate(-1)}
             className="w-9 h-9 rounded-full bg-white/20 flex items-center justify-center"
@@ -65,7 +65,7 @@ export function Feedback() {
                   setSent(false);
                 }}
                 className={`flex-1 flex items-center justify-center gap-1.5 px-2 py-2 rounded-full text-[11px] font-semibold transition-all ${
-                  mode === m.id ? 'bg-gradient-to-r from-[#6B9AC4] to-[#A8D5E2] text-white shadow' : 'text-[#4A5568]'
+                  mode === m.id ? 'bg-gradient-to-r from-[#6E4FD1] to-[#C9BBF5] text-white shadow' : 'text-[#55504A]'
                 }`}
               >
                 {m.icon}
@@ -76,9 +76,9 @@ export function Feedback() {
 
           {sent ? (
             <div className="bg-white rounded-2xl border border-gray-100 p-6 text-center">
-              <CheckCircle2 className="w-10 h-10 text-[#6B9AC4] mx-auto mb-3" />
-              <p className="text-sm font-semibold text-[#2D3748] mb-1">Thank you!</p>
-              <p className="text-xs text-[#718096]">
+              <CheckCircle2 className="w-10 h-10 text-[#6E4FD1] mx-auto mb-3" />
+              <p className="text-sm font-semibold text-[#35322B] mb-1">Thank you!</p>
+              <p className="text-xs text-[#6B6660]">
                 Your message has been noted. The Nuppu Digital team reviews every submission.
               </p>
             </div>
@@ -89,7 +89,7 @@ export function Feedback() {
                 onChange={(e) => setMessage(e.target.value)}
                 placeholder={active.placeholder}
                 rows={5}
-                className="w-full rounded-xl border border-gray-200 p-3 text-sm text-[#2D3748] placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#6B9AC4] focus:border-transparent resize-none mb-4"
+                className="w-full rounded-xl border border-gray-200 p-3 text-sm text-[#35322B] placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#6E4FD1] focus:border-transparent resize-none mb-4"
               />
               <Button fullWidth disabled={!message.trim()} onClick={handleSubmit}>
                 Send

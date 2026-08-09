@@ -21,11 +21,11 @@ export function Preferences() {
 
   return (
     <MobileScreen>
-      <div className="flex-1 overflow-y-auto bg-gradient-to-br from-[#D4C5F9]/40 via-[#A8D5E2]/20 to-white px-6 py-8">
+      <div className="flex-1 overflow-y-auto bg-gradient-to-br from-[#D4C5F9]/40 via-[#C9BBF5]/20 to-white px-6 py-8">
         <ProgressBar step={3} />
 
-        <h1 className="text-2xl font-bold text-[#2D3748] mb-1 mt-6">Story preferences</h1>
-        <p className="text-sm text-[#718096] mb-6">Tell us what kind of stories to prioritize</p>
+        <h1 className="text-2xl font-bold text-[#35322B] mb-1 mt-6">Story preferences</h1>
+        <p className="text-sm text-[#6B6660] mb-6">Tell us what kind of stories to prioritize</p>
 
         <Section icon={<BookOpen className="w-4 h-4" />} title="Preferred genres">
           <div className="grid grid-cols-1 gap-2">
@@ -77,7 +77,7 @@ export function Preferences() {
 function Section({ icon, title, children }: { icon: React.ReactNode; title: string; children: React.ReactNode }) {
   return (
     <div className="mb-6">
-      <div className="flex items-center gap-2 mb-3 text-[#4A5568]">
+      <div className="flex items-center gap-2 mb-3 text-[#55504A]">
         {icon}
         <p className="text-sm font-semibold">{title}</p>
       </div>
@@ -94,12 +94,12 @@ function Checkbox({ label, checked, onChange }: { label: string; checked: boolea
     >
       <span
         className={`w-5 h-5 rounded-md flex items-center justify-center shrink-0 ${
-          checked ? 'bg-gradient-to-r from-[#6B9AC4] to-[#A8D5E2]' : 'bg-gray-100 border border-gray-300'
+          checked ? 'bg-gradient-to-r from-[#6E4FD1] to-[#C9BBF5]' : 'bg-gray-100 border border-gray-300'
         }`}
       >
         {checked && <span className="w-2 h-2 rounded-sm bg-white" />}
       </span>
-      <span className="text-sm text-[#2D3748]">{label}</span>
+      <span className="text-sm text-[#35322B]">{label}</span>
     </button>
   );
 }

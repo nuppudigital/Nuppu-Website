@@ -15,7 +15,7 @@ export const CLASSIC_STORIES: ClassicStory[] = [
     emoji: '🌙',
     category: 'Emotions',
     duration: '12 min',
-    color: 'from-[#D4C5F9]/50 to-[#A8D5E2]/50',
+    color: 'from-[#D4C5F9]/50 to-[#C9BBF5]/50',
     description: 'Luna learns that being brave doesn\'t mean not being scared — it means trying anyway.',
   },
   {
@@ -33,7 +33,7 @@ export const CLASSIC_STORIES: ClassicStory[] = [
     emoji: '🌊',
     category: 'Emotions',
     duration: '15 min',
-    color: 'from-[#A8D5E2]/50 to-[#B8D4C7]/50',
+    color: 'from-[#C9BBF5]/50 to-[#B8D4C7]/50',
     description: 'Join a curious fish as they explore the many waves of feelings we all have.',
   },
   {
@@ -60,7 +60,7 @@ export const CLASSIC_STORIES: ClassicStory[] = [
     emoji: '🏔️',
     category: 'Adventure',
     duration: '16 min',
-    color: 'from-[#A8D5E2]/50 to-[#B8DDB8]/50',
+    color: 'from-[#C9BBF5]/50 to-[#B8DDB8]/50',
     description: 'An exciting climb teaches patience, teamwork, and the joy of reaching new heights.',
   },
   {

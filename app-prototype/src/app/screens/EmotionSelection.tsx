@@ -68,8 +68,8 @@ export function EmotionSelection() {
           <div className="w-14 h-14 rounded-full bg-[#F9E5A8]/50 flex items-center justify-center mb-4">
             <Sparkles className="w-7 h-7 text-[#D4AF5E]" />
           </div>
-          <h1 className="text-2xl font-bold text-[#2D3748]">How are you feeling?</h1>
-          <p className="text-sm text-[#718096] mt-1">Pick the feeling that's closest to yours right now</p>
+          <h1 className="text-2xl font-bold text-[#35322B]">How are you feeling?</h1>
+          <p className="text-sm text-[#6B6660] mt-1">Pick the feeling that's closest to yours right now</p>
         </div>
 
         <div className="grid grid-cols-2 gap-3 mb-8 flex-1">
@@ -78,11 +78,11 @@ export function EmotionSelection() {
               key={emotion.id}
               onClick={() => setSelected(emotion.id)}
               className={`rounded-2xl border-2 ${emotion.color} p-5 flex flex-col items-center gap-2 transition-all ${
-                selected === emotion.id ? 'ring-4 ring-[#6B9AC4] scale-105' : ''
+                selected === emotion.id ? 'ring-4 ring-[#6E4FD1] scale-105' : ''
               }`}
             >
               <span className="text-4xl">{emotion.emoji}</span>
-              <span className="text-sm font-semibold text-[#2D3748]">{emotion.label}</span>
+              <span className="text-sm font-semibold text-[#35322B]">{emotion.label}</span>
             </button>
           ))}
         </div>
@@ -91,14 +91,14 @@ export function EmotionSelection() {
 
         {loading && (
           <div className="bg-white/80 border border-[#F9E5A8] rounded-2xl p-3 mb-4">
-            <div className="flex items-center gap-2 text-xs font-medium text-[#4A5568]">
-              <Loader2 className="w-3.5 h-3.5 animate-spin text-[#6B9AC4] shrink-0" />
+            <div className="flex items-center gap-2 text-xs font-medium text-[#55504A]">
+              <Loader2 className="w-3.5 h-3.5 animate-spin text-[#6E4FD1] shrink-0" />
               {SAFETY_PIPELINE_STEPS.map((step, i) => (
                 <span
                   key={step}
-                  className={`flex items-center gap-1 ${i === pipelineStep ? 'text-[#2D3748] font-semibold' : 'opacity-40'}`}
+                  className={`flex items-center gap-1 ${i === pipelineStep ? 'text-[#35322B] font-semibold' : 'opacity-40'}`}
                 >
-                  {i < pipelineStep && <Check className="w-3 h-3 text-[#6B9AC4]" />}
+                  {i < pipelineStep && <Check className="w-3 h-3 text-[#6E4FD1]" />}
                   {i === pipelineStep ? step : null}
                 </span>
               ))}

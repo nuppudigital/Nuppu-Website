@@ -3,25 +3,26 @@
 :root {
   /* Nuppu brand tokens - matches Nuppu Website/src/styles/theme.css exactly,
      so this standalone dashboard reads as the same product. */
-  --nuppu-honey: #e8c468;
+  --nuppu-yellow: #f6e19a;
+  --nuppu-purple: #6e4fd1;
+  --nuppu-purple-light: #c9bbf5;
   --nuppu-eucalyptus: #a8c5ba;
-  --nuppu-ivory: #faf7f2;
   --nuppu-gold: #d4af5e;
-  --nuppu-cream: #f5f0e8;
+  --nuppu-cream: #ece5d3;
 
-  --background: #fffcf7;
-  --foreground: #3a4536;
-  --card: #ffffff;
-  --card-foreground: #3a4536;
-  --primary: #a8c5ba;
-  --primary-foreground: #3a4536;
-  --secondary: #e8c468;
-  --secondary-foreground: #3a4536;
-  --muted: #f5f0e8;
-  --muted-foreground: #6b7566;
+  --background: #fbf0c8;
+  --foreground: #35322b;
+  --card: #fffdf6;
+  --card-foreground: #35322b;
+  --primary: #6e4fd1;
+  --primary-foreground: #ffffff;
+  --secondary: #f0d983;
+  --secondary-foreground: #35322b;
+  --muted: #f2edde;
+  --muted-foreground: #6b6660;
   --destructive: #d4183d;
   --destructive-foreground: #ffffff;
-  --border: rgba(168, 197, 186, 0.35);
+  --border: rgba(110, 79, 209, 0.22);
   --radius: 0.75rem;
 }
 

@@ -30,8 +30,8 @@ export function AboutNuppu() {
 
   return (
     <MobileScreen>
-      <div className="flex-1 overflow-y-auto bg-gradient-to-br from-[#D4C5F9]/25 via-[#A8D5E2]/10 to-white">
-        <div className="bg-gradient-to-r from-[#6B9AC4] to-[#A8D5E2] px-6 pt-8 pb-6 flex items-center gap-3">
+      <div className="flex-1 overflow-y-auto bg-gradient-to-br from-[#D4C5F9]/25 via-[#C9BBF5]/10 to-white">
+        <div className="bg-gradient-to-r from-[#6E4FD1] to-[#C9BBF5] px-6 pt-8 pb-6 flex items-center gap-3">
           <button
             onClick={() => navigate(-1)}
             className="w-9 h-9 rounded-full bg-white/20 flex items-center justify-center"
@@ -45,11 +45,11 @@ export function AboutNuppu() {
         <div className="px-6 py-6 flex flex-col gap-4">
           {SECTIONS.map((section) => (
             <div key={section.title} className="bg-white rounded-2xl border border-gray-100 p-5">
-              <div className="w-10 h-10 rounded-xl bg-[#A8D5E2]/15 text-[#6B9AC4] flex items-center justify-center mb-3">
+              <div className="w-10 h-10 rounded-xl bg-[#C9BBF5]/15 text-[#6E4FD1] flex items-center justify-center mb-3">
                 {section.icon}
               </div>
-              <p className="text-sm font-semibold text-[#2D3748] mb-2">{section.title}</p>
-              <p className="text-xs text-[#4A5568] leading-relaxed">{section.body}</p>
+              <p className="text-sm font-semibold text-[#35322B] mb-2">{section.title}</p>
+              <p className="text-xs text-[#55504A] leading-relaxed">{section.body}</p>
             </div>
           ))}
         </div>

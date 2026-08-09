@@ -56,7 +56,7 @@ export default function Characters() {
   return (
     <div className="w-full">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-[#A8D5E2]/20 via-[#F9E5A8]/10 to-[#D4C5F9]/20 py-20">
+      <section className="bg-gradient-to-br from-[#C9BBF5]/20 via-[#F9E5A8]/10 to-[#D4C5F9]/20 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -64,13 +64,13 @@ export default function Characters() {
             transition={{ duration: 0.6 }}
           >
             <h1
-              className="text-4xl md:text-5xl lg:text-6xl text-[#2D3748] mb-6"
+              className="text-4xl md:text-5xl lg:text-6xl text-[#35322B] mb-6"
               style={{ fontFamily: "Nunito, sans-serif" }}
             >
               {t("characters.heroTitle")}{" "}
-              <span className="text-[#6B9AC4]">{t("characters.heroTitleHighlight")}</span>
+              <span className="text-[#6E4FD1]">{t("characters.heroTitleHighlight")}</span>
             </h1>
-            <p className="text-lg md:text-xl text-[#718096] max-w-3xl mx-auto leading-relaxed">
+            <p className="text-lg md:text-xl text-[#6B6660] max-w-3xl mx-auto leading-relaxed">
               {t("characters.heroSubtitle")}
             </p>
           </motion.div>
@@ -134,18 +134,18 @@ export default function Characters() {
                 {/* Character Info */}
                 <div className="p-8">
                   <h2
-                    className="text-2xl md:text-3xl text-[#2D3748] mb-2"
+                    className="text-2xl md:text-3xl text-[#35322B] mb-2"
                     style={{ fontFamily: "Nunito, sans-serif" }}
                   >
                     {character.name}
                   </h2>
                   <p
-                    className="text-[#6B9AC4] mb-4"
+                    className="text-[#6E4FD1] mb-4"
                     style={{ fontFamily: "Nunito, sans-serif" }}
                   >
                     {character.personality}
                   </p>
-                  <p className="text-[#718096] mb-6 leading-relaxed">
+                  <p className="text-[#6B6660] mb-6 leading-relaxed">
                     {character.description}
                   </p>
 
@@ -169,14 +169,14 @@ export default function Characters() {
       </section>
 
       {/* Bottom Section */}
-      <section className="py-20 bg-gradient-to-b from-white to-[#F7F6F3]">
+      <section className="py-20 bg-gradient-to-b from-white to-[#F2EDDE]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="bg-gradient-to-r from-[#A8D5E2] to-[#B8DDB8] rounded-3xl p-12 text-center"
+            className="bg-gradient-to-r from-[#C9BBF5] to-[#B8DDB8] rounded-3xl p-12 text-center"
           >
             <h2
               className="text-3xl md:text-4xl text-white mb-6"
@@ -190,13 +190,13 @@ export default function Characters() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 to="/"
-                className="inline-flex items-center justify-center px-8 py-4 bg-white text-[#6B9AC4] rounded-full hover:shadow-xl hover:scale-105 transition-all duration-300"
+                className="inline-flex items-center justify-center px-8 py-4 bg-white text-[#6E4FD1] rounded-full hover:shadow-xl hover:scale-105 transition-all duration-300"
               >
                 {t("characters.bottom.learnMore")}
               </Link>
               <Link
                 to="/contact"
-                className="inline-flex items-center justify-center px-8 py-4 bg-white/20 text-white border-2 border-white rounded-full hover:bg-white hover:text-[#6B9AC4] transition-all duration-300"
+                className="inline-flex items-center justify-center px-8 py-4 bg-white/20 text-white border-2 border-white rounded-full hover:bg-white hover:text-[#6E4FD1] transition-all duration-300"
               >
                 {t("characters.bottom.joinWaitlist")}
               </Link>

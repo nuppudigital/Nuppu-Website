@@ -11,19 +11,19 @@ export function Input({ label, icon, className = '', id, ...rest }: InputProps) 
   return (
     <div className="w-full">
       {label && (
-        <label htmlFor={inputId} className="block text-sm font-medium text-[#4A5568] mb-1.5">
+        <label htmlFor={inputId} className="block text-sm font-medium text-[#55504A] mb-1.5">
           {label}
         </label>
       )}
       <div className="relative">
         {icon && (
-          <div className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#718096]">{icon}</div>
+          <div className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#6B6660]">{icon}</div>
         )}
         <input
           id={inputId}
-          className={`w-full rounded-xl border border-gray-200 bg-white text-[#2D3748] placeholder:text-gray-400 py-3 ${
+          className={`w-full rounded-xl border border-gray-200 bg-white text-[#35322B] placeholder:text-gray-400 py-3 ${
             icon ? 'pl-11' : 'pl-4'
-          } pr-4 focus:outline-none focus:ring-2 focus:ring-[#6B9AC4] focus:border-transparent transition-all ${className}`}
+          } pr-4 focus:outline-none focus:ring-2 focus:ring-[#6E4FD1] focus:border-transparent transition-all ${className}`}
           {...rest}
         />
       </div>

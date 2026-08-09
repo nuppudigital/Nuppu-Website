@@ -192,12 +192,12 @@ export function EmotionalSupport() {
           </CardContent>
         </Card>
 
-        <Card className="mb-8 bg-blue-50 dark:bg-blue-900/20">
+        <Card className="mb-8 bg-purple-50 dark:bg-purple-900/20">
           <CardHeader>
             <CardTitle className="text-2xl font-bold">{t("emotionalSupport.price.title")}</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-4xl font-bold text-blue-600 dark:text-blue-400">
+            <p className="text-4xl font-bold text-purple-600 dark:text-purple-400">
               {t("emotionalSupport.price.amount")}{" "}
               <span className="text-lg font-normal text-gray-600 dark:text-gray-300">{t("emotionalSupport.price.per")}</span>
             </p>
@@ -208,7 +208,7 @@ export function EmotionalSupport() {
         </Card>
 
         {/* Book & Pay */}
-        <Card className="mb-8 border-2 border-blue-200 dark:border-blue-800">
+        <Card className="mb-8 border-2 border-purple-200 dark:border-purple-800">
           <CardHeader>
             <CardTitle className="text-2xl font-bold">{t("emotionalSupport.booking.title")}</CardTitle>
           </CardHeader>
@@ -227,7 +227,7 @@ export function EmotionalSupport() {
                     onChange={handleInputChange}
                     required
                     disabled={paymentState === "loading"}
-                    className="w-full px-4 py-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all"
+                    className="w-full px-4 py-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-400 transition-all"
                     placeholder={t("emotionalSupport.booking.namePlaceholder")}
                   />
                 </div>
@@ -243,7 +243,7 @@ export function EmotionalSupport() {
                     onChange={handleInputChange}
                     required
                     disabled={paymentState === "loading"}
-                    className="w-full px-4 py-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all"
+                    className="w-full px-4 py-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-400 transition-all"
                     placeholder={t("emotionalSupport.booking.emailPlaceholder")}
                   />
                 </div>
@@ -258,7 +258,7 @@ export function EmotionalSupport() {
                     value={formData.phone}
                     onChange={handleInputChange}
                     disabled={paymentState === "loading"}
-                    className="w-full px-4 py-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all"
+                    className="w-full px-4 py-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-400 transition-all"
                     placeholder={t("emotionalSupport.booking.phonePlaceholder")}
                   />
                 </div>
@@ -274,7 +274,7 @@ export function EmotionalSupport() {
                     required
                     rows={4}
                     disabled={paymentState === "loading"}
-                    className="w-full px-4 py-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all resize-y"
+                    className="w-full px-4 py-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-400 transition-all resize-y"
                     placeholder={t("emotionalSupport.booking.messagePlaceholder")}
                   />
                   <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">

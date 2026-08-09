@@ -5,6 +5,8 @@ import dotenv from "dotenv";
 import nodemailer from "nodemailer";
 import twilio from "twilio";
 import crypto from "node:crypto";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 import { Payment, computeRetentionExpiry } from "../src/server/models/Payment.js";
 import {
   createPayment as createPaytrailPayment,
@@ -921,6 +923,26 @@ app.delete("/api/payments/:id/personal-data", requireAdmin, requireDatabase, asy
     res.status(500).json({ status: "error", message: "Failed to anonymise payment" });
   }
 });
+
+// On Vercel, the built frontend (dist/) is served directly by Vercel's edge
+// routing per vercel.json's rewrites, never through this Express app. Any
+// other host (e.g. a plain Node process on Plesk/Railway/a VPS) has no such
+// edge layer, so this app must serve the built frontend itself - static files
+// first, then an SPA fallback to index.html (or admin/index.html under
+// /admin) for routes React Router handles client-side, mirroring the same
+// three rewrites vercel.json defines.
+if (!process.env.VERCEL) {
+  const __dirname = path.dirname(fileURLToPath(import.meta.url));
+  const distDir = path.join(__dirname, "..", "dist");
+
+  app.use(express.static(distDir));
+  app.get(/^\/admin(\/.*)?$/, (req, res) => {
+    res.sendFile(path.join(distDir, "admin", "index.html"));
+  });
+  app.get(/^(?!\/api\/).*/, (req, res) => {
+    res.sendFile(path.join(distDir, "index.html"));
+  });
+}
 
 app.use((req, res) => {
   res.status(404).json({

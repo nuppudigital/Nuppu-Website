@@ -30,7 +30,7 @@ export function Home() {
         <div
           className={`px-6 pt-8 pb-6 ${
             mode === 'parent'
-              ? 'bg-gradient-to-r from-[#6B9AC4] to-[#A8D5E2]'
+              ? 'bg-gradient-to-r from-[#6E4FD1] to-[#C9BBF5]'
               : 'bg-gradient-to-r from-[#F9E5A8] to-[#FFD4C4]'
           }`}
         >
@@ -39,7 +39,7 @@ export function Home() {
               <button
                 onClick={() => setMode('parent')}
                 className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold transition-all ${
-                  mode === 'parent' ? 'bg-white text-[#6B9AC4] shadow' : 'text-white'
+                  mode === 'parent' ? 'bg-white text-[#6E4FD1] shadow' : 'text-white'
                 }`}
               >
                 <User className="w-3.5 h-3.5" />
@@ -48,7 +48,7 @@ export function Home() {
               <button
                 onClick={() => setMode('child')}
                 className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold transition-all ${
-                  mode === 'child' ? 'bg-white text-[#D4AF5E] shadow' : mode === 'parent' ? 'text-white' : 'text-[#2D3748]'
+                  mode === 'child' ? 'bg-white text-[#D4AF5E] shadow' : mode === 'parent' ? 'text-white' : 'text-[#35322B]'
                 }`}
               >
                 <Baby className="w-3.5 h-3.5" />
@@ -98,8 +98,8 @@ export function Home() {
                 />
               </div>
               <div>
-                <h1 className="text-xl font-bold text-[#2D3748]">Hi {childData.name}!</h1>
-                <p className="text-sm text-[#4A5568]">Ready for a story?</p>
+                <h1 className="text-xl font-bold text-[#35322B]">Hi {childData.name}!</h1>
+                <p className="text-sm text-[#55504A]">Ready for a story?</p>
               </div>
             </div>
           )}
@@ -113,23 +113,23 @@ export function Home() {
                   onClick={() => navigate('/progress')}
                   className="bg-[#D4C5F9]/20 rounded-2xl p-4 text-left hover:bg-[#D4C5F9]/30 transition-colors"
                 >
-                  <p className="text-2xl font-bold text-[#6B9AC4]">12</p>
-                  <p className="text-xs text-[#718096] mt-0.5">Stories</p>
+                  <p className="text-2xl font-bold text-[#6E4FD1]">12</p>
+                  <p className="text-xs text-[#6B6660] mt-0.5">Stories</p>
                 </button>
                 <button
                   onClick={() => navigate('/progress')}
                   className="bg-[#B8DDB8]/20 rounded-2xl p-4 text-left hover:bg-[#B8DDB8]/30 transition-colors"
                 >
                   <p className="text-2xl font-bold text-[#4a9d7f]">5</p>
-                  <p className="text-xs text-[#718096] mt-0.5">Skills</p>
+                  <p className="text-xs text-[#6B6660] mt-0.5">Skills</p>
                 </button>
               </div>
 
               <div className="bg-gradient-to-br from-[#F9E5A8]/60 to-[#FFD4C4]/30 rounded-2xl p-4 mb-6 border border-[#F9E5A8]">
-                <p className="text-sm font-semibold text-[#2D3748] mb-2">Today's Tips</p>
+                <p className="text-sm font-semibold text-[#35322B] mb-2">Today's Tips</p>
                 <ul className="space-y-1.5">
                   {TIPS.map((tip) => (
-                    <li key={tip} className="text-xs text-[#4A5568] flex gap-1.5">
+                    <li key={tip} className="text-xs text-[#55504A] flex gap-1.5">
                       <span>💡</span>
                       <span>{tip}</span>
                     </li>
@@ -139,7 +139,7 @@ export function Home() {
             </>
           )}
 
-          <p className="text-sm font-semibold text-[#4A5568] mb-3">Recommended Stories</p>
+          <p className="text-sm font-semibold text-[#55504A] mb-3">Recommended Stories</p>
           <div className="flex flex-col gap-3 mb-6">
             {recommendedStories.map((story) => (
               <button
@@ -153,12 +153,12 @@ export function Home() {
                   {story.emoji}
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm font-semibold text-[#2D3748] truncate">{story.title}</p>
-                  <p className="text-xs text-[#718096]">{story.duration}</p>
+                  <p className="text-sm font-semibold text-[#35322B] truncate">{story.title}</p>
+                  <p className="text-xs text-[#6B6660]">{story.duration}</p>
                 </div>
                 <div
                   className={`w-9 h-9 rounded-full flex items-center justify-center shrink-0 ${
-                    mode === 'parent' ? 'bg-[#6B9AC4]' : 'bg-[#E8C468]'
+                    mode === 'parent' ? 'bg-[#6E4FD1]' : 'bg-[#E8C468]'
                   }`}
                 >
                   <Play className="w-4 h-4 text-white fill-white" />

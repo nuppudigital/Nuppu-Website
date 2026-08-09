@@ -37,7 +37,7 @@ export function StoryLibrary() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search stories..."
-              className="w-full rounded-full bg-white/95 pl-10 pr-4 py-2.5 text-sm text-[#2D3748] placeholder:text-gray-400 focus:outline-none"
+              className="w-full rounded-full bg-white/95 pl-10 pr-4 py-2.5 text-sm text-[#35322B] placeholder:text-gray-400 focus:outline-none"
             />
           </div>
         </div>
@@ -48,7 +48,7 @@ export function StoryLibrary() {
               key={cat}
               onClick={() => setCategory(cat)}
               className={`shrink-0 px-4 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-all ${
-                category === cat ? 'bg-[#6B9AC4] text-white shadow' : 'bg-gray-100 text-[#4A5568]'
+                category === cat ? 'bg-[#6E4FD1] text-white shadow' : 'bg-gray-100 text-[#55504A]'
               }`}
             >
               {cat}
@@ -59,7 +59,7 @@ export function StoryLibrary() {
         <div className="flex-1 overflow-y-auto px-6 py-5 pb-24">
           {filteredAiStories.length > 0 && (
             <div className="mb-6">
-              <p className="text-sm font-semibold text-[#4A5568] mb-3">AI Generated Stories</p>
+              <p className="text-sm font-semibold text-[#55504A] mb-3">AI Generated Stories</p>
               <div className="flex flex-col gap-3">
                 {filteredAiStories.map((story) => (
                   <button
@@ -77,17 +77,17 @@ export function StoryLibrary() {
                     </div>
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-1.5">
-                        <p className="text-sm font-semibold text-[#2D3748] truncate">{story.title}</p>
-                        <span className="shrink-0 flex items-center gap-0.5 bg-[#D4C5F9]/30 text-[#6B9AC4] text-[10px] font-bold px-1.5 py-0.5 rounded-full">
+                        <p className="text-sm font-semibold text-[#35322B] truncate">{story.title}</p>
+                        <span className="shrink-0 flex items-center gap-0.5 bg-[#D4C5F9]/30 text-[#6E4FD1] text-[10px] font-bold px-1.5 py-0.5 rounded-full">
                           <Sparkles className="w-2.5 h-2.5" />
                           AI
                         </span>
                       </div>
-                      <p className="text-xs text-[#718096]">
+                      <p className="text-xs text-[#6B6660]">
                         {story.emotion} • {story.duration}
                       </p>
                     </div>
-                    <div className="w-9 h-9 rounded-full bg-[#6B9AC4] flex items-center justify-center shrink-0">
+                    <div className="w-9 h-9 rounded-full bg-[#6E4FD1] flex items-center justify-center shrink-0">
                       <Play className="w-4 h-4 text-white fill-white" />
                     </div>
                   </button>
@@ -98,7 +98,7 @@ export function StoryLibrary() {
 
           {filteredClassics.length > 0 && (
             <div>
-              <p className="text-sm font-semibold text-[#4A5568] mb-3">Classic Stories</p>
+              <p className="text-sm font-semibold text-[#55504A] mb-3">Classic Stories</p>
               <div className="flex flex-col gap-3">
                 {filteredClassics.map((story) => (
                   <button
@@ -112,12 +112,12 @@ export function StoryLibrary() {
                       {story.emoji}
                     </div>
                     <div className="flex-1 min-w-0">
-                      <p className="text-sm font-semibold text-[#2D3748] truncate">{story.title}</p>
-                      <p className="text-xs text-[#718096]">
+                      <p className="text-sm font-semibold text-[#35322B] truncate">{story.title}</p>
+                      <p className="text-xs text-[#6B6660]">
                         {story.category} • {story.duration}
                       </p>
                     </div>
-                    <div className="w-9 h-9 rounded-full bg-[#6B9AC4] flex items-center justify-center shrink-0">
+                    <div className="w-9 h-9 rounded-full bg-[#6E4FD1] flex items-center justify-center shrink-0">
                       <Play className="w-4 h-4 text-white fill-white" />
                     </div>
                   </button>

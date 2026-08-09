@@ -2,39 +2,39 @@
 
 :root {
   --font-size: 16px;
-  
-  /* Nuppu Brand Colors - Honey & Eucalyptus Palette */
-  --nuppu-honey: #E8C468;
+
+  /* Nuppu Brand Colors - Sunshine & Wisteria Palette */
+  --nuppu-yellow: #F6E19A;
+  --nuppu-purple: #6E4FD1;
+  --nuppu-purple-light: #C9BBF5;
   --nuppu-eucalyptus: #A8C5BA;
-  --nuppu-ivory: #FAF7F2;
   --nuppu-gold: #D4AF5E;
-  --nuppu-sage: #B8D4C7;
-  --nuppu-cream: #F5F0E8;
-  
+  --nuppu-cream: #ECE5D3;
+
   /* Theme Colors */
-  --background: #FFFCF7;
-  --foreground: #3A4536;
-  --card: #ffffff;
-  --card-foreground: #3A4536;
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: #A8C5BA;
-  --primary-foreground: #3A4536;
-  --secondary: #E8C468;
-  --secondary-foreground: #3A4536;
-  --muted: #F5F0E8;
-  --muted-foreground: #6B7566;
-  --accent: #D4AF5E;
-  --accent-foreground: #3A4536;
+  --background: #FBF0C8;
+  --foreground: #35322B;
+  --card: #FFFDF6;
+  --card-foreground: #35322B;
+  --popover: #FFFDF6;
+  --popover-foreground: #35322B;
+  --primary: #6E4FD1;
+  --primary-foreground: #ffffff;
+  --secondary: #F0D983;
+  --secondary-foreground: #35322B;
+  --muted: #F2EDDE;
+  --muted-foreground: #6B6660;
+  --accent: #C9BBF5;
+  --accent-foreground: #35322B;
   --destructive: #d4183d;
   --destructive-foreground: #ffffff;
-  --border: rgba(168, 197, 186, 0.2);
+  --border: rgba(110, 79, 209, 0.16);
   --input: transparent;
-  --input-background: #F5F0E8;
+  --input-background: #F2EDDE;
   --switch-background: #cbced4;
   --font-weight-medium: 500;
   --font-weight-normal: 400;
-  --ring: oklch(0.708 0 0);
+  --ring: #6E4FD1;
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);

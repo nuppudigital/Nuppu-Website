@@ -82,7 +82,7 @@ export default function Contact() {
   return (
     <div className="w-full">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-[#A8D5E2]/20 via-[#F9E5A8]/10 to-[#B8DDB8]/20 py-20">
+      <section className="bg-gradient-to-br from-[#C9BBF5]/20 via-[#F9E5A8]/10 to-[#B8DDB8]/20 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -91,12 +91,12 @@ export default function Contact() {
             className="text-center"
           >
             <h1
-              className="text-4xl md:text-5xl lg:text-6xl text-[#2D3748] mb-6"
+              className="text-4xl md:text-5xl lg:text-6xl text-[#35322B] mb-6"
               style={{ fontFamily: 'Nunito, sans-serif' }}
             >
-              {t("contact.heroTitle")} <span className="text-[#6B9AC4]">{t("contact.heroTitleHighlight")}</span>
+              {t("contact.heroTitle")} <span className="text-[#6E4FD1]">{t("contact.heroTitleHighlight")}</span>
             </h1>
-            <p className="text-lg md:text-xl text-[#718096] max-w-3xl mx-auto leading-relaxed">
+            <p className="text-lg md:text-xl text-[#6B6660] max-w-3xl mx-auto leading-relaxed">
               {t("contact.heroSubtitle")}
             </p>
           </motion.div>
@@ -115,12 +115,12 @@ export default function Contact() {
               transition={{ duration: 0.6 }}
             >
               <h2
-                className="text-3xl text-[#2D3748] mb-6"
+                className="text-3xl text-[#35322B] mb-6"
                 style={{ fontFamily: 'Nunito, sans-serif' }}
               >
                 {t("contact.connect.title")}
               </h2>
-              <p className="text-lg text-[#718096] mb-8 leading-relaxed">
+              <p className="text-lg text-[#6B6660] mb-8 leading-relaxed">
                 {t("contact.connect.text")}
               </p>
 
@@ -128,21 +128,21 @@ export default function Contact() {
               <div className="space-y-6">
                 <motion.div
                   whileHover={{ scale: 1.02 }}
-                  className="flex items-start gap-4 p-6 bg-gradient-to-br from-[#A8D5E2]/10 to-[#A8D5E2]/5 rounded-2xl border border-[#A8D5E2]/30"
+                  className="flex items-start gap-4 p-6 bg-gradient-to-br from-[#C9BBF5]/10 to-[#C9BBF5]/5 rounded-2xl border border-[#C9BBF5]/30"
                 >
-                  <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-[#A8D5E2] flex items-center justify-center text-white">
+                  <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-[#C9BBF5] flex items-center justify-center text-white">
                     <Mail className="w-6 h-6" />
                   </div>
                   <div>
                     <h3
-                      className="text-lg text-[#2D3748] mb-1"
+                      className="text-lg text-[#35322B] mb-1"
                       style={{ fontFamily: 'Nunito, sans-serif' }}
                     >
                       {t("contact.emailUs")}
                     </h3>
                     <a
                       href="mailto:nuppudigital@gmail.com"
-                      className="text-[#6B9AC4] hover:underline"
+                      className="text-[#6E4FD1] hover:underline"
                     >
                       nuppudigital@gmail.com
                     </a>
@@ -158,25 +158,25 @@ export default function Contact() {
                   </div>
                   <div>
                     <h3
-                      className="text-lg text-[#2D3748] mb-1"
+                      className="text-lg text-[#35322B] mb-1"
                       style={{ fontFamily: 'Nunito, sans-serif' }}
                     >
                       {t("contact.responseTime.title")}
                     </h3>
-                    <p className="text-[#718096]">{t("contact.responseTime.text")}</p>
+                    <p className="text-[#6B6660]">{t("contact.responseTime.text")}</p>
                   </div>
                 </motion.div>
               </div>
 
               {/* Additional Info */}
-              <div className="mt-8 p-6 bg-[#F7F6F3] rounded-2xl">
+              <div className="mt-8 p-6 bg-[#F2EDDE] rounded-2xl">
                 <h3
-                  className="text-lg text-[#2D3748] mb-3"
+                  className="text-lg text-[#35322B] mb-3"
                   style={{ fontFamily: 'Nunito, sans-serif' }}
                 >
                   {t("contact.waitlist.title")}
                 </h3>
-                <p className="text-[#718096] leading-relaxed">
+                <p className="text-[#6B6660] leading-relaxed">
                   {t("contact.waitlist.text")}
                 </p>
               </div>
@@ -194,7 +194,7 @@ export default function Contact() {
                 <div>
                   <label
                     htmlFor="name"
-                    className="block text-[#2D3748] mb-2"
+                    className="block text-[#35322B] mb-2"
                   >
                     {t("contact.form.nameLabel")}
                   </label>
@@ -206,7 +206,7 @@ export default function Contact() {
                     onChange={handleInputChange}
                     required
                     aria-invalid={formStatus === "error" && !formData.name.trim()}
-                    className="w-full px-4 py-3 bg-[#F7F6F3] border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-[#6B9AC4] transition-all"
+                    className="w-full px-4 py-3 bg-[#F2EDDE] border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-[#6E4FD1] transition-all"
                     placeholder={t("contact.form.namePlaceholder")}
                     disabled={formStatus === "loading"}
                   />
@@ -216,7 +216,7 @@ export default function Contact() {
                 <div>
                   <label
                     htmlFor="email"
-                    className="block text-[#2D3748] mb-2"
+                    className="block text-[#35322B] mb-2"
                   >
                     {t("contact.form.emailLabel")}
                   </label>
@@ -228,7 +228,7 @@ export default function Contact() {
                     onChange={handleInputChange}
                     required
                     aria-invalid={formStatus === "error" && (!formData.email.trim() || !/\S+@\S+\.\S+/.test(formData.email))}
-                    className="w-full px-4 py-3 bg-[#F7F6F3] border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-[#6B9AC4] transition-all"
+                    className="w-full px-4 py-3 bg-[#F2EDDE] border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-[#6E4FD1] transition-all"
                     placeholder={t("contact.form.emailPlaceholder")}
                     disabled={formStatus === "loading"}
                   />
@@ -238,7 +238,7 @@ export default function Contact() {
                 <div>
                   <label
                     htmlFor="role"
-                    className="block text-[#2D3748] mb-2"
+                    className="block text-[#35322B] mb-2"
                   >
                     {t("contact.form.roleLabel")}
                   </label>
@@ -249,7 +249,7 @@ export default function Contact() {
                     onChange={handleInputChange}
                     required
                     aria-invalid={formStatus === "error" && !formData.role}
-                    className="w-full px-4 py-3 bg-[#F7F6F3] border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-[#6B9AC4] transition-all"
+                    className="w-full px-4 py-3 bg-[#F2EDDE] border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-[#6E4FD1] transition-all"
                     disabled={formStatus === "loading"}
                   >
                     <option value="">{t("contact.form.selectRole")}</option>
@@ -264,7 +264,7 @@ export default function Contact() {
                 <div>
                   <label
                     htmlFor="message"
-                    className="block text-[#2D3748] mb-2"
+                    className="block text-[#35322B] mb-2"
                   >
                     {t("contact.form.messageLabel")}
                   </label>
@@ -276,7 +276,7 @@ export default function Contact() {
                     rows={5}
                     required
                     aria-invalid={formStatus === "error" && !formData.message.trim()}
-                    className="w-full px-4 py-3 bg-[#F7F6F3] border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-[#6B9AC4] transition-all resize-none"
+                    className="w-full px-4 py-3 bg-[#F2EDDE] border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-[#6E4FD1] transition-all resize-none"
                     placeholder={t("contact.form.messagePlaceholder")}
                     disabled={formStatus === "loading"}
                   />
@@ -314,7 +314,7 @@ export default function Contact() {
                 <button
                   type="submit"
                   disabled={formStatus === "loading"}
-                  className="w-full flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-[#6B9AC4] to-[#A8D5E2] text-white rounded-xl hover:shadow-xl hover:scale-[1.02] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+                  className="w-full flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-[#6E4FD1] to-[#C9BBF5] text-white rounded-xl hover:shadow-xl hover:scale-[1.02] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
                 >
                   {formStatus === "loading" ? (
                     <>
@@ -333,7 +333,7 @@ export default function Contact() {
                   )}
                 </button>
 
-                <p className="text-sm text-[#718096] text-center">
+                <p className="text-sm text-[#6B6660] text-center">
                   {t("contact.form.agree")}
                 </p>
               </form>
@@ -343,7 +343,7 @@ export default function Contact() {
       </section>
 
       {/* Bottom CTA */}
-      <section className="py-20 bg-gradient-to-b from-white to-[#F7F6F3]">
+      <section className="py-20 bg-gradient-to-b from-white to-[#F2EDDE]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -352,24 +352,24 @@ export default function Contact() {
             transition={{ duration: 0.6 }}
           >
             <h2
-              className="text-3xl md:text-4xl text-[#2D3748] mb-6"
+              className="text-3xl md:text-4xl text-[#35322B] mb-6"
               style={{ fontFamily: 'Nunito, sans-serif' }}
             >
               {t("contact.bottom.title")}
             </h2>
-            <p className="text-lg text-[#718096] mb-8 max-w-2xl mx-auto">
+            <p className="text-lg text-[#6B6660] mb-8 max-w-2xl mx-auto">
               {t("contact.bottom.subtitle")}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 to="/characters"
-                className="inline-flex items-center justify-center px-8 py-3 bg-white text-[#6B9AC4] border-2 border-[#6B9AC4] rounded-full hover:bg-[#6B9AC4] hover:text-white transition-all duration-300"
+                className="inline-flex items-center justify-center px-8 py-3 bg-white text-[#6E4FD1] border-2 border-[#6E4FD1] rounded-full hover:bg-[#6E4FD1] hover:text-white transition-all duration-300"
               >
                 {t("contact.bottom.characters")}
               </Link>
               <Link
                 to="/about"
-                className="inline-flex items-center justify-center px-8 py-3 bg-white text-[#6B9AC4] border-2 border-[#6B9AC4] rounded-full hover:bg-[#6B9AC4] hover:text-white transition-all duration-300"
+                className="inline-flex items-center justify-center px-8 py-3 bg-white text-[#6E4FD1] border-2 border-[#6E4FD1] rounded-full hover:bg-[#6E4FD1] hover:text-white transition-all duration-300"
               >
                 {t("contact.bottom.about")}
               </Link>

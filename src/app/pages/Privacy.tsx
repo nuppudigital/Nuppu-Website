@@ -19,28 +19,28 @@ export default function Privacy() {
     <div className="w-full bg-white">
       <section className="py-16 md:py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-4xl text-[#2D3748] mb-6" style={{ fontFamily: "Nunito, sans-serif" }}>
+          <h1 className="text-4xl text-[#35322B] mb-6" style={{ fontFamily: "Nunito, sans-serif" }}>
             {t("privacy.title")}
           </h1>
-          <p className="text-[#718096] mb-8">{t("privacy.updated")}</p>
+          <p className="text-[#6B6660] mb-8">{t("privacy.updated")}</p>
 
-          <div className="space-y-8 text-[#4A5568] leading-relaxed">
+          <div className="space-y-8 text-[#55504A] leading-relaxed">
             <section>
-              <h2 className="text-2xl text-[#2D3748] mb-3" style={{ fontFamily: "Nunito, sans-serif" }}>
+              <h2 className="text-2xl text-[#35322B] mb-3" style={{ fontFamily: "Nunito, sans-serif" }}>
                 {t("privacy.collect.title")}
               </h2>
               <p>{t("privacy.collect.text")}</p>
             </section>
 
             <section>
-              <h2 className="text-2xl text-[#2D3748] mb-3" style={{ fontFamily: "Nunito, sans-serif" }}>
+              <h2 className="text-2xl text-[#35322B] mb-3" style={{ fontFamily: "Nunito, sans-serif" }}>
                 {t("privacy.why.title")}
               </h2>
               <p>{t("privacy.why.text")}</p>
             </section>
 
             <section>
-              <h2 className="text-2xl text-[#2D3748] mb-3" style={{ fontFamily: "Nunito, sans-serif" }}>
+              <h2 className="text-2xl text-[#35322B] mb-3" style={{ fontFamily: "Nunito, sans-serif" }}>
                 {t("privacy.payments.title")}
               </h2>
               <p>{rich(t("privacy.payments.p1"))}</p>
@@ -50,13 +50,13 @@ export default function Privacy() {
             </section>
 
             <section>
-              <h2 className="text-2xl text-[#2D3748] mb-3" style={{ fontFamily: "Nunito, sans-serif" }}>
+              <h2 className="text-2xl text-[#35322B] mb-3" style={{ fontFamily: "Nunito, sans-serif" }}>
                 {t("privacy.protection.title")}
               </h2>
               <p>
                 {t("privacy.protection.text")}{" "}
                 {t("privacy.protection.seeBefore")}{" "}
-                <Link to="/cookies" className="text-[#6B9AC4] hover:underline">
+                <Link to="/cookies" className="text-[#6E4FD1] hover:underline">
                   {t("privacy.protection.seeLink")}
                 </Link>{" "}
                 {t("privacy.protection.seeAfter")}
@@ -64,7 +64,7 @@ export default function Privacy() {
             </section>
 
             <section>
-              <h2 className="text-2xl text-[#2D3748] mb-3" style={{ fontFamily: "Nunito, sans-serif" }}>
+              <h2 className="text-2xl text-[#35322B] mb-3" style={{ fontFamily: "Nunito, sans-serif" }}>
                 {t("privacy.rights.title")}
               </h2>
               <p>{t("privacy.rights.text")}</p>

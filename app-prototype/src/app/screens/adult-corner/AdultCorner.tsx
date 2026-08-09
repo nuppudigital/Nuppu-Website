@@ -57,8 +57,8 @@ export function AdultCorner() {
 
   return (
     <MobileScreen>
-      <div className="flex-1 overflow-y-auto bg-gradient-to-br from-[#D4C5F9]/25 via-[#A8D5E2]/10 to-white">
-        <div className="bg-gradient-to-r from-[#6B9AC4] to-[#A8D5E2] px-6 pt-8 pb-6">
+      <div className="flex-1 overflow-y-auto bg-gradient-to-br from-[#D4C5F9]/25 via-[#C9BBF5]/10 to-white">
+        <div className="bg-gradient-to-r from-[#6E4FD1] to-[#C9BBF5] px-6 pt-8 pb-6">
           <div className="flex items-center gap-3 mb-5">
             <button
               onClick={() => navigate(-1)}
@@ -95,12 +95,12 @@ export function AdultCorner() {
                 onClick={() => navigate(link.path)}
                 className="w-full flex items-center gap-3 px-4 py-3.5 text-left"
               >
-                <span className="w-10 h-10 rounded-xl bg-[#A8D5E2]/15 text-[#6B9AC4] flex items-center justify-center shrink-0">
+                <span className="w-10 h-10 rounded-xl bg-[#C9BBF5]/15 text-[#6E4FD1] flex items-center justify-center shrink-0">
                   {link.icon}
                 </span>
                 <span className="flex-1 min-w-0">
-                  <p className="text-sm font-semibold text-[#2D3748]">{link.title}</p>
-                  <p className="text-xs text-[#718096] mt-0.5">{link.description}</p>
+                  <p className="text-sm font-semibold text-[#35322B]">{link.title}</p>
+                  <p className="text-xs text-[#6B6660] mt-0.5">{link.description}</p>
                 </span>
                 <ChevronRight className="w-4 h-4 text-gray-300 shrink-0" />
               </button>

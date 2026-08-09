@@ -2,6 +2,7 @@
   "rewrites": [
     { "source": "/api/(.*)", "destination": "/api/index.js" },
     { "source": "/admin/(.*)", "destination": "/admin/index.html" },
+    { "source": "/app-preview/(.*)", "destination": "/app-preview/index.html" },
     { "source": "/(.*)", "destination": "/index.html" }
   ],
   "headers": [

@@ -18,27 +18,27 @@ export function StoryDetail() {
             className="w-9 h-9 rounded-full bg-white/70 flex items-center justify-center mb-6"
             aria-label="Back"
           >
-            <ArrowLeft className="w-4 h-4 text-[#2D3748]" />
+            <ArrowLeft className="w-4 h-4 text-[#35322B]" />
           </button>
           <div className="flex flex-col items-center text-center">
             <div className="text-7xl mb-4 drop-shadow">{story.emoji}</div>
-            <h1 className="text-2xl font-bold text-[#2D3748]">{story.title}</h1>
+            <h1 className="text-2xl font-bold text-[#35322B]">{story.title}</h1>
           </div>
         </div>
 
         <div className="px-6 py-6">
           <div className="flex items-center gap-4 mb-6">
-            <div className="flex items-center gap-1.5 text-sm text-[#4A5568] bg-white rounded-full px-3 py-1.5 border border-gray-100">
+            <div className="flex items-center gap-1.5 text-sm text-[#55504A] bg-white rounded-full px-3 py-1.5 border border-gray-100">
               <Tag className="w-3.5 h-3.5" />
               {story.category}
             </div>
-            <div className="flex items-center gap-1.5 text-sm text-[#4A5568] bg-white rounded-full px-3 py-1.5 border border-gray-100">
+            <div className="flex items-center gap-1.5 text-sm text-[#55504A] bg-white rounded-full px-3 py-1.5 border border-gray-100">
               <Clock className="w-3.5 h-3.5" />
               {story.duration}
             </div>
           </div>
 
-          <p className="text-sm text-[#4A5568] leading-relaxed mb-8">{story.description}</p>
+          <p className="text-sm text-[#55504A] leading-relaxed mb-8">{story.description}</p>
 
           <Button fullWidth onClick={() => navigate(`/playback/${story.id}`)} className="flex items-center justify-center gap-2">
             <Play className="w-4 h-4 fill-white" />

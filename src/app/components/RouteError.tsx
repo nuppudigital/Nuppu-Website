@@ -37,23 +37,23 @@ export default function RouteError() {
       };
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4 bg-[#F7F6F3]">
+    <div className="min-h-screen flex items-center justify-center px-4 bg-[#F2EDDE]">
       <div className="max-w-md w-full text-center bg-white rounded-3xl shadow-sm p-10">
-        <h1 className="text-2xl text-[#2D3748] mb-3" style={{ fontFamily: "Nunito, sans-serif" }}>
+        <h1 className="text-2xl text-[#35322B] mb-3" style={{ fontFamily: "Nunito, sans-serif" }}>
           {copy.title}
         </h1>
-        <p className="text-[#718096] mb-8 leading-relaxed">{copy.body}</p>
+        <p className="text-[#6B6660] mb-8 leading-relaxed">{copy.body}</p>
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
           <button
             type="button"
             onClick={() => window.location.reload()}
-            className="px-6 py-3 bg-gradient-to-r from-[#6B9AC4] to-[#A8D5E2] text-white rounded-full hover:shadow-lg transition-all"
+            className="px-6 py-3 bg-gradient-to-r from-[#6E4FD1] to-[#C9BBF5] text-white rounded-full hover:shadow-lg transition-all"
           >
             {copy.reload}
           </button>
           <a
             href="/"
-            className="px-6 py-3 bg-white text-[#6B9AC4] border-2 border-[#6B9AC4] rounded-full hover:bg-[#6B9AC4] hover:text-white transition-all"
+            className="px-6 py-3 bg-white text-[#6E4FD1] border-2 border-[#6E4FD1] rounded-full hover:bg-[#6E4FD1] hover:text-white transition-all"
           >
             {copy.home}
           </a>

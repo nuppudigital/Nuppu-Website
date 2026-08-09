@@ -86,11 +86,11 @@ export function BreathingExercise() {
 
         {showSettings && (
           <div className="bg-white/90 rounded-2xl p-4 mb-6 flex items-center justify-between">
-            <span className="text-sm font-medium text-[#2D3748]">Include hold phase</span>
+            <span className="text-sm font-medium text-[#35322B]">Include hold phase</span>
             <button
               onClick={() => setIncludeHold((v) => !v)}
               className={`w-11 h-6 rounded-full relative transition-colors ${
-                includeHold ? 'bg-[#6B9AC4]' : 'bg-gray-300'
+                includeHold ? 'bg-[#6E4FD1]' : 'bg-gray-300'
               }`}
               aria-label="Toggle hold phase"
             >

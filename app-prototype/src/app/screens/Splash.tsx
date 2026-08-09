@@ -9,7 +9,7 @@ export function Splash() {
 
   return (
     <MobileScreen>
-      <div className="flex-1 flex flex-col items-center justify-center bg-gradient-to-br from-[#A8D5E2] via-[#D4C5F9] to-[#B8DDB8] px-8 text-center">
+      <div className="flex-1 flex flex-col items-center justify-center bg-gradient-to-br from-[#C9BBF5] via-[#D4C5F9] to-[#B8DDB8] px-8 text-center">
         <div className="relative mb-4">
           <div className="absolute inset-0 rounded-full bg-[#F9E5A8]/60 blur-2xl scale-125" />
           <div
@@ -25,10 +25,10 @@ export function Splash() {
         </div>
 
         <div className="relative bg-white rounded-3xl rounded-bl-md px-5 py-4 shadow-lg mb-8 max-w-xs">
-          <p className="text-sm font-bold text-[#2D3748] mb-1">
+          <p className="text-sm font-bold text-[#35322B] mb-1">
             ✨ Welcome! My name is Nuppu.
           </p>
-          <p className="text-xs text-[#4A5568] leading-relaxed">
+          <p className="text-xs text-[#55504A] leading-relaxed">
             I'm your child's best friend for emotional skills — I bring gentle, personalized
             stories that support safe emotional development.
           </p>
