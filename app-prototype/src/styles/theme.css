@@ -2,30 +2,27 @@
 @import 'tailwindcss';
 
 :root {
-  /* Brand Primary (matches nuppu.fi website exactly) */
+  /* matches nuppu.fi exactly */
   --nuppu-blue-deep: #6e4fd1;
   --nuppu-blue-light: #c9bbf5;
 
-  /* Secondary / supporting */
   --nuppu-mint: #b8ddb8;
   --nuppu-mint-light: #c9ede1;
   --nuppu-lavender: #d4c5f9;
   --nuppu-butter: #f9e5a8;
   --nuppu-peach: #ffd4c4;
 
-  /* Backgrounds */
   --nuppu-ivory: #fcf2d6;
   --nuppu-cream: #ece5d3;
   --nuppu-off-white: #f2edde;
   --nuppu-page-bg: #fbf0c8;
 
-  /* Character accents (same hex as the website's Characters page) */
+  /* same hex as the website's Characters page */
   --nuppu-muru-gold: #e8c468;
   --nuppu-hippu-sage: #b8d4c7;
   --nuppu-lumo-coral: #f5b5a8;
   --nuppu-nuppu-lavender: #d4c5f9;
 
-  /* Text */
   --nuppu-dark-text: #35322b;
   --nuppu-secondary-text: #55504a;
   --nuppu-gray-text: #6b6660;

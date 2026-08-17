@@ -38,7 +38,7 @@ export function Splash() {
           All content is age-appropriate and designed together with education professionals.
         </p>
 
-        <Button fullWidth onClick={() => navigate('/login')} className="max-w-[220px]">
+        <Button fullWidth onClick={() => navigate('/home')} className="max-w-[220px]">
           Get started
         </Button>
 

@@ -4,7 +4,6 @@ import { MobileScreen } from '../components/MobileScreen';
 
 const ROUTES: { path: string; label: string; group: string }[] = [
   { path: '/', label: 'Splash', group: 'Onboarding' },
-  { path: '/login', label: 'Login', group: 'Onboarding' },
   { path: '/signup', label: 'Create Account', group: 'Onboarding' },
   { path: '/add-child', label: 'Add Child Profile', group: 'Onboarding' },
   { path: '/preferences', label: 'Preferences', group: 'Onboarding' },

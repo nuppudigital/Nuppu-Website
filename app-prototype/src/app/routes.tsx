@@ -1,6 +1,5 @@
 import { createBrowserRouter } from 'react-router';
 import { Splash } from './screens/Splash';
-import { Login } from './screens/Login';
 import { CreateAccount } from './screens/CreateAccount';
 import { AddChildProfile } from './screens/AddChildProfile';
 import { Preferences } from './screens/Preferences';
@@ -25,7 +24,6 @@ import { Feedback } from './screens/adult-corner/Feedback';
 
 export const router = createBrowserRouter([
   { path: '/', element: <Splash /> },
-  { path: '/login', element: <Login /> },
   { path: '/signup', element: <CreateAccount /> },
   { path: '/add-child', element: <AddChildProfile /> },
   { path: '/preferences', element: <Preferences /> },

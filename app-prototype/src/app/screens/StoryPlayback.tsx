@@ -27,8 +27,9 @@ export function StoryPlayback() {
   const title = currentStory?.title ?? classicStory?.title ?? 'A Nuppu Story';
   const emoji = currentStory?.emoji ?? classicStory?.emoji ?? '📖';
   const content =
-    currentStory?.content ??
-    classicStory?.description ??
+    currentStory?.content ||
+    classicStory?.content ||
+    classicStory?.description ||
     'Once upon a time, in a cozy little town, a small creature learned something wonderful about being brave, kind, and true to themselves.';
 
   const [isPlaying, setIsPlaying] = useState(false);

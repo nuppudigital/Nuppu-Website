@@ -7,7 +7,7 @@ export interface StoryGenerationParams {
   emotion: string;
   interests: string[];
   ageGroupLabel: string;
-  /** Optional free-text topic. Always pre-checked and normalized before use — see safety pipeline below. */
+  // free-text topic, gets pre-checked/normalized before use - see safety pipeline below
   topic?: string;
 }
 
@@ -75,12 +75,8 @@ function stripCodeFences(text: string): string {
     .trim();
 }
 
-/**
- * AI safety pipeline (see Nuppu App user journey, phase 5).
- * A real backend would run these as separate, auditable steps; here they're
- * kept as small pure functions so the pipeline stages stay visible in the
- * prototype's code, even though moderation itself is out of scope for a demo.
- */
+// mirrors the safety pipeline from the user journey doc (phase 5) - kept as
+// separate steps so the flow stays visible, even though real moderation is out of scope here
 const SAFETY_PIPELINE_STEPS = [
   'Pre-check (input validation)',
   'Normalization (topic tagging)',
@@ -95,12 +91,12 @@ function preCheckTopic(topic: string | undefined): string | undefined {
 
 function normalizeTopic(topic: string | undefined): string | undefined {
   if (!topic) return undefined;
-  // A real pipeline would tag/classify the topic here; the prototype just normalizes whitespace/case.
+  // real pipeline would tag/classify the topic here, we just clean up whitespace/case
   return topic.replace(/\s+/g, ' ').trim();
 }
 
 function postCheckContent(content: string): boolean {
-  // Placeholder for a real moderation pass. Empty or implausibly short output fails the check.
+  // stand-in for real moderation - just rejects suspiciously short output
   return content.trim().split(/\s+/).length >= 30;
 }
 
