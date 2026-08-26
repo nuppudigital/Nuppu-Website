@@ -6,19 +6,31 @@ import nodemailer from "nodemailer";
 import twilio from "twilio";
 import crypto from "node:crypto";
 import path from "node:path";
+import dns from "node:dns";
 import { fileURLToPath } from "node:url";
 import { Payment, computeRetentionExpiry } from "../src/server/models/Payment.js";
+
+// Node's built-in DNS resolver can fail SRV lookups (needed for
+// mongodb+srv:// URIs) against some network setups - e.g. a mobile hotspot
+// handing out a link-local IPv6 nameserver - even when the OS's own resolver
+// succeeds fine. Forcing a well-known public resolver avoids that class of
+// failure in both local dev and production, with no real downside.
+dns.setServers(["8.8.8.8", "1.1.1.1"]);
+import { AvailabilityBlock } from "../src/server/models/AvailabilityBlock.js";
+// paytrailClient also exports getPaymentStatus, not used here yet - webhook signature
+// verification is enough auth for updating status below, but it'd be handy for an
+// admin "re-sync from Paytrail" button someday
 import {
   createPayment as createPaytrailPayment,
   verifyCallbackSignature,
   usingTestCredentials as paytrailUsingTestCredentials,
-  // getPaymentStatus is exported by paytrailClient.js as part of the required
-  // three-function abstraction (createPayment / verifyCallbackSignature /
-  // getPaymentStatus) but isn't wired into a route here - signature
-  // verification on the webhook is already sufficient authentication for the
-  // status update below. Available for future use (e.g. an admin "re-sync
-  // status from Paytrail" action).
 } from "../src/server/payments/paytrailClient.js";
+import {
+  computeSlotStatuses,
+  isSlotBookable,
+  reclaimExpiredHold,
+  formatHelsinkiSlot,
+} from "../src/server/availability/slots.js";
 
 dotenv.config({ quiet: true });
 
@@ -27,12 +39,29 @@ const PORT = Number(process.env.PORT ?? 5050);
 const MONGODB_URI = process.env.MONGODB_URI ?? "mongodb://localhost:27017/nuppu";
 const CLIENT_URL = process.env.CLIENT_URL ?? "http://localhost:5173";
 const ADMIN_TOKEN = process.env.ADMIN_TOKEN;
-// Used to authorise the daily retention/anonymisation cron (Vercel Cron sends this as
-// a Bearer token automatically when CRON_SECRET is set as an env var on the project).
+// Admins who can sign into the dashboard with an emailed one-time code
+// instead of pasting ADMIN_TOKEN directly. Comma-separated; the default
+// covers the current admin team so this works even before this env var is
+// set on a given host.
+const ADMIN_OTP_EMAILS = (
+  process.env.ADMIN_OTP_EMAILS ?? "laura@nuppuapp.fi,emmi@nuppuapp.fi,nuppudigital@gmail.com"
+)
+  .split(",")
+  .map((email) => email.trim().toLowerCase())
+  .filter(Boolean);
+// Vercel Cron sends this as a Bearer token automatically once CRON_SECRET is set as
+// an env var - that's what authorises the daily retention/anonymisation sweep.
 const CRON_SECRET = process.env.CRON_SECRET;
 const NODE_ENV = process.env.NODE_ENV ?? "development";
 const MONGODB_REQUIRED = process.env.MONGODB_REQUIRED === "true";
-const NUPPU_EMAIL = process.env.NUPPU_EMAIL ?? "nuppudigital@gmail.com";
+const NUPPU_EMAIL = process.env.NUPPU_EMAIL ?? "info@nuppuapp.fi";
+// Notified alongside NUPPU_EMAIL specifically when a consultation booking is
+// paid, e.g. whoever manages the booking calendar - not on general contact
+// form submissions. Comma-separated for multiple recipients.
+const BOOKING_NOTIFY_EMAILS = (process.env.BOOKING_NOTIFY_EMAIL ?? "")
+  .split(",")
+  .map((email) => email.trim())
+  .filter(Boolean);
 const MAIL_FROM = process.env.MAIL_FROM ?? "noreply@nuppu.app";
 const SMTP_HOST = process.env.SMTP_HOST;
 const SMTP_PORT = Number(process.env.SMTP_PORT ?? 587);
@@ -41,13 +70,10 @@ const SMTP_USER = process.env.SMTP_USER;
 const SMTP_PASS = process.env.SMTP_PASS;
 const canSendEmail = Boolean(SMTP_HOST && SMTP_USER && SMTP_PASS);
 
-// --- SMS (Twilio) ---
-// Use a plain Twilio phone number as TWILIO_FROM_NUMBER, not a branded
-// alphanumeric sender name. As of May 2026, Traficom (Finland's telecom
-// regulator) requires alphanumeric SMS sender IDs sent to Finnish numbers to
-// be pre-registered (Order 28 L/2025) or they're shown as "Tuntematon"
-// (Unknown) and, from Nov 2026, blocked as spam. A normal purchased number
-// sidesteps that registration process entirely.
+// TWILIO_FROM_NUMBER should be a plain purchased number, not a branded alphanumeric
+// sender name - Traficom now requires those to be pre-registered for Finnish numbers
+// (Order 28 L/2025) or they get shown as "Tuntematon"/blocked as spam. A normal
+// number sidesteps all of that.
 const TWILIO_ACCOUNT_SID = process.env.TWILIO_ACCOUNT_SID;
 const TWILIO_AUTH_TOKEN = process.env.TWILIO_AUTH_TOKEN;
 const TWILIO_FROM_NUMBER = process.env.TWILIO_FROM_NUMBER;
@@ -65,9 +91,8 @@ const allowedOrigins = new Set([
   CLIENT_URL,
   "http://localhost:5173",
   "http://127.0.0.1:5173",
-  // admin-dashboard/'s own standalone dev server (see that project's README) -
-  // Vite auto-increments to 5174 when 5173 (the main site) is already running.
-  // Not needed in production: there it's served same-origin from /admin.
+  // admin-dashboard's dev server - Vite bumps to 5174 when 5173 is taken. Not needed
+  // in prod since it's served same-origin from /admin there.
   "http://localhost:5174",
   "http://127.0.0.1:5174",
 ]);
@@ -103,9 +128,8 @@ app.use(
 app.use(express.json({ limit: "20kb" }));
 app.use(express.urlencoded({ extended: true, limit: "20kb" }));
 
-// Security headers (defense in depth - Vercel also sets HSTS at the edge for the
-// static frontend, but this covers direct hits to the API, and any deployment
-// where this Express app runs as a standalone service instead of a Vercel Function).
+// belt-and-suspenders - Vercel already sets HSTS at the edge for the static frontend,
+// but this covers direct API hits and non-Vercel deployments
 app.use((req, res, next) => {
   res.setHeader("Strict-Transport-Security", "max-age=63072000; includeSubDomains; preload");
   res.setHeader("X-Content-Type-Options", "nosniff");
@@ -114,7 +138,6 @@ app.use((req, res, next) => {
   next();
 });
 
-// Contact Message Schema
 const contactMessageSchema = new mongoose.Schema(
   {
     name: {
@@ -185,23 +208,39 @@ function rateLimitContact(req, res, next) {
   return next();
 }
 
+// In-memory, per-process admin OTP + session state. Losing these on a
+// restart just means an admin requests a fresh code or signs in again -
+// nothing here is worth persisting to the database.
+const adminOtpStore = new Map(); // email -> { code, expiresAt, attempts }
+const adminSessions = new Map(); // sessionToken -> { email, expiresAt }
+const ADMIN_OTP_TTL_MS = 10 * 60 * 1000;
+const ADMIN_OTP_MAX_ATTEMPTS = 5;
+const ADMIN_SESSION_TTL_MS = 12 * 60 * 60 * 1000;
+
 function requireAdmin(req, res, next) {
-  if (!ADMIN_TOKEN) {
-    return res.status(503).json({
-      status: "error",
-      message: "Admin routes are unavailable until ADMIN_TOKEN is configured.",
-    });
-  }
-
   const providedToken = req.header("x-admin-token");
-  if (!providedToken || providedToken !== ADMIN_TOKEN) {
-    return res.status(401).json({
-      status: "error",
-      message: "Unauthorized",
-    });
+  if (!providedToken) {
+    return res.status(401).json({ status: "error", message: "Unauthorized" });
   }
 
-  return next();
+  // The long static token still works too - handy for scripts/curl and as a
+  // fallback that doesn't depend on email delivery being configured.
+  if (ADMIN_TOKEN && providedToken === ADMIN_TOKEN) {
+    return next();
+  }
+
+  const session = adminSessions.get(providedToken);
+  if (session) {
+    if (session.expiresAt > Date.now()) {
+      return next();
+    }
+    adminSessions.delete(providedToken);
+  }
+
+  return res.status(401).json({
+    status: "error",
+    message: "Unauthorized",
+  });
 }
 
 function isMongoConnected() {
@@ -219,8 +258,8 @@ function requireDatabase(req, res, next) {
   return next();
 }
 
-// Generic per-IP sliding-window rate limiter, reused by both the contact form
-// and the payment-creation endpoint.
+// same sliding-window limiter shape as rateLimitContact above, just parameterised
+// so the payments route can use its own window/max
 function createRateLimiter({ windowMs, max }) {
   const state = new Map();
 
@@ -259,12 +298,8 @@ function requireCronOrAdmin(req, res, next) {
   return requireAdmin(req, res, next);
 }
 
-/**
- * Anonymise payment records whose retention period has expired. Preserves the
- * accounting trail (amounts, dates, status, transaction/reference IDs) while
- * clearing customerName/customerEmail, per the Kirjanpitolaki 6-year retention
- * + GDPR data-minimisation policy documented in GDPR-NOTES.md.
- */
+// clears customerName/Email/Phone/Message on expired payments, keeps everything
+// else (amounts, dates, transaction IDs) for the accounting trail - see GDPR-NOTES.md
 async function anonymizeExpiredPayments() {
   const now = new Date();
   const result = await Payment.updateMany(
@@ -315,14 +350,35 @@ async function sendContactInterestEmail({ name, email, role, message, submittedA
   });
 }
 
+async function sendAdminOtpEmail(email, code) {
+  if (!mailTransport) {
+    // No SMTP configured (e.g. still on local dev) - log it so the flow is
+    // still testable end-to-end without real email delivery.
+    console.warn(`Admin OTP email skipped (SMTP not configured): ${email} code is ${code}`);
+    return;
+  }
+
+  const subject = `${code} is your Nuppu admin sign-in code`;
+  const text = `Your Nuppu admin sign-in code is ${code}. It expires in 10 minutes. If you didn't request this, you can ignore this email.`;
+  const html = `
+    <p>Your Nuppu admin sign-in code is:</p>
+    <p style="font-size: 28px; font-weight: bold; letter-spacing: 4px;">${code}</p>
+    <p>It expires in 10 minutes. If you didn't request this, you can ignore this email.</p>
+  `;
+
+  await mailTransport.sendMail({
+    from: MAIL_FROM,
+    to: email,
+    subject,
+    text,
+    html,
+  });
+}
+
 function formatEuros(amountCents) {
   return `€${(amountCents / 100).toFixed(2)}`;
 }
 
-/**
- * Notify the company that a real payment came through, so they can verify it
- * against their own Paytrail merchant dashboard / bookkeeping.
- */
 async function sendPaymentReceiptToCompany(payment) {
   if (!mailTransport) {
     console.warn("Payment notification to company skipped: SMTP is not configured");
@@ -334,6 +390,7 @@ async function sendPaymentReceiptToCompany(payment) {
     "A new payment was confirmed by Paytrail.",
     "",
     `Service: ${payment.service}`,
+    `Scheduled for: ${formatHelsinkiSlot(payment.scheduledAt)} (Finnish time)`,
     `Amount: ${formatEuros(payment.amountCents)}`,
     `Customer: ${payment.customerName} <${payment.customerEmail}>`,
     payment.customerPhone ? `Phone: ${payment.customerPhone}` : null,
@@ -350,19 +407,19 @@ async function sendPaymentReceiptToCompany(payment) {
 
   await mailTransport.sendMail({
     from: MAIL_FROM,
-    to: NUPPU_EMAIL,
+    to: [NUPPU_EMAIL, ...BOOKING_NOTIFY_EMAILS],
     subject,
     text,
   });
 }
 
-/** Send the customer their own payment receipt/confirmation by email. */
 async function sendPaymentReceiptToCustomer(payment) {
   if (!mailTransport) {
     console.warn("Payment receipt to customer skipped: SMTP is not configured");
     return;
   }
 
+  const scheduledText = `${formatHelsinkiSlot(payment.scheduledAt)} (Finnish time)`;
   const subject = "Your Nuppu booking is confirmed";
   const text = [
     `Hi ${payment.customerName},`,
@@ -370,10 +427,11 @@ async function sendPaymentReceiptToCustomer(payment) {
     "Thanks for your payment - your booking is confirmed!",
     "",
     `Service: ${payment.service}`,
+    `When: ${scheduledText}`,
     `Amount paid: ${formatEuros(payment.amountCents)}`,
     `Reference: ${payment.paytrailReference}`,
     "",
-    "We'll be in touch shortly with next steps.",
+    "We'll see you then - reach out if anything changes.",
     "",
     "- The Nuppu team",
   ].join("\n");
@@ -383,10 +441,11 @@ async function sendPaymentReceiptToCustomer(payment) {
     <p>Thanks for your payment — your booking is confirmed!</p>
     <p>
       <strong>Service:</strong> ${payment.service}<br />
+      <strong>When:</strong> ${scheduledText}<br />
       <strong>Amount paid:</strong> ${formatEuros(payment.amountCents)}<br />
       <strong>Reference:</strong> ${payment.paytrailReference}
     </p>
-    <p>We'll be in touch shortly with next steps.</p>
+    <p>We'll see you then — reach out if anything changes.</p>
   `;
 
   await mailTransport.sendMail({
@@ -398,7 +457,6 @@ async function sendPaymentReceiptToCustomer(payment) {
   });
 }
 
-/** Send the customer an SMS receipt, if they provided a phone number. */
 async function sendPaymentReceiptSms(payment) {
   if (!payment.customerPhone) {
     return;
@@ -408,7 +466,7 @@ async function sendPaymentReceiptSms(payment) {
     return;
   }
 
-  const body = `Nuppu: payment of ${formatEuros(payment.amountCents)} received, booking confirmed. Ref: ${payment.paytrailReference}`;
+  const body = `Nuppu: payment of ${formatEuros(payment.amountCents)} received, booking confirmed for ${formatHelsinkiSlot(payment.scheduledAt)} (Finnish time). Ref: ${payment.paytrailReference}`;
 
   try {
     await smsClient.messages.create({
@@ -417,13 +475,12 @@ async function sendPaymentReceiptSms(payment) {
       body,
     });
   } catch (error) {
-    // Don't let an SMS failure (e.g. bad number) break the payment flow -
-    // the email receipt above is the source of truth either way.
+    // a bad number shouldn't break the payment flow - email receipt is still sent
     console.error("Error sending SMS receipt:", error);
   }
 }
 
-/** Fire all payment-confirmed notifications. Failures here are logged, never thrown. */
+// runs all three notifications in parallel, logs failures instead of throwing
 async function notifyPaymentConfirmed(payment) {
   const results = await Promise.allSettled([
     sendPaymentReceiptToCompany(payment),
@@ -439,15 +496,74 @@ async function notifyPaymentConfirmed(payment) {
   });
 }
 
-// Routes
-
-// Health Check
 app.get("/api/health", (req, res) => {
   res.status(200).json({
     status: "success",
     message: "Nuppu API is running",
     timestamp: new Date().toISOString(),
   });
+});
+
+// ---------------------------------------------------------------------------
+// Admin sign-in via emailed one-time code
+// ---------------------------------------------------------------------------
+
+const rateLimitOtpRequest = createRateLimiter({ windowMs: 15 * 60_000, max: 10 });
+const rateLimitOtpVerify = createRateLimiter({ windowMs: 15 * 60_000, max: 20 });
+
+app.post("/api/admin/otp/request", rateLimitOtpRequest, async (req, res) => {
+  const email = String(req.body?.email ?? "").trim().toLowerCase();
+
+  // Same response whether or not the email is a recognised admin, so this
+  // endpoint can't be used to enumerate who has admin access.
+  const genericResponse = {
+    status: "success",
+    message: "If that email has admin access, a sign-in code has been sent.",
+  };
+
+  if (!email || !ADMIN_OTP_EMAILS.includes(email)) {
+    return res.status(200).json(genericResponse);
+  }
+
+  const code = String(crypto.randomInt(0, 1_000_000)).padStart(6, "0");
+  adminOtpStore.set(email, { code, expiresAt: Date.now() + ADMIN_OTP_TTL_MS, attempts: 0 });
+
+  try {
+    await sendAdminOtpEmail(email, code);
+  } catch (error) {
+    console.error("Error sending admin OTP email:", error);
+    adminOtpStore.delete(email);
+    return res.status(502).json({ status: "error", message: "Could not send the sign-in code. Please try again shortly." });
+  }
+
+  return res.status(200).json(genericResponse);
+});
+
+app.post("/api/admin/otp/verify", rateLimitOtpVerify, (req, res) => {
+  const email = String(req.body?.email ?? "").trim().toLowerCase();
+  const code = String(req.body?.code ?? "").trim();
+
+  const entry = adminOtpStore.get(email);
+  if (!entry || entry.expiresAt < Date.now()) {
+    adminOtpStore.delete(email);
+    return res.status(401).json({ status: "error", message: "That code is invalid or has expired." });
+  }
+
+  entry.attempts += 1;
+  if (entry.attempts > ADMIN_OTP_MAX_ATTEMPTS) {
+    adminOtpStore.delete(email);
+    return res.status(401).json({ status: "error", message: "Too many attempts. Request a new code." });
+  }
+
+  if (code !== entry.code) {
+    return res.status(401).json({ status: "error", message: "That code is invalid or has expired." });
+  }
+
+  adminOtpStore.delete(email); // one-time use
+  const sessionToken = crypto.randomBytes(32).toString("hex");
+  adminSessions.set(sessionToken, { email, expiresAt: Date.now() + ADMIN_SESSION_TTL_MS });
+
+  return res.status(200).json({ status: "success", data: { token: sessionToken, email } });
 });
 
 app.post("/api/contact", rateLimitContact, async (req, res) => {
@@ -611,13 +727,35 @@ app.patch("/api/contact/:id", requireAdmin, requireDatabase, async (req, res) =>
   }
 });
 
-// ---------------------------------------------------------------------------
-// Payments (Paytrail)
-// ---------------------------------------------------------------------------
+app.delete("/api/contact/:id", requireAdmin, requireDatabase, async (req, res) => {
+  try {
+    const message = await ContactMessage.findByIdAndDelete(req.params.id);
+    if (!message) {
+      return res.status(404).json({ status: "error", message: "Contact message not found" });
+    }
+    res.status(200).json({ status: "success", data: { id: req.params.id } });
+  } catch (error) {
+    console.error("Error deleting contact message:", error);
+    res.status(500).json({ status: "error", message: "Failed to delete contact message" });
+  }
+});
 
-// Canonical prices are enforced server-side - the client only sends a service
-// name, never a trusted amount. This prevents a tampered request from paying
-// less than the real price.
+// Bulk clear - deliberately scoped to contact-form messages only. Booking
+// messages live on Payment records, which have a statutory retention period
+// (see GDPR-NOTES.md) and must be anonymised individually via
+// DELETE /api/payments/:id/personal-data instead of wiped in bulk here.
+app.delete("/api/contact", requireAdmin, requireDatabase, async (req, res) => {
+  try {
+    const result = await ContactMessage.deleteMany({});
+    res.status(200).json({ status: "success", data: { deletedCount: result.deletedCount } });
+  } catch (error) {
+    console.error("Error clearing contact messages:", error);
+    res.status(500).json({ status: "error", message: "Failed to clear contact messages" });
+  }
+});
+
+// prices live here, not on the client - it only sends a service name, so a
+// tampered request can't pay less than the real price
 const SERVICE_PRICES_CENTS = {
   "emotional-support": 2900, // EUR 29.00 pilot rate
 };
@@ -641,11 +779,8 @@ function frontendReturnUrl(paymentQueryValue) {
   return `${CLIENT_URL}/emotional-support?payment=${paymentQueryValue}`;
 }
 
-/**
- * Shared handler for Paytrail's success/cancel redirect targets and the
- * success/cancel webhook callback. Always verifies the HMAC signature before
- * trusting anything in the query string, per Paytrail's documentation.
- */
+// shared by the redirect endpoints and the webhook - always check the HMAC
+// signature before trusting anything in the query string
 async function handlePaytrailReturn(req, res, { isWebhook }) {
   const params = req.query;
   const isValid = verifyCallbackSignature(params);
@@ -682,8 +817,7 @@ async function handlePaytrailReturn(req, res, { isWebhook }) {
       );
 
       if (updated && paymentStatus === "paid" && !wasAlreadyPaid) {
-        // Fire-and-forget: don't hold up the redirect/webhook response waiting
-        // on email/SMS delivery. Errors are caught and logged inside.
+        // fire-and-forget, don't make the redirect wait on email/SMS delivery
         notifyPaymentConfirmed(updated).catch((error) =>
           console.error("Unexpected error in notifyPaymentConfirmed:", error),
         );
@@ -701,9 +835,77 @@ async function handlePaytrailReturn(req, res, { isWebhook }) {
   return res.redirect(302, frontendReturnUrl(queryValue));
 }
 
+const rateLimitAvailability = createRateLimiter({ windowMs: 60_000, max: 30 });
+
+// public - only ever returns what's actually bookable, never who booked what
+app.get("/api/availability/slots", rateLimitAvailability, requireDatabase, async (req, res) => {
+  try {
+    const days = await computeSlotStatuses({ from: req.query.from, to: req.query.to });
+    const slots = days.flatMap((day) => day.slots.filter((slot) => slot.status === "available").map((slot) => slot.startAt));
+    res.status(200).json({ status: "success", data: { slots } });
+  } catch (error) {
+    console.error("Error computing available slots:", error);
+    res.status(500).json({ status: "error", message: "Failed to load available times" });
+  }
+});
+
+// admin - full status per slot (available/blocked/booked/past) plus block IDs to unblock
+app.get("/api/availability/calendar", requireAdmin, requireDatabase, async (req, res) => {
+  try {
+    const days = await computeSlotStatuses({ from: req.query.from, to: req.query.to });
+    res.status(200).json({ status: "success", data: { days } });
+  } catch (error) {
+    console.error("Error computing availability calendar:", error);
+    res.status(500).json({ status: "error", message: "Failed to load the availability calendar" });
+  }
+});
+
+app.post("/api/availability/blocks", requireAdmin, requireDatabase, async (req, res) => {
+  try {
+    const { date, startTime } = req.body ?? {};
+    if (!date || !/^\d{4}-\d{2}-\d{2}$/.test(date)) {
+      return res.status(400).json({ status: "error", message: "date must be YYYY-MM-DD" });
+    }
+    const normalizedStartTime = startTime ? String(startTime) : null;
+    if (normalizedStartTime && !/^\d{2}:00$/.test(normalizedStartTime)) {
+      return res.status(400).json({ status: "error", message: "startTime must be like \"09:00\", or omitted for a whole day" });
+    }
+
+    if (normalizedStartTime === null) {
+      // whole-day block supersedes any specific-hour blocks already on that date - otherwise
+      // unblocking just the whole-day row later would let those stale hour-blocks resurface
+      await AvailabilityBlock.deleteMany({ date, startTime: { $ne: null } });
+    }
+
+    const block = await AvailabilityBlock.findOneAndUpdate(
+      { date, startTime: normalizedStartTime },
+      { date, startTime: normalizedStartTime },
+      { upsert: true, new: true, setDefaultsOnInsert: true },
+    );
+
+    res.status(200).json({ status: "success", data: block });
+  } catch (error) {
+    console.error("Error creating availability block:", error);
+    res.status(500).json({ status: "error", message: "Failed to block that time" });
+  }
+});
+
+app.delete("/api/availability/blocks/:id", requireAdmin, requireDatabase, async (req, res) => {
+  try {
+    const block = await AvailabilityBlock.findByIdAndDelete(req.params.id);
+    if (!block) {
+      return res.status(404).json({ status: "error", message: "Block not found" });
+    }
+    res.status(200).json({ status: "success", data: block });
+  } catch (error) {
+    console.error("Error removing availability block:", error);
+    res.status(500).json({ status: "error", message: "Failed to unblock that time" });
+  }
+});
+
 app.post("/api/payments/create", rateLimitPayments, requireDatabase, async (req, res) => {
   try {
-    const { service, customerName, customerEmail, customerPhone, customerMessage } = req.body ?? {};
+    const { service, customerName, customerEmail, customerPhone, customerMessage, scheduledAt } = req.body ?? {};
 
     if (!service || !SERVICE_PRICES_CENTS[service]) {
       return res.status(400).json({ status: "error", message: "Unknown or missing service" });
@@ -714,17 +916,32 @@ app.post("/api/payments/create", rateLimitPayments, requireDatabase, async (req,
     if (!customerEmail || !/\S+@\S+\.\S+/.test(customerEmail)) {
       return res.status(400).json({ status: "error", message: "Please enter a valid email address" });
     }
-    // Optional - only validated (loosely, E.164-ish) if the customer provided one.
+    // phone is optional, just loosely checked if given
     const trimmedPhone = customerPhone ? String(customerPhone).trim() : "";
     if (trimmedPhone && !/^\+?[0-9\s-]{6,20}$/.test(trimmedPhone)) {
       return res.status(400).json({ status: "error", message: "Please enter a valid phone number" });
     }
-    // Required - what product/package the customer wants, so the team knows
-    // before the consultation instead of finding out after payment.
+    // message is required so the team knows what they're booking before the call
     if (!customerMessage || !String(customerMessage).trim()) {
       return res.status(400).json({
         status: "error",
         message: "Please write a message describing what you're interested in before booking",
+      });
+    }
+
+    const scheduledDate = scheduledAt ? new Date(scheduledAt) : null;
+    if (!scheduledDate || Number.isNaN(scheduledDate.getTime())) {
+      return res.status(400).json({ status: "error", message: "Please choose a time for your consultation" });
+    }
+
+    // free up anything held by an abandoned checkout for this exact slot before checking
+    // availability, so the DB unique index below doesn't reject a slot the UI shows as open
+    await reclaimExpiredHold(service, scheduledDate);
+
+    if (!(await isSlotBookable(scheduledDate))) {
+      return res.status(409).json({
+        status: "error",
+        message: "That time is no longer available - please choose another.",
       });
     }
 
@@ -743,6 +960,7 @@ app.post("/api/payments/create", rateLimitPayments, requireDatabase, async (req,
       customerEmail: String(customerEmail).trim().toLowerCase(),
       customerPhone: trimmedPhone || undefined,
       customerMessage: String(customerMessage).trim().slice(0, 2000),
+      scheduledAt: scheduledDate,
       retentionExpiresAt: computeRetentionExpiry(now),
     });
 
@@ -761,7 +979,20 @@ app.post("/api/payments/create", rateLimitPayments, requireDatabase, async (req,
     });
 
     payment.paytrailTransactionId = paytrailPayment.transactionId;
-    await payment.save();
+
+    try {
+      await payment.save();
+    } catch (saveError) {
+      // the partial unique index on {service, scheduledAt} is the real double-booking guard -
+      // isSlotBookable above is just a pre-check to avoid wasting a Paytrail call most of the time
+      if (saveError?.code === 11000) {
+        return res.status(409).json({
+          status: "error",
+          message: "That time was just booked by someone else - please choose another.",
+        });
+      }
+      throw saveError;
+    }
 
     res.status(200).json({
       status: "success",
@@ -783,16 +1014,12 @@ app.post("/api/payments/create", rateLimitPayments, requireDatabase, async (req,
 app.get("/api/payments/success", (req, res) => handlePaytrailReturn(req, res, { isWebhook: false }));
 app.get("/api/payments/cancel", (req, res) => handlePaytrailReturn(req, res, { isWebhook: false }));
 
-// Paytrail's server-to-server webhook. Per the current Paytrail API docs
-// (docs.paytrail.com / github.com/paytrail/api-documentation), callback URLs
-// are called with HTTP GET and the same "checkout-*" query string parameters
-// as the redirect URLs - not POST. This route accepts GET to match the real
-// spec; a POST alias is kept for forward-compatibility in case Paytrail
-// changes this in the future.
+// Paytrail actually calls webhooks with GET + checkout-* query params, not POST -
+// keeping the POST alias too in case that ever changes
 app.get("/api/payments/callback", (req, res) => handlePaytrailReturn(req, res, { isWebhook: true }));
 app.post("/api/payments/callback", (req, res) => handlePaytrailReturn(req, res, { isWebhook: true }));
 
-// --- Admin: GDPR access / rectification / erasure / portability -----------
+// admin: GDPR access/rectification/erasure/portability
 
 app.get("/api/payments/export", requireAdmin, requireDatabase, async (req, res) => {
   try {
@@ -813,9 +1040,8 @@ app.get("/api/payments/export", requireAdmin, requireDatabase, async (req, res) 
   }
 });
 
-// Retention/anonymisation sweep. Intended to be triggered daily by a Vercel
-// Cron Job (see vercel.json `crons`), which authenticates via CRON_SECRET.
-// Can also be triggered manually with the admin token.
+// triggered daily by Vercel Cron (see vercel.json crons, auth'd via CRON_SECRET),
+// or manually with the admin token
 app.get("/api/payments/anonymize-expired", requireCronOrAdmin, requireDatabase, async (req, res) => {
   try {
     const anonymizedCount = await anonymizeExpiredPayments();
@@ -868,10 +1094,12 @@ app.get("/api/payments/:id", requireAdmin, requireDatabase, async (req, res) => 
   }
 });
 
-// Right to rectification - correct a stored name/email.
+// right to rectification - correct a stored name/email
+const PAYMENT_STATUSES = ["pending", "paid", "cancelled", "failed", "refunded"];
+
 app.patch("/api/payments/:id", requireAdmin, requireDatabase, async (req, res) => {
   try {
-    const { customerName, customerEmail } = req.body ?? {};
+    const { customerName, customerEmail, status } = req.body ?? {};
     const update = {};
 
     if (customerName !== undefined) {
@@ -885,6 +1113,14 @@ app.patch("/api/payments/:id", requireAdmin, requireDatabase, async (req, res) =
         return res.status(400).json({ status: "error", message: "Invalid customerEmail" });
       }
       update.customerEmail = String(customerEmail).trim().toLowerCase();
+    }
+    // setting status to cancelled/refunded is also how a booked slot gets freed up again -
+    // the partial unique index only matches pending/paid, see slots.js
+    if (status !== undefined) {
+      if (!PAYMENT_STATUSES.includes(status)) {
+        return res.status(400).json({ status: "error", message: "Invalid status value" });
+      }
+      update.status = status;
     }
 
     if (Object.keys(update).length === 0) {
@@ -903,13 +1139,21 @@ app.patch("/api/payments/:id", requireAdmin, requireDatabase, async (req, res) =
   }
 });
 
-// Right to erasure - anonymises rather than deletes, to preserve the
-// statutory accounting trail (see GDPR-NOTES.md).
+// right to erasure - anonymises rather than deletes, keeps the accounting trail
+// intact (see GDPR-NOTES.md)
 app.delete("/api/payments/:id/personal-data", requireAdmin, requireDatabase, async (req, res) => {
   try {
     const payment = await Payment.findByIdAndUpdate(
       req.params.id,
-      { $set: { customerName: null, customerEmail: null, customerPhone: null, anonymizedAt: new Date() } },
+      {
+        $set: {
+          customerName: null,
+          customerEmail: null,
+          customerPhone: null,
+          customerMessage: null,
+          anonymizedAt: new Date(),
+        },
+      },
       { new: true, runValidators: false },
     );
 
@@ -924,13 +1168,9 @@ app.delete("/api/payments/:id/personal-data", requireAdmin, requireDatabase, asy
   }
 });
 
-// On Vercel, the built frontend (dist/) is served directly by Vercel's edge
-// routing per vercel.json's rewrites, never through this Express app. Any
-// other host (e.g. a plain Node process on Plesk/Railway/a VPS) has no such
-// edge layer, so this app must serve the built frontend itself - static files
-// first, then an SPA fallback to index.html (or admin/index.html under
-// /admin) for routes React Router handles client-side, mirroring the same
-// three rewrites vercel.json defines.
+// Vercel serves dist/ itself via vercel.json rewrites, so this block only matters
+// off Vercel (plain Node on a VPS etc.) - static files, then SPA fallback to
+// index.html (or admin/index.html) mirroring those same rewrites
 if (!process.env.VERCEL) {
   const __dirname = path.dirname(fileURLToPath(import.meta.url));
   const distDir = path.join(__dirname, "..", "dist");
@@ -968,14 +1208,18 @@ if (MONGODB_REQUIRED) {
     console.error("MongoDB connection error:", err);
   });
 
-  mongoose.connect(MONGODB_URI);
+  // Without this .catch(), a rejection here (e.g. a transient DNS hiccup
+  // resolving the Atlas SRV record) is an unhandled promise rejection that
+  // crashes the whole process - not just the database-dependent routes that
+  // requireDatabase()/MONGODB_REQUIRED are designed to degrade gracefully.
+  // Mongoose retries the connection on its own after this.
+  mongoose.connect(MONGODB_URI).catch((err) => {
+    console.error("MongoDB initial connection failed:", err);
+  });
 }
 
-// On Vercel, this module is imported and invoked per-request by the platform's
-// Node.js runtime, so it must NOT bind a port there. For local development
-// (`npm run server`) and any other standalone Node host, start the HTTP server
-// here so the API is actually reachable - previously nothing ever called
-// app.listen(), so this file could not be run locally at all.
+// Vercel imports and invokes this module per-request, so it must not bind a port
+// there - but locally (npm run server) nothing else calls app.listen(), so do it here
 if (!process.env.VERCEL) {
   server = app.listen(PORT, () => {
     console.log(`Nuppu API listening on http://localhost:${PORT}`);

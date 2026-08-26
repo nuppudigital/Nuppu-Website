@@ -2,12 +2,19 @@ import { useNavigate, useParams } from 'react-router';
 import { ArrowLeft, Clock, Play, Tag } from 'lucide-react';
 import { MobileScreen } from '../components/MobileScreen';
 import { Button } from '../components/Button';
+import { useChild } from '../context/ChildContext';
 import { CLASSIC_STORIES } from '../data/stories';
 
 export function StoryDetail() {
   const navigate = useNavigate();
   const { id } = useParams();
+  const { recordCategoryListen } = useChild();
   const story = CLASSIC_STORIES.find((s) => s.id === id) ?? CLASSIC_STORIES[0];
+
+  const handleStart = () => {
+    recordCategoryListen(story.category);
+    navigate(`/playback/${story.id}`);
+  };
 
   return (
     <MobileScreen>
@@ -40,7 +47,7 @@ export function StoryDetail() {
 
           <p className="text-sm text-[#55504A] leading-relaxed mb-8">{story.description}</p>
 
-          <Button fullWidth onClick={() => navigate(`/playback/${story.id}`)} className="flex items-center justify-center gap-2">
+          <Button fullWidth onClick={handleStart} className="flex items-center justify-center gap-2">
             <Play className="w-4 h-4 fill-white" />
             Start Story
           </Button>

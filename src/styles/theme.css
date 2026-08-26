@@ -3,7 +3,7 @@
 :root {
   --font-size: 16px;
 
-  /* Nuppu Brand Colors - Sunshine & Wisteria Palette */
+  /* brand palette */
   --nuppu-yellow: #F6E19A;
   --nuppu-purple: #6E4FD1;
   --nuppu-purple-light: #C9BBF5;
@@ -11,7 +11,6 @@
   --nuppu-gold: #D4AF5E;
   --nuppu-cream: #ECE5D3;
 
-  /* Theme Colors */
   --background: #FBF0C8;
   --foreground: #35322B;
   --card: #FFFDF6;
@@ -138,10 +137,7 @@
     @apply bg-background text-foreground;
   }
 
-  /**
-  * Default typography styles for HTML elements (h1-h4, p, label, button, input).
-  * These are in @layer base, so Tailwind utility classes (like text-sm, text-lg) automatically override them.
-  */
+  /* base type sizing - Tailwind utilities like text-sm/text-lg still win since these are @layer base */
 
   html {
     font-size: var(--font-size);

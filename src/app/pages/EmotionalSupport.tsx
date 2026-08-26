@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/app/components/ui/card";
 import { Button } from "@/app/components/ui/button";
 import { Link, useSearchParams } from "react-router-dom";
 import { CheckCircle, AlertCircle, XCircle, Clock3 } from "lucide-react";
-import { paymentsAPI } from "../config/api";
-import { useLanguage } from "../i18n/LanguageContext";
+import { ApiError, availabilityAPI, paymentsAPI } from "../config/api";
+import { useLanguage, type Lang } from "../i18n/LanguageContext";
 
 type PaymentUiState = "idle" | "loading" | "error";
 
@@ -12,8 +12,67 @@ const CheckIcon = () => (
   <svg className="w-5 h-5 mr-2 mt-1 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
 );
 
+const HELSINKI_TZ = "Europe/Helsinki";
+
+// used for grouping/keying, so it goes through formatToParts for exact numeric parts rather
+// than trusting a locale string format to always come back as "YYYY-MM-DD HH:mm"
+const helsinkiPartsFormatter = new Intl.DateTimeFormat("en-US", {
+  timeZone: HELSINKI_TZ,
+  hourCycle: "h23",
+  year: "numeric",
+  month: "2-digit",
+  day: "2-digit",
+  hour: "2-digit",
+  minute: "2-digit",
+});
+
+function helsinkiParts(iso: string) {
+  const parts = Object.fromEntries(helsinkiPartsFormatter.formatToParts(new Date(iso)).map((p) => [p.type, p.value]));
+  return parts as Record<"year" | "month" | "day" | "hour" | "minute", string>;
+}
+
+function helsinkiDateKey(iso: string): string {
+  const p = helsinkiParts(iso);
+  return `${p.year}-${p.month}-${p.day}`;
+}
+
+function helsinkiTimeLabel(iso: string): string {
+  const p = helsinkiParts(iso);
+  return `${p.hour}:${p.minute}`;
+}
+
+// these are just display formatting, not translated app strings - Intl's timeZone option
+// handles the UTC -> Helsinki conversion natively here, no manual offset math needed
+function formatDatePill(iso: string, lang: Lang): string {
+  return new Intl.DateTimeFormat(lang === "fi" ? "fi-FI" : "en-GB", {
+    timeZone: HELSINKI_TZ,
+    weekday: "short",
+    day: "numeric",
+    month: "short",
+  }).format(new Date(iso));
+}
+
+function formatFullSlot(iso: string, lang: Lang): string {
+  return new Intl.DateTimeFormat(lang === "fi" ? "fi-FI" : "en-GB", {
+    timeZone: HELSINKI_TZ,
+    weekday: "long",
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+    hourCycle: "h23",
+  }).format(new Date(iso));
+}
+
+interface DayGroup {
+  dateKey: string;
+  dateLabel: string;
+  times: { iso: string; timeLabel: string }[];
+}
+
 export function EmotionalSupport() {
-  const { t, tList } = useLanguage();
+  const { t, tList, lang } = useLanguage();
   const [searchParams, setSearchParams] = useSearchParams();
   const returnStatus = searchParams.get("payment"); // success | cancelled | pending | error | null
 
@@ -21,8 +80,51 @@ export function EmotionalSupport() {
   const [paymentState, setPaymentState] = useState<PaymentUiState>("idle");
   const [errorMessage, setErrorMessage] = useState("");
 
-  // Clear the ?payment= query param once shown, so a page refresh doesn't
-  // re-display a stale success/cancel banner.
+  const [slots, setSlots] = useState<string[]>([]);
+  const [slotsLoading, setSlotsLoading] = useState(true);
+  const [slotsError, setSlotsError] = useState(false);
+  const [selectedDate, setSelectedDate] = useState<string | null>(null);
+  const [selectedSlot, setSelectedSlot] = useState<string | null>(null);
+
+  const loadSlots = useCallback(async () => {
+    setSlotsLoading(true);
+    setSlotsError(false);
+    try {
+      const response = await availabilityAPI.listSlots();
+      setSlots(response.data.slots);
+    } catch {
+      setSlotsError(true);
+    } finally {
+      setSlotsLoading(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    loadSlots();
+  }, [loadSlots]);
+
+  const groupedDates = useMemo<DayGroup[]>(() => {
+    const map = new Map<string, DayGroup>();
+    for (const iso of slots) {
+      const key = helsinkiDateKey(iso);
+      if (!map.has(key)) {
+        map.set(key, { dateKey: key, dateLabel: formatDatePill(iso, lang), times: [] });
+      }
+      map.get(key)!.times.push({ iso, timeLabel: helsinkiTimeLabel(iso) });
+    }
+    return Array.from(map.values());
+  }, [slots, lang]);
+
+  // once slots load, jump straight to the first open day instead of making people click twice
+  useEffect(() => {
+    if (!selectedDate && groupedDates.length > 0) {
+      setSelectedDate(groupedDates[0].dateKey);
+    }
+  }, [groupedDates, selectedDate]);
+
+  const selectedDayTimes = groupedDates.find((d) => d.dateKey === selectedDate)?.times ?? [];
+
+  // clear ?payment= after showing it once, otherwise a refresh re-shows a stale banner
   useEffect(() => {
     if (returnStatus) {
       const timeout = setTimeout(() => {
@@ -40,6 +142,10 @@ export function EmotionalSupport() {
   };
 
   const validate = () => {
+    if (!selectedSlot) {
+      setErrorMessage(t("emotionalSupport.errors.slot"));
+      return false;
+    }
     if (!formData.name.trim()) {
       setErrorMessage(t("emotionalSupport.errors.name"));
       return false;
@@ -77,6 +183,7 @@ export function EmotionalSupport() {
         customerEmail: formData.email.trim(),
         customerPhone: formData.phone.trim() || undefined,
         customerMessage: formData.message.trim(),
+        scheduledAt: selectedSlot as string,
       });
 
       const redirectUrl = response?.data?.url;
@@ -88,7 +195,14 @@ export function EmotionalSupport() {
       window.location.href = redirectUrl;
     } catch (error) {
       setPaymentState("error");
-      setErrorMessage(error instanceof Error ? error.message : t("emotionalSupport.errors.generic"));
+      if (error instanceof ApiError && error.status === 409) {
+        // someone else took the slot while this customer was filling in the form
+        setErrorMessage(t("emotionalSupport.errors.slotTaken"));
+        setSelectedSlot(null);
+        loadSlots();
+      } else {
+        setErrorMessage(error instanceof Error ? error.message : t("emotionalSupport.errors.generic"));
+      }
     }
   };
 
@@ -207,13 +321,93 @@ export function EmotionalSupport() {
           </CardContent>
         </Card>
 
-        {/* Book & Pay */}
         <Card className="mb-8 border-2 border-purple-200 dark:border-purple-800">
           <CardHeader>
             <CardTitle className="text-2xl font-bold">{t("emotionalSupport.booking.title")}</CardTitle>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleBookAndPay} className="space-y-4">
+              <div>
+                <label className="block text-gray-700 dark:text-gray-200 mb-2">
+                  {t("emotionalSupport.booking.chooseTimeLabel")}
+                </label>
+
+                {slotsLoading && (
+                  <p className="text-sm text-gray-500 dark:text-gray-400">
+                    {t("emotionalSupport.booking.loadingSlots")}
+                  </p>
+                )}
+
+                {!slotsLoading && slotsError && (
+                  <p className="text-sm text-red-600 dark:text-red-400">
+                    {t("emotionalSupport.errors.generic")}
+                  </p>
+                )}
+
+                {!slotsLoading && !slotsError && groupedDates.length === 0 && (
+                  <p className="text-sm text-gray-500 dark:text-gray-400">
+                    {t("emotionalSupport.booking.noSlotsAtAll")}
+                  </p>
+                )}
+
+                {!slotsLoading && !slotsError && groupedDates.length > 0 && (
+                  <>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div className="flex flex-col gap-2 max-h-60 overflow-y-auto pr-1">
+                        {groupedDates.map((day) => (
+                          <button
+                            key={day.dateKey}
+                            type="button"
+                            onClick={() => {
+                              setSelectedDate(day.dateKey);
+                              setSelectedSlot(null);
+                            }}
+                            disabled={paymentState === "loading"}
+                            className={`px-4 py-2 rounded-xl text-sm border text-left transition-colors ${
+                              selectedDate === day.dateKey
+                                ? "bg-purple-600 text-white border-purple-600"
+                                : "bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-200 hover:border-purple-400"
+                            }`}
+                          >
+                            {day.dateLabel}
+                          </button>
+                        ))}
+                      </div>
+
+                      <div className="flex flex-col gap-2 max-h-60 overflow-y-auto pr-1">
+                        {selectedDayTimes.length === 0 && (
+                          <p className="text-sm text-gray-500 dark:text-gray-400">
+                            {t("emotionalSupport.booking.noSlotsForDay")}
+                          </p>
+                        )}
+                        {selectedDayTimes.map((slot) => (
+                          <button
+                            key={slot.iso}
+                            type="button"
+                            onClick={() => setSelectedSlot(slot.iso)}
+                            disabled={paymentState === "loading"}
+                            className={`px-4 py-2 rounded-xl text-sm border text-left transition-colors ${
+                              selectedSlot === slot.iso
+                                ? "bg-purple-600 text-white border-purple-600"
+                                : "bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-200 hover:border-purple-400"
+                            }`}
+                          >
+                            {slot.timeLabel}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+
+                    {selectedSlot && (
+                      <p className="mt-3 text-sm text-purple-700 dark:text-purple-400">
+                        {t("emotionalSupport.booking.selectedPrefix")} {formatFullSlot(selectedSlot, lang)}{" "}
+                        {t("emotionalSupport.booking.timezoneNote")}
+                      </p>
+                    )}
+                  </>
+                )}
+              </div>
+
               <div className="grid sm:grid-cols-2 gap-4">
                 <div>
                   <label htmlFor="payer-name" className="block text-gray-700 dark:text-gray-200 mb-2">

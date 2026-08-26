@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
-import { Bell, BookOpen, ShieldCheck } from 'lucide-react';
+import { ArrowLeft, Bell, BookOpen, ShieldCheck } from 'lucide-react';
 import { MobileScreen } from '../components/MobileScreen';
 import { Button } from '../components/Button';
 import { ProgressBar } from './AddChildProfile';
@@ -22,6 +22,13 @@ export function Preferences() {
   return (
     <MobileScreen>
       <div className="flex-1 overflow-y-auto bg-gradient-to-br from-[#D4C5F9]/40 via-[#C9BBF5]/20 to-white px-6 py-8">
+        <button
+          onClick={() => navigate(-1)}
+          className="w-9 h-9 rounded-full bg-white/70 flex items-center justify-center mb-4"
+          aria-label="Back"
+        >
+          <ArrowLeft className="w-4 h-4 text-[#35322B]" />
+        </button>
         <ProgressBar step={3} />
 
         <h1 className="text-2xl font-bold text-[#35322B] mb-1 mt-6">Story preferences</h1>

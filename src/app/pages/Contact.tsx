@@ -81,7 +81,6 @@ export default function Contact() {
 
   return (
     <div className="w-full">
-      {/* Hero Section */}
       <section className="bg-gradient-to-br from-[#C9BBF5]/20 via-[#F9E5A8]/10 to-[#B8DDB8]/20 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -103,11 +102,9 @@ export default function Contact() {
         </div>
       </section>
 
-      {/* Contact Section */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-12">
-            {/* Contact Info */}
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -124,7 +121,6 @@ export default function Contact() {
                 {t("contact.connect.text")}
               </p>
 
-              {/* Contact Cards */}
               <div className="space-y-6">
                 <motion.div
                   whileHover={{ scale: 1.02 }}
@@ -141,10 +137,10 @@ export default function Contact() {
                       {t("contact.emailUs")}
                     </h3>
                     <a
-                      href="mailto:nuppudigital@gmail.com"
+                      href="mailto:info@nuppuapp.fi"
                       className="text-[#6E4FD1] hover:underline"
                     >
-                      nuppudigital@gmail.com
+                      info@nuppuapp.fi
                     </a>
                   </div>
                 </motion.div>
@@ -168,7 +164,6 @@ export default function Contact() {
                 </motion.div>
               </div>
 
-              {/* Additional Info */}
               <div className="mt-8 p-6 bg-[#F2EDDE] rounded-2xl">
                 <h3
                   className="text-lg text-[#35322B] mb-3"
@@ -182,7 +177,6 @@ export default function Contact() {
               </div>
             </motion.div>
 
-            {/* Contact Form */}
             <motion.div
               initial={{ opacity: 0, x: 50 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -190,7 +184,6 @@ export default function Contact() {
               transition={{ duration: 0.6 }}
             >
               <form onSubmit={handleSubmit} className="space-y-6">
-                {/* Name Input */}
                 <div>
                   <label
                     htmlFor="name"
@@ -212,7 +205,6 @@ export default function Contact() {
                   />
                 </div>
 
-                {/* Email Input */}
                 <div>
                   <label
                     htmlFor="email"
@@ -234,7 +226,6 @@ export default function Contact() {
                   />
                 </div>
 
-                {/* Role Select */}
                 <div>
                   <label
                     htmlFor="role"
@@ -260,7 +251,6 @@ export default function Contact() {
                   </select>
                 </div>
 
-                {/* Message Textarea */}
                 <div>
                   <label
                     htmlFor="message"
@@ -282,7 +272,6 @@ export default function Contact() {
                   />
                 </div>
 
-                {/* Error Message */}
                 {formStatus === "error" && errorMessage && (
                   <motion.div
                     initial={{ opacity: 0, y: -10 }}
@@ -296,7 +285,6 @@ export default function Contact() {
                   </motion.div>
                 )}
 
-                {/* Success Message */}
                 {formStatus === "success" && (
                   <motion.div
                     initial={{ opacity: 0, y: -10 }}
@@ -310,7 +298,6 @@ export default function Contact() {
                   </motion.div>
                 )}
 
-                {/* Submit Button */}
                 <button
                   type="submit"
                   disabled={formStatus === "loading"}
@@ -342,7 +329,6 @@ export default function Contact() {
         </div>
       </section>
 
-      {/* Bottom CTA */}
       <section className="py-20 bg-gradient-to-b from-white to-[#F2EDDE]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div

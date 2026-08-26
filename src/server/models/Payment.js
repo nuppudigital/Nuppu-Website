@@ -1,31 +1,20 @@
-/**
- * PAYMENT MODEL (GDPR-minimised)
- *
- * Stores only what's needed to reconcile Paytrail payments and fulfil the
- * booking, plus statutory bookkeeping. No card numbers, CVV, or bank
- * credentials are ever stored - with Paytrail's redirect-based checkout flow
- * they never reach this server, so there is nothing here to encrypt or leak.
- *
- * Retention: Finnish accounting law (Kirjanpitolaki 1336/1997) requires
- * bookkeeping records to be kept for 6 years from the end of the fiscal year.
- * `retentionExpiresAt` is set at creation time. After it passes, records are
- * ANONYMISED (customerName/customerEmail cleared), not deleted, preserving the
- * accounting trail while removing personal data. See GDPR-NOTES.md.
- *
- * ASSUMPTION FLAGGED: retention is computed from a calendar-year fiscal year
- * (Jan 1 - Dec 31). If Nuppu's actual fiscal year differs, update
- * computeRetentionExpiry() below - this is a business/accounting decision the
- * company's bookkeeper should confirm.
- */
+// No card numbers/CVV/bank details ever land here - Paytrail's redirect checkout
+// keeps those away from our server entirely, so this is just enough to reconcile
+// payments and satisfy bookkeeping law.
+//
+// Kirjanpitolaki (Finnish accounting law) requires records kept 6 years from fiscal
+// year end. retentionExpiresAt gets set at creation; once it passes we anonymise
+// (clear name/email) instead of deleting, so the accounting trail survives. See
+// GDPR-NOTES.md.
+//
+// note: computeRetentionExpiry assumes a Jan-Dec fiscal year - double check with
+// whoever does the books if that's not actually Nuppu's fiscal year.
 
 import mongoose from "mongoose";
 
 export const RETENTION_YEARS = 6;
 
-/**
- * Compute the retention expiry timestamp for a payment made on `date`.
- * Runs from the end of the fiscal year in which the payment occurred.
- */
+// retention runs from the end of the fiscal year the payment happened in
 export function computeRetentionExpiry(date = new Date()) {
   const fiscalYearEnd = new Date(Date.UTC(date.getUTCFullYear(), 11, 31, 23, 59, 59, 999));
   fiscalYearEnd.setUTCFullYear(fiscalYearEnd.getUTCFullYear() + RETENTION_YEARS);
@@ -52,29 +41,35 @@ const paymentSchema = new mongoose.Schema(
       lowercase: true,
       match: [/\S+@\S+\.\S+/, "Please enter a valid email address"],
     },
-    // Optional - only collected if the customer wants an SMS receipt. Stored in
-    // E.164 format (e.g. +358401234567). Same GDPR anonymisation as name/email.
+    // only collected for SMS receipts, E.164 format (+358401234567), same anonymisation as name/email
     customerPhone: {
       type: String,
       trim: true,
       maxlength: 20,
     },
-    // Required at the API layer (see POST /api/payments/create) - what
-    // product/package the customer wants, so the team can prepare before the
-    // consultation instead of finding out after payment.
+    // what the customer wants, so the team can prep before the call, not after payment
     customerMessage: {
       type: String,
       required: true,
       trim: true,
       maxlength: 2000,
     },
-    // No payment card, bank account, or Paytrail-side PII beyond what's needed for support/refunds
+    // the booked slot's UTC instant - see src/server/availability/slots.js for how it's computed
+    scheduledAt: { type: Date, required: true },
     paidAt: { type: Date },
     retentionExpiresAt: { type: Date, required: true },
-    // Set once a data-subject erasure request or the retention TTL anonymises the record.
-    anonymizedAt: { type: Date },
+    anonymizedAt: { type: Date }, // set once erasure or the retention TTL anonymises this record
   },
   { timestamps: true },
+);
+
+// belt-and-suspenders double-booking guard, on top of the app-level availability check -
+// the $exists clause matters: without it this collides against every pre-scheduling paid
+// row (they all lack scheduledAt, which Mongo treats as the same null for uniqueness) and
+// fails to build on every cold start
+paymentSchema.index(
+  { service: 1, scheduledAt: 1 },
+  { unique: true, partialFilterExpression: { status: { $in: ["pending", "paid"] }, scheduledAt: { $exists: true } } },
 );
 
 paymentSchema.statics.computeRetentionExpiry = computeRetentionExpiry;

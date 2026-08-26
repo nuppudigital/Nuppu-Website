@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router';
-import { Settings as SettingsIcon } from 'lucide-react';
+import { ArrowLeft, Settings as SettingsIcon } from 'lucide-react';
 import { MobileScreen } from '../components/MobileScreen';
 import { Button } from '../components/Button';
 import { ParentAccessButton, ParentAccessModal } from '../components/ParentAccessModal';
@@ -74,6 +74,13 @@ export function BreathingExercise() {
     <MobileScreen>
       <div className="flex-1 flex flex-col bg-gradient-to-br from-[#F9E5A8] via-[#FFD4C4] to-[#D4C5F9] px-6 py-10 relative">
         <div className="flex items-center justify-between mb-6">
+          <button
+            onClick={() => navigate(-1)}
+            className="w-9 h-9 rounded-full bg-white/30 flex items-center justify-center"
+            aria-label="Back"
+          >
+            <ArrowLeft className="w-4 h-4 text-white" />
+          </button>
           <h1 className="text-lg font-bold text-white">Let's breathe together</h1>
           <button
             onClick={() => setShowSettings((v) => !v)}

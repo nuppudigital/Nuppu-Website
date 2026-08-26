@@ -11,7 +11,7 @@ function getStoredConsent(): ConsentValue | null {
     const value = window.localStorage.getItem(CONSENT_STORAGE_KEY);
     return value === "accepted" || value === "essential-only" ? value : null;
   } catch {
-    // localStorage can throw in some privacy modes - fail safe by showing the banner.
+    // some private-browsing modes throw here, just show the banner again
     return null;
   }
 }
@@ -20,23 +20,12 @@ function storeConsent(value: ConsentValue) {
   try {
     window.localStorage.setItem(CONSENT_STORAGE_KEY, value);
   } catch {
-    // Ignore write failures (e.g. private browsing) - banner will just reappear.
+    // same deal, ignore and let the banner reappear next time
   }
 }
 
-/**
- * Simple EU/GDPR-style cookie consent banner.
- *
- * Nuppu currently only sets strictly necessary cookies (none at the time of
- * writing - no analytics or marketing pixels are wired in). This banner is
- * added ahead of that so that non-essential cookies (analytics, etc.) are
- * never set without consent, per ePrivacy/GDPR requirements.
- *
- * FLAGGED BUSINESS DECISION: if/when analytics (e.g. Plausible) or any other
- * non-essential script is added, it must only load after `getStoredConsent()
- * === "accepted"` - this component does not yet gate any such script because
- * none exists yet.
- */
+// GDPR cookie banner. We don't set any non-essential cookies yet, but the banner is
+// here so that whenever analytics gets added later, it can gate on getStoredConsent() === "accepted"
 export default function CookieConsent() {
   const { t } = useLanguage();
   const [consent, setConsent] = useState<ConsentValue | null>(null);

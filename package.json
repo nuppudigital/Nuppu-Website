@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "build": "npm run build:admin && npm run build:prototype && vite build",
-    "dev": "npm run build:admin && npm run build:prototype && vite",
+    "dev": "node scripts/dev-prebuild.js && vite",
     "vercel-build": "npm run build:admin && npm run build:prototype && vite build",
     "build:admin": "cd admin-dashboard && npm install && npm run build && rm -rf ../public/admin && cp -r dist ../public/admin",
     "build:prototype": "cd app-prototype && npm install && npm run build && rm -rf ../public/app-preview && cp -r dist ../public/app-preview",

@@ -3,14 +3,10 @@ import path from 'path'
 import tailwindcss from '@tailwindcss/vite'
 import react from '@vitejs/plugin-react'
 
-// /admin (admin-dashboard/) and /app-preview (app-prototype/) are separate
-// standalone projects, each built on its own and copied into public/admin
-// and public/app-preview respectively (see the build:admin / build:prototype
-// scripts). In dev, Vite's own SPA history fallback would otherwise intercept
-// extensionless requests like "/admin" or "/app-preview" before the static
-// file is reached and serve this site's index.html instead. Rewriting the
-// request to the explicit file here keeps the clean URL working in dev the
-// same way it does in production.
+// admin-dashboard/ and app-prototype/ get built separately and copied into
+// public/admin and public/app-preview (see build:admin / build:prototype). Without
+// this, Vite's dev-mode SPA fallback intercepts "/admin" and "/app-preview" and
+// serves this site's own index.html instead of the sub-app's.
 function staticSubAppFallback(mountPath: string): Plugin {
   return {
     name: `${mountPath.slice(1)}-fallback`,
@@ -38,12 +34,11 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
-      // Alias @ to the src directory
       '@': path.resolve(__dirname, './src'),
     },
   },
 
-  // File types to support raw imports. Never add .css, .tsx, or .ts files to this.
+  // only for raw asset imports - don't add .css/.tsx/.ts here, that'll break things
   assetsInclude: ['**/*.svg', '**/*.csv'],
   build: {
     outDir: 'dist',
@@ -55,7 +50,7 @@ export default defineConfig({
   },
   server: {
     proxy: {
-      // Matches the backend's default PORT (see api/index.js / .env.example).
+      // keep in sync with the backend's default PORT (api/index.js / .env.example)
       '/api': {
         target: 'http://localhost:5050',
         changeOrigin: true,

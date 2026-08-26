@@ -1,11 +1,11 @@
 import { motion } from "motion/react";
 import { Link } from "react-router-dom";
 import { Heart, Shield, Star, Lightbulb } from "lucide-react";
-import nuppuImg from "../../assets/NUPPU BUNNY.webp";
-import muruImg from "../../assets/MURU BEAR.webp";
-import hippuImg from "../../assets/HIPPU CAT.webp";
-import lumoImg from "../../assets/LUMO FOX.webp";
-import lineupImg from "../../assets/CHARACTERS LINEUP.webp";
+import nuppuImg from "../../assets/NUPPU BUNNY.png";
+import muruImg from "../../assets/MURU BEAR.png";
+import hippuImg from "../../assets/HIPPU CAT.png";
+import lumoImg from "../../assets/LUMO FOX.png";
+import lineupImg from "../../assets/CHARACTERS LINEUP.png";
 import { usePageMeta } from "../hooks/usePageMeta";
 import { useLanguage } from "../i18n/LanguageContext";
 
@@ -55,7 +55,6 @@ export default function Characters() {
 
   return (
     <div className="w-full">
-      {/* Hero Section */}
       <section className="bg-gradient-to-br from-[#C9BBF5]/20 via-[#F9E5A8]/10 to-[#D4C5F9]/20 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
@@ -91,7 +90,6 @@ export default function Characters() {
         </div>
       </section>
 
-      {/* Characters Grid */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-12">
@@ -105,7 +103,6 @@ export default function Characters() {
                 whileHover={{ scale: 1.03 }}
                 className="bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 border border-border"
               >
-                {/* Character Image */}
                 <div
                   className="relative h-96 overflow-hidden"
                   style={{ background: `linear-gradient(to bottom right, white, ${character.color}14)` }}
@@ -131,7 +128,6 @@ export default function Characters() {
                   </div>
                 </div>
 
-                {/* Character Info */}
                 <div className="p-8">
                   <h2
                     className="text-2xl md:text-3xl text-[#35322B] mb-2"
@@ -149,7 +145,6 @@ export default function Characters() {
                     {character.description}
                   </p>
 
-                  {/* Emotion Tags */}
                   <div className="flex flex-wrap gap-2">
                     {character.emotions.map((emotion, idx) => (
                       <span
@@ -168,7 +163,6 @@ export default function Characters() {
         </div>
       </section>
 
-      {/* Bottom Section */}
       <section className="py-20 bg-gradient-to-b from-white to-[#F2EDDE]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -176,7 +170,7 @@ export default function Characters() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="bg-gradient-to-r from-[#C9BBF5] to-[#B8DDB8] rounded-3xl p-12 text-center"
+            className="bg-[#B8DDB8] rounded-3xl p-12 text-center"
           >
             <h2
               className="text-3xl md:text-4xl text-white mb-6"

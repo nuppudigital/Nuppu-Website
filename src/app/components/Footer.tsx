@@ -6,10 +6,9 @@ export default function Footer() {
   const { t } = useLanguage();
 
   return (
-    <footer className="bg-gradient-to-b from-white to-[#F2EDDE] border-t border-border mt-20">
+    <footer className="bg-gradient-to-b from-white to-[#F2EDDE] border-t border-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
-          {/* Brand Section */}
           <div className="md:col-span-2">
             <div className="flex items-center gap-2 mb-4">
               <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#C9BBF5] to-[#6E4FD1] flex items-center justify-center shadow-md">
@@ -37,7 +36,6 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Quick Links */}
           <div>
             <h3 className="mb-4 text-[#35322B]" style={{ fontFamily: 'Nunito, sans-serif' }}>
               {t("footer.quickLinks")}
@@ -76,9 +74,7 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                {/* /admin is a separate standalone app served outside the
-                    React router (see admin-dashboard/), so this needs a real
-                    page navigation rather than a router Link. */}
+                {/* plain anchor, not <Link> - /admin is its own app, not part of this router */}
                 <a
                   href="/admin"
                   target="_blank"
@@ -92,7 +88,6 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Contact Info */}
           <div>
             <h3 className="mb-4 text-[#35322B]" style={{ fontFamily: 'Nunito, sans-serif' }}>
               {t("footer.getInTouch")}
@@ -100,11 +95,11 @@ export default function Footer() {
             <ul className="space-y-3">
               <li>
                 <a
-                  href="mailto:nuppudigital@gmail.com"
+                  href="mailto:info@nuppuapp.fi"
                   className="text-[#6B6660] hover:text-[#6E4FD1] transition-colors flex items-center gap-2"
                 >
                   <Mail size={16} />
-                  nuppudigital@gmail.com
+                  info@nuppuapp.fi
                 </a>
               </li>
               <li className="text-[#6B6660]">
@@ -114,7 +109,6 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Bottom Bar */}
         <div className="mt-12 pt-8 border-t border-border">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-[#6B6660] text-sm">

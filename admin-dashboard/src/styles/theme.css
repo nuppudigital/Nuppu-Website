@@ -1,8 +1,7 @@
 @import 'tailwindcss';
 
 :root {
-  /* Nuppu brand tokens - matches Nuppu Website/src/styles/theme.css exactly,
-     so this standalone dashboard reads as the same product. */
+  /* matches Nuppu Website/src/styles/theme.css so this dashboard looks like the same product */
   --nuppu-yellow: #f6e19a;
   --nuppu-purple: #6e4fd1;
   --nuppu-purple-light: #c9bbf5;

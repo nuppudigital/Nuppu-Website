@@ -20,14 +20,13 @@ src/styles/         Tailwind entry point, theme variables, fonts
 api/index.js         Express API (contact form, payments, admin routes, cron)
 ```
 
-Two unrelated projects also live in this repo but are **not part of the
-deployed site**:
+Two unrelated projects also live in this repo, each with its own `package.json` and its own
+React app — not part of this site's router, but still built and served in production at their
+own paths (`/admin`, `/app-preview`) via the `build:admin`/`build:prototype` scripts and
+`vercel.json`'s rewrites:
 
-- `admin-dashboard/` — an early admin UI for the API's contact/payment data. Has its own `package.json`; run it with `cd admin-dashboard && npm install && npm run dev`.
-- `app-prototype/` — a prototype of the actual Nuppu kids' app (stories, breathing exercises, etc.), unrelated to the marketing site. Same deal: `cd app-prototype && npm install && npm run dev`.
-
-Neither is built or routed by the root `vite build` — they're kept here for
-reference/future work, not shipped to the public domain.
+- `admin-dashboard/` — an early admin UI for the API's contact/payment data. Run it standalone with `cd admin-dashboard && npm install && npm run dev` (port 5174).
+- `app-prototype/` — a clickable prototype of the actual Nuppu kids' app (stories, breathing exercises, etc.), unrelated to the marketing site beyond sharing its branding. Same deal: `cd app-prototype && npm install && npm run dev`.
 
 ## Pages
 
@@ -43,15 +42,19 @@ strings (the contact email, mostly) are hardcoded in components instead.
 | `GET /api/health` | Health check |
 | `POST /api/contact` | Submit the contact form (rate-limited) |
 | `GET /api/contact`, `PATCH /api/contact/:id` | Admin: list/update messages |
-| `POST /api/payments/create` | Start a Paytrail checkout (rate-limited) |
+| `GET /api/availability/slots` | Public: open consultation time slots (Mon–Fri, 9–17 Europe/Helsinki) |
+| `GET /api/availability/calendar` | Admin: full slot status (open/blocked/booked/past) for the availability calendar |
+| `POST /api/availability/blocks`, `DELETE /api/availability/blocks/:id` | Admin: block/unblock a specific hour or a whole day |
+| `POST /api/payments/create` | Start a Paytrail checkout for a chosen slot (rate-limited) |
 | `GET /api/payments/success`, `/cancel` | Paytrail redirect targets |
 | `GET\|POST /api/payments/callback` | Paytrail webhook |
-| `GET /api/payments`, `/:id`, `PATCH /:id` | Admin: list/get/update payments |
+| `GET /api/payments`, `/:id`, `PATCH /:id` | Admin: list/get/update payments (including status - cancelling/refunding frees the booked slot) |
 | `DELETE /api/payments/:id/personal-data` | Anonymise a payment record |
 | `GET /api/payments/export?email=` | Export a customer's payment history |
 | `GET /api/payments/anonymize-expired` | Retention sweep (daily cron or admin) |
+| `POST /api/admin/otp/request`, `POST /api/admin/otp/verify` | Admin sign-in: email a one-time code, then exchange it for a session token |
 
-Admin routes require an `x-admin-token` header matching `ADMIN_TOKEN`.
+Admin routes require an `x-admin-token` header matching either `ADMIN_TOKEN` (a long static token, still supported for scripts/emergency access) or a session token issued by `/api/admin/otp/verify` (what the dashboard's sign-in flow uses day-to-day). Who can request a code is controlled by `ADMIN_OTP_EMAILS` (comma-separated; see `.env.example`).
 
 ## Running it locally
 

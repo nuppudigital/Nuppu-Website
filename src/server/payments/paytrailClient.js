@@ -1,22 +1,12 @@
-/**
- * PAYTRAIL PAYMENT CLIENT
- *
- * Thin wrapper around Paytrail's Payment API (https://docs.paytrail.com/).
- * Implements the HMAC-SHA256 request/response signing scheme exactly as documented
- * at https://github.com/paytrail/api-documentation (docs/README.md, "Authentication"
- * and "Redirect and callback URL signing" sections), verified against the reference
- * Node.js HMAC example published there.
- *
- * SWAP-IN DESIGN:
- * Reads PAYTRAIL_MERCHANT_ID / PAYTRAIL_SECRET_KEY from environment variables. If they
- * are not set, it falls back to Paytrail's published test-merchant credentials
- * (merchant ID 375917 / secret SAIPPUAKAUPPIAS - documented at
- * https://docs.paytrail.com under "Test credentials"). The moment real credentials are
- * set in the environment, this module automatically starts creating real charges -
- * no code changes required.
- *
- * Never log PAYTRAIL_SECRET_KEY or the raw signature payload in production.
- */
+// wraps Paytrail's payment API (docs.paytrail.com) - HMAC-SHA256 signing scheme
+// follows their spec exactly (github.com/paytrail/api-documentation, "Authentication"
+// and "Redirect and callback URL signing")
+//
+// falls back to Paytrail's published test credentials (merchant 375917 / secret
+// SAIPPUAKAUPPIAS) when PAYTRAIL_MERCHANT_ID/SECRET_KEY aren't set in the env - set
+// real ones and this starts creating real charges automatically, no code changes
+//
+// never log PAYTRAIL_SECRET_KEY or the raw signature payload
 
 import crypto from "node:crypto";
 
@@ -30,13 +20,12 @@ const PAYTRAIL_API_BASE_URL = (process.env.PAYTRAIL_API_BASE_URL || "https://ser
   "",
 );
 
-/** True when no real Paytrail credentials have been configured yet. */
 export const usingTestCredentials =
   PAYTRAIL_MERCHANT_ID === TEST_MERCHANT_ID && PAYTRAIL_SECRET_KEY === TEST_SECRET_KEY;
 
 if (usingTestCredentials) {
-  // Intentionally not an error - lets the whole checkout -> callback flow be
-  // developed and demoed before a real Paytrail merchant agreement exists.
+  // just a warning, not an error - lets us build/demo the whole checkout flow
+  // before there's a real Paytrail merchant agreement
   console.warn(
     "[paytrailClient] PAYTRAIL_MERCHANT_ID / PAYTRAIL_SECRET_KEY are not set. " +
       "Falling back to Paytrail's published TEST merchant credentials. " +
@@ -44,17 +33,9 @@ if (usingTestCredentials) {
   );
 }
 
-/**
- * Calculate the Paytrail HMAC signature.
- *
- * Per the Paytrail spec: sort all `checkout-` prefixed params alphabetically,
- * join each as `key:value` with `\n`, append the raw request body (or an empty
- * string for GET requests / callback verification), and HMAC-SHA256 the result.
- *
- * @param {string} secret Merchant shared secret
- * @param {Record<string, string>} params Headers (for requests) or query string params (for callbacks)
- * @param {string} body Raw request body exactly as sent, or "" for GET/callback verification
- */
+// sort checkout-* params alphabetically, join as key:value with \n, append the raw
+// body (empty string for GET/callback verification), then HMAC-SHA256 it - this is
+// exactly Paytrail's signing spec
 function calculateHmac(secret, params, body = "") {
   const payload = Object.keys(params)
     .filter((key) => key.toLowerCase().startsWith("checkout-"))
@@ -82,21 +63,6 @@ function buildRequestHeaders(method, transactionId) {
   return headers;
 }
 
-/**
- * Create a new Paytrail payment.
- *
- * @param {object} order
- * @param {string} order.stamp Merchant-unique identifier for this payment attempt (max 200 chars)
- * @param {string} order.reference Order/booking reference for reconciliation (max 200 chars)
- * @param {number} order.amountCents Total amount in cents (currency minor units)
- * @param {string} order.description Line-item description shown to the payer
- * @param {string} order.customerEmail
- * @param {string} order.customerName
- * @param {string} order.successUrl Browser redirect target on success
- * @param {string} order.cancelUrl Browser redirect target on cancel
- * @param {string} order.callbackUrl Server-to-server webhook target (also GET, per Paytrail spec)
- * @returns {Promise<{ transactionId: string, href: string, reference: string }>}
- */
 export async function createPayment(order) {
   const {
     stamp,
@@ -128,9 +94,8 @@ export async function createPayment(order) {
       {
         unitPrice: amountCents,
         units: 1,
-        // Finland's standard VAT rate (25.5% as of Sept 2024). Informational only -
-        // Paytrail does not use it to recompute `amount`. Confirm with the company's
-        // accountant if the emotional-support consultation should use a different rate.
+        // Finland's standard VAT rate - informational only, Paytrail doesn't recompute
+        // `amount` from it. Ask the accountant if this service needs a different rate.
         vatPercentage: 25.5,
         productCode: "emotional-support-45min",
         description: description || "Nuppu emotional support consultation (45 min)",
@@ -179,15 +144,8 @@ export async function createPayment(order) {
   };
 }
 
-/**
- * Verify the signature on redirect (success/cancel) or callback query string
- * parameters. Per Paytrail's guidance: do not hardcode which `checkout-*`
- * parameters to expect (new ones may be added) - filter by prefix, sort, and
- * recompute the HMAC with an empty body.
- *
- * @param {Record<string, string>} params req.query from the redirect/callback request
- * @returns {boolean}
- */
+// don't hardcode which checkout-* params to expect (Paytrail can add new ones) -
+// same filter/sort/HMAC as calculateHmac, just with an empty body
 export function verifyCallbackSignature(params) {
   const { signature } = params;
   if (!signature || typeof signature !== "string") {
@@ -206,13 +164,8 @@ export function verifyCallbackSignature(params) {
   return crypto.timingSafeEqual(provided, computed);
 }
 
-/**
- * Fetch the current status of a payment directly from Paytrail.
- * Useful as a defensive re-check when a callback/redirect signature is valid
- * but you want authoritative confirmation before fulfilling an order.
- *
- * @param {string} transactionId Paytrail transaction ID
- */
+// not wired into a route yet (see the import comment in api/index.js) - useful for
+// an authoritative re-check even after a valid callback signature
 export async function getPaymentStatus(transactionId) {
   if (!transactionId) {
     throw new Error("getPaymentStatus: transactionId is required");

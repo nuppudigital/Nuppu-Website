@@ -32,6 +32,13 @@ export const AGE_GROUPS: Record<AgeGroupId, AgeGroupInfo> = {
 
 export type PlanTier = 'freemium' | 'premium';
 
+export type StoryMode = 'book' | 'audio';
+
+export interface DailyMood {
+  emotion: string;
+  date: string;
+}
+
 export interface ChildData {
   name: string;
   ageGroup: AgeGroupId;
@@ -67,11 +74,24 @@ interface ChildContextType {
   setCurrentStory: (story: GeneratedStory | null) => void;
   plan: PlanTier;
   setPlan: (plan: PlanTier) => void;
+  dailyMood: DailyMood | null;
+  setDailyMood: (emotion: string) => void;
+  storyMode: StoryMode;
+  setStoryMode: (mode: StoryMode) => void;
+  categoryListenCounts: Record<string, number>;
+  recordCategoryListen: (category: string) => void;
 }
 
 const CHILD_DATA_KEY = 'nuppu-child-data';
 const STORIES_KEY = 'nuppu-generated-stories';
 const PLAN_KEY = 'nuppu-plan';
+const DAILY_MOOD_KEY = 'nuppu-daily-mood';
+const STORY_MODE_KEY = 'nuppu-story-mode';
+const CATEGORY_LISTENS_KEY = 'nuppu-category-listens';
+
+function todayKey(): string {
+  return new Date().toISOString().slice(0, 10);
+}
 
 const DEFAULT_CHILD_DATA: ChildData = {
   name: 'Emma',
@@ -116,6 +136,31 @@ function loadPlan(): PlanTier {
   return raw === 'premium' ? 'premium' : raw === 'freemium' ? 'freemium' : 'premium';
 }
 
+function loadDailyMood(): DailyMood | null {
+  try {
+    const raw = localStorage.getItem(DAILY_MOOD_KEY);
+    if (!raw) return null;
+    const parsed = JSON.parse(raw) as DailyMood;
+    return parsed.date === todayKey() ? parsed : null;
+  } catch {
+    return null;
+  }
+}
+
+function loadStoryMode(): StoryMode {
+  return localStorage.getItem(STORY_MODE_KEY) === 'audio' ? 'audio' : 'book';
+}
+
+function loadCategoryListenCounts(): Record<string, number> {
+  try {
+    const raw = localStorage.getItem(CATEGORY_LISTENS_KEY);
+    if (!raw) return {};
+    return JSON.parse(raw);
+  } catch {
+    return {};
+  }
+}
+
 const ChildContext = createContext<ChildContextType | undefined>(undefined);
 
 export function ChildProvider({ children }: { children: ReactNode }) {
@@ -124,6 +169,11 @@ export function ChildProvider({ children }: { children: ReactNode }) {
   const [generatedStories, setGeneratedStories] = useState<GeneratedStory[]>(loadStories);
   const [currentStory, setCurrentStory] = useState<GeneratedStory | null>(null);
   const [plan, setPlan] = useState<PlanTier>(loadPlan);
+  const [dailyMood, setDailyMoodState] = useState<DailyMood | null>(loadDailyMood);
+  const [storyMode, setStoryMode] = useState<StoryMode>(loadStoryMode);
+  const [categoryListenCounts, setCategoryListenCounts] = useState<Record<string, number>>(
+    loadCategoryListenCounts,
+  );
 
   useEffect(() => {
     localStorage.setItem(CHILD_DATA_KEY, JSON.stringify(childData));
@@ -137,12 +187,32 @@ export function ChildProvider({ children }: { children: ReactNode }) {
     localStorage.setItem(PLAN_KEY, plan);
   }, [plan]);
 
+  useEffect(() => {
+    if (dailyMood) localStorage.setItem(DAILY_MOOD_KEY, JSON.stringify(dailyMood));
+  }, [dailyMood]);
+
+  useEffect(() => {
+    localStorage.setItem(STORY_MODE_KEY, storyMode);
+  }, [storyMode]);
+
+  useEffect(() => {
+    localStorage.setItem(CATEGORY_LISTENS_KEY, JSON.stringify(categoryListenCounts));
+  }, [categoryListenCounts]);
+
   const updateChildData = (data: Partial<ChildData>) => {
     setChildData((prev) => ({ ...prev, ...data }));
   };
 
   const addGeneratedStory = (story: GeneratedStory) => {
     setGeneratedStories((prev) => [story, ...prev]);
+  };
+
+  const setDailyMood = (emotion: string) => {
+    setDailyMoodState({ emotion, date: todayKey() });
+  };
+
+  const recordCategoryListen = (category: string) => {
+    setCategoryListenCounts((prev) => ({ ...prev, [category]: (prev[category] ?? 0) + 1 }));
   };
 
   return (
@@ -158,6 +228,12 @@ export function ChildProvider({ children }: { children: ReactNode }) {
         setCurrentStory,
         plan,
         setPlan,
+        dailyMood,
+        setDailyMood,
+        storyMode,
+        setStoryMode,
+        categoryListenCounts,
+        recordCategoryListen,
       }}
     >
       {children}

@@ -130,7 +130,7 @@
     "intro1": "Kiukkukohtaukset, jännitys, pelot, sisarusriidat tai haastavat arjen tilanteet voivat kuormittaa koko perhettä. Moni vanhempi pohtii, miten tukea lasta niin, että tunteet kohdataan turvallisesti ja rakentavasti.",
     "intro2": "Nupun tunnetaito-ohjaus tarjoaa käytännönläheistä tukea juuri teidän perheenne tilanteeseen. Tavoitteena on löytää konkreettisia keinoja, joita voit hyödyntää heti arjessa.",
     "banners": {
-      "success": "Maksu vastaanotettu – kiitos! Lähetämme sinulle pian sähköpostia 45 minuutin ohjausajan sopimiseksi.",
+      "success": "Maksu vastaanotettu – kiitos! 45 minuutin ohjausaikasi on varattu. Lähetimme tiedot sähköpostiisi.",
       "pending": "Maksuasi käsitellään vielä. Vahvistamme sähköpostitse heti, kun maksu on suoritettu.",
       "cancelled": "Maksu peruutettiin. Veloitusta ei tehty – voit halutessasi yrittää uudelleen alla.",
       "error": "Emme voineet vahvistaa maksua. Veloitusta ei vahvistettu – yritä uudelleen tai ota meihin yhteyttä."
@@ -164,6 +164,12 @@
     },
     "booking": {
       "title": "Varaa ohjausaika",
+      "chooseTimeLabel": "Valitse ajankohta *",
+      "loadingSlots": "Ladataan vapaita aikoja…",
+      "noSlotsAtAll": "Vapaita aikoja ei juuri nyt ole – kokeile myöhemmin uudelleen tai ota yhteyttä.",
+      "noSlotsForDay": "Ei vapaita aikoja tänä päivänä.",
+      "selectedPrefix": "Valittu:",
+      "timezoneNote": "(Suomen aikaa)",
       "nameLabel": "Nimesi *",
       "namePlaceholder": "Etu- ja sukunimi",
       "emailLabel": "Sähköpostiosoite *",
@@ -182,6 +188,8 @@
       "email": "Syötä kelvollinen sähköpostiosoite",
       "phone": "Anna kelvollinen puhelinnumero tai jätä kenttä tyhjäksi",
       "message": "Kirjoita viesti siitä, mistä olet kiinnostunut ennen varausta",
+      "slot": "Valitse ohjausajan ajankohta",
+      "slotTaken": "Joku muu ehti varata juuri tuon ajan – valitse toinen aika.",
       "noRedirect": "Maksun ohjausosoitetta ei saatu.",
       "generic": "Jotain meni vikaan. Yritä myöhemmin uudelleen."
     },
@@ -398,7 +406,7 @@
     },
     "contact": {
       "title": "Yhteydenotot",
-      "text": "Oikeudellisissa asioissa ota yhteyttä: nuppudigital@gmail.com."
+      "text": "Oikeudellisissa asioissa ota yhteyttä: info@nuppuapp.fi."
     }
   },
   "privacy": {
@@ -432,7 +440,7 @@
     },
     "rights": {
       "title": "Oikeutesi",
-      "text": "Voit pyytää pääsyä tietoihisi, niiden oikaisua, poistamista (anonymisointia silloin, kun tietoja on säilytettävä kirjanpitoa varten) tai siirtämistä ottamalla yhteyttä osoitteeseen nuppudigital@gmail.com."
+      "text": "Voit pyytää pääsyä tietoihisi, niiden oikaisua, poistamista (anonymisointia silloin, kun tietoja on säilytettävä kirjanpitoa varten) tai siirtämistä ottamalla yhteyttä osoitteeseen info@nuppuapp.fi."
     }
   },
   "cookies": {

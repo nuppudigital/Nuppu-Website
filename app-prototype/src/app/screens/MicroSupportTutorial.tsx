@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router';
-import { HeartHandshake, MessageCircle, Sparkles } from 'lucide-react';
+import { ArrowLeft, HeartHandshake, MessageCircle, Sparkles } from 'lucide-react';
 import { MobileScreen } from '../components/MobileScreen';
 import { Button } from '../components/Button';
 import { ProgressBar } from './AddChildProfile';
@@ -28,6 +28,13 @@ export function MicroSupportTutorial() {
   return (
     <MobileScreen>
       <div className="flex-1 overflow-y-auto bg-gradient-to-br from-[#D4C5F9]/40 via-[#C9BBF5]/20 to-white px-6 py-8">
+        <button
+          onClick={() => navigate(-1)}
+          className="w-9 h-9 rounded-full bg-white/70 flex items-center justify-center mb-4"
+          aria-label="Back"
+        >
+          <ArrowLeft className="w-4 h-4 text-[#35322B]" />
+        </button>
         <ProgressBar step={5} />
 
         <h1 className="text-2xl font-bold text-[#35322B] mb-1 mt-6">Meet micro-support</h1>

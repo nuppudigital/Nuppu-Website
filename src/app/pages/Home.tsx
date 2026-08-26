@@ -14,7 +14,11 @@ import {
 import { ImageWithFallback } from "../components/media/ImageWithFallback";
 import { usePageMeta } from "../hooks/usePageMeta";
 import { useLanguage } from "../i18n/LanguageContext";
-import lineupImg from "../../assets/CHARACTERS LINEUP.webp";
+import nuppuImg from "../../assets/NUPPU BUNNY.png";
+import muruImg from "../../assets/MURU BEAR.png";
+import hippuImg from "../../assets/HIPPU CAT.png";
+import lumoImg from "../../assets/LUMO FOX.png";
+import heroImg from "../../assets/_DSC2229.jpeg";
 
 export default function Home() {
   const { t, tList } = useLanguage();
@@ -78,11 +82,9 @@ export default function Home() {
 
   return (
     <div className="w-full">
-      {/* Hero Section */}
       <section className="relative overflow-hidden bg-gradient-to-br from-[#C9BBF5]/20 via-[#F9E5A8]/10 to-[#B8DDB8]/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-32">
           <div className="grid md:grid-cols-2 gap-12 items-center">
-            {/* Hero Text */}
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
@@ -126,7 +128,6 @@ export default function Home() {
               </div>
             </motion.div>
 
-            {/* Hero Image */}
             <motion.div
               initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
@@ -135,7 +136,7 @@ export default function Home() {
             >
               <div className="relative rounded-3xl overflow-hidden shadow-2xl">
                 <ImageWithFallback
-                  src="src/assets/_DSC2229.jpeg"
+                  src={heroImg}
                   alt={t("home.heroImageAlt")}
                   className="w-full h-[400px] md:h-[500px] object-cover"
                   loading="eager"
@@ -143,7 +144,6 @@ export default function Home() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#6E4FD1]/20 to-transparent" />
               </div>
-              {/* Floating Elements */}
               <motion.div
                 animate={{ y: [0, -20, 0] }}
                 transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
@@ -159,7 +159,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Meet the Gang */}
       <section className="py-20 bg-white overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -185,12 +184,30 @@ export default function Home() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
-            className="flex justify-center mb-10"
+            className="flex flex-wrap justify-center items-end gap-4 sm:gap-6 md:gap-10 mb-10"
           >
             <img
-              src={lineupImg}
-              alt={t("home.meetGang.title")}
-              className="w-full max-w-2xl h-auto object-contain drop-shadow-xl"
+              src={nuppuImg}
+              alt="Nuppu"
+              className="h-40 sm:h-56 md:h-64 w-auto object-contain drop-shadow-xl"
+              loading="lazy"
+            />
+            <img
+              src={muruImg}
+              alt="Muru"
+              className="h-40 sm:h-56 md:h-64 w-auto object-contain drop-shadow-xl"
+              loading="lazy"
+            />
+            <img
+              src={hippuImg}
+              alt="Hippu"
+              className="h-40 sm:h-56 md:h-64 w-auto object-contain drop-shadow-xl"
+              loading="lazy"
+            />
+            <img
+              src={lumoImg}
+              alt="Lumo"
+              className="h-40 sm:h-56 md:h-64 w-auto object-contain drop-shadow-xl"
               loading="lazy"
             />
           </motion.div>
@@ -207,7 +224,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Why Nuppu - Interactive Carousel */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -228,7 +244,6 @@ export default function Home() {
             </p>
           </motion.div>
 
-          {/* Carousel */}
           <div className="relative max-w-4xl mx-auto">
             <div className="overflow-hidden rounded-3xl">
               <AnimatePresence mode="wait">
@@ -257,7 +272,6 @@ export default function Home() {
               </AnimatePresence>
             </div>
 
-            {/* Carousel Controls */}
             <div className="flex items-center justify-center gap-4 mt-8">
               <button
                 onClick={prevSlide}
@@ -294,7 +308,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Target Audience Section */}
       <section className="py-20 bg-gradient-to-b from-white to-[#F2EDDE]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -355,8 +368,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-[#6E4FD1] to-[#C9BBF5]">
+      <section className="py-20 bg-[#B8DDB8]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}

@@ -130,7 +130,7 @@
     "intro1": "Tantrums, tension, fears, sibling fights or challenging everyday situations can burden the whole family. Many parents wonder how to support their child so that emotions are faced safely and constructively.",
     "intro2": "Nuppu's emotional skills guidance provides practical support for your family's situation. The goal is to find concrete methods that you can use immediately in everyday life.",
     "banners": {
-      "success": "Payment received - thank you! We'll email you shortly to schedule your 45-minute consultation.",
+      "success": "Payment received - thank you! Your 45-minute consultation is booked. We've sent the details to your email.",
       "pending": "Your payment is still being processed. We'll confirm by email as soon as it completes.",
       "cancelled": "Payment was cancelled. No charge was made - feel free to try again below.",
       "error": "We couldn't verify that payment. No charge was confirmed - please try again or contact us."
@@ -164,6 +164,12 @@
     },
     "booking": {
       "title": "Book your consultation",
+      "chooseTimeLabel": "Choose a time *",
+      "loadingSlots": "Loading available times…",
+      "noSlotsAtAll": "No times are available right now - please check back soon or contact us.",
+      "noSlotsForDay": "No times available this day.",
+      "selectedPrefix": "Selected:",
+      "timezoneNote": "(Finnish time)",
       "nameLabel": "Your Name *",
       "namePlaceholder": "First and Last Name",
       "emailLabel": "Email Address *",
@@ -182,6 +188,8 @@
       "email": "Please enter a valid email address",
       "phone": "Please enter a valid phone number, or leave it empty",
       "message": "Please write a message describing what you're interested in before booking",
+      "slot": "Please choose a time for your consultation",
+      "slotTaken": "That time was just booked by someone else - please choose another.",
       "noRedirect": "No payment redirect URL was returned.",
       "generic": "Something went wrong. Please try again later."
     },
@@ -398,7 +406,7 @@
     },
     "contact": {
       "title": "Contact",
-      "text": "For legal inquiries, contact nuppudigital@gmail.com."
+      "text": "For legal inquiries, contact info@nuppuapp.fi."
     }
   },
   "privacy": {
@@ -432,7 +440,7 @@
     },
     "rights": {
       "title": "Your Rights",
-      "text": "You can request access, correction, deletion (anonymisation, where records must be retained for bookkeeping purposes), or export of your personal data by contacting us at nuppudigital@gmail.com."
+      "text": "You can request access, correction, deletion (anonymisation, where records must be retained for bookkeeping purposes), or export of your personal data by contacting us at info@nuppuapp.fi."
     }
   },
   "cookies": {

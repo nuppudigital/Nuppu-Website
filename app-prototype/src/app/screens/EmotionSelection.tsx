@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router';
-import { Check, Loader2, Sparkles } from 'lucide-react';
+import { ArrowLeft, Check, Loader2, Sparkles } from 'lucide-react';
 import { MobileScreen } from '../components/MobileScreen';
 import { Button } from '../components/Button';
 import { ParentAccessButton, ParentAccessModal } from '../components/ParentAccessModal';
@@ -64,6 +64,13 @@ export function EmotionSelection() {
   return (
     <MobileScreen>
       <div className="flex-1 flex flex-col bg-gradient-to-br from-[#F9E5A8]/40 via-[#FFD4C4]/20 to-white px-6 py-10 relative">
+        <button
+          onClick={() => navigate(-1)}
+          className="w-9 h-9 rounded-full bg-white/70 flex items-center justify-center mb-4"
+          aria-label="Back"
+        >
+          <ArrowLeft className="w-4 h-4 text-[#35322B]" />
+        </button>
         <div className="flex flex-col items-center text-center mb-8">
           <div className="w-14 h-14 rounded-full bg-[#F9E5A8]/50 flex items-center justify-center mb-4">
             <Sparkles className="w-7 h-7 text-[#D4AF5E]" />

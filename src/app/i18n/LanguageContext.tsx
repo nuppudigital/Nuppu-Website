@@ -29,10 +29,8 @@ function lookup(lang: Lang, key: string): unknown {
 interface LanguageContextValue {
   lang: Lang;
   setLang: (lang: Lang) => void;
-  /** Translate a key to a string, e.g. t("home.heroTitle") */
-  t: (key: string) => string;
-  /** Translate a key to a string array, e.g. tList("emotionalSupport.forWhom.items") */
-  tList: (key: string) => string[];
+  t: (key: string) => string; // e.g. t("home.heroTitle")
+  tList: (key: string) => string[]; // e.g. tList("emotionalSupport.forWhom.items")
 }
 
 const LanguageContext = createContext<LanguageContextValue | null>(null);
@@ -49,14 +47,14 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     try {
       window.localStorage.setItem(STORAGE_KEY, next);
     } catch {
-      // Ignore write failures (e.g. private browsing).
+      // private browsing etc. - not worth surfacing
     }
   };
 
   const t = (key: string): string => {
     const value = lookup(lang, key);
     if (typeof value === "string") return value;
-    // Fall back to English, then to the key itself so missing keys are visible.
+    // fall back to English, and if that's missing too just show the raw key
     const fallback = lookup("en", key);
     return typeof fallback === "string" ? fallback : key;
   };

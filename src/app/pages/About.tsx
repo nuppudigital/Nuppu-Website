@@ -16,6 +16,11 @@ import {
 import { ImageWithFallback } from "../components/media/ImageWithFallback";
 import { usePageMeta } from "../hooks/usePageMeta";
 import { useLanguage } from "../i18n/LanguageContext";
+import brainImg from "../../assets/_DSC2126.jpeg";
+import whyImg from "../../assets/_DSC2163 copy.jpeg";
+import founderImg from "../../assets/_DSC1990.jpeg";
+import cofounderImg from "../../assets/_DSC2052.jpeg";
+import nuppuLogoStacked from "../../assets/NUPPU LOGO STACKED.png";
 
 export default function About() {
   const { t } = useLanguage();
@@ -126,7 +131,6 @@ export default function About() {
 
   return (
     <div className="w-full">
-      {/* Hero Section */}
       <section className="bg-gradient-to-br from-[#C9BBF5]/20 via-[#F9E5A8]/10 to-[#B8DDB8]/20 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -148,7 +152,6 @@ export default function About() {
         </div>
       </section>
 
-      {/* Our Motivation */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -184,7 +187,6 @@ export default function About() {
         </div>
       </section>
 
-      {/* Founder Story */}
       <section className="py-20 bg-gradient-to-b from-white to-[#F2EDDE]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-12 items-center">
@@ -197,7 +199,7 @@ export default function About() {
             >
               <div className="rounded-3xl overflow-hidden shadow-2xl">
                 <ImageWithFallback
-                  src="src/assets/_DSC1990.jpeg"
+                  src={founderImg}
                   alt={t("about.founder.imageAlt")}
                   className="w-full h-[600px] object-cover object-top"
                 />
@@ -236,7 +238,6 @@ export default function About() {
         </div>
       </section>
 
-      {/* Co-Founder Story */}
       <section className="py-20 bg-gradient-to-b from-white to-[#F2EDDE]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-12 items-center">
@@ -249,7 +250,7 @@ export default function About() {
             >
               <div className="rounded-3xl overflow-hidden shadow-2xl">
                 <ImageWithFallback
-                  src="src/assets/_DSC2052.jpeg"
+                  src={cofounderImg}
                   alt={t("about.cofounder.imageAlt")}
                   className="w-full h-[600px] object-cover object-top"
                 />
@@ -291,7 +292,6 @@ export default function About() {
         </div>
       </section>
 
-      {/* Brand Promise */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -336,7 +336,6 @@ export default function About() {
         </div>
       </section>
 
-      {/* Our Values */}
       <section className="py-20 bg-gradient-to-b from-white to-[#F2EDDE]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -389,7 +388,6 @@ export default function About() {
         </div>
       </section>
 
-      {/* The Brain Behind Nuppu */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-12 items-center">
@@ -402,7 +400,7 @@ export default function About() {
             >
               <div className="rounded-3xl overflow-hidden shadow-2xl">
                 <ImageWithFallback
-                  src="src/assets/_DSC2126.jpeg"
+                  src={brainImg}
                   alt={t("about.brain.imageAlt")}
                   className="w-full h-[400px] object-cover"
                 />
@@ -456,7 +454,6 @@ export default function About() {
         </div>
       </section>
 
-      {/* Visual Promise, UX, Value, and Technology */}
       <section className="py-20 bg-gradient-to-b from-white to-[#F2EDDE]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-12">
@@ -492,7 +489,6 @@ export default function About() {
         </div>
       </section>
 
-      {/* Why Nuppu Section */}
       <section className="py-20 bg-gradient-to-b from-white to-[#F2EDDE]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-12 items-center">
@@ -543,7 +539,7 @@ export default function About() {
             >
               <div className="rounded-3xl overflow-hidden shadow-2xl">
                 <ImageWithFallback
-                  src="src/assets/_DSC2163 copy.jpeg"
+                  src={whyImg}
                   alt={t("about.why.imageAlt")}
                   className="w-full h-[650px] object-cover object-top"
                 />
@@ -553,8 +549,7 @@ export default function About() {
         </div>
       </section>
 
-      {/* App Preview CTA */}
-      <section className="py-20 bg-gradient-to-br from-[#2D2A5E] via-[#6E4FD1] to-[#0F9B8E] relative overflow-hidden">
+      <section className="py-20 bg-[#B8DDB8] relative overflow-hidden">
         <div className="absolute inset-0 opacity-20 pointer-events-none">
           <div className="absolute -top-10 -left-10 w-64 h-64 bg-white rounded-full blur-3xl" />
           <div className="absolute -bottom-16 -right-16 w-80 h-80 bg-white rounded-full blur-3xl" />
@@ -598,19 +593,19 @@ export default function About() {
               transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
               className="flex justify-center"
             >
-              <div className="w-56 h-[420px] rounded-[2.5rem] border-4 border-white/30 bg-white/10 backdrop-blur-sm shadow-2xl flex flex-col items-center justify-center gap-3 p-6">
-                <div className="w-16 h-16 rounded-full bg-white/90 flex items-center justify-center">
-                  <Smartphone size={28} className="text-[#6E4FD1]" />
-                </div>
-                <p className="text-white text-center">{t("home.appPreview.badge")}</p>
+              <div className="w-56 h-[420px] rounded-[2.5rem] border-4 border-white/30 bg-[#FFF2A6] shadow-2xl flex items-center justify-center p-8">
+                <img
+                  src={nuppuLogoStacked}
+                  alt="Nuppu"
+                  className="w-full h-auto object-contain"
+                />
               </div>
             </motion.div>
           </motion.div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-[#6E4FD1] to-[#C9BBF5]">
+      <section className="py-20 bg-[#F2EDDE]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
@@ -619,12 +614,12 @@ export default function About() {
             transition={{ duration: 0.6 }}
           >
             <h2
-              className="text-3xl md:text-4xl text-white mb-6"
+              className="text-3xl md:text-4xl text-[#35322B] mb-6"
               style={{ fontFamily: "Nunito, sans-serif" }}
             >
               {t("about.cta.title")}
             </h2>
-            <p className="text-lg text-white/90 mb-8 max-w-2xl mx-auto">
+            <p className="text-lg text-[#35322B] mb-8 max-w-2xl mx-auto">
               {t("about.cta.subtitle")}
             </p>
             <Link

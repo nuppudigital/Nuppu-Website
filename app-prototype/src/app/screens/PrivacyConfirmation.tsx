@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
-import { Database, Lock, ShieldCheck, UserCheck } from 'lucide-react';
+import { ArrowLeft, Database, Lock, ShieldCheck, UserCheck } from 'lucide-react';
 import { MobileScreen } from '../components/MobileScreen';
 import { Button } from '../components/Button';
 import { ProgressBar } from './AddChildProfile';
@@ -36,6 +36,13 @@ export function PrivacyConfirmation() {
   return (
     <MobileScreen>
       <div className="flex-1 overflow-y-auto bg-gradient-to-br from-[#D4C5F9]/40 via-[#C9BBF5]/20 to-white px-6 py-8">
+        <button
+          onClick={() => navigate(-1)}
+          className="w-9 h-9 rounded-full bg-white/70 flex items-center justify-center mb-4"
+          aria-label="Back"
+        >
+          <ArrowLeft className="w-4 h-4 text-[#35322B]" />
+        </button>
         <ProgressBar step={4} />
 
         <div className="flex flex-col items-center text-center mt-6 mb-6">

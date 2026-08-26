@@ -1,13 +1,7 @@
 import { isRouteErrorResponse, useRouteError } from "react-router-dom";
 import { useLanguage } from "../i18n/LanguageContext";
 
-/**
- * Top-level route error boundary. Without this, React Router's data router
- * falls back to its raw "Unexpected Application Error!" white-screen for any
- * uncaught render error (including transient ones like a browser extension
- * mutating the DOM out from under React) - this gives users a recoverable
- * screen instead of a dead end.
- */
+// catches render errors so people see this instead of router's blank "Unexpected Application Error!" screen
 export default function RouteError() {
   const error = useRouteError();
   const { lang } = useLanguage();

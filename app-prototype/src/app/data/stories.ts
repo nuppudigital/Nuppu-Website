@@ -102,3 +102,22 @@ export const CATEGORIES = [
   'Adventure',
   'Problem-solving',
 ];
+
+export interface StoryCategoryInfo {
+  name: string;
+  emoji: string;
+  color: string;
+}
+
+const CATEGORY_INFO: Record<string, { emoji: string; color: string }> = {
+  Emotions: { emoji: '🌈', color: 'from-[#D4C5F9]/50 to-[#C9BBF5]/50' },
+  Friendship: { emoji: '🤝', color: 'from-[#B8DDB8]/50 to-[#C9EDE1]/60' },
+  Bedtime: { emoji: '🌙', color: 'from-[#B8D4C7]/40 to-[#D4C5F9]/50' },
+  Adventure: { emoji: '🏔️', color: 'from-[#C9BBF5]/50 to-[#B8DDB8]/50' },
+  'Problem-solving': { emoji: '🧩', color: 'from-[#E8C468]/50 to-[#FFD4C4]/50' },
+};
+
+export const STORY_CATEGORIES: StoryCategoryInfo[] = CATEGORIES.filter((cat) => CATEGORY_INFO[cat]).map((cat) => ({
+  name: cat,
+  ...CATEGORY_INFO[cat],
+}));

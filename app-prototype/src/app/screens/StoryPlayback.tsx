@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate, useParams } from 'react-router';
-import { Gauge, Pause, Play, SkipForward, Volume2, VolumeX, X } from 'lucide-react';
+import { BookOpen, Gauge, Pause, Play, SkipForward, Volume2, VolumeX, X } from 'lucide-react';
 import { MobileScreen } from '../components/MobileScreen';
+import { Button } from '../components/Button';
 import { ParentAccessButton, ParentAccessModal } from '../components/ParentAccessModal';
 import { AGE_GROUPS, useChild } from '../context/ChildContext';
 import { CLASSIC_STORIES } from '../data/stories';
@@ -20,9 +21,11 @@ const FALLBACK_SUGGESTIONS: StorySuggestion[] = [
 export function StoryPlayback() {
   const navigate = useNavigate();
   const { id } = useParams();
-  const { childData, currentStory, currentEmotion } = useChild();
+  const { childData, currentStory, currentEmotion, storyMode } = useChild();
 
   const classicStory = id ? CLASSIC_STORIES.find((s) => s.id === id) : undefined;
+  const storyId = currentStory?.id ?? classicStory?.id;
+  const isBookMode = storyMode === 'book';
 
   const title = currentStory?.title ?? classicStory?.title ?? 'A Nuppu Story';
   const emoji = currentStory?.emoji ?? classicStory?.emoji ?? '📖';
@@ -31,6 +34,8 @@ export function StoryPlayback() {
     classicStory?.content ||
     classicStory?.description ||
     'Once upon a time, in a cozy little town, a small creature learned something wonderful about being brave, kind, and true to themselves.';
+  const teaser =
+    classicStory?.description || `${content.slice(0, 140)}${content.length > 140 ? '…' : ''}`;
 
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
@@ -129,20 +134,34 @@ export function StoryPlayback() {
     navigate('/emotion-check');
   };
 
+  const handleFinishReading = () => {
+    navigate(storyId ? `/completion/${storyId}` : '/home');
+  };
+
   const elapsedSeconds = Math.round((progress / 100) * totalSeconds);
 
   return (
     <MobileScreen>
-      <div className="flex-1 flex flex-col bg-gradient-to-br from-[#E8C468] via-[#FFD4C4] to-[#D4C5F9] relative">
+      <div
+        className={`flex-1 flex flex-col relative ${
+          isBookMode
+            ? 'bg-gradient-to-br from-[#F9E5A8]/40 via-[#FFD4C4]/20 to-white'
+            : 'bg-gradient-to-br from-[#E8C468] via-[#FFD4C4] to-[#D4C5F9]'
+        }`}
+      >
         <div className="flex items-center justify-between px-5 pt-6 pb-2 shrink-0">
           <button
             onClick={handleClose}
-            className="w-9 h-9 rounded-full bg-white/20 flex items-center justify-center"
+            className={`w-9 h-9 rounded-full flex items-center justify-center ${
+              isBookMode ? 'bg-black/5' : 'bg-white/20'
+            }`}
             aria-label="Close"
           >
-            <X className="w-4 h-4 text-white" />
+            <X className={`w-4 h-4 ${isBookMode ? 'text-[#35322B]' : 'text-white'}`} />
           </button>
-          <h1 className="text-sm font-bold text-white truncate max-w-[60%]">{title}</h1>
+          <h1 className={`text-sm font-bold truncate max-w-[60%] ${isBookMode ? 'text-[#35322B]' : 'text-white'}`}>
+            {title}
+          </h1>
           <div className="w-9" />
         </div>
 
@@ -154,85 +173,113 @@ export function StoryPlayback() {
             </div>
           </div>
 
-          <p className="text-white text-base leading-relaxed whitespace-pre-line mb-4">{content}</p>
+          {isBookMode ? (
+            <>
+              <div className="bg-white rounded-3xl shadow-sm border border-gray-100 p-5 mb-4">
+                <p className="text-[#35322B] text-base leading-relaxed whitespace-pre-line">{content}</p>
+              </div>
 
-          {progress >= 30 && (
-            <div className="bg-white/10 border border-white/30 rounded-2xl p-4 mb-4 flex gap-3">
-              <span className="shrink-0 w-6 h-6 rounded-full bg-white/30 text-white text-xs font-bold flex items-center justify-center">
-                P
-              </span>
-              <p className="text-xs text-white/90 leading-relaxed">
-                Micro-tip: Ask {childData.name} how they think the character is feeling right now — and why.
-              </p>
-            </div>
+              <div className="bg-[#C9BBF5]/15 border border-[#C9BBF5]/40 rounded-2xl p-4 mb-6 flex gap-3">
+                <span className="shrink-0 w-6 h-6 rounded-full bg-[#6E4FD1]/15 text-[#6E4FD1] text-xs font-bold flex items-center justify-center">
+                  P
+                </span>
+                <p className="text-xs text-[#55504A] leading-relaxed">
+                  Micro-tip: Ask {childData.name} how they think the character is feeling right now — and why.
+                </p>
+              </div>
+
+              <Button fullWidth onClick={handleFinishReading} className="flex items-center justify-center gap-2 mb-8">
+                <BookOpen className="w-4 h-4" />
+                Finished Reading
+              </Button>
+            </>
+          ) : (
+            <>
+              <p className="text-white text-sm leading-relaxed mb-4">{teaser}</p>
+
+              {progress >= 30 && (
+                <div className="bg-white/10 border border-white/30 rounded-2xl p-4 mb-4 flex gap-3">
+                  <span className="shrink-0 w-6 h-6 rounded-full bg-white/30 text-white text-xs font-bold flex items-center justify-center">
+                    P
+                  </span>
+                  <p className="text-xs text-white/90 leading-relaxed">
+                    Micro-tip: Ask {childData.name} how they think the character is feeling right now — and why.
+                  </p>
+                </div>
+              )}
+
+              <div className="mb-2">
+                <div className="w-full h-1.5 bg-white/30 rounded-full overflow-hidden">
+                  <div
+                    className="h-full bg-white rounded-full transition-all duration-150"
+                    style={{ width: `${progress}%` }}
+                  />
+                </div>
+                <div className="flex justify-between text-[10px] text-white/70 mt-1">
+                  <span>
+                    {Math.floor(elapsedSeconds / 60)}:{String(elapsedSeconds % 60).padStart(2, '0')}
+                  </span>
+                  <span>
+                    {Math.floor(totalSeconds / 60)}:{String(totalSeconds % 60).padStart(2, '0')}
+                  </span>
+                </div>
+              </div>
+
+              <div className="flex items-center justify-center gap-6 my-6">
+                <button
+                  onClick={handleMuteToggle}
+                  className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center"
+                  aria-label="Toggle mute"
+                >
+                  {isMuted ? <VolumeX className="w-4 h-4 text-white" /> : <Volume2 className="w-4 h-4 text-white" />}
+                </button>
+                <button
+                  onClick={handlePlayPause}
+                  className="w-16 h-16 rounded-full bg-white flex items-center justify-center shadow-lg active:scale-95 transition-transform"
+                  aria-label="Play or pause"
+                >
+                  {isPlaying ? (
+                    <Pause className="w-7 h-7 text-[#D4AF5E] fill-[#D4AF5E]" />
+                  ) : (
+                    <Play className="w-7 h-7 text-[#D4AF5E] fill-[#D4AF5E] ml-1" />
+                  )}
+                </button>
+                <button
+                  onClick={handleSkip}
+                  className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center"
+                  aria-label="Skip"
+                >
+                  <SkipForward className="w-4 h-4 text-white" />
+                </button>
+              </div>
+
+              <div className="flex justify-center mb-8">
+                <button
+                  onClick={handleSpeedCycle}
+                  className="flex items-center gap-1.5 bg-white/20 text-white text-xs font-semibold px-3 py-1.5 rounded-full"
+                >
+                  <Gauge className="w-3.5 h-3.5" />
+                  {SPEEDS[speedIndex]}x
+                </button>
+              </div>
+            </>
           )}
 
-          <div className="mb-2">
-            <div className="w-full h-1.5 bg-white/30 rounded-full overflow-hidden">
-              <div
-                className="h-full bg-white rounded-full transition-all duration-150"
-                style={{ width: `${progress}%` }}
-              />
-            </div>
-            <div className="flex justify-between text-[10px] text-white/70 mt-1">
-              <span>
-                {Math.floor(elapsedSeconds / 60)}:{String(elapsedSeconds % 60).padStart(2, '0')}
-              </span>
-              <span>
-                {Math.floor(totalSeconds / 60)}:{String(totalSeconds % 60).padStart(2, '0')}
-              </span>
-            </div>
-          </div>
-
-          <div className="flex items-center justify-center gap-6 my-6">
-            <button
-              onClick={handleMuteToggle}
-              className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center"
-              aria-label="Toggle mute"
-            >
-              {isMuted ? <VolumeX className="w-4 h-4 text-white" /> : <Volume2 className="w-4 h-4 text-white" />}
-            </button>
-            <button
-              onClick={handlePlayPause}
-              className="w-16 h-16 rounded-full bg-white flex items-center justify-center shadow-lg active:scale-95 transition-transform"
-              aria-label="Play or pause"
-            >
-              {isPlaying ? (
-                <Pause className="w-7 h-7 text-[#D4AF5E] fill-[#D4AF5E]" />
-              ) : (
-                <Play className="w-7 h-7 text-[#D4AF5E] fill-[#D4AF5E] ml-1" />
-              )}
-            </button>
-            <button
-              onClick={handleSkip}
-              className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center"
-              aria-label="Skip"
-            >
-              <SkipForward className="w-4 h-4 text-white" />
-            </button>
-          </div>
-
-          <div className="flex justify-center mb-8">
-            <button
-              onClick={handleSpeedCycle}
-              className="flex items-center gap-1.5 bg-white/20 text-white text-xs font-semibold px-3 py-1.5 rounded-full"
-            >
-              <Gauge className="w-3.5 h-3.5" />
-              {SPEEDS[speedIndex]}x
-            </button>
-          </div>
-
-          <p className="text-white text-sm font-semibold mb-3">More stories for you</p>
+          <p className={`text-sm font-semibold mb-3 ${isBookMode ? 'text-[#55504A]' : 'text-white'}`}>
+            More stories for you
+          </p>
           <div className="grid grid-cols-2 gap-3 pb-4">
             {suggestions.map((s) => (
               <button
                 key={s.title}
                 onClick={() => navigate('/library')}
-                className="bg-white/15 rounded-2xl p-3 text-left"
+                className={`rounded-2xl p-3 text-left ${isBookMode ? 'bg-gray-50' : 'bg-white/15'}`}
               >
                 <span className="text-2xl">{s.emoji}</span>
-                <p className="text-xs font-semibold text-white mt-1.5 truncate">{s.title}</p>
-                <p className="text-[10px] text-white/70 truncate">{s.theme}</p>
+                <p className={`text-xs font-semibold mt-1.5 truncate ${isBookMode ? 'text-[#35322B]' : 'text-white'}`}>
+                  {s.title}
+                </p>
+                <p className={`text-[10px] truncate ${isBookMode ? 'text-[#6B6660]' : 'text-white/70'}`}>{s.theme}</p>
               </button>
             ))}
           </div>

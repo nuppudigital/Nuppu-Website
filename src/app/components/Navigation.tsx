@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
-import nuppuCharacter from "../../assets/NUPPU BUNNY.webp";
+import nuppuCharacter from "../../assets/NUPPU BUNNY.png";
 import { useLanguage, Lang } from "../i18n/LanguageContext";
 
 function LanguageToggle({ className = "" }: { className?: string }) {
@@ -60,7 +60,6 @@ export default function Navigation() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
-          {/* Logo */}
           <Link
             to="/"
             className="flex items-center gap-2 group"
@@ -81,7 +80,6 @@ export default function Navigation() {
             </span>
           </Link>
 
-          {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (
               <Link
@@ -112,7 +110,6 @@ export default function Navigation() {
             </Link>
           </div>
 
-          {/* Mobile: language toggle + menu button */}
           <div className="md:hidden flex items-center gap-2">
             <LanguageToggle />
             <button
@@ -127,7 +124,6 @@ export default function Navigation() {
         </div>
       </div>
 
-      {/* Mobile Menu */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div

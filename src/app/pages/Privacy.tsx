@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { usePageMeta } from "../hooks/usePageMeta";
 import { useLanguage } from "../i18n/LanguageContext";
 
-/** Renders **bold** segments inside a translated string as <strong>. */
+// turns **bold** markers in translated text into <strong>
 function rich(text: string) {
   return text.split("**").map((part, i) =>
     i % 2 === 1 ? <strong key={i}>{part}</strong> : <Fragment key={i}>{part}</Fragment>
