@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import { Heart, Lock, Mail, Shield } from "lucide-react";
 import { useLanguage } from "../i18n/LanguageContext";
+import nuppuMark from "../../assets/NUPPU MARK.png";
+import nuppuWordmark from "../../assets/NUPPU WORDMARK.png";
 
 export default function Footer() {
   const { t } = useLanguage();
@@ -11,15 +13,16 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
           <div className="md:col-span-2">
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#C9BBF5] to-[#6E4FD1] flex items-center justify-center shadow-md">
-                <span className="text-white text-xl" style={{ fontFamily: 'Nunito, sans-serif' }}>N</span>
-              </div>
-              <span
-                className="text-2xl text-[#6E4FD1]"
-                style={{ fontFamily: 'Nunito, sans-serif' }}
-              >
-                Nuppu
-              </span>
+              <img
+                src={nuppuMark}
+                alt=""
+                className="w-12 h-12 shrink-0 object-contain"
+              />
+              <img
+                src={nuppuWordmark}
+                alt="Nuppu"
+                className="h-7 sm:h-8 object-contain"
+              />
             </div>
             <p className="text-[#6B6660] mb-6 max-w-md leading-relaxed">
               {t("footer.description")}

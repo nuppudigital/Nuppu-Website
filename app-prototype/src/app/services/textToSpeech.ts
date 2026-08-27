@@ -11,7 +11,6 @@ const IGNORED_ERRORS = new Set(['canceled', 'interrupted', '']);
 
 class TextToSpeechService {
   private synth: SpeechSynthesis | null;
-  private utterance: SpeechSynthesisUtterance | null = null;
   private voicesReady: Promise<void> | null = null;
   private speaking = false;
   private paused = false;
@@ -106,7 +105,6 @@ class TextToSpeechService {
       console.warn('Speech synthesis error:', errorCode);
     };
 
-    this.utterance = utterance;
     this.synth.speak(utterance);
   }
 

@@ -2,7 +2,8 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
-import nuppuCharacter from "../../assets/NUPPU BUNNY.png";
+import nuppuMark from "../../assets/NUPPU MARK.png";
+import nuppuWordmark from "../../assets/NUPPU WORDMARK.png";
 import { useLanguage, Lang } from "../i18n/LanguageContext";
 
 function LanguageToggle({ className = "" }: { className?: string }) {
@@ -65,22 +66,19 @@ export default function Navigation() {
             className="flex items-center gap-2 group"
             aria-label="Nuppu home"
           >
-            <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#6E4FD1] to-[#6E4FD1]/60 flex items-center justify-center shadow-md group-hover:scale-105 transition-transform duration-300 overflow-hidden relative">
-              <img
-                src={nuppuCharacter}
-                alt="Nuppu"
-                className="w-10 h-10 object-contain"
-              />
-            </div>
-            <span
-              className="text-2xl text-[#6E4FD1] group-hover:text-[#5E3FC0] transition-colors duration-300"
-              style={{ fontFamily: 'Nunito, sans-serif' }}
-            >
-              Nuppu
-            </span>
+            <img
+              src={nuppuMark}
+              alt=""
+              className="w-12 h-12 shrink-0 object-contain group-hover:scale-105 transition-transform duration-300"
+            />
+            <img
+              src={nuppuWordmark}
+              alt="Nuppu"
+              className="h-7 sm:h-8 object-contain group-hover:opacity-80 transition-opacity duration-300"
+            />
           </Link>
 
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden lg:flex items-center gap-8">
             {navLinks.map((link) => (
               <Link
                 key={link.path}
@@ -110,7 +108,7 @@ export default function Navigation() {
             </Link>
           </div>
 
-          <div className="md:hidden flex items-center gap-2">
+          <div className="lg:hidden flex items-center gap-2">
             <LanguageToggle />
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -131,7 +129,7 @@ export default function Navigation() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="md:hidden bg-white border-t border-border overflow-hidden"
+            className="lg:hidden bg-white border-t border-border overflow-hidden"
           >
             <div className="px-4 py-6 space-y-4">
               {navLinks.map((link) => (

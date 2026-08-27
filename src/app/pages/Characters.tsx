@@ -5,7 +5,7 @@ import nuppuImg from "../../assets/NUPPU BUNNY.png";
 import muruImg from "../../assets/MURU BEAR.png";
 import hippuImg from "../../assets/HIPPU CAT.png";
 import lumoImg from "../../assets/LUMO FOX.png";
-import lineupImg from "../../assets/CHARACTERS LINEUP.png";
+import lineupImg from "../../assets/Friends.png";
 import { usePageMeta } from "../hooks/usePageMeta";
 import { useLanguage } from "../i18n/LanguageContext";
 

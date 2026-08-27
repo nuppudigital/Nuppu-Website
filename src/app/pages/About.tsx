@@ -16,8 +16,8 @@ import {
 import { ImageWithFallback } from "../components/media/ImageWithFallback";
 import { usePageMeta } from "../hooks/usePageMeta";
 import { useLanguage } from "../i18n/LanguageContext";
-import brainImg from "../../assets/_DSC2126.jpeg";
-import whyImg from "../../assets/_DSC2163 copy.jpeg";
+import brainImg from "../../assets/Laura_Emmi.jpg";
+import whyImg from "../../assets/Main_characters.jpeg";
 import founderImg from "../../assets/_DSC1990.jpeg";
 import cofounderImg from "../../assets/_DSC2052.jpeg";
 import nuppuLogoStacked from "../../assets/NUPPU LOGO STACKED.png";
@@ -402,7 +402,7 @@ export default function About() {
                 <ImageWithFallback
                   src={brainImg}
                   alt={t("about.brain.imageAlt")}
-                  className="w-full h-[400px] object-cover"
+                  className="w-full h-auto object-contain"
                 />
               </div>
             </motion.div>
@@ -541,7 +541,7 @@ export default function About() {
                 <ImageWithFallback
                   src={whyImg}
                   alt={t("about.why.imageAlt")}
-                  className="w-full h-[650px] object-cover object-top"
+                  className="w-full h-auto object-contain"
                 />
               </div>
             </motion.div>
