@@ -1,0 +1,54 @@
+{
+  "name": "nuppuappfi",
+  "private": true,
+  "version": "0.0.1",
+  "type": "module",
+  "scripts": {
+    "build": "npm run build:admin && npm run build:prototype && vite build",
+    "dev": "node scripts/dev-prebuild.js && vite",
+    "vercel-build": "npm run build:admin && npm run build:prototype && vite build",
+    "build:admin": "cd admin-dashboard && npm install && ADMIN_BASE_PATH=/admin/ npm run build && rm -rf ../public/admin && cp -r dist ../public/admin",
+    "build:prototype": "cd app-prototype && npm install && npm run build && rm -rf ../public/app-preview && cp -r dist ../public/app-preview",
+    "lint": "eslint .",
+    "server": "node api/index.js",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@radix-ui/react-slot": "1.1.2",
+    "class-variance-authority": "0.7.1",
+    "clsx": "2.1.1",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "lucide-react": "0.487.0",
+    "mongoose": "^9.3.3",
+    "motion": "12.23.24",
+    "nodemailer": "^9.0.3",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "react-router-dom": "^7.13.0",
+    "tailwind-merge": "3.2.0",
+    "tw-animate-css": "1.3.8",
+    "twilio": "^5.13.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.4",
+    "@tailwindcss/vite": "4.1.12",
+    "@types/react": "^18.3.1",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "4.7.0",
+    "eslint": "^9.39.4",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-react-refresh": "^0.5.3",
+    "globals": "^17.7.0",
+    "tailwindcss": "4.1.12",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.63.0",
+    "vite": "6.3.5"
+  },
+  "pnpm": {
+    "overrides": {
+      "vite": "6.3.5"
+    }
+  }
+}

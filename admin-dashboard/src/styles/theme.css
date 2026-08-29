@@ -1,0 +1,50 @@
+@import 'tailwindcss';
+
+:root {
+  /* matches Nuppu Website/src/styles/theme.css so this dashboard looks like the same product */
+  --nuppu-yellow: #f6e19a;
+  --nuppu-purple: #6e4fd1;
+  --nuppu-purple-light: #c9bbf5;
+  --nuppu-eucalyptus: #a8c5ba;
+  --nuppu-gold: #d4af5e;
+  --nuppu-cream: #ece5d3;
+
+  --background: #fbf0c8;
+  --foreground: #35322b;
+  --card: #fffdf6;
+  --card-foreground: #35322b;
+  --primary: #6e4fd1;
+  --primary-foreground: #ffffff;
+  --secondary: #f0d983;
+  --secondary-foreground: #35322b;
+  --muted: #f2edde;
+  --muted-foreground: #6b6660;
+  --destructive: #d4183d;
+  --destructive-foreground: #ffffff;
+  --border: rgba(110, 79, 209, 0.22);
+  --radius: 0.75rem;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+}
