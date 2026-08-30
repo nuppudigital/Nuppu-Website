@@ -184,30 +184,30 @@ export default function Home() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
-            className="flex flex-wrap justify-center items-end gap-4 sm:gap-6 md:gap-10 mb-10"
+            className="flex flex-nowrap justify-center items-end gap-1.5 sm:gap-6 md:gap-10 mb-10"
           >
             <img
               src={nuppuImg}
               alt="Nuppu"
-              className="h-40 sm:h-56 md:h-64 w-auto object-contain drop-shadow-xl"
+              className="h-20 sm:h-40 md:h-56 lg:h-64 w-auto object-contain drop-shadow-xl"
               loading="lazy"
             />
             <img
               src={muruImg}
               alt="Muru"
-              className="h-40 sm:h-56 md:h-64 w-auto object-contain drop-shadow-xl"
+              className="h-20 sm:h-40 md:h-56 lg:h-64 w-auto object-contain drop-shadow-xl"
               loading="lazy"
             />
             <img
               src={hippuImg}
               alt="Hippu"
-              className="h-40 sm:h-56 md:h-64 w-auto object-contain drop-shadow-xl"
+              className="h-20 sm:h-40 md:h-56 lg:h-64 w-auto object-contain drop-shadow-xl"
               loading="lazy"
             />
             <img
               src={lumoImg}
               alt="Lumo"
-              className="h-40 sm:h-56 md:h-64 w-auto object-contain drop-shadow-xl"
+              className="h-20 sm:h-40 md:h-56 lg:h-64 w-auto object-contain drop-shadow-xl"
               loading="lazy"
             />
           </motion.div>
