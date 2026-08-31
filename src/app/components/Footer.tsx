@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Heart, Lock, Mail, Shield } from "lucide-react";
+import { Heart, Mail, Shield } from "lucide-react";
 import { useLanguage } from "../i18n/LanguageContext";
 import nuppuMark from "../../assets/NUPPU MARK.png";
 import nuppuWordmark from "../../assets/NUPPU WORDMARK.png";
@@ -75,18 +75,6 @@ export default function Footer() {
                 >
                   {t("nav.contact")}
                 </Link>
-              </li>
-              <li>
-                {/* plain anchor, not <Link> - /admin is its own app, not part of this router */}
-                <a
-                  href="/admin"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-[#6B6660] hover:text-[#6E4FD1] transition-colors inline-flex items-center gap-1.5"
-                >
-                  <Lock size={14} />
-                  {t("footer.admin")}
-                </a>
               </li>
             </ul>
           </div>
