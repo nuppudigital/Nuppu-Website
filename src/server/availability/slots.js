@@ -8,8 +8,8 @@ import { AvailabilityBlock } from "../models/AvailabilityBlock.js";
 
 export const TIMEZONE = "Europe/Helsinki";
 export const WORKING_WEEKDAYS = [1, 2, 3, 4, 5]; // Mon-Fri, per Date#getUTCDay()
-export const SLOT_HOURS = [9, 10, 11, 12, 13, 14, 15, 16]; // local hour starts - 16:00 + 45min still fits before 17:00 close
-export const CONSULTATION_MINUTES = 45;
+export const SLOT_HOURS = [9, 10, 11, 12, 13, 14, 15, 16]; // local hour starts - 16:00 + 30min still fits before 17:00 close
+export const CONSULTATION_MINUTES = 30;
 export const PENDING_HOLD_MINUTES = 30; // how long an unpaid checkout holds a slot before it's up for grabs again
 export const BOOKING_WINDOW_DAYS = 42; // how far ahead customers can book - change this one constant to adjust it
 

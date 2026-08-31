@@ -165,12 +165,6 @@ export default function Contact() {
               </div>
 
               <div className="mt-8 p-6 bg-[#F2EDDE] rounded-2xl">
-                <h3
-                  className="text-lg text-[#35322B] mb-3"
-                  style={{ fontFamily: 'Nunito, sans-serif' }}
-                >
-                  {t("contact.waitlist.title")}
-                </h3>
                 <p className="text-[#6B6660] leading-relaxed">
                   {t("contact.waitlist.text")}
                 </p>

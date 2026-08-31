@@ -6,8 +6,7 @@ import {
   Heart,
   BookOpen,
   Brain,
-  GraduationCap,
-  Shield,
+  Users,
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";
@@ -57,17 +56,10 @@ export default function Home() {
       color: "#FFD4C4",
     },
     {
-      icon: <GraduationCap className="w-10 h-10" />,
-      title: t("home.audience.teachers.title"),
-      description: t("home.audience.teachers.description"),
-      benefits: tList("home.audience.teachers.benefits"),
-      color: "#F9E5A8",
-    },
-    {
-      icon: <Shield className="w-10 h-10" />,
-      title: t("home.audience.healthcare.title"),
-      description: t("home.audience.healthcare.description"),
-      benefits: tList("home.audience.healthcare.benefits"),
+      icon: <Users className="w-10 h-10" />,
+      title: t("home.audience.professionals.title"),
+      description: t("home.audience.professionals.description"),
+      benefits: tList("home.audience.professionals.benefits"),
       color: "#D4C5F9",
     },
   ];
@@ -100,7 +92,7 @@ export default function Home() {
               </motion.div>
 
               <h1
-                className="text-4xl md:text-5xl lg:text-6xl text-[#35322B] mb-6 leading-tight"
+                className="text-4xl md:text-5xl lg:text-6xl text-[#35322B] mb-6 leading-tight text-pretty"
                 style={{ fontFamily: 'Nunito, sans-serif' }}
               >
                 {t("home.heroTitle")}{" "}
@@ -138,7 +130,7 @@ export default function Home() {
                 <ImageWithFallback
                   src={heroImg}
                   alt={t("home.heroImageAlt")}
-                  className="w-full h-[400px] md:h-[500px] object-cover"
+                  className="w-full h-[400px] md:h-[500px] object-cover object-top"
                   loading="eager"
                   fetchPriority="high"
                 />
@@ -328,7 +320,7 @@ export default function Home() {
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {targetAudiences.map((audience, index) => (
               <motion.div
                 key={index}
@@ -390,7 +382,6 @@ export default function Home() {
               className="inline-flex items-center gap-2 px-8 py-4 bg-white text-[#6E4FD1] rounded-full hover:shadow-2xl hover:scale-105 transition-all duration-300"
             >
               {t("home.cta.button")}
-              <ArrowRight size={20} />
             </Link>
           </motion.div>
         </div>

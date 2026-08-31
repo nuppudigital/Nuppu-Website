@@ -97,8 +97,8 @@ export async function createPayment(order) {
         // Finland's standard VAT rate - informational only, Paytrail doesn't recompute
         // `amount` from it. Ask the accountant if this service needs a different rate.
         vatPercentage: 25.5,
-        productCode: "emotional-support-45min",
-        description: description || "Nuppu emotional support consultation (45 min)",
+        productCode: "emotional-support-30min",
+        description: description || "Nuppu emotional support consultation (30 min)",
       },
     ],
     customer: {

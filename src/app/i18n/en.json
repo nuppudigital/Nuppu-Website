@@ -8,7 +8,7 @@
     "getStarted": "Get Started"
   },
   "footer": {
-    "description": "A safe, ad-free digital space where children learn emotional regulation, mindfulness, and calm through personalized stories and interactive exercises.",
+    "description": "A safe, ad-free app where children learn emotional regulation, mindfulness, and calm through personalized stories and interactive exercises.",
     "gdpr": "GDPR Compliant",
     "adFree": "Ad-Free",
     "quickLinks": "Quick Links",
@@ -32,22 +32,22 @@
       "description": "Nuppu helps children build emotional confidence through personalized stories, mindfulness, and safe ad-free experiences."
     },
     "badge": "Safe • GDPR Compliant • Ad-Free",
-    "heroTitle": "Help Your Child Find",
-    "heroTitleHighlight": "Calm & Confidence",
-    "heroSubtitle": "Nuppu uses personalized stories and interactive exercises to help children develop emotional intelligence, mindfulness, and self-regulation skills through stories.",
+    "heroTitle": "Strong emotional skills are one of the most valuable gifts",
+    "heroTitleHighlight": "you can give your child",
+    "heroSubtitle": "Small exercises today build courage, empathy, and emotional skills that last a lifetime.",
     "heroImageAlt": "Happy calm child smiling",
     "contactUs": "Contact Us",
     "meetCharacters": "Meet the Characters",
     "meetGang": {
       "title": "Meet Nuppu's Friends",
-      "subtitle": "Nuppu, Muru, Hippu, and Lumo — four warm-hearted characters who walk alongside your child through every emotion, from curiosity to calm.",
+      "subtitle": "Nuppu, Muru, Hippu, and Lumo are four gentle friends who walk alongside your child from one emotion to the next.",
       "cta": "Meet the Characters"
     },
     "appPreview": {
-      "badge": "Interactive Prototype",
+      "badge": "Interactive Demo",
       "title": "See our vision for the Nuppu app",
-      "subtitle": "Explore a live, click-through prototype of the Nuppu mobile app — AI-generated stories, breathing exercises, and micro-support tips for parents, right in your browser.",
-      "button": "Try the App Prototype",
+      "subtitle": "Try Nuppu's stories, breathing exercises, and emotional-skills moments right in your browser.",
+      "button": "Try Nuppu",
       "comingSoonTitle": "Launching soon!",
       "comingSoonMessage": "You'll get to test our prototype on September 15. We're putting the finishing touches on the Nuppu app — check back soon!",
       "comingSoonDays": "Days",
@@ -60,7 +60,7 @@
       "title": "Why Choose Nuppu?",
       "subtitle": "A safe, research-backed approach to children's emotional wellbeing",
       "slide1": {
-        "title": "Emotional Safety",
+        "title": "Psychological Safety",
         "description": "A secure, ad-free environment built with psychological frameworks to support healthy emotional development."
       },
       "slide2": {
@@ -69,32 +69,27 @@
       },
       "slide3": {
         "title": "Calming Impact",
-        "description": "Evidence-based techniques that promote mindfulness, reduce anxiety, and foster emotional regulation."
+        "description": "Stories and exercises help your child practice mindfulness, calm down, and process their feelings safely."
       }
     },
     "audience": {
       "title": "Who Benefits from Nuppu?",
-      "subtitle": "Trusted by parents, educators, and healthcare professionals",
+      "subtitle": "Built for parents' needs. Coming soon for professionals working with children too",
       "parents": {
         "title": "For Parents",
-        "description": "Receive micro-support tips and strengthen bonding through shared stories. Help your child develop emotional intelligence in a safe digital space.",
+        "description": "Receive micro-support tips and strengthen bonding through shared stories. Support your child's emotional development in a safe digital space.",
         "benefits": ["Daily emotional check-ins", "Parent guidance tips", "Bonding activities"]
       },
-      "teachers": {
-        "title": "For Teachers",
-        "description": "Integrate emotional learning into your classroom. Nuppu provides tools for group emotional regulation and mindfulness exercises.",
-        "benefits": ["Classroom activities", "Group sessions", "Progress tracking"]
-      },
-      "healthcare": {
-        "title": "For Healthcare Professionals",
-        "description": "A trusted tool built on psychological frameworks. Support your young patients with structured emotional exercises.",
-        "benefits": ["Evidence-based approach", "GDPR compliant", "Professional insights"]
+      "professionals": {
+        "title": "Professionals Working with Children",
+        "description": "Bring emotional-skills learning into your group's everyday routine. Nuppu provides tools for group emotional regulation and mindfulness exercises.",
+        "benefits": ["Group sessions", "Professional insights", "Progress tracking"]
       }
     },
     "cta": {
       "title": "Ready to Start Your Child's Emotional Journey?",
-      "subtitle": "Join our waitlist and be among the first to experience Nuppu's transformative approach to children's emotional wellbeing.",
-      "button": "Get Early Access"
+      "subtitle": "Join the waitlist and be among the first to experience how Nuppu supports your child's emotional-skills development.",
+      "button": "Join the Waitlist ⭐"
     }
   },
   "characters": {
@@ -104,7 +99,7 @@
     },
     "heroTitle": "Meet the",
     "heroTitleHighlight": "Nuppu Friends",
-    "heroSubtitle": "Four lovable characters, each with their own personality, ready to guide your child through the beautiful journey of understanding and managing emotions.",
+    "heroSubtitle": "Four lovable characters, each with their own personality and background. They walk alongside your child, helping them understand their feelings and practice emotional skills safely.",
     "nuppu": {
       "personality": "Emotional Guide and Friendship",
       "description": "Nuppu is a gentle bunny who walks alongside the child through all emotions. Nuppu can name feelings and notices even the smallest details. Nuppu never says a feeling is wrong, but helps the child understand where it came from and where it can go.",
@@ -137,7 +132,7 @@
     "intro1": "Tantrums, tension, fears, sibling fights or challenging everyday situations can burden the whole family. Many parents wonder how to support their child so that emotions are faced safely and constructively.",
     "intro2": "Nuppu's emotional skills guidance provides practical support for your family's situation. The goal is to find concrete methods that you can use immediately in everyday life.",
     "banners": {
-      "success": "Payment received - thank you! Your 45-minute consultation is booked. We've sent the details to your email.",
+      "success": "Payment received - thank you! Your 30-minute consultation is booked. We've sent the details to your email.",
       "pending": "Your payment is still being processed. We'll confirm by email as soon as it completes.",
       "cancelled": "Payment was cancelled. No charge was made - feel free to try again below.",
       "error": "We couldn't verify that payment. No charge was confirmed - please try again or contact us."
@@ -147,32 +142,32 @@
       "items": [
         "Parents of children aged 3–8",
         "Families who need support in challenging emotional situations",
-        "Parents who want to strengthen their child's emotional skills preventively"
+        "Parents who want to strengthen their child's emotional skills in everyday life"
       ]
     },
     "includes": {
       "title": "What does the guidance include?",
       "items": [
-        "45-minute personal remote meeting",
-        "Opportunity to go through your family's situation",
+        "30-minute personal remote meeting",
+        "Individualized support for your family's situation",
         "Concrete action models and sentence examples for everyday life",
         "Tips to support emotional skills at home"
       ]
     },
     "provider": {
       "title": "The guidance is provided by",
-      "text": "Laura Turunen (Sociologist, University of Helsinki), who works with children and families and is responsible for the pedagogical content of Nuppu."
+      "text": "The guidance is provided by Laura Turunen, a Bachelor of Social Services (UAS) and qualified Early Childhood Education teacher, who works with children and families and is responsible for developing Nuppu's pedagogical content."
     },
     "price": {
       "title": "Pilot price",
       "amount": "29 €",
-      "per": "/ 45 min",
-      "text": "The aim of the pilot phase is to develop the future Nuppu service together with families and to gain understanding of what kind of support parents need in their everyday lives."
+      "per": "/ 30 min",
+      "text": "During the pilot phase, we're building Nuppu together with families. Their feedback helps us make the service even more useful as everyday support."
     },
     "booking": {
       "title": "Book your consultation",
       "pausedTitle": "Booking is temporarily paused",
-      "pausedText": "We're not taking new consultation bookings right now, but we'll be back soon — please check this page again shortly, or reach out via the contact page below.",
+      "pausedText": "We're not taking new consultation bookings right now. We'll open bookings again soon. You can check back later or reach out to us through the contact form.",
       "chooseTimeLabel": "Choose a time *",
       "loadingSlots": "Loading available times…",
       "noSlotsAtAll": "No times are available right now - please check back soon or contact us.",
@@ -204,7 +199,7 @@
     },
     "ask": {
       "title": "Prefer to ask first?",
-      "text": "Contact us to learn more about our emotional support guidance before booking.",
+      "text": "Feel free to ask before you book.",
       "button": "Contact Us"
     }
   },
@@ -215,10 +210,10 @@
     },
     "heroTitle": "About",
     "heroTitleHighlight": "Nuppu",
-    "heroSubtitle": "Building a safer, healthier digital world where children can learn to understand and manage their emotions with confidence.",
+    "heroSubtitle": "We believe every child deserves the chance to practice emotional skills safely. That's why we're building Nuppu – a gentle digital environment where emotions are learned through stories, play, and shared moments of insight.",
     "background": {
       "title": "Background Idea",
-      "p1": "Nuppu Digital responds to the growing need to support children's emotional skills at an early stage of development. In everyday life, children encounter emotions and stress that they are not yet able to put into words. Nuppu offers children a safe, gentle, and encouraging way to explore their own emotions before challenges begin to pile up.",
+      "p1": "Nuppu Digital responds to an increasingly well-recognized need to support children's emotional skills at an early stage of development. In everyday life, children encounter emotions and stress that they are not yet able to put into words. Nuppu offers children a safe, gentle, and encouraging way to explore their own emotions before challenges begin to pile up.",
       "p2": "The foundation of the brand is the idea that understanding emotions is a skill that can be practiced with the same lightness as learning to read or count."
     },
     "founder": {
@@ -241,8 +236,8 @@
     "promise": {
       "title": "Brand Promise",
       "intro": "At the core of Nuppu Digital's brand is the idea that every emotion is allowed and every child deserves to be treated with respect.",
-      "p1": "Nuppu does not focus on achievements or perfection, but rather helps children understand themselves, build their emotional skills and grow into their own unique self. At the same time, it offers parents and educators gentle, concrete tools for everyday emotional moments.",
-      "p2": "We believe that emotional education should be safe, easily accessible and part of everyday life. Nuppu builds trust in both children and adults by being warm, child-oriented and genuinely human.",
+      "p1": "Nuppu does not focus on achievements or perfection, but rather helps children understand themselves, strengthen their emotional skills and grow into their own unique self. At the same time, it offers parents and educators gentle, concrete tools for everyday emotional moments.",
+      "p2": "Nuppu builds trust among children and adults alike by being warm, child-oriented, and genuinely human.",
       "p3": "Understanding emotions is a skill that everyone can learn."
     },
     "values": {
@@ -250,19 +245,19 @@
       "subtitle": "The principles that guide everything we do at Nuppu",
       "childFirst": {
         "title": "Child-First Approach",
-        "description": "Every decision we make prioritizes children's emotional wellbeing and healthy development."
+        "description": "In everything we do, the child's wellbeing and healthy development come first."
       },
       "safety": {
         "title": "Safety & Privacy",
-        "description": "GDPR compliant, ad-free, and built with the highest standards of data protection."
+        "description": "Nuppu is a safe, ad-free, GDPR-compliant digital environment built to the highest data protection standards."
       },
       "evidence": {
         "title": "Evidence-Based",
-        "description": "Grounded in psychological research and developmental science for proven results."
+        "description": "Grounded in research on children's emotional development and psychological methods."
       },
       "family": {
         "title": "Family Connection",
-        "description": "Strengthening bonds between parents and children through shared experiences."
+        "description": "We strengthen the connection between parent and child through shared moments and emotional-skills exercises."
       }
     },
     "brain": {
@@ -270,26 +265,26 @@
       "imageAlt": "Brain and psychology research",
       "intro": "Nuppu isn't just another children's app—it's built on a foundation of psychological research and child development science.",
       "f1": {
-        "title": "Predefined Story Structures",
-        "description": "Each story follows carefully crafted emotional arcs that guide children through recognizing, understanding, and managing their feelings."
+        "title": "💜 Stories That Teach Emotional Skills",
+        "description": "Each story helps children recognize, understand, and regulate their feelings safely."
       },
       "f2": {
-        "title": "Age-Appropriate Boundaries",
-        "description": "Content is carefully tailored to different developmental stages, ensuring children receive appropriate emotional education."
+        "title": "💜 Age-Appropriate Content",
+        "description": "Exercises are designed around the child's developmental stage, so learning feels natural and engaging."
       },
       "f3": {
-        "title": "Positive Reinforcement",
-        "description": "Built on principles of encouragement and growth mindset, helping children build confidence in their emotional abilities."
+        "title": "💜 Encouraging Learning",
+        "description": "Positive feedback strengthens a child's confidence in their own emotional skills and encourages them to keep trying."
       },
       "f4": {
-        "title": "Mindfulness Integration",
-        "description": "Incorporates breathing exercises, grounding techniques, and awareness practices suitable for young minds."
+        "title": "💜 Calming Exercises",
+        "description": "Breathing, mindfulness, and grounding exercises suited to children help them pause and settle amid everyday life."
       }
     },
     "features": {
       "visual": {
         "title": "Visual Promise",
-        "p1": "Nuppu's visual world is designed to calm rather than overstimulate. Soft, rounded characters are empathetic and approachable, serving as mirrors of emotional states for the child.",
+        "p1": "Nuppu's visual world is designed to calm rather than overstimulate. Soft-lined, rounded characters are empathetic and approachable, serving as mirrors of emotional states for the child.",
         "p2": "Pastel-toned, slightly hand-drawn illustrations bring a sense of humanity and distinguish Nuppu from hard, technical learning solutions. The visual identity supports focus, a sense of safety, and long-term use, which is also essential for product engagement."
       },
       "ux": {
@@ -298,9 +293,9 @@
         "p2": "Small, positive feedback reinforces a sense of success and supports intrinsic motivation. The experience is designed so that the child wants to return to Nuppu again and again."
       },
       "value": {
-        "title": "Value for Parents & Teachers",
-        "p1": "For adults, Nuppu offers support, tools, peace of mind, and clarity. Parents and teachers receive a calm overview of the child's progress without constant notification overload or demanding usage.",
-        "p2": "Nuppu does not add to everyday burden but supports what adults are already doing for the child's well-being. This makes the product easy to adopt and a natural part of family and school life."
+        "title": "Value for Parents & Professionals",
+        "p1": "For adults, Nuppu offers support, tools, peace of mind, and clarity. Parents and professionals receive a calm overview of the child's progress without constant notification overload or demanding usage.",
+        "p2": "Nuppu does not add to everyday burden but supports what adults are already doing for the child's well-being. This makes the product easy to adopt and a natural part of everyday life."
       },
       "tech": {
         "title": "Technology Supporting Development",
@@ -310,24 +305,24 @@
     },
     "why": {
       "title": "Why Nuppu?",
-      "intro": "Because children's digital experiences should support—not compromise—their mental health and development.",
+      "intro": "Children's digital time should support learning, wellbeing, and healthy growth – that's why we created Nuppu.",
       "imageAlt": "Diverse team collaboration",
       "security": {
         "title": "Data Security & Privacy",
         "description": "Full GDPR compliance with encrypted data storage and transparent privacy policies."
       },
       "development": {
-        "title": "Healthy Brain Development",
-        "description": "Designed to support cognitive and emotional growth without overstimulation."
+        "title": "Designed to Support Development",
+        "description": "Content is designed to support a child's cognitive, emotional, and social development without unnecessary stimulation."
       },
       "purpose": {
         "title": "Purpose-Driven Content",
-        "description": "Every story, exercise, and interaction has a clear developmental purpose."
+        "description": "Every story, exercise, and interaction is designed to build a child's emotional skills step by step."
       }
     },
     "cta": {
-      "title": "Join Us in Building a Better Digital Future for Children",
-      "subtitle": "Be part of a movement that prioritizes children's emotional wellbeing over engagement metrics.",
+      "title": "Let's build a safer digital world for children, together.",
+      "subtitle": "If you share our belief that technology should support children's wellbeing, we'd love to hear from you.",
       "button": "Get in Touch"
     }
   },
@@ -341,7 +336,7 @@
     "heroSubtitle": "Have questions about Nuppu? Want to join our waitlist? We'd love to hear from you!",
     "connect": {
       "title": "Let's Connect",
-      "text": "Whether you're a parent, teacher, healthcare professional, or just curious about Nuppu, we're here to answer your questions."
+      "text": "Want to hear more about Nuppu or have a question? We're here for you."
     },
     "emailUs": "Email Us",
     "responseTime": {
@@ -349,8 +344,7 @@
       "text": "Within 1-2 business days"
     },
     "waitlist": {
-      "title": "Join Our Waitlist",
-      "text": "Be among the first to experience Nuppu when we launch. Early access members will receive exclusive benefits and updates throughout our development journey."
+      "text": "Join the waitlist and be among the first to know when Nuppu launches. You'll also get an invite to early access and any perks tied to the pilot."
     },
     "form": {
       "nameLabel": "Your Name *",
@@ -435,7 +429,7 @@
     },
     "payments": {
       "title": "Payments",
-      "p1": "When you book and pay for the 45-minute emotional support consultation, payment is processed by **Paytrail Oyj**, a licensed Finnish payment institution supervised by the Finnish Financial Supervisory Authority (FIN-FSA). You enter your card, bank, or mobile payment details directly on Paytrail's secure checkout page - **we never see or store your card number, bank credentials, or CVV**.",
+      "p1": "When you book and pay for the 30-minute emotional support consultation, payment is processed by **Paytrail Oyj**, a licensed Finnish payment institution supervised by the Finnish Financial Supervisory Authority (FIN-FSA). You enter your card, bank, or mobile payment details directly on Paytrail's secure checkout page - **we never see or store your card number, bank credentials, or CVV**.",
       "p2": "We store only what's needed to reconcile your payment and deliver the consultation: your name, email, the amount paid, a Paytrail transaction reference, and the payment status.",
       "p3": "**Legal basis:** processing your payment data is necessary to fulfil the contract for the consultation you booked (Article 6(1)(b) GDPR), and to comply with our statutory bookkeeping obligations under the Finnish Accounting Act (Kirjanpitolaki) (Article 6(1)(c) GDPR).",
       "p4": "**Retention:** Finnish accounting law requires us to keep payment records for 6 years from the end of the fiscal year in which the payment was made. After that period, we anonymise the record (removing your name and email) rather than deleting it outright, so that our accounting trail stays intact without keeping your personal data any longer than required."

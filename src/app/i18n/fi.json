@@ -8,7 +8,7 @@
     "getStarted": "Aloita tästä"
   },
   "footer": {
-    "description": "Turvallinen ja mainokseton digitaalinen tila, jossa lapset oppivat tunteiden säätelyä, tietoista läsnäoloa ja rauhoittumista yksilöllisten tarinoiden ja vuorovaikutteisten harjoitusten avulla.",
+    "description": "Turvallinen ja mainokseton digitaalinen sovellus, jossa lapset oppivat tunteiden säätelyä, tietoista läsnäoloa ja rauhoittumista yksilöllisten tarinoiden ja vuorovaikutteisten harjoitusten avulla.",
     "gdpr": "GDPR-yhteensopiva",
     "adFree": "Mainokseton",
     "quickLinks": "Pikalinkit",
@@ -32,22 +32,22 @@
       "description": "Nuppu auttaa lapsia rakentamaan tunnetaitoja yksilöllisten tarinoiden, tietoisen läsnäolon ja turvallisen, mainoksettoman kokemuksen avulla."
     },
     "badge": "Turvallinen • GDPR-yhteensopiva • Mainokseton",
-    "heroTitle": "Auta lastasi löytämään",
-    "heroTitleHighlight": "rauha ja itseluottamus",
-    "heroSubtitle": "Nuppu auttaa lapsia kehittämään tunnetaitoja, tietoista läsnäoloa ja itsesäätelyä yksilöllisten tarinoiden ja vuorovaikutteisten harjoitusten avulla.",
+    "heroTitle": "Vahvat tunnetaidot on yksi arvokkaimmista lahjoista",
+    "heroTitleHighlight": "jonka voit antaa lapsellesi",
+    "heroSubtitle": "Pienet harjoitukset tänään rakentavat rohkeutta, empatiaa ja tunnetaitoja, joista on hyötyä koko elämän ajan.",
     "heroImageAlt": "Iloinen ja rauhallinen hymyilevä lapsi",
     "contactUs": "Ota yhteyttä",
     "meetCharacters": "Tutustu hahmoihin",
     "meetGang": {
       "title": "Tapaa Nupun ystävät",
-      "subtitle": "Nuppu, Muru, Hippu ja Lumo – neljä lämmintä hahmoa, jotka kulkevat lapsesi rinnalla jokaisessa tunteessa, uteliaisuudesta rauhoittumiseen.",
+      "subtitle": "Nuppu, Muru, Hippu ja Lumo ovat neljä lempeää ystävää, jotka kulkevat lapsesi rinnalla tunteesta toiseen.",
       "cta": "Tutustu hahmoihin"
     },
     "appPreview": {
-      "badge": "Interaktiivinen prototyyppi",
+      "badge": "Interaktiivinen demoversio",
       "title": "Tutustu visioomme Nuppu-sovelluksesta",
-      "subtitle": "Kokeile toimivaa Nuppu-mobiilisovelluksen prototyyppiä selaimessasi — tekoälyn luomia tarinoita, hengitysharjoituksia ja vinkkejä vanhemmille.",
-      "button": "Kokeile sovellusprototyyppiä",
+      "subtitle": "Kokeile Nupun tarinoita, hengitysharjoituksia ja tunnetaitoja vahvistavia hetkiä suoraan selaimessasi.",
+      "button": "Kokeile Nuppua",
       "comingSoonTitle": "Julkaistaan pian!",
       "comingSoonMessage": "Pääset testaamaan prototyyppiämme 15. syyskuuta. Viimeistelemme parhaillaan Nuppu-sovellusta — käy pian uudelleen!",
       "comingSoonDays": "Päivää",
@@ -60,7 +60,7 @@
       "title": "Miksi valita Nuppu?",
       "subtitle": "Turvallinen ja tutkimukseen perustuva tapa tukea lasten tunne-elämän hyvinvointia",
       "slide1": {
-        "title": "Emotionaalinen turvallisuus",
+        "title": "Psykologinen turvallisuus",
         "description": "Turvallinen ja mainokseton ympäristö, joka on rakennettu psykologisten viitekehysten pohjalta tukemaan tervettä tunne-elämän kehitystä."
       },
       "slide2": {
@@ -69,32 +69,27 @@
       },
       "slide3": {
         "title": "Rauhoittava vaikutus",
-        "description": "Tutkimusnäyttöön perustuvat menetelmät, jotka edistävät tietoista läsnäoloa, vähentävät ahdistusta ja tukevat tunteiden säätelyä."
+        "description": "Tarinat ja harjoitukset auttavat lasta harjoittelemaan tietoista läsnäoloa, rauhoittumaan ja käsittelemään tunteitaan turvallisesti."
       }
     },
     "audience": {
       "title": "Kenelle Nuppu sopii?",
-      "subtitle": "Vanhempien, kasvattajien ja terveydenhuollon ammattilaisten luottama",
+      "subtitle": "Kehitetty vanhempien tarpeisiin. Tulevaisuudessa myös lasten kanssa työskenteleville ammattilaisille",
       "parents": {
         "title": "Vanhemmille",
-        "description": "Saat arkeen pieniä tukivinkkejä ja vahvistat yhteyttä lapseesi yhteisten tarinoiden kautta. Auta lastasi kehittämään tunnetaitoja turvallisessa digitaalisessa ympäristössä.",
+        "description": "Saat arkeen pieniä tukivinkkejä ja vahvistat yhteyttä lapseesi yhteisten tarinoiden kautta. Tue lapsesi tunnetaitojen kehittymistä turvallisessa digitaalisessa ympäristössä.",
         "benefits": ["Päivittäiset tunnehetket", "Vinkit vanhemmille", "Yhteiset puuhat"]
       },
-      "teachers": {
-        "title": "Opettajille",
-        "description": "Tuo tunnetaitojen oppiminen osaksi luokkahuoneen arkea. Nuppu tarjoaa työkaluja ryhmän tunnesäätelyyn ja läsnäoloharjoituksiin.",
-        "benefits": ["Luokkahuoneaktiviteetit", "Ryhmätuokiot", "Edistymisen seuranta"]
-      },
-      "healthcare": {
-        "title": "Terveydenhuollon ammattilaisille",
-        "description": "Psykologisiin viitekehyksiin perustuva luotettava työkalu. Tue pieniä potilaitasi jäsennellyillä tunneharjoituksilla.",
-        "benefits": ["Näyttöön perustuva lähestymistapa", "GDPR-yhteensopiva", "Ammatilliset näkymät"]
+      "professionals": {
+        "title": "Lasten kanssa työskentelevät ammattilaiset",
+        "description": "Tuo tunnetaitojen oppiminen osaksi ryhmänne arkea. Nuppu tarjoaa työkaluja ryhmän tunnesäätelyyn ja läsnäoloharjoituksiin.",
+        "benefits": ["Ryhmätuokiot", "Ammatilliset näkymät", "Edistymisen seuranta"]
       }
     },
     "cta": {
       "title": "Valmiina aloittamaan lapsesi tunnetaitomatkan?",
-      "subtitle": "Liity jonotuslistalle ja ole ensimmäisten joukossa kokemassa Nupun lempeä tapa tukea lasten tunne-elämän hyvinvointia.",
-      "button": "Hanki varhainen pääsy"
+      "subtitle": "Liity jonotuslistalle ja pääset ensimmäisten joukossa kokemaan, miten Nuppu tukee lasten tunnetaitojen kehittymistä.",
+      "button": "Liity jonotuslistalle ⭐"
     }
   },
   "characters": {
@@ -104,7 +99,7 @@
     },
     "heroTitle": "Tutustu",
     "heroTitleHighlight": "Nupun ystäviin",
-    "heroSubtitle": "Neljä rakastettavaa hahmoa, joilla jokaisella on oma persoonallisuutensa, valmiina ohjaamaan lastasi tunteiden ymmärtämisen ja hallinnan kauniilla matkalla.",
+    "heroSubtitle": "Neljä rakastettavaa hahmoa, joilla jokaisella on oma persoonallisuutensa ja taustansa. He kulkevat lapsesi rinnalla ja auttavat häntä ymmärtämään tunteitaan sekä harjoittelemaan tunnetaitoja turvallisesti.",
     "nuppu": {
       "personality": "Tunneopas ja ystävyys",
       "description": "Nuppu on lempeä pupu, joka kulkee lapsen rinnalla kaikissa tunteissa. Nuppu osaa nimetä tunteita ja huomaa pienimmätkin yksityiskohdat. Nuppu ei koskaan sano tunnetta vääräksi, vaan auttaa lasta ymmärtämään, mistä se tuli ja minne se voi mennä.",
@@ -137,7 +132,7 @@
     "intro1": "Kiukkukohtaukset, jännitys, pelot, sisarusriidat tai haastavat arjen tilanteet voivat kuormittaa koko perhettä. Moni vanhempi pohtii, miten tukea lasta niin, että tunteet kohdataan turvallisesti ja rakentavasti.",
     "intro2": "Nupun tunnetaito-ohjaus tarjoaa käytännönläheistä tukea juuri teidän perheenne tilanteeseen. Tavoitteena on löytää konkreettisia keinoja, joita voit hyödyntää heti arjessa.",
     "banners": {
-      "success": "Maksu vastaanotettu – kiitos! 45 minuutin ohjausaikasi on varattu. Lähetimme tiedot sähköpostiisi.",
+      "success": "Maksu vastaanotettu – kiitos! 30 minuutin ohjausaikasi on varattu. Lähetimme tiedot sähköpostiisi.",
       "pending": "Maksuasi käsitellään vielä. Vahvistamme sähköpostitse heti, kun maksu on suoritettu.",
       "cancelled": "Maksu peruutettiin. Veloitusta ei tehty – voit halutessasi yrittää uudelleen alla.",
       "error": "Emme voineet vahvistaa maksua. Veloitusta ei vahvistettu – yritä uudelleen tai ota meihin yhteyttä."
@@ -147,32 +142,32 @@
       "items": [
         "3–8-vuotiaiden lasten vanhemmille",
         "Perheille, jotka kaipaavat tukea haastaviin tunnetilanteisiin",
-        "Vanhemmille, jotka haluavat vahvistaa lapsen tunnetaitoja ennaltaehkäisevästi"
+        "Vanhemmille, jotka haluavat vahvistaa lapsensa tunnetaitoja arjessa."
       ]
     },
     "includes": {
       "title": "Mitä ohjaus sisältää?",
       "items": [
-        "45 minuutin henkilökohtainen etätapaaminen",
-        "Mahdollisuus käydä läpi perheenne tilannetta",
+        "30 minuutin henkilökohtainen etätapaaminen",
+        "Yksilöllistä tukea perheenne tilanteeseen",
         "Konkreettisia toimintamalleja ja lause-esimerkkejä arkeen",
         "Vinkkejä tunnetaitojen tukemiseen kotona"
       ]
     },
     "provider": {
       "title": "Ohjauksesta vastaa",
-      "text": "Laura Turunen (sosiologi, Helsingin yliopisto), joka työskentelee lasten ja perheiden parissa ja vastaa Nupun pedagogisesta sisällöstä."
+      "text": "Ohjauksesta vastaa Laura Turunen, sosionomi YAMK ja varhaiskasvatuksen opettaja, joka työskentelee lasten ja perheiden parissa sekä vastaa Nupun pedagogisen sisällön kehittämisestä."
     },
     "price": {
       "title": "Pilottihinta",
       "amount": "29 €",
-      "per": "/ 45 min",
-      "text": "Pilottivaiheen tavoitteena on kehittää tulevaa Nuppu-palvelua yhdessä perheiden kanssa ja saada ymmärrystä siitä, millaista tukea vanhemmat arjessaan tarvitsevat."
+      "per": "/ 30 min",
+      "text": "Pilottivaiheessa rakennamme Nuppua yhdessä perheiden kanssa. Palautteen avulla kehitämme palvelusta entistä hyödyllisemmän arjen tueksi."
     },
     "booking": {
       "title": "Varaa ohjausaika",
       "pausedTitle": "Varaukset ovat tilapäisesti tauolla",
-      "pausedText": "Emme juuri nyt ota vastaan uusia ohjausvarauksia, mutta palaamme pian — käy tarkistamassa tämä sivu myöhemmin uudelleen tai ota yhteyttä yhteydenottosivun kautta.",
+      "pausedText": "Emme ota tällä hetkellä vastaan uusia ohjausvarauksia. Avaamme varaukset pian. Voit käydä tarkistamassa tilanteen myöhemmin tai ottaa meihin yhteyttä yhteydenottolomakkeen kautta.",
       "chooseTimeLabel": "Valitse ajankohta *",
       "loadingSlots": "Ladataan vapaita aikoja…",
       "noSlotsAtAll": "Vapaita aikoja ei juuri nyt ole – kokeile myöhemmin uudelleen tai ota yhteyttä.",
@@ -204,7 +199,7 @@
     },
     "ask": {
       "title": "Haluatko kysyä ensin?",
-      "text": "Ota yhteyttä ja kysy lisää tunnetaito-ohjauksesta ennen varaamista.",
+      "text": "Kysy rohkeasti ennen varaamista.",
       "button": "Ota yhteyttä"
     }
   },
@@ -215,10 +210,10 @@
     },
     "heroTitle": "Tietoa",
     "heroTitleHighlight": "Nupusta",
-    "heroSubtitle": "Rakennamme turvallisempaa ja terveempää digitaalista maailmaa, jossa lapset voivat oppia ymmärtämään ja hallitsemaan tunteitaan luottavaisin mielin.",
+    "heroSubtitle": "Uskomme, että jokainen lapsi ansaitsee mahdollisuuden harjoitella tunnetaitoja turvallisesti. Siksi rakennamme Nuppua – lempeää digitaalista ympäristöä, jossa tunteita opetellaan tarinoiden, leikin ja yhteisten oivallusten kautta.",
     "background": {
       "title": "Taustaidea",
-      "p1": "Nuppu Digital vastaa kasvavaan tarpeeseen tukea lasten tunnetaitoja jo varhaisessa kehitysvaiheessa. Arjessa lapset kohtaavat tunteita ja stressiä, joita he eivät vielä osaa pukea sanoiksi. Nuppu tarjoaa lapsille turvallisen, lempeän ja kannustavan tavan tutustua omiin tunteisiinsa ennen kuin haasteet alkavat kasaantua.",
+      "p1": "Nuppu Digital vastaa yhä paremmin tunnistettuun tarpeeseen tukea lasten tunnetaitoja jo varhaisessa kehitysvaiheessa. Arjessa lapset kohtaavat tunteita ja stressiä, joita he eivät vielä osaa pukea sanoiksi. Nuppu tarjoaa lapsille turvallisen, lempeän ja kannustavan tavan tutustua omiin tunteisiinsa ennen kuin haasteet alkavat kasaantua.",
       "p2": "Brändin perustana on ajatus siitä, että tunteiden ymmärtäminen on taito, jota voi harjoitella yhtä kevyesti kuin lukemista tai laskemista."
     },
     "founder": {
@@ -241,8 +236,8 @@
     "promise": {
       "title": "Brändilupaus",
       "intro": "Nuppu Digitalin brändin ytimessä on ajatus siitä, että jokainen tunne on sallittu ja jokainen lapsi ansaitsee tulla kohdatuksi arvostavasti.",
-      "p1": "Nuppu ei keskity suorituksiin tai täydellisyyteen, vaan auttaa lasta ymmärtämään itseään, rakentamaan tunnetaitojaan ja kasvamaan omaksi ainutlaatuiseksi itsekseen. Samalla se tarjoaa vanhemmille ja kasvattajille lempeitä, konkreettisia työkaluja arjen tunnehetkiin.",
-      "p2": "Uskomme, että tunnekasvatuksen tulee olla turvallista, helposti saavutettavaa ja osa arkea. Nuppu rakentaa luottamusta sekä lapsiin että aikuisiin olemalla lämmin, lapsilähtöinen ja aidosti inhimillinen.",
+      "p1": "Nuppu ei keskity suorituksiin tai täydellisyyteen, vaan auttaa lasta ymmärtämään itseään, vahvistamaan tunnetaitojaan ja kasvamaan omaksi ainutlaatuiseksi itsekseen. Samalla se tarjoaa vanhemmille ja kasvattajille lempeitä, konkreettisia työkaluja arjen tunnehetkiin.",
+      "p2": "Nuppu rakentaa luottamusta lasten ja aikuisten keskuudessa olemalla lämmin, lapsilähtöinen ja aidosti inhimillinen.",
       "p3": "Tunteiden ymmärtäminen on taito, jonka jokainen voi oppia."
     },
     "values": {
@@ -250,19 +245,19 @@
       "subtitle": "Periaatteet, jotka ohjaavat kaikkea tekemistämme Nupussa",
       "childFirst": {
         "title": "Lapsi edellä",
-        "description": "Jokainen päätöksemme asettaa etusijalle lapsen tunne-elämän hyvinvoinnin ja terveen kehityksen."
+        "description": "Kaikessa tekemisessämme lapsen hyvinvointi ja terve kehitys ovat etusijalla."
       },
       "safety": {
         "title": "Turvallisuus ja yksityisyys",
-        "description": "GDPR-yhteensopiva, mainokseton ja rakennettu korkeimpien tietosuojastandardien mukaisesti."
+        "description": "Nuppu on turvallinen, mainokseton ja GDPR-yhteensopiva digitaalinen ympäristö, joka on rakennettu korkeimpien tietosuojastandardien mukaisesti."
       },
       "evidence": {
         "title": "Näyttöön perustuva",
-        "description": "Perustuu psykologiseen tutkimukseen ja kehitystieteeseen todistettujen tulosten saavuttamiseksi."
+        "description": "Pohjautuu tutkittuun tietoon lasten tunnekehityksestä ja psykologisista menetelmistä."
       },
       "family": {
         "title": "Perheen yhteys",
-        "description": "Vahvistamme vanhempien ja lasten välistä sidettä yhteisten kokemusten kautta."
+        "description": "Vahvistamme vanhemman ja lapsen välistä yhteyttä yhteisten hetkien ja tunnetaitoharjoitusten kautta."
       }
     },
     "brain": {
@@ -270,26 +265,26 @@
       "imageAlt": "Aivo- ja psykologiatutkimus",
       "intro": "Nuppu ei ole vain yksi lastensovellus muiden joukossa – se rakentuu psykologisen tutkimuksen ja lapsen kehitystä koskevan tieteen perustalle.",
       "f1": {
-        "title": "Ennalta suunnitellut tarinarakenteet",
-        "description": "Jokainen tarina noudattaa huolellisesti rakennettuja tunnekaaria, jotka ohjaavat lasta tunnistamaan, ymmärtämään ja hallitsemaan tunteitaan."
+        "title": "💜 Tarinat, jotka opettavat tunnetaitoja",
+        "description": "Jokainen tarina auttaa lasta tunnistamaan, ymmärtämään ja säätelemään tunteitaan turvallisesti."
       },
       "f2": {
-        "title": "Ikätasolle sopivat rajat",
-        "description": "Sisältö on huolellisesti räätälöity eri kehitysvaiheisiin, jotta lapsi saa ikätasolleen sopivaa tunnekasvatusta."
+        "title": "💜 Ikätasolle sopiva sisältö",
+        "description": "Harjoitukset on suunniteltu lapsen kehitysvaiheen mukaan, jotta oppiminen tuntuu luontevalta ja innostavalta."
       },
       "f3": {
-        "title": "Myönteinen vahvistaminen",
-        "description": "Perustuu kannustamisen ja kasvun asenteen periaatteisiin, jotka auttavat lasta rakentamaan luottamusta omiin tunnetaitoihinsa."
+        "title": "💜 Kannustava oppiminen",
+        "description": "Myönteinen palaute vahvistaa lapsen uskoa omiin tunnetaitoihinsa ja rohkaisee yrittämään uudelleen."
       },
       "f4": {
-        "title": "Tietoinen läsnäolo",
-        "description": "Sisältää hengitysharjoituksia, maadoittumistekniikoita ja läsnäoloharjoituksia, jotka sopivat pienille mielille."
+        "title": "💜 Rauhoittavat harjoitukset",
+        "description": "Lapselle sopivat hengitys-, läsnäolo- ja maadoittumisharjoitukset auttavat pysähtymään ja rauhoittumaan arjen keskellä."
       }
     },
     "features": {
       "visual": {
         "title": "Visuaalinen lupaus",
-        "p1": "Nupun visuaalinen maailma on suunniteltu rauhoittamaan, ei yliärsyttämään. Pehmeät, pyöreät hahmot ovat empaattisia ja helposti lähestyttäviä ja toimivat lapselle tunnetilojen peileinä.",
+        "p1": "Nupun visuaalinen maailma on suunniteltu rauhoittamaan, ei stimuloimaan liikaa. Pehmeälinjaiset ja pyöreät hahmot ovat empaattisia ja helposti lähestyttäviä ja toimivat lapselle tunnetilojen peileinä.",
         "p2": "Pastellisävyiset, hieman käsin piirretyn oloiset kuvitukset tuovat inhimillisyyttä ja erottavat Nupun kovista, teknisistä oppimisratkaisuista. Visuaalinen ilme tukee keskittymistä, turvallisuuden tunnetta ja pitkäaikaista käyttöä, mikä on olennaista myös tuotteeseen sitoutumiselle."
       },
       "ux": {
@@ -298,9 +293,9 @@
         "p2": "Pienet, myönteiset palautteet vahvistavat onnistumisen kokemusta ja tukevat sisäistä motivaatiota. Kokemus on suunniteltu niin, että lapsi haluaa palata Nupun pariin yhä uudelleen."
       },
       "value": {
-        "title": "Arvo vanhemmille ja opettajille",
-        "p1": "Aikuisille Nuppu tarjoaa tukea, työkaluja, mielenrauhaa ja selkeyttä. Vanhemmat ja opettajat saavat rauhallisen kokonaiskuvan lapsen edistymisestä ilman jatkuvaa ilmoitustulvaa tai vaativaa käyttöä.",
-        "p2": "Nuppu ei lisää arjen kuormaa vaan tukee sitä, mitä aikuiset jo tekevät lapsen hyvinvoinnin eteen. Siksi tuote on helppo ottaa käyttöön, ja siitä tulee luonteva osa perheen ja koulun arkea."
+        "title": "Arvo vanhemmille ja ammattilaisille",
+        "p1": "Aikuisille Nuppu tarjoaa tukea, työkaluja, mielenrauhaa ja selkeyttä. Vanhemmat ja ammattilaiset saavat rauhallisen kokonaiskuvan lapsen edistymisestä ilman jatkuvaa ilmoitustulvaa tai vaativaa käyttöä.",
+        "p2": "Nuppu ei lisää arjen kuormaa vaan tukee sitä, mitä aikuiset jo tekevät lapsen hyvinvoinnin eteen. Siksi tuote on helppo ottaa käyttöön, ja siitä tulee luonteva osa arkea."
       },
       "tech": {
         "title": "Kehitystä tukeva teknologia",
@@ -310,24 +305,24 @@
     },
     "why": {
       "title": "Miksi Nuppu?",
-      "intro": "Koska lasten digitaalisten kokemusten tulee tukea – ei vaarantaa – heidän mielenterveyttään ja kehitystään.",
+      "intro": "Lasten digitaalisen ajan tulisi tukea oppimista, hyvinvointia ja tervettä kasvua – siksi loimme Nupun.",
       "imageAlt": "Monimuotoinen tiimi työskentelee yhdessä",
       "security": {
         "title": "Tietoturva ja yksityisyys",
         "description": "Täysi GDPR-yhteensopivuus, salattu tietojen tallennus ja läpinäkyvät tietosuojakäytännöt."
       },
       "development": {
-        "title": "Aivojen terve kehitys",
-        "description": "Suunniteltu tukemaan kognitiivista ja emotionaalista kasvua ilman yliärsykkeitä."
+        "title": "Suunniteltu lapsen kehityksen tueksi",
+        "description": "Sisältö on suunniteltu tukemaan lapsen kognitiivista, emotionaalista ja sosiaalista kehitystä ilman turhia ärsykkeitä."
       },
       "purpose": {
         "title": "Tarkoituksenmukainen sisältö",
-        "description": "Jokaisella tarinalla, harjoituksella ja vuorovaikutuksella on selkeä kehityksellinen tarkoitus."
+        "description": "Jokainen tarina, harjoitus ja vuorovaikutus on suunniteltu kehittämään lapsen tunnetaitoja askel askeleelta."
       }
     },
     "cta": {
-      "title": "Rakennetaan yhdessä parempaa digitaalista tulevaisuutta lapsille",
-      "subtitle": "Ole mukana liikkeessä, joka asettaa lasten tunne-elämän hyvinvoinnin sitouttamismittareiden edelle.",
+      "title": "Rakennetaan yhdessä turvallisempi digitaalinen maailma lapsille.",
+      "subtitle": "Jos jaat ajatuksemme siitä, että teknologian tulee tukea lasten hyvinvointia, kuulisimme mielellämme sinusta.",
       "button": "Ota yhteyttä"
     }
   },
@@ -341,7 +336,7 @@
     "heroSubtitle": "Onko sinulla kysyttävää Nupusta? Haluatko liittyä jonotuslistalle? Kuulemme mielellämme sinusta!",
     "connect": {
       "title": "Otetaan yhteys",
-      "text": "Olitpa vanhempi, opettaja, terveydenhuollon ammattilainen tai muuten vain utelias Nupusta, vastaamme mielellämme kysymyksiisi."
+      "text": "Haluatko kuulla lisää Nupusta tai kysyä jotain? Olemme täällä sinua varten."
     },
     "emailUs": "Lähetä sähköpostia",
     "responseTime": {
@@ -349,8 +344,7 @@
       "text": "1–2 arkipäivän kuluessa"
     },
     "waitlist": {
-      "title": "Liity jonotuslistalle",
-      "text": "Ole ensimmäisten joukossa kokemassa Nuppu, kun julkaisemme palvelun. Varhaisen pääsyn jäsenet saavat erikoisetuja ja päivityksiä kehitysmatkamme varrella."
+      "text": "Liity jonotuslistalle ja saat ensimmäisten joukossa tiedon, kun Nuppu julkaistaan. Lisäksi saat kutsun varhaiseen käyttöön sekä mahdolliset pilotointiin liittyvät edut."
     },
     "form": {
       "nameLabel": "Nimesi *",
@@ -435,7 +429,7 @@
     },
     "payments": {
       "title": "Maksut",
-      "p1": "Kun varaat ja maksat 45 minuutin tunnetaito-ohjauksen, maksun käsittelee **Paytrail Oyj**, Finanssivalvonnan valvoma suomalainen maksulaitos. Syötät kortti-, pankki- tai mobiilimaksutietosi suoraan Paytrailin turvalliselle maksusivulle – **emme koskaan näe tai tallenna korttinumeroasi, pankkitunnuksiasi tai CVV-koodiasi**.",
+      "p1": "Kun varaat ja maksat 30 minuutin tunnetaito-ohjauksen, maksun käsittelee **Paytrail Oyj**, Finanssivalvonnan valvoma suomalainen maksulaitos. Syötät kortti-, pankki- tai mobiilimaksutietosi suoraan Paytrailin turvalliselle maksusivulle – **emme koskaan näe tai tallenna korttinumeroasi, pankkitunnuksiasi tai CVV-koodiasi**.",
       "p2": "Tallennamme vain maksun täsmäytykseen ja ohjauksen toteuttamiseen tarvittavat tiedot: nimesi, sähköpostisi, maksetun summan, Paytrailin tapahtumaviitteen ja maksun tilan.",
       "p3": "**Oikeusperuste:** maksutietojesi käsittely on tarpeen varaamasi ohjauksen sopimuksen täyttämiseksi (yleisen tietosuoja-asetuksen 6 artiklan 1 kohdan b alakohta) sekä kirjanpitolain mukaisten lakisääteisten velvoitteidemme noudattamiseksi (6 artiklan 1 kohdan c alakohta).",
       "p4": "**Säilytysaika:** Suomen kirjanpitolaki edellyttää maksutietojen säilyttämistä 6 vuotta sen tilikauden päättymisestä, jonka aikana maksu tehtiin. Tämän jälkeen anonymisoimme tiedot (poistamme nimesi ja sähköpostisi) sen sijaan, että poistaisimme ne kokonaan, jotta kirjanpitoketjumme säilyy eheänä ilman, että henkilötietojasi säilytetään pidempään kuin on tarpeen."
