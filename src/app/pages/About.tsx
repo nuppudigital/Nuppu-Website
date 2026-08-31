@@ -1,4 +1,5 @@
-import { motion } from "motion/react";
+import { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "motion/react";
 import { Link } from "react-router-dom";
 import {
   Heart,
@@ -12,6 +13,8 @@ import {
   Lock,
   Smartphone,
   ArrowRight,
+  Rocket,
+  X,
 } from "lucide-react";
 import { ImageWithFallback } from "../components/media/ImageWithFallback";
 import { usePageMeta } from "../hooks/usePageMeta";
@@ -22,8 +25,34 @@ import founderImg from "../../assets/_DSC1990.jpeg";
 import cofounderImg from "../../assets/_DSC2052.jpeg";
 import nuppuLogoStacked from "../../assets/NUPPU LOGO STACKED.png";
 
+const APP_LAUNCH_DATE = new Date("2026-09-15T00:00:00");
+
+function getTimeUntilLaunch() {
+  const diff = APP_LAUNCH_DATE.getTime() - Date.now();
+  if (diff <= 0) {
+    return { days: 0, hours: 0, minutes: 0, seconds: 0 };
+  }
+  return {
+    days: Math.floor(diff / (1000 * 60 * 60 * 24)),
+    hours: Math.floor((diff / (1000 * 60 * 60)) % 24),
+    minutes: Math.floor((diff / (1000 * 60)) % 60),
+    seconds: Math.floor((diff / 1000) % 60),
+  };
+}
+
 export default function About() {
   const { t } = useLanguage();
+  const [showComingSoon, setShowComingSoon] = useState(false);
+  const [timeUntilLaunch, setTimeUntilLaunch] = useState(getTimeUntilLaunch);
+
+  useEffect(() => {
+    if (!showComingSoon) return;
+    setTimeUntilLaunch(getTimeUntilLaunch());
+    const interval = setInterval(() => {
+      setTimeUntilLaunch(getTimeUntilLaunch());
+    }, 1000);
+    return () => clearInterval(interval);
+  }, [showComingSoon]);
 
   usePageMeta(t("about.meta.title"), t("about.meta.description"));
 
@@ -576,16 +605,15 @@ export default function About() {
               <p className="text-lg text-white/85 mb-8 leading-relaxed max-w-xl">
                 {t("home.appPreview.subtitle")}
               </p>
-              <a
-                href="/app-preview/"
-                target="_blank"
-                rel="noopener noreferrer"
+              <button
+                type="button"
+                onClick={() => setShowComingSoon(true)}
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-[#6E4FD1] rounded-full hover:shadow-2xl hover:scale-105 transition-all duration-300"
               >
                 <Smartphone size={20} />
                 {t("home.appPreview.button")}
                 <ArrowRight size={20} />
-              </a>
+              </button>
             </div>
 
             <motion.div
@@ -631,6 +659,76 @@ export default function About() {
           </motion.div>
         </div>
       </section>
+
+      <AnimatePresence>
+        {showComingSoon && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/50 px-4"
+            onClick={() => setShowComingSoon(false)}
+            role="dialog"
+            aria-modal="true"
+            aria-label={t("home.appPreview.comingSoonTitle")}
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: 20 }}
+              transition={{ duration: 0.25 }}
+              onClick={(e) => e.stopPropagation()}
+              className="relative w-full max-w-md rounded-3xl bg-white p-8 text-center shadow-2xl"
+            >
+              <button
+                type="button"
+                onClick={() => setShowComingSoon(false)}
+                aria-label="Close"
+                className="absolute top-4 right-4 p-2 text-[#6B6660] hover:text-[#6E4FD1] hover:bg-[#F2EDDE] rounded-full transition-colors"
+              >
+                <X size={20} />
+              </button>
+              <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-[#6E4FD1] to-[#C9BBF5] rounded-full mb-6">
+                <Rocket size={28} className="text-white" />
+              </div>
+              <h3
+                className="text-2xl text-[#35322B] mb-3"
+                style={{ fontFamily: "Nunito, sans-serif" }}
+              >
+                {t("home.appPreview.comingSoonTitle")}
+              </h3>
+              <p className="text-[#6B6660] leading-relaxed mb-6">
+                {t("home.appPreview.comingSoonMessage")}
+              </p>
+              <div className="grid grid-cols-4 gap-2 mb-6">
+                {[
+                  { value: timeUntilLaunch.days, label: t("home.appPreview.comingSoonDays") },
+                  { value: timeUntilLaunch.hours, label: t("home.appPreview.comingSoonHours") },
+                  { value: timeUntilLaunch.minutes, label: t("home.appPreview.comingSoonMinutes") },
+                  { value: timeUntilLaunch.seconds, label: t("home.appPreview.comingSoonSeconds") },
+                ].map((item) => (
+                  <div key={item.label} className="bg-[#F2EDDE] rounded-2xl py-3">
+                    <div
+                      className="text-2xl text-[#6E4FD1]"
+                      style={{ fontFamily: "Nunito, sans-serif" }}
+                    >
+                      {String(item.value).padStart(2, "0")}
+                    </div>
+                    <div className="text-xs text-[#6B6660] mt-1">{item.label}</div>
+                  </div>
+                ))}
+              </div>
+              <button
+                type="button"
+                onClick={() => setShowComingSoon(false)}
+                className="px-6 py-3 bg-gradient-to-r from-[#6E4FD1] to-[#C9BBF5] text-white rounded-full hover:shadow-lg transition-shadow"
+              >
+                {t("home.appPreview.comingSoonClose")}
+              </button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

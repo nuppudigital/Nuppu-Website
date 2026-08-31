@@ -47,7 +47,14 @@
       "badge": "Interaktiivinen prototyyppi",
       "title": "Tutustu visioomme Nuppu-sovelluksesta",
       "subtitle": "Kokeile toimivaa Nuppu-mobiilisovelluksen prototyyppiä selaimessasi — tekoälyn luomia tarinoita, hengitysharjoituksia ja vinkkejä vanhemmille.",
-      "button": "Kokeile sovellusprototyyppiä"
+      "button": "Kokeile sovellusprototyyppiä",
+      "comingSoonTitle": "Julkaistaan pian!",
+      "comingSoonMessage": "Pääset testaamaan prototyyppiämme 15. syyskuuta. Viimeistelemme parhaillaan Nuppu-sovellusta — käy pian uudelleen!",
+      "comingSoonDays": "Päivää",
+      "comingSoonHours": "Tuntia",
+      "comingSoonMinutes": "Minuuttia",
+      "comingSoonSeconds": "Sekuntia",
+      "comingSoonClose": "Selvä"
     },
     "why": {
       "title": "Miksi valita Nuppu?",

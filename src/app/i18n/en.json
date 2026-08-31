@@ -47,7 +47,14 @@
       "badge": "Interactive Prototype",
       "title": "See our vision for the Nuppu app",
       "subtitle": "Explore a live, click-through prototype of the Nuppu mobile app — AI-generated stories, breathing exercises, and micro-support tips for parents, right in your browser.",
-      "button": "Try the App Prototype"
+      "button": "Try the App Prototype",
+      "comingSoonTitle": "Launching soon!",
+      "comingSoonMessage": "You'll get to test our prototype on September 15. We're putting the finishing touches on the Nuppu app — check back soon!",
+      "comingSoonDays": "Days",
+      "comingSoonHours": "Hours",
+      "comingSoonMinutes": "Minutes",
+      "comingSoonSeconds": "Seconds",
+      "comingSoonClose": "Got it"
     },
     "why": {
       "title": "Why Choose Nuppu?",
