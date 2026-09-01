@@ -231,6 +231,27 @@ function isMongoConnected() {
   return mongoose.connection.readyState === 1;
 }
 
+// set once mongoose.connect() is actually kicked off, near the bottom of this file
+let mongoConnectPromise = null;
+
+// Vercel cold-starts a fresh process per invocation - mongoose.connect() (fired at
+// module load, see bottom of file) hasn't necessarily finished by the time this
+// instance's first request comes in. isMongoConnected() alone would read false in
+// that window, and every check below would wrongly fall back to this instance's own
+// empty in-memory store (e.g. a session another instance just wrote to Mongo would
+// look like it doesn't exist). Await the in-flight connect attempt first - bounded,
+// so a genuinely unreachable database still degrades to the fallback/503 instead of
+// hanging the request - before trusting a "not connected" reading.
+async function ensureMongoConnection() {
+  if (isMongoConnected()) return true;
+  if (!mongoConnectPromise) return false;
+  await Promise.race([
+    mongoConnectPromise.catch(() => {}),
+    new Promise((resolve) => setTimeout(resolve, 4000)),
+  ]);
+  return isMongoConnected();
+}
+
 // constant-time so a timing side-channel can't help an attacker guess ADMIN_TOKEN
 // character-by-character - same approach paytrailClient.js uses for webhook signatures
 function timingSafeStringEqual(a, b) {
@@ -243,7 +264,7 @@ function timingSafeStringEqual(a, b) {
 }
 
 async function setAdminOtp(email, { code, expiresAt }) {
-  if (isMongoConnected()) {
+  if (await ensureMongoConnection()) {
     await AdminOtp.findOneAndUpdate(
       { email },
       { email, code, expiresAt, attempts: 0 },
@@ -255,7 +276,7 @@ async function setAdminOtp(email, { code, expiresAt }) {
 }
 
 async function getAdminOtp(email) {
-  if (isMongoConnected()) {
+  if (await ensureMongoConnection()) {
     const entry = await AdminOtp.findOne({ email }).lean();
     if (!entry) return null;
     return { code: entry.code, expiresAt: entry.expiresAt.getTime(), attempts: entry.attempts };
@@ -265,7 +286,7 @@ async function getAdminOtp(email) {
 
 // returns the attempt count after incrementing, so the caller can lock the code out
 async function incrementAdminOtpAttempts(email) {
-  if (isMongoConnected()) {
+  if (await ensureMongoConnection()) {
     const updated = await AdminOtp.findOneAndUpdate(
       { email },
       { $inc: { attempts: 1 } },
@@ -280,7 +301,7 @@ async function incrementAdminOtpAttempts(email) {
 }
 
 async function deleteAdminOtp(email) {
-  if (isMongoConnected()) {
+  if (await ensureMongoConnection()) {
     await AdminOtp.deleteOne({ email });
     return;
   }
@@ -290,7 +311,7 @@ async function deleteAdminOtp(email) {
 async function createAdminSession(email) {
   const token = crypto.randomBytes(32).toString("hex");
   const expiresAt = new Date(Date.now() + ADMIN_SESSION_TTL_MS);
-  if (isMongoConnected()) {
+  if (await ensureMongoConnection()) {
     await AdminSession.create({ token, email, expiresAt });
   } else {
     adminSessions.set(token, { email, expiresAt: expiresAt.getTime() });
@@ -300,7 +321,7 @@ async function createAdminSession(email) {
 
 // null if missing/expired; deletes expired sessions it comes across
 async function getValidAdminSession(token) {
-  if (isMongoConnected()) {
+  if (await ensureMongoConnection()) {
     const session = await AdminSession.findOne({ token }).lean();
     if (!session) return null;
     if (session.expiresAt.getTime() <= Date.now()) {
@@ -346,8 +367,8 @@ async function requireAdmin(req, res, next) {
   });
 }
 
-function requireDatabase(req, res, next) {
-  if (!isMongoConnected()) {
+async function requireDatabase(req, res, next) {
+  if (!(await ensureMongoConnection())) {
     return res.status(503).json({
       status: "error",
       message: "Database is temporarily unavailable. Please try again shortly.",
@@ -382,7 +403,7 @@ function createRateLimiter({ name, windowMs, max }) {
     const now = Date.now();
 
     let count;
-    if (isMongoConnected()) {
+    if (await ensureMongoConnection()) {
       try {
         const bucket = Math.floor(now / windowMs);
         const bucketKey = `${name}:${key}:${bucket}`;
@@ -734,7 +755,7 @@ app.post("/api/contact", rateLimitContact, async (req, res) => {
 
     let contactMessage = null;
 
-    if (isMongoConnected()) {
+    if (await ensureMongoConnection()) {
       contactMessage = new ContactMessage({
         name,
         email,
@@ -940,7 +961,7 @@ async function handlePaytrailReturn(req, res, { isWebhook }) {
   else if (checkoutStatus === "pending" || checkoutStatus === "delayed") paymentStatus = "pending";
 
   try {
-    if (isMongoConnected() && transactionId) {
+    if ((await ensureMongoConnection()) && transactionId) {
       const existing = await Payment.findOne({ paytrailTransactionId: transactionId });
       const wasAlreadyPaid = existing?.status === "paid";
 
@@ -1351,7 +1372,7 @@ if (MONGODB_REQUIRED) {
   // crashes the whole process - not just the database-dependent routes that
   // requireDatabase()/MONGODB_REQUIRED are designed to degrade gracefully.
   // Mongoose retries the connection on its own after this.
-  mongoose.connect(MONGODB_URI).catch((err) => {
+  mongoConnectPromise = mongoose.connect(MONGODB_URI).catch((err) => {
     console.error("MongoDB initial connection failed:", err);
   });
 }
