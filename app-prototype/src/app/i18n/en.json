@@ -1,0 +1,477 @@
+{
+  "common": {
+    "back": "Back",
+    "continue": "Continue",
+    "done": "Done",
+    "cancel": "Cancel",
+    "close": "Close",
+    "edit": "Edit",
+    "save": "Save",
+    "skip": "Skip",
+    "or": "or"
+  },
+  "nav": {
+    "home": "Home",
+    "stories": "Stories",
+    "friends": "Friends",
+    "adults": "Adults"
+  },
+  "splash": {
+    "tagline": "Your child's best friend for emotional skills",
+    "preparing": "Preparing stories…",
+    "footer": "Nuppu Digital Oy · Data stays in the EU"
+  },
+  "auth": {
+    "welcomeBack": "Welcome back",
+    "emailLabel": "Email",
+    "emailPlaceholder": "emmi@example.fi",
+    "passwordLabel": "Password",
+    "forgotPassword": "Forgot your password?",
+    "signIn": "Sign in",
+    "createAccount": "Create an account",
+    "parentNote": "The account is always parent-controlled. The child never signs in.",
+    "createTitle": "Create your account",
+    "nameLabel": "Your name",
+    "namePlaceholder": "Emmi",
+    "createButton": "Create account",
+    "backToSignIn": "Already have an account? Sign in"
+  },
+  "welcome": {
+    "greeting": "✨ Welcome! I'm Nuppu.",
+    "body": "Your child's best friend for emotional skills. I offer gentle stories that support emotional skills and safe development.",
+    "cta": "Get started",
+    "footer": "All content is age-appropriate and designed together with education professionals."
+  },
+  "aiConsent": {
+    "title": "Use of AI for Your Child's Content",
+    "body": "Nuppu uses AI to generate age-appropriate and safe content for your child, such as stories and emotional exercises. The AI may use your child's first name and age group to personalize the content.",
+    "checkbox": "I consent to the use of AI for personalizing my child's content",
+    "learnMore": "Learn more about AI use",
+    "accept": "Accept and continue",
+    "cancel": "Cancel"
+  },
+  "aiInfo": {
+    "title": "How AI Is Used in the Nuppu App",
+    "bullets": [
+      "AI is used in a limited way to create stories and emotional or social skills content.",
+      "Children cannot chat freely with the AI.",
+      "The AI may use the child's first name and age group for personalization.",
+      "Data is not used for profiling or training AI models.",
+      "You can change or withdraw your consent at any time in Settings."
+    ],
+    "calloutTitle": "Limited and supervised.",
+    "calloutBody": "All content is checked before your child sees it. Data is processed in the EU.",
+    "close": "Close"
+  },
+  "onboardingName": {
+    "title": "What is your child's name?",
+    "hint": "A first name or nickname is enough. The name appears only inside stories and is never used to identify your child.",
+    "safety": "We never ask for a surname, a date of birth or a location.",
+    "placeholder": "e.g. Venla"
+  },
+  "onboardingAge": {
+    "title": "Who's joining today?",
+    "footer": "The age group helps us choose the right language, themes and content for your child. The exact age is never stored."
+  },
+  "ageBands": {
+    "little": { "name": "Little Nuppu", "range": "Ages 2–4", "desc": "Short, calm stories and gentle emotional moments." },
+    "big": { "name": "Big Nuppu", "range": "Ages 5–8", "desc": "Stories about friendship, courage and everyday life." },
+    "super": { "name": "Super Nuppu", "range": "Ages 9–12", "desc": "Deeper stories and reflection on feelings." }
+  },
+  "onboardingInterests": {
+    "title": "What does {name} like?",
+    "freeTopicLabel": "Free topic · optional",
+    "freeTopicPlaceholder": "e.g. \"autumn rain\"",
+    "freeTopicHint": "One short topic, 1–3 words.",
+    "callout": "Any written topic is always reviewed and adapted to be safe and age-appropriate for your child.",
+    "done": "Done"
+  },
+  "interestTags": {
+    "animals": "Animals",
+    "nature": "Nature",
+    "space": "Space",
+    "crafts": "Crafts",
+    "music": "Music",
+    "sports": "Sports",
+    "baking": "Baking",
+    "vehicles": "Vehicles",
+    "sea": "The sea",
+    "dinosaurs": "Dinosaurs",
+    "friends": "Friends",
+    "home": "Home & everyday"
+  },
+  "freeTopic": {
+    "header": "Free topic",
+    "calloutTitle": "Shall we try a different topic?",
+    "calloutBody": "This topic might feel frightening. Let's pick something gentler together.",
+    "suggestionsLabel": "Our suggestions",
+    "demoTitle": "Demo · how the filter works",
+    "demoBody": "In production, filtering always happens on the server. Input is never passed to the AI as raw text.",
+    "chooseSuggestion": "Choose a suggestion",
+    "skip": "Skip free topic",
+    "suggestions": ["A friend in the dark", "Forest animals", "Courage"]
+  },
+  "childCard": {
+    "interests": "Interests",
+    "personalization": "Personalization",
+    "personalizationDesc": "Name appears in stories",
+    "on": "On",
+    "off": "Off",
+    "storiesRead": "Stories read",
+    "thisWeek": "{count} this week",
+    "favouriteFriend": "Favourite friend",
+    "edit": "Edit",
+    "startStory": "Start a story"
+  },
+  "home": {
+    "greeting": "Hi {name}!",
+    "moodQuestion": "How are you feeling?",
+    "continueReading": "Continue reading",
+    "forYouToday": "For you today",
+    "all": "All",
+    "bedtimeStory": "Bedtime story",
+    "bedtimeStoryDesc": "A calm story for winding down",
+    "page": "Page {page} / {total}"
+  },
+  "moods": {
+    "happy": "Happy",
+    "sad": "Sad",
+    "angry": "Angry",
+    "tired": "Tired",
+    "nervous": "Nervous"
+  },
+  "categories": {
+    "all": "All",
+    "feelings": "Feelings",
+    "friendship": "Friendship",
+    "courage": "Courage",
+    "safety": "Safety",
+    "thinking": "Thinking"
+  },
+  "stories": {
+    "title": "Stories",
+    "libraryHeader": "{age} · {range} · {count} stories",
+    "readable": "Readable",
+    "min": "{count} min"
+  },
+  "friends": {
+    "title": "Nuppu and Friends",
+    "subtitle": "Each friend helps with a different feeling."
+  },
+  "storyDetail": {
+    "emotionalSkill": "Emotional skill",
+    "readStory": "Read story",
+    "listen": "Listen",
+    "preview": "Preview",
+    "audioNote": "Audio narration is a preview in this demo."
+  },
+  "reader": {
+    "nextPage": "Next page",
+    "next": "Next"
+  },
+  "audioPlayer": {
+    "label": "Audio story",
+    "previewBadge": "Preview · sample recording",
+    "narrator": "Narrator: {character} · {skill}",
+    "chapters": "Chapters",
+    "prototypeNote": "Prototype: the player is fully designed, but the audio is a placeholder. Real narration will be recorded before launch."
+  },
+  "endOfStory": {
+    "title": "The story is finished.",
+    "subtitle": "Well done, {name}. Now you can rest.",
+    "skillLabel": "This story's emotional skill",
+    "tipsNote": "Tips for parents are in the Adult Corner.",
+    "readAgain": "Read again",
+    "backHome": "Back home"
+  },
+  "parentGate": {
+    "title": "This section is for adults",
+    "instructions": "Confirm by holding the button down for three seconds.",
+    "holdButton": "Hold down…",
+    "note": "No password — just a small barrier a young child won't get past.",
+    "backToChild": "Back to child mode"
+  },
+  "adultCorner": {
+    "title": "Adult Corner",
+    "subtitle": "Settings, support and information — for you only.",
+    "items": {
+      "aiPersonalization": { "label": "AI & Personalization", "on": "On · uses first name", "off": "Off" },
+      "microSupport": { "label": "Micro-support for parents", "desc": "12 tips · updated" },
+      "nuppuLetter": { "label": "Nuppu Letter", "desc": "August theme: disappointment" },
+      "safety": { "label": "Safety & privacy", "desc": "How AI is used" },
+      "subscription": { "label": "Subscription" },
+      "childProfiles": { "label": "Child profiles", "desc": "{name} · add a profile" },
+      "language": { "label": "Language", "desc": "English / Suomi" },
+      "feedback": { "label": "Feedback & content reporting" }
+    }
+  },
+  "aiPersonalization": {
+    "title": "AI & Personalization",
+    "toggleTitle": "AI enabled for content personalization",
+    "toggleDesc": "Uses the child's first name and age group in stories.",
+    "previewLabel": "How this looks to your child",
+    "on": "On",
+    "off": "Off",
+    "previewOn": "{name} sat down on the grass…",
+    "previewOff": "Nuppu sat down on the grass…",
+    "permittedThemes": "Permitted themes",
+    "themes": {
+      "feelings": "Feelings",
+      "friendship": "Friendship",
+      "safeEveryday": "Safe everyday life",
+      "natureAnimals": "Nature & animals",
+      "imagination": "Imagination",
+      "boundaries": "Boundaries"
+    },
+    "freeTopicAllowed": "Free topic allowed",
+    "freeTopicAllowedDesc": "The child may suggest a 1–3 word topic",
+    "disable": "Disable AI personalization"
+  },
+  "aiSafety": {
+    "title": "How AI is used",
+    "subtitle": "Every story passes through the same safety chain. The child never converses with the AI.",
+    "steps": [
+      { "title": "Pre-check", "desc": "Input is validated before any AI use" },
+      { "title": "Normalisation", "desc": "Topic becomes a controlled label" },
+      { "title": "AI generation", "desc": "Locked prompt, not modifiable" },
+      { "title": "Post-check", "desc": "Output is validated before display" },
+      { "title": "Fallback content", "desc": "Hand-written, always safe" }
+    ],
+    "demoTitle": "In this demo",
+    "demoBody": "The demo runs entirely on step 5 — hand-written fallback content. No AI call is made, and no data leaves the device.",
+    "badges": {
+      "noProfiling": "No profiling",
+      "noConversation": "No conversation",
+      "dataInEU": "Data in the EU"
+    }
+  },
+  "subscription": {
+    "title": "Subscription",
+    "current": "Current",
+    "perMonth": "/mo",
+    "basic": {
+      "name": "Basic",
+      "price": "3.99",
+      "features": [
+        { "text": "Short stories, 2–3 min", "included": true },
+        { "text": "Nuppu and friends adventure together", "included": true },
+        { "text": "Stories are not personalised", "included": false },
+        { "text": "No parental support material", "included": false }
+      ]
+    },
+    "premium": {
+      "name": "Premium",
+      "price": "5.99",
+      "features": [
+        { "text": "Stories are personalised for your child", "included": true },
+        { "text": "Slightly longer stories", "included": true },
+        { "text": "Micro-support and guidance material", "included": true },
+        { "text": "Everything in Basic", "included": true }
+      ]
+    },
+    "billingNote": "Billing is handled through the App Store or Google Play. The subscription renews monthly and can be cancelled at any time — cancellation takes effect at the end of the period.",
+    "demoNote": "Demo: prices are illustrative. No payment can be made in this prototype."
+  },
+  "microSupport": {
+    "title": "Micro-support",
+    "skillLabel": "Story's emotional skill",
+    "actionsLabel": "Small everyday actions",
+    "conversationStarterLabel": "Conversation starter",
+    "privateNote": "These tips are visible only to you."
+  },
+  "nuppuLetter": {
+    "title": "Nuppu Letter",
+    "theme": "August theme: disappointment",
+    "body": "Every month, the Nuppu Letter brings you a short note about the emotional theme your child has been exploring in their stories — plus a few gentle ideas for talking about it at home.",
+    "closing": "This month: how children experience disappointment, and small ways to sit with it together."
+  },
+  "childProfiles": {
+    "title": "Child profiles",
+    "addProfile": "Add a profile",
+    "addProfileNote": "Multiple child profiles are coming soon in a future update."
+  },
+  "languageSettings": {
+    "title": "Language",
+    "description": "Choose the language used throughout the app.",
+    "english": "English",
+    "finnish": "Suomi"
+  },
+  "feedback": {
+    "title": "Feedback & content reporting",
+    "description": "Tell us what's working, what isn't, or report a story that doesn't feel right.",
+    "placeholder": "Write your feedback here…",
+    "submit": "Send feedback",
+    "thanks": "Thank you — your feedback has been noted (demo only, nothing was actually sent)."
+  },
+  "characters": {
+    "nuppu": {
+      "name": "Nuppu",
+      "role": "Emotional guide & friendship",
+      "skills": "Recognising emotions, empathy, self-regulation"
+    },
+    "muru": {
+      "name": "Muru",
+      "role": "Safety & comfort",
+      "skills": "Security, calming down, coping with disappointment"
+    },
+    "hippu": {
+      "name": "Hippu",
+      "role": "Curiosity & boundaries",
+      "skills": "Expressing one's own will, boundaries, courage"
+    },
+    "lumo": {
+      "name": "Lumo",
+      "role": "Thinking & problem-solving",
+      "skills": "Disappointment, conflict, flexibility"
+    }
+  },
+  "storyContent": {
+    "big-feeling": {
+      "title": "Nuppu and the Big Feeling",
+      "subtitleShort": "Recognising emotions",
+      "description": "Venla's day goes wrong and something feels big in her chest. Nuppu sits down beside her, in no hurry at all — together they give the feeling a name.",
+      "emotionalSkill": "Recognising and naming emotions",
+      "pagesBig": [
+        "Venla's day had gone all wrong. First her tower of blocks fell down. Then she couldn't find her favourite red socks.",
+        "By the time she got outside, something big and heavy had settled in her chest. It felt like carrying a stone.",
+        "She didn't want to play. She didn't want to talk. She just wanted to sit very still.",
+        "Venla sat down on the grass. Something in her chest felt big and tight, as if a stone were sitting there.\n\nNuppu sat down beside her and said nothing at all. Nuppu was simply there.",
+        "They sat together for a long time, watching the clouds drift slowly by.",
+        "\"Can I ask what this feeling is called?\" Nuppu said gently, after a while.",
+        "Venla thought about it. \"It's heavy,\" she said. \"And it makes me want to cry.\"",
+        "\"That sounds like disappointment,\" said Nuppu. \"It's alright to feel that. It just means today was hard.\"",
+        "Slowly, as they named it together, the stone in Venla's chest began to feel a little lighter.",
+        "\"Thank you for sitting with me,\" Venla said. Nuppu smiled. \"That's what friends are for.\""
+      ],
+      "pagesLittle": [
+        "Venla felt sad.",
+        "Something big was in her chest.",
+        "Nuppu sat down next to her.",
+        "Nuppu said nothing. Nuppu just stayed.",
+        "Slowly, Venla felt a little better."
+      ],
+      "chapters": [
+        { "title": "A big feeling arrives", "time": "0:00" },
+        { "title": "Nuppu sits down beside her", "time": "1:12" },
+        { "title": "The feeling gets a name", "time": "2:48" },
+        { "title": "The stone grows lighter", "time": "4:20" }
+      ],
+      "microSupportSkill": "Noticing a feeling and naming it out loud",
+      "microSupportActions": [
+        "Name the feeling out loud for your child: \"It looks like something is upsetting you.\"",
+        "Don't rush to fix it. Sit beside them and let the feeling be there a moment.",
+        "Share a short example of your own: \"Something upset me today too, when…\"",
+        "Remind them that the feeling will pass. It is not dangerous."
+      ],
+      "conversationStarter": "Do you remember when Nuppu felt something big in the chest? Do you ever feel like that?"
+    },
+    "quiet-evening": {
+      "title": "Muru's Quiet Evening",
+      "subtitleShort": "Safety and calming down",
+      "description": "Muru has run and played all day, and now it's time to slow down, watch the stars, and rest.",
+      "emotionalSkill": "Feeling safe and calming down for the night",
+      "pagesBig": [
+        "The sun had gone down, and the sky outside Muru's window turned a soft purple.",
+        "Muru had run and played and laughed all day, and now Muru's whole body felt heavy and warm.",
+        "\"I think today wore me right out,\" Muru said with a big yawn.",
+        "Muru wheeled slowly over to the window and watched the first stars appear, one by one.",
+        "\"It's alright to be tired,\" Muru whispered. \"Tired just means it's time to rest.\"",
+        "Muru pulled the blanket up close, closed both eyes, and let the quiet evening settle in."
+      ],
+      "pagesLittle": [
+        "It is night time.",
+        "Muru is tired.\nNow it's good to be quiet.",
+        "The stars come out.",
+        "Muru feels warm and safe.",
+        "It is time to rest.",
+        "Goodnight, Muru."
+      ],
+      "chapters": [
+        { "title": "A tired evening", "time": "0:00" },
+        { "title": "Watching the stars", "time": "1:05" },
+        { "title": "It's alright to rest", "time": "2:20" },
+        { "title": "A quiet goodnight", "time": "3:30" }
+      ],
+      "microSupportSkill": "Feeling safe and calming down for the night",
+      "microSupportActions": [
+        "Slow your own voice down first — children borrow our calm.",
+        "Name what's coming next: \"Bath, story, then sleep.\" Predictability feels safe.",
+        "Sit close for a few quiet minutes before lights out, without any screens.",
+        "If big feelings show up at bedtime, that's normal — tiredness makes everything feel bigger."
+      ],
+      "conversationStarter": "Do you remember how Muru felt when the day was over? What helps you feel that same kind of calm?"
+    },
+    "own-thing": {
+      "title": "Hippu's Own Thing",
+      "subtitleShort": "Boundaries and courage",
+      "description": "Hippu wants to build a fort a different way than the others suggest, and has to find the courage to say so.",
+      "emotionalSkill": "Saying what you want, even when it's different",
+      "pagesBig": [
+        "Hippu's friends wanted to build the fort with the blue blanket, just like always.",
+        "But today, Hippu had a different idea — a fort made of leaves, low and secret, like a den.",
+        "Hippu's paws felt a little shaky. What if the others laughed?",
+        "\"I'd like to try it my way today,\" Hippu said, voice small but steady.",
+        "There was a pause. Then one friend grinned. \"A leaf den? That sounds even better!\"",
+        "Hippu felt proud — not because the idea won, but because Hippu had said it out loud."
+      ],
+      "pagesLittle": [
+        "Hippu had an idea.",
+        "It was different from the others.",
+        "Hippu felt shy.",
+        "Hippu said it anyway.",
+        "The friends liked it!",
+        "Hippu felt brave."
+      ],
+      "chapters": [
+        { "title": "A different idea", "time": "0:00" },
+        { "title": "Feeling shaky", "time": "1:00" },
+        { "title": "Saying it out loud", "time": "2:10" },
+        { "title": "Feeling brave", "time": "3:15" }
+      ],
+      "microSupportSkill": "Expressing your own will and setting a boundary",
+      "microSupportActions": [
+        "When your child disagrees with a friend, resist jumping in to smooth it over right away.",
+        "Praise the act of speaking up, separately from whether the idea \"won\".",
+        "Practise small brave sentences together: \"I'd like to try it my way.\"",
+        "Remind them that having a different idea doesn't make a friendship weaker."
+      ],
+      "conversationStarter": "Do you remember when Hippu wanted to try something different? Has that ever happened to you?"
+    },
+    "tricky-puzzle": {
+      "title": "Lumo and the Tricky Puzzle",
+      "subtitleShort": "Disappointment and solutions",
+      "description": "Lumo's puzzle piece won't fit anywhere, and frustration builds — until a new way of looking at it helps.",
+      "emotionalSkill": "Handling frustration and trying a new way",
+      "pagesBig": [
+        "Lumo had been building the big puzzle all afternoon, and only one piece was left.",
+        "But no matter which way Lumo turned it, the piece simply would not fit.",
+        "Lumo's ears drooped. \"This is impossible,\" Lumo huffed, pushing the piece away.",
+        "Lumo took a deep breath, the way Nuppu had once shown, and looked at the puzzle again — upside down this time.",
+        "And there it was: a gap Lumo hadn't noticed before, exactly the right shape.",
+        "The piece clicked into place. \"Sometimes,\" Lumo said, \"you just need to look at it differently.\""
+      ],
+      "pagesLittle": [
+        "One piece would not fit.",
+        "Lumo felt cross.",
+        "Lumo took a deep breath.",
+        "Lumo looked again.",
+        "The piece fit!",
+        "Lumo felt proud."
+      ],
+      "chapters": [
+        { "title": "The last piece", "time": "0:00" },
+        { "title": "It won't fit", "time": "1:00" },
+        { "title": "Taking a breath", "time": "2:00" },
+        { "title": "A new way to look", "time": "3:05" }
+      ],
+      "microSupportSkill": "Coping with frustration and trying again",
+      "microSupportActions": [
+        "Let the frustration be there for a moment before offering to help.",
+        "Model taking a breath together before trying a hard task again.",
+        "Ask \"what's one other way we could try this?\" instead of giving the answer.",
+        "Celebrate the trying, not just the solved puzzle."
+      ],
+      "conversationStarter": "Do you remember how Lumo solved the tricky puzzle? What do you do when something feels impossible?"
+    }
+  }
+}

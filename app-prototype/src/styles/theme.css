@@ -1,83 +1,325 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Nunito:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;500;600;700;800&display=swap');
 @import 'tailwindcss';
 
 :root {
   /* matches nuppu.fi exactly */
   --nuppu-blue-deep: #6e4fd1;
+  --nuppu-blue-deep-shadow: #4f38a3;
   --nuppu-blue-light: #c9bbf5;
 
   --nuppu-mint: #b8ddb8;
   --nuppu-mint-light: #c9ede1;
   --nuppu-lavender: #d4c5f9;
+  --nuppu-lavender-light: #ede7fc;
   --nuppu-butter: #f9e5a8;
+  --nuppu-butter-light: #fdf3cf;
   --nuppu-peach: #ffd4c4;
+  --nuppu-peach-light: #ffe8de;
 
   --nuppu-ivory: #fcf2d6;
   --nuppu-cream: #ece5d3;
   --nuppu-off-white: #f2edde;
-  --nuppu-page-bg: #fbf0c8;
+  --nuppu-page-bg: #fbf4dc;
+  --nuppu-app-canvas: #efe8d8;
 
   /* same hex as the website's Characters page */
   --nuppu-muru-gold: #e8c468;
+  --nuppu-muru-gold-light: #f3ddab;
   --nuppu-hippu-sage: #b8d4c7;
+  --nuppu-hippu-sage-light: #d7e9e1;
   --nuppu-lumo-coral: #f5b5a8;
+  --nuppu-lumo-coral-light: #fbd9d0;
   --nuppu-nuppu-lavender: #d4c5f9;
+  --nuppu-nuppu-lavender-light: #ede4fd;
 
-  --nuppu-dark-text: #35322b;
+  --nuppu-dark-text: #322d47;
   --nuppu-secondary-text: #55504a;
-  --nuppu-gray-text: #6b6660;
+  --nuppu-gray-text: #8b8578;
+  --nuppu-border: #ece3cf;
+
+  --nuppu-amber-bg: #fbead0;
+  --nuppu-amber-border: #edc98a;
+  --nuppu-amber-text: #8a5a1f;
+
+  --nuppu-red: #d9432f;
+  --nuppu-green: #3f9142;
 }
 
 @theme inline {
+  --font-display: 'Baloo 2', 'Nunito', system-ui, sans-serif;
+  --font-sans: 'Nunito', system-ui, sans-serif;
+
   --color-nuppu-blue-deep: var(--nuppu-blue-deep);
   --color-nuppu-blue-light: var(--nuppu-blue-light);
 
   --color-nuppu-mint: var(--nuppu-mint);
   --color-nuppu-mint-light: var(--nuppu-mint-light);
   --color-nuppu-lavender: var(--nuppu-lavender);
+  --color-nuppu-lavender-light: var(--nuppu-lavender-light);
   --color-nuppu-butter: var(--nuppu-butter);
+  --color-nuppu-butter-light: var(--nuppu-butter-light);
   --color-nuppu-peach: var(--nuppu-peach);
+  --color-nuppu-peach-light: var(--nuppu-peach-light);
 
   --color-nuppu-ivory: var(--nuppu-ivory);
   --color-nuppu-cream: var(--nuppu-cream);
   --color-nuppu-off-white: var(--nuppu-off-white);
-  --color-nuppu-page-bg: var(--nuppu-page-bg);
+  --color-nuppu-page: var(--nuppu-page-bg);
+  --color-nuppu-canvas: var(--nuppu-app-canvas);
 
   --color-nuppu-muru-gold: var(--nuppu-muru-gold);
+  --color-nuppu-muru-gold-light: var(--nuppu-muru-gold-light);
   --color-nuppu-hippu-sage: var(--nuppu-hippu-sage);
+  --color-nuppu-hippu-sage-light: var(--nuppu-hippu-sage-light);
   --color-nuppu-lumo-coral: var(--nuppu-lumo-coral);
+  --color-nuppu-lumo-coral-light: var(--nuppu-lumo-coral-light);
   --color-nuppu-nuppu-lavender: var(--nuppu-nuppu-lavender);
+  --color-nuppu-nuppu-lavender-light: var(--nuppu-nuppu-lavender-light);
 
-  --color-nuppu-dark-text: var(--nuppu-dark-text);
-  --color-nuppu-secondary-text: var(--nuppu-secondary-text);
-  --color-nuppu-gray-text: var(--nuppu-gray-text);
+  --color-nuppu-dark: var(--nuppu-dark-text);
+  --color-nuppu-secondary: var(--nuppu-secondary-text);
+  --color-nuppu-gray: var(--nuppu-gray-text);
+  --color-nuppu-border: var(--nuppu-border);
+
+  --color-nuppu-amber-bg: var(--nuppu-amber-bg);
+  --color-nuppu-amber-border: var(--nuppu-amber-border);
+  --color-nuppu-amber-text: var(--nuppu-amber-text);
+
+  --color-nuppu-red: var(--nuppu-red);
+  --color-nuppu-green: var(--nuppu-green);
 }
 
-@keyframes shake {
-  0%,
-  100% {
-    transform: translateX(0);
-  }
-  25% {
-    transform: translateX(-10px);
-  }
-  75% {
-    transform: translateX(10px);
-  }
+* {
+  box-sizing: border-box;
 }
 
-.animate-shake {
-  animation: shake 0.3s ease-in-out;
+html,
+body,
+#root {
+  height: 100%;
 }
 
 body {
-  background: var(--nuppu-page-bg);
+  margin: 0;
+  background: var(--nuppu-app-canvas);
   color: var(--nuppu-dark-text);
-  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
 }
 
 h1,
 h2,
-.font-heading {
-  font-family: 'Nunito', 'Poppins', sans-serif;
+h3,
+.font-display {
+  font-family: var(--font-display);
 }
+
+/* Custom component classes, layered so plain Tailwind utility classes
+   (e.g. a bgClassName override) still win over them in the cascade. */
+@layer components {
+
+/* App shell — a phone-frame preview on wide screens, edge-to-edge on real phones */
+.app-viewport {
+  min-height: 100dvh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.phone-shell {
+  position: relative;
+  width: 100%;
+  max-width: 430px;
+  min-height: 100dvh;
+  background: var(--nuppu-page-bg);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+@media (min-width: 481px) {
+  .app-viewport {
+    padding: 2.5rem 1rem;
+  }
+
+  .phone-shell {
+    min-height: 844px;
+    border-radius: 2.75rem;
+    box-shadow: 0 30px 60px -20px rgba(50, 45, 71, 0.35);
+    border: 1px solid rgba(50, 45, 71, 0.08);
+  }
+}
+
+.status-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1.5rem 0.25rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.screen-scroll {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 999px;
+  background: var(--nuppu-blue-deep);
+  color: white;
+  font-family: var(--font-display);
+  font-weight: 700;
+  padding: 0.95rem 1.5rem;
+  box-shadow: 0 4px 0 0 var(--nuppu-blue-deep-shadow);
+  transition: transform 0.08s ease, box-shadow 0.08s ease;
+  border: none;
+  cursor: pointer;
+}
+.btn-primary:active {
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 0 var(--nuppu-blue-deep-shadow);
+}
+.btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  box-shadow: 0 4px 0 0 var(--nuppu-blue-deep-shadow);
+  transform: none;
+}
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 999px;
+  background: white;
+  color: var(--nuppu-blue-deep);
+  font-family: var(--font-display);
+  font-weight: 700;
+  padding: 0.9rem 1.5rem;
+  border: 2px solid var(--nuppu-blue-deep);
+  cursor: pointer;
+}
+
+.icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 1rem;
+  background: white;
+  border: 1px solid var(--nuppu-border);
+  color: var(--nuppu-dark-text);
+  box-shadow: 0 1px 2px rgba(50, 45, 71, 0.06);
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.card-soft {
+  background: white;
+  border: 1px solid var(--nuppu-border);
+  border-radius: 1.25rem;
+  box-shadow: 0 1px 3px rgba(50, 45, 71, 0.05);
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  border-radius: 999px;
+  border: 1.5px solid var(--nuppu-border);
+  background: white;
+  color: var(--nuppu-dark-text);
+  font-weight: 700;
+  font-size: 0.875rem;
+  padding: 0.55rem 1rem;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.chip-selected {
+  border-color: var(--nuppu-blue-deep);
+  background: var(--nuppu-lavender-light);
+  color: var(--nuppu-blue-deep);
+}
+
+.bottom-nav {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-around;
+  background: white;
+  border-top: 1px solid var(--nuppu-border);
+  padding: 0.5rem 0.5rem calc(0.5rem + env(safe-area-inset-bottom));
+  flex-shrink: 0;
+}
+
+.bottom-nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--nuppu-gray-text);
+  padding: 0.35rem 0.75rem;
+  position: relative;
+}
+
+.bottom-nav-item.active {
+  color: var(--nuppu-blue-deep);
+}
+
+.bottom-nav-item.active::after {
+  content: '';
+  position: absolute;
+  bottom: -0.4rem;
+  width: 1.5rem;
+  height: 0.2rem;
+  border-radius: 999px;
+  background: var(--nuppu-blue-deep);
+}
+
+.toggle-track {
+  width: 3rem;
+  height: 1.75rem;
+  border-radius: 999px;
+  background: var(--nuppu-border);
+  position: relative;
+  transition: background 0.15s ease;
+  flex-shrink: 0;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.toggle-track.on {
+  background: var(--nuppu-blue-deep);
+}
+
+.toggle-thumb {
+  position: absolute;
+  top: 0.2rem;
+  left: 0.2rem;
+  width: 1.35rem;
+  height: 1.35rem;
+  border-radius: 999px;
+  background: white;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  transition: transform 0.15s ease;
+}
+
+.toggle-track.on .toggle-thumb {
+  transform: translateX(1.25rem);
+}
+
+} /* end @layer components */

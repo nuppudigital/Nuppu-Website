@@ -1,111 +1,91 @@
+import { ChevronRight, Sparkles, Lightbulb, Mail, ShieldCheck, CreditCard, User, Globe, MessageCircle, Wrench } from 'lucide-react';
+import type { LucideIcon } from 'lucide-react';
 import { useNavigate } from 'react-router';
-import {
-  ArrowLeft,
-  ChevronRight,
-  Heart,
-  Lightbulb,
-  Mail,
-  MessageSquareHeart,
-  Sparkles,
-  Users,
-} from 'lucide-react';
 import { MobileScreen } from '../../components/MobileScreen';
-import { ImageWithFallback } from '../../components/figma/ImageWithFallback';
-import { AVATAR_MAP } from '../../utils/avatars';
+import { BottomNav } from '../../components/BottomNav';
+import { useChild } from '../../context/ChildContext';
+import { useLanguage } from '../../i18n/LanguageContext';
 
-const LINKS = [
-  {
-    icon: <Sparkles className="w-5 h-5" />,
-    title: 'Subscription & Plan',
-    description: 'Manage your Nuppu plan and billing',
-    path: '/adult-corner/subscription',
-  },
-  {
-    icon: <Users className="w-5 h-5" />,
-    title: 'Add / Switch Profile',
-    description: 'Add another child or edit this profile',
-    path: '/add-child',
-  },
-  {
-    icon: <Lightbulb className="w-5 h-5" />,
-    title: 'Micro-Support Tips Library',
-    description: 'Expert parenting tips, updated monthly',
-    path: '/adult-corner/tips',
-  },
-  {
-    icon: <Heart className="w-5 h-5" />,
-    title: 'About Nuppu',
-    description: 'Why Nuppu exists, SEL, AI safety & privacy',
-    path: '/adult-corner/about',
-  },
-  {
-    icon: <Mail className="w-5 h-5" />,
-    title: 'Nuppu Letter',
-    description: "This month's theme and encouragement",
-    path: '/adult-corner/letter',
-  },
-  {
-    icon: <MessageSquareHeart className="w-5 h-5" />,
-    title: 'Feedback & Development',
-    description: 'Give feedback, suggest themes, report content',
-    path: '/adult-corner/feedback',
-  },
+interface Row {
+  id: string;
+  icon: LucideIcon;
+  bg: string;
+  iconColor: string;
+  path: string;
+}
+
+const ROWS: Row[] = [
+  { id: 'aiPersonalization', icon: Sparkles, bg: 'bg-nuppu-lavender-light', iconColor: 'text-nuppu-blue-deep', path: '/adults/ai-personalization' },
+  { id: 'microSupport', icon: Lightbulb, bg: 'bg-nuppu-butter-light', iconColor: 'text-[#a37f1f]', path: '/adults/micro-support' },
+  { id: 'nuppuLetter', icon: Mail, bg: 'bg-nuppu-peach-light', iconColor: 'text-[#c1573f]', path: '/adults/nuppu-letter' },
+  { id: 'safety', icon: ShieldCheck, bg: 'bg-nuppu-mint-light', iconColor: 'text-[#3f7a4a]', path: '/adults/ai-safety' },
+  { id: 'subscription', icon: CreditCard, bg: 'bg-nuppu-butter-light', iconColor: 'text-[#a37f1f]', path: '/adults/subscription' },
+  { id: 'childProfiles', icon: User, bg: 'bg-nuppu-off-white', iconColor: 'text-nuppu-secondary', path: '/adults/child-profiles' },
+  { id: 'language', icon: Globe, bg: 'bg-nuppu-lavender-light', iconColor: 'text-nuppu-blue-deep', path: '/adults/language' },
+  { id: 'feedback', icon: MessageCircle, bg: 'bg-nuppu-off-white', iconColor: 'text-nuppu-secondary', path: '/adults/feedback' },
 ];
 
 export function AdultCorner() {
+  const { t, tRaw } = useLanguage();
   const navigate = useNavigate();
+  const { name, personalizationOn, subscriptionPlan } = useChild();
+
+  const describe = (id: string): string => {
+    if (id === 'aiPersonalization') return t(`adultCorner.items.aiPersonalization.${personalizationOn ? 'on' : 'off'}`);
+    if (id === 'childProfiles') return t('adultCorner.items.childProfiles.desc', { name });
+    if (id === 'subscription') {
+      return `${t(`subscription.${subscriptionPlan}.name`)} · ${t(`subscription.${subscriptionPlan}.price`)}${t('subscription.perMonth')}`;
+    }
+    const hasDesc = typeof tRaw(`adultCorner.items.${id}.desc`) === 'string';
+    return hasDesc ? t(`adultCorner.items.${id}.desc`) : '';
+  };
 
   return (
-    <MobileScreen>
-      <div className="flex-1 overflow-y-auto bg-gradient-to-br from-[#D4C5F9]/25 via-[#C9BBF5]/10 to-white">
-        <div className="bg-gradient-to-r from-[#6E4FD1] to-[#C9BBF5] px-6 pt-8 pb-6">
-          <div className="flex items-center gap-3 mb-5">
-            <button
-              onClick={() => navigate(-1)}
-              className="w-9 h-9 rounded-full bg-white/20 flex items-center justify-center"
-              aria-label="Back"
-            >
-              <ArrowLeft className="w-4 h-4 text-white" />
-            </button>
-            <div>
-              <h1 className="text-lg font-bold text-white">Adult Corner</h1>
-              <p className="text-xs text-white/80">Parent-only content, never shown to your child</p>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-3 bg-white/15 rounded-2xl p-3">
-            <div className="w-10 h-10 rounded-full overflow-hidden shrink-0 border-2 border-white/60">
-              <ImageWithFallback
-                src={AVATAR_MAP.bunny.image}
-                alt="Nuppu"
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <p className="text-xs text-white/90 leading-relaxed">
-              Everything here is designed to support you — never to judge your parenting.
-            </p>
-          </div>
+    <MobileScreen nav={<BottomNav />}>
+      <div className="flex flex-col gap-4 px-6 pb-6 pt-2">
+        <div>
+          <h1 className="font-display text-2xl font-bold text-nuppu-dark">{t('adultCorner.title')}</h1>
+          <p className="mt-1 text-sm text-nuppu-secondary">{t('adultCorner.subtitle')}</p>
         </div>
 
-        <div className="px-6 py-6">
-          <div className="bg-white rounded-2xl border border-gray-100 divide-y divide-gray-100">
-            {LINKS.map((link) => (
+        <div className="card-soft divide-y divide-nuppu-border">
+          {ROWS.map((row) => {
+            const Icon = row.icon;
+            const desc = describe(row.id);
+            return (
               <button
-                key={link.path}
-                onClick={() => navigate(link.path)}
-                className="w-full flex items-center gap-3 px-4 py-3.5 text-left"
+                key={row.id}
+                onClick={() => navigate(row.path)}
+                className="flex w-full items-center gap-3 p-4 text-left"
               >
-                <span className="w-10 h-10 rounded-xl bg-[#C9BBF5]/15 text-[#6E4FD1] flex items-center justify-center shrink-0">
-                  {link.icon}
+                <span className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl ${row.bg}`}>
+                  <Icon size={18} className={row.iconColor} />
                 </span>
-                <span className="flex-1 min-w-0">
-                  <p className="text-sm font-semibold text-[#35322B]">{link.title}</p>
-                  <p className="text-xs text-[#6B6660] mt-0.5">{link.description}</p>
+                <span className="flex-1">
+                  <span className="block font-bold text-nuppu-dark">{t(`adultCorner.items.${row.id}.label`)}</span>
+                  {desc && <span className="block text-sm text-nuppu-gray">{desc}</span>}
                 </span>
-                <ChevronRight className="w-4 h-4 text-gray-300 shrink-0" />
+                <ChevronRight size={18} className="text-nuppu-gray" />
               </button>
-            ))}
-          </div>
+            );
+          })}
+        </div>
+
+        <div>
+          <p className="mb-2 text-xs font-bold uppercase tracking-wide text-nuppu-gray">Prototype tools</p>
+          <button
+            onClick={() => navigate('/story-admin')}
+            className="card-soft flex w-full items-center gap-3 p-4 text-left"
+          >
+            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-nuppu-off-white">
+              <Wrench size={18} className="text-nuppu-secondary" />
+            </span>
+            <span className="flex-1">
+              <span className="block font-bold text-nuppu-dark">Story Admin</span>
+              <span className="block text-sm text-nuppu-gray">Add or edit stories, audio and photos</span>
+            </span>
+            <ChevronRight size={18} className="text-nuppu-gray" />
+          </button>
         </div>
       </div>
     </MobileScreen>

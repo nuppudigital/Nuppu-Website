@@ -1,57 +1,79 @@
+import { ChevronLeft, Headphones, BookOpen } from 'lucide-react';
 import { useNavigate, useParams } from 'react-router';
-import { ArrowLeft, Clock, Play, Tag } from 'lucide-react';
 import { MobileScreen } from '../components/MobileScreen';
+import { IconButton } from '../components/IconButton';
 import { Button } from '../components/Button';
+import { CharacterAvatar } from '../components/CharacterAvatar';
+import { CHARACTERS } from '../data/characters';
+import { useStoryCatalog } from '../hooks/useStoryCatalog';
 import { useChild } from '../context/ChildContext';
-import { CLASSIC_STORIES } from '../data/stories';
+import { useLanguage } from '../i18n/LanguageContext';
 
 export function StoryDetail() {
+  const { t } = useLanguage();
   const navigate = useNavigate();
-  const { id } = useParams();
-  const { recordCategoryListen } = useChild();
-  const story = CLASSIC_STORIES.find((s) => s.id === id) ?? CLASSIC_STORIES[0];
+  const { storyId = '' } = useParams();
+  const { ageBand } = useChild();
+  const { resolve } = useStoryCatalog();
 
-  const handleStart = () => {
-    recordCategoryListen(story.category);
-    navigate(`/playback/${story.id}`);
-  };
+  const story = resolve(storyId);
+  if (!story) return null;
+  const character = CHARACTERS[story.characterId];
 
   return (
     <MobileScreen>
-      <div className="flex-1 overflow-y-auto bg-gradient-to-br from-[#F9E5A8]/40 via-[#FFD4C4]/20 to-white">
-        <div className={`bg-gradient-to-br ${story.color} px-6 pt-8 pb-10 relative`}>
-          <button
-            onClick={() => navigate(-1)}
-            className="w-9 h-9 rounded-full bg-white/70 flex items-center justify-center mb-6"
-            aria-label="Back"
-          >
-            <ArrowLeft className="w-4 h-4 text-[#35322B]" />
-          </button>
-          <div className="flex flex-col items-center text-center">
-            <div className="text-7xl mb-4 drop-shadow">{story.emoji}</div>
-            <h1 className="text-2xl font-bold text-[#35322B]">{story.title}</h1>
-          </div>
+      <div className={`relative flex h-64 shrink-0 items-center justify-center overflow-hidden ${character.bgLight}`}>
+        <div className="absolute left-4 top-2">
+          <IconButton icon={ChevronLeft} onClick={() => navigate(-1)} aria-label={t('common.back')} className="bg-white/90" />
+        </div>
+        {story.photoUrl ? (
+          <img src={story.photoUrl} alt="" className="h-full w-full object-cover" />
+        ) : (
+          <CharacterAvatar species={character.species} wheelchair={character.wheelchair} className="h-48 w-auto" />
+        )}
+      </div>
+
+      <div className="flex flex-1 flex-col gap-4 px-6 pt-5">
+        <div className="flex flex-wrap gap-2">
+          <span className={`rounded-full px-3 py-1 text-xs font-bold ${character.bgLight} ${character.textStrong}`}>
+            {t(`characters.${story.characterId}.name`)}
+          </span>
+          <span className="chip">
+            {t(`ageBands.${ageBand}.name`)}
+          </span>
+          <span className="chip">{t('stories.min', { count: story.durationMin })}</span>
         </div>
 
-        <div className="px-6 py-6">
-          <div className="flex items-center gap-4 mb-6">
-            <div className="flex items-center gap-1.5 text-sm text-[#55504A] bg-white rounded-full px-3 py-1.5 border border-gray-100">
-              <Tag className="w-3.5 h-3.5" />
-              {story.category}
-            </div>
-            <div className="flex items-center gap-1.5 text-sm text-[#55504A] bg-white rounded-full px-3 py-1.5 border border-gray-100">
-              <Clock className="w-3.5 h-3.5" />
-              {story.duration}
-            </div>
+        <h1 className="font-display text-2xl font-bold text-nuppu-dark">{story.title}</h1>
+        <p className="text-sm leading-relaxed text-nuppu-secondary">{story.description}</p>
+
+        <div className="rounded-2xl bg-nuppu-lavender-light p-4">
+          <p className="text-xs font-bold uppercase tracking-wide text-nuppu-blue-deep">{t('storyDetail.emotionalSkill')}</p>
+          <p className="mt-1 font-bold text-nuppu-dark">{story.emotionalSkill}</p>
+        </div>
+      </div>
+
+      <div className="flex flex-col gap-3 px-6 pb-4 pt-2">
+        {(!story.isCustom || story.audioUrl) ? (
+          <div className="grid grid-cols-2 gap-3">
+            <Button onClick={() => navigate(`/stories/${story.id}/read`)}>
+              <BookOpen size={18} /> {t('storyDetail.readStory')}
+            </Button>
+            <Button variant="outline" className="relative" onClick={() => navigate(`/stories/${story.id}/listen`)}>
+              <Headphones size={18} /> {t('storyDetail.listen')}
+              {!story.audioUrl && (
+                <span className="absolute -top-2.5 right-2 rounded-full bg-nuppu-butter px-2 py-0.5 text-[10px] font-bold text-[#8a641f]">
+                  {t('storyDetail.preview')}
+                </span>
+              )}
+            </Button>
           </div>
-
-          <p className="text-sm text-[#55504A] leading-relaxed mb-8">{story.description}</p>
-
-          <Button fullWidth onClick={handleStart} className="flex items-center justify-center gap-2">
-            <Play className="w-4 h-4 fill-white" />
-            Start Story
+        ) : (
+          <Button onClick={() => navigate(`/stories/${story.id}/read`)}>
+            <BookOpen size={18} /> {t('storyDetail.readStory')}
           </Button>
-        </div>
+        )}
+        {!story.isCustom && <p className="pb-6 text-center text-xs text-nuppu-gray">{t('storyDetail.audioNote')}</p>}
       </div>
     </MobileScreen>
   );

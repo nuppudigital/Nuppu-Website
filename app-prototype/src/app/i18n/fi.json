@@ -1,0 +1,477 @@
+{
+  "common": {
+    "back": "Takaisin",
+    "continue": "Jatka",
+    "done": "Valmis",
+    "cancel": "Peruuta",
+    "close": "Sulje",
+    "edit": "Muokkaa",
+    "save": "Tallenna",
+    "skip": "Ohita",
+    "or": "tai"
+  },
+  "nav": {
+    "home": "Koti",
+    "stories": "Sadut",
+    "friends": "Ystävät",
+    "adults": "Aikuiset"
+  },
+  "splash": {
+    "tagline": "Lapsesi paras ystävä tunnetaidoissa",
+    "preparing": "Valmistellaan satuja…",
+    "footer": "Nuppu Digital Oy · Tiedot pysyvät EU:ssa"
+  },
+  "auth": {
+    "welcomeBack": "Tervetuloa takaisin",
+    "emailLabel": "Sähköposti",
+    "emailPlaceholder": "emmi@example.fi",
+    "passwordLabel": "Salasana",
+    "forgotPassword": "Unohditko salasanan?",
+    "signIn": "Kirjaudu sisään",
+    "createAccount": "Luo uusi tili",
+    "parentNote": "Tili on aina vanhemman hallinnassa. Lapsi ei kirjaudu itse.",
+    "createTitle": "Luo tilisi",
+    "nameLabel": "Nimesi",
+    "namePlaceholder": "Emmi",
+    "createButton": "Luo tili",
+    "backToSignIn": "Onko sinulla jo tili? Kirjaudu sisään"
+  },
+  "welcome": {
+    "greeting": "✨ Tervetuloa! Olen Nuppu.",
+    "body": "Lapsesi paras ystävä tunnetaidoissa. Tarjoan lempeitä satuja, jotka tukevat tunnetaitoja ja turvallista kehitystä.",
+    "cta": "Aloitetaan",
+    "footer": "Kaikki sisältö on ikätasoista ja suunniteltu yhdessä kasvatuksen ammattilaisten kanssa."
+  },
+  "aiConsent": {
+    "title": "Tekoälyn käyttö lapsen sisällössä",
+    "body": "Nuppu käyttää tekoälyä tuottaakseen lapsellesi ikätasoista ja turvallista sisältöä, kuten satuja ja tunneharjoituksia. Tekoäly voi käyttää lapsesi etunimeä ja ikäryhmää sisällön personointiin.",
+    "checkbox": "Hyväksyn tekoälyn käytön lapseni sisällön personointiin",
+    "learnMore": "Lue lisää tekoälyn käytöstä",
+    "accept": "Hyväksy ja jatka",
+    "cancel": "Peruuta"
+  },
+  "aiInfo": {
+    "title": "Tekoälyn käyttö Nuppu-sovelluksessa",
+    "bullets": [
+      "Tekoälyä käytetään rajatusti satujen ja tunne- sekä kaveritaitosisällön luomiseen.",
+      "Lapsella ei ole vapaata keskustelua tekoälyn kanssa.",
+      "Tekoäly voi käyttää lapsen etunimeä ja ikäryhmää sisällön personointiin.",
+      "Tietoja ei käytetä profilointiin tai tekoälymallien kouluttamiseen.",
+      "Voit muuttaa tai peruuttaa suostumuksesi milloin tahansa asetuksista."
+    ],
+    "calloutTitle": "Rajoitettu ja valvottu.",
+    "calloutBody": "Kaikki sisältö tarkistetaan ennen kuin lapsi näkee sen. Tiedot käsitellään EU:ssa.",
+    "close": "Sulje"
+  },
+  "onboardingName": {
+    "title": "Mikä on lapsesi nimi?",
+    "hint": "Pelkkä etunimi tai lempinimi riittää. Nimi näkyy vain saduissa, eikä sitä käytetä tunnistamiseen.",
+    "safety": "Emme kysy sukunimeä, syntymäaikaa emmekä sijaintia — koskaan.",
+    "placeholder": "esim. Venla"
+  },
+  "onboardingAge": {
+    "title": "Kuka tänään liittyy mukaan?",
+    "footer": "Ikäryhmä auttaa meitä valitsemaan lapsellesi sopivan kielen, teemat ja sisällön. Tarkkaa ikää ei tallenneta."
+  },
+  "ageBands": {
+    "little": { "name": "Pikku Nuppu", "range": "2–4 vuotta", "desc": "Lyhyitä, rauhallisia satuja ja tunnehetkiä." },
+    "big": { "name": "Iso Nuppu", "range": "5–8 vuotta", "desc": "Satuja ystävyydestä, rohkeudesta ja arjesta." },
+    "super": { "name": "Super Nuppu", "range": "9–12 vuotta", "desc": "Syvempiä tarinoita ja pohdintaa tunteista." }
+  },
+  "onboardingInterests": {
+    "title": "Mistä {name} pitää?",
+    "freeTopicLabel": "Vapaa aihe · vapaaehtoinen",
+    "freeTopicPlaceholder": "esim. \"syyssade\"",
+    "freeTopicHint": "Yksi lyhyt aihe, 1–3 sanaa.",
+    "callout": "Kirjoitettu aihe tarkistetaan aina ja muokataan lapsellesi turvalliseksi ja ikätasoiseksi.",
+    "done": "Valmis"
+  },
+  "interestTags": {
+    "animals": "Eläimet",
+    "nature": "Luonto",
+    "space": "Avaruus",
+    "crafts": "Askartelu",
+    "music": "Musiikki",
+    "sports": "Liikunta",
+    "baking": "Leipominen",
+    "vehicles": "Ajoneuvot",
+    "sea": "Meri",
+    "dinosaurs": "Dinosaurukset",
+    "friends": "Ystävät",
+    "home": "Koti ja arki"
+  },
+  "freeTopic": {
+    "header": "Vapaa aihe",
+    "calloutTitle": "Kokeillaanko toista aihetta?",
+    "calloutBody": "Tämä aihe voi tuntua pelottavalta. Valitaan yhdessä jotain lempeämpää.",
+    "suggestionsLabel": "Ehdotuksemme",
+    "demoTitle": "Demo · näin suodatin toimii",
+    "demoBody": "Tuotannossa suodatus tapahtuu aina palvelimella. Syötettä ei koskaan välitetä tekoälylle raakana tekstinä.",
+    "chooseSuggestion": "Valitse ehdotus",
+    "skip": "Ohita vapaa aihe",
+    "suggestions": ["Ystävä pimeässä", "Metsän eläimet", "Rohkeus"]
+  },
+  "childCard": {
+    "interests": "Kiinnostuksen kohteet",
+    "personalization": "Personointi",
+    "personalizationDesc": "Nimi näkyy saduissa",
+    "on": "Päällä",
+    "off": "Pois",
+    "storiesRead": "Luettuja satuja",
+    "thisWeek": "Tällä viikolla {count}",
+    "favouriteFriend": "Lempihahmo",
+    "edit": "Muokkaa",
+    "startStory": "Aloita satu"
+  },
+  "home": {
+    "greeting": "Hei {name}!",
+    "moodQuestion": "Miltä sinusta tuntuu?",
+    "continueReading": "Jatka satua",
+    "forYouToday": "Tänään sinulle",
+    "all": "Kaikki",
+    "bedtimeStory": "Iltasatu",
+    "bedtimeStoryDesc": "Rauhallinen satu nukkumaan käyntiin",
+    "page": "Sivu {page} / {total}"
+  },
+  "moods": {
+    "happy": "Iloinen",
+    "sad": "Surullinen",
+    "angry": "Vihainen",
+    "tired": "Väsynyt",
+    "nervous": "Jännittää"
+  },
+  "categories": {
+    "all": "Kaikki",
+    "feelings": "Tunteet",
+    "friendship": "Ystävyys",
+    "courage": "Rohkeus",
+    "safety": "Turva",
+    "thinking": "Ajattelu"
+  },
+  "stories": {
+    "title": "Sadut",
+    "libraryHeader": "{age} · {range} · {count} satua",
+    "readable": "Luettava",
+    "min": "{count} min"
+  },
+  "friends": {
+    "title": "Nuppu ja ystävät",
+    "subtitle": "Jokainen ystävä auttaa erilaisessa tunteessa."
+  },
+  "storyDetail": {
+    "emotionalSkill": "Tunnetaito",
+    "readStory": "Lue satu",
+    "listen": "Kuuntele",
+    "preview": "Esikatselu",
+    "audioNote": "Äänisadun kuuntelu on tässä demossa esikatselu."
+  },
+  "reader": {
+    "nextPage": "Seuraava sivu",
+    "next": "Seuraava"
+  },
+  "audioPlayer": {
+    "label": "Äänisatu",
+    "previewBadge": "Esikatselu · näytenauhoite",
+    "narrator": "Lukija: {character} · {skill}",
+    "chapters": "Luvut",
+    "prototypeNote": "Prototyyppi: soitin on täysin suunniteltu, mutta äänite on tilapäinen. Oikea kerronta äänitetään ennen julkaisua."
+  },
+  "endOfStory": {
+    "title": "Satu on luettu.",
+    "subtitle": "Hyvin tehty, {name}. Nyt saa levätä.",
+    "skillLabel": "Tämän sadun tunnetaito",
+    "tipsNote": "Vinkit vanhemmalle löytyvät Aikuisten nurkasta.",
+    "readAgain": "Lue uudelleen",
+    "backHome": "Takaisin kotiin"
+  },
+  "parentGate": {
+    "title": "Tämä osio on aikuisille",
+    "instructions": "Vahvista pitämällä painiketta pohjassa kolmen sekunnin ajan.",
+    "holdButton": "Pidä pohjassa…",
+    "note": "Ei salasanaa — vain pieni este, jota pieni lapsi ei ohita.",
+    "backToChild": "Takaisin lapsen tilaan"
+  },
+  "adultCorner": {
+    "title": "Aikuisten nurkka",
+    "subtitle": "Asetukset, tuki ja tieto — vain sinulle.",
+    "items": {
+      "aiPersonalization": { "label": "Tekoäly ja personointi", "on": "Päällä · käyttää etunimeä", "off": "Pois" },
+      "microSupport": { "label": "Mikrotuki vanhemmalle", "desc": "12 vinkkiä · päivitetty" },
+      "nuppuLetter": { "label": "Nuppu-kirje", "desc": "Elokuun teema: pettymys" },
+      "safety": { "label": "Turvallisuus ja tietosuoja", "desc": "Näin tekoälyä käytetään" },
+      "subscription": { "label": "Tilaus" },
+      "childProfiles": { "label": "Lapsen profiilit", "desc": "{name} · lisää profiili" },
+      "language": { "label": "Kieli", "desc": "Suomi / English" },
+      "feedback": { "label": "Palaute ja ilmoitus sisällöstä" }
+    }
+  },
+  "aiPersonalization": {
+    "title": "Tekoäly ja personointi",
+    "toggleTitle": "Tekoäly käytössä sisällön personointiin",
+    "toggleDesc": "Käyttää lapsen etunimeä ja ikäryhmää tarinoissa.",
+    "previewLabel": "Näin se näkyy lapselle",
+    "on": "Päällä",
+    "off": "Pois",
+    "previewOn": "{name} istui nurmikolle…",
+    "previewOff": "Nuppu istui nurmikolle…",
+    "permittedThemes": "Sallitut teemat",
+    "themes": {
+      "feelings": "Tunteet",
+      "friendship": "Ystävyys",
+      "safeEveryday": "Turvallinen arki",
+      "natureAnimals": "Luonto ja eläimet",
+      "imagination": "Mielikuvitus",
+      "boundaries": "Rajat"
+    },
+    "freeTopicAllowed": "Vapaa aihe sallittu",
+    "freeTopicAllowedDesc": "Lapsi voi ehdottaa 1–3 sanan aiheen",
+    "disable": "Poista tekoälyn käyttö"
+  },
+  "aiSafety": {
+    "title": "Näin tekoälyä käytetään",
+    "subtitle": "Jokainen satu kulkee saman turvaketjun läpi. Lapsi ei koskaan keskustele tekoälyn kanssa.",
+    "steps": [
+      { "title": "Esitarkistus", "desc": "Syöte tarkistetaan ennen tekoälyä" },
+      { "title": "Normalisointi", "desc": "Aihe muutetaan hallituksi tunnisteeksi" },
+      { "title": "Tekoälyn luonti", "desc": "Lukittu ohje, ei muokattavissa" },
+      { "title": "Jälkitarkistus", "desc": "Sisältö tarkistetaan ennen näyttöä" },
+      { "title": "Varasisältö", "desc": "Käsin kirjoitettu, aina turvallinen" }
+    ],
+    "demoTitle": "Tässä demossa",
+    "demoBody": "Demo käyttää kokonaan vaihetta 5 — käsin kirjoitettua varasisältöä. Yhtään tekoälykutsua ei tehdä, eikä mitään tietoa lähetetä laitteelta.",
+    "badges": {
+      "noProfiling": "Ei profilointia",
+      "noConversation": "Ei keskustelua",
+      "dataInEU": "Tiedot EU:ssa"
+    }
+  },
+  "subscription": {
+    "title": "Tilaus",
+    "current": "Nykyinen",
+    "perMonth": "/kk",
+    "basic": {
+      "name": "Basic",
+      "price": "3,99",
+      "features": [
+        { "text": "Lyhyet sadut, 2–3 min", "included": true },
+        { "text": "Nuppu ja ystävät seikkailevat", "included": true },
+        { "text": "Satuja ei personoida", "included": false },
+        { "text": "Ei vanhemman tukimateriaalia", "included": false }
+      ]
+    },
+    "premium": {
+      "name": "Premium",
+      "price": "5,99",
+      "features": [
+        { "text": "Sadut personoidaan lapselle", "included": true },
+        { "text": "Hieman pidemmät sadut", "included": true },
+        { "text": "Mikrotuki ja tukimateriaalit", "included": true },
+        { "text": "Kaikki Basic-sisältö", "included": true }
+      ]
+    },
+    "billingNote": "Laskutus hoidetaan App Storen tai Google Playn kautta. Tilaus uusiutuu kuukausittain ja sen voi peruuttaa milloin tahansa — peruutus astuu voimaan laskutuskauden lopussa.",
+    "demoNote": "Demo: hinnat ovat esimerkkejä. Maksamista ei voi tehdä tässä prototyypissä."
+  },
+  "microSupport": {
+    "title": "Mikrotuki",
+    "skillLabel": "Sadun tunnetaito",
+    "actionsLabel": "Pieniä tekoja arkeen",
+    "conversationStarterLabel": "Keskustelunavaus",
+    "privateNote": "Nämä vinkit näkyvät vain sinulle."
+  },
+  "nuppuLetter": {
+    "title": "Nuppu-kirje",
+    "theme": "Elokuun teema: pettymys",
+    "body": "Joka kuukausi Nuppu-kirje kertoo lyhyesti tunneteemasta, jota lapsesi on satujen kautta käsitellyt — sekä muutamia lempeitä ideoita siitä keskustelemiseen kotona.",
+    "closing": "Tässä kuussa: miten lapset kokevat pettymyksen, ja pieniä tapoja olla sen kanssa yhdessä."
+  },
+  "childProfiles": {
+    "title": "Lapsen profiilit",
+    "addProfile": "Lisää profiili",
+    "addProfileNote": "Useamman lapsen profiilit ovat tulossa myöhemmässä päivityksessä."
+  },
+  "languageSettings": {
+    "title": "Kieli",
+    "description": "Valitse sovelluksessa käytettävä kieli.",
+    "english": "English",
+    "finnish": "Suomi"
+  },
+  "feedback": {
+    "title": "Palaute ja ilmoitus sisällöstä",
+    "description": "Kerro meille, mikä toimii, mikä ei, tai ilmoita sadusta, joka ei tunnu oikealta.",
+    "placeholder": "Kirjoita palautteesi tähän…",
+    "submit": "Lähetä palaute",
+    "thanks": "Kiitos — palautteesi on kirjattu (vain demo, mitään ei oikeasti lähetetty)."
+  },
+  "characters": {
+    "nuppu": {
+      "name": "Nuppu",
+      "role": "Tunneopas ja ystävyys",
+      "skills": "Tunteiden tunnistaminen, empatia, itsesäätely"
+    },
+    "muru": {
+      "name": "Muru",
+      "role": "Turva ja lohdutus",
+      "skills": "Turva, rauhoittuminen, pettymyksen sietäminen"
+    },
+    "hippu": {
+      "name": "Hippu",
+      "role": "Uteliaisuus ja rajat",
+      "skills": "Oman tahdon ilmaiseminen, rajat, rohkeus"
+    },
+    "lumo": {
+      "name": "Lumo",
+      "role": "Ajattelu ja ongelmanratkaisu",
+      "skills": "Pettymys, ristiriidat, joustavuus"
+    }
+  },
+  "storyContent": {
+    "big-feeling": {
+      "title": "Nuppu ja iso tunne",
+      "subtitleShort": "Tunteiden tunnistaminen",
+      "description": "Venlan päivä menee mönkään, ja rinnassa tuntuu isolta. Nuppu istuu vieereen eikä kiirehdi yhtään — yhdessä he antavat tunteelle nimen.",
+      "emotionalSkill": "Tunteiden tunnistaminen ja nimeäminen",
+      "pagesBig": [
+        "Venlan päivä oli mennyt aivan mönkään. Ensin tornitorni kaatui. Sitten hän ei löytänyt lempipunaisia sukkiaan.",
+        "Kun hän pääsi ulos, jotain suurta ja raskasta oli asettunut hänen rintaansa. Se tuntui kiven kantamiselta.",
+        "Hän ei halunnut leikkiä. Hän ei halunnut puhua. Hän halusi vain istua hyvin hiljaa.",
+        "Venla istui nurmikolle. Rinnassa tuntui isolta ja tiukalta, niin kuin siellä olisi ollut kivi.\n\nNuppu istuutui viereen eikä sanonut mitään. Se vain oli siinä.",
+        "He istuivat yhdessä pitkään ja katselivat pilvien hitaasti liukuvan ohi.",
+        "\"Saanko kysyä, mikä tämä tunne on?\" Nuppu sanoi lempeästi hetken päästä.",
+        "Venla mietti asiaa. \"Se on raskas\", hän sanoi. \"Ja se saa minut itkemään.\"",
+        "\"Se kuulostaa pettymykseltä\", Nuppu sanoi. \"On ihan sallittua tuntea niin. Se tarkoittaa vain, että tänään oli vaikeaa.\"",
+        "Hitaasti, kun he nimesivät tunteen yhdessä, kivi Venlan rinnassa alkoi tuntua vähän kevyemmältä.",
+        "\"Kiitos, että istuit kanssani\", Venla sanoi. Nuppu hymyili. \"Siksi ystäviä on.\""
+      ],
+      "pagesLittle": [
+        "Venlaa suretti.",
+        "Jotain isoa oli hänen rinnassaan.",
+        "Nuppu istui hänen viereensä.",
+        "Nuppu ei sanonut mitään. Nuppu vain jäi.",
+        "Vähitellen Venlan olo helpotti."
+      ],
+      "chapters": [
+        { "title": "Iso tunne tulee", "time": "0:00" },
+        { "title": "Nuppu istuu viereen", "time": "1:12" },
+        { "title": "Tunteelle annetaan nimi", "time": "2:48" },
+        { "title": "Kivi kevenee", "time": "4:20" }
+      ],
+      "microSupportSkill": "Tunteen huomaaminen ja sen nimeäminen ääneen",
+      "microSupportActions": [
+        "Nimeä tunne ääneen lapsen puolesta: \"Näyttää siltä, että sinua harmittaa.\"",
+        "Älä kiirehdi ratkaisemaan. Istu vierelle ja anna tunteen olla hetki.",
+        "Kerro oma esimerkkisi lyhyesti: \"Minuakin harmitti tänään, kun…\"",
+        "Muistuta, että tunne menee ohi. Se ei ole vaarallinen."
+      ],
+      "conversationStarter": "Muistatko, kun Nupulla tuntui rinnassa isolta? Onko sinulla joskus samanlainen olo?"
+    },
+    "quiet-evening": {
+      "title": "Murun rauhallinen ilta",
+      "subtitleShort": "Turva ja rauhoittuminen",
+      "description": "Muru on juossut ja leikkinyt koko päivän, ja nyt on aika hidastaa, katsella tähtiä ja levätä.",
+      "emotionalSkill": "Turvallisuuden tunne ja illan rauhoittuminen",
+      "pagesBig": [
+        "Aurinko oli laskenut, ja taivas Murun ikkunan takana muuttui pehmeän violetiksi.",
+        "Muru oli juossut, leikkinyt ja nauranut koko päivän, ja nyt koko keho tuntui raskaalta ja lämpimältä.",
+        "\"Taisin väsyä ihan loppuun tänään\", Muru sanoi isosti haukotellen.",
+        "Muru pyöräytti pyörätuolinsa hitaasti ikkunan luo ja katseli, kun ensimmäiset tähdet syttyivät yksi kerrallaan.",
+        "\"On ihan sallittua olla väsynyt\", Muru kuiskasi. \"Väsymys tarkoittaa vain, että on aika levätä.\"",
+        "Muru veti peiton lähemmäs, sulki molemmat silmät ja antoi hiljaisen illan laskeutua."
+      ],
+      "pagesLittle": [
+        "On yö.",
+        "Muru on väsynyt.\nNyt on hyvä olla hiljaa.",
+        "Tähdet syttyvät.",
+        "Murulla on lämmin ja turvallinen olo.",
+        "On aika levätä.",
+        "Hyvää yötä, Muru."
+      ],
+      "chapters": [
+        { "title": "Väsynyt ilta", "time": "0:00" },
+        { "title": "Tähtien katselua", "time": "1:05" },
+        { "title": "On lupa levätä", "time": "2:20" },
+        { "title": "Rauhallinen hyvää yötä", "time": "3:30" }
+      ],
+      "microSupportSkill": "Turvallisuuden tunne ja illan rauhoittuminen",
+      "microSupportActions": [
+        "Hidasta ensin omaa ääntäsi — lapsi lainaa rauhaa sinulta.",
+        "Nimeä, mitä seuraavaksi tapahtuu: \"Kylpy, satu, sitten nukkumaan.\" Ennakoitavuus tuntuu turvalliselta.",
+        "Istu lähellä muutama hiljainen hetki ennen valojen sammuttamista, ilman ruutuja.",
+        "Jos isoja tunteita nousee nukkumaanmenossa, se on tavallista — väsymys suurentaa kaiken."
+      ],
+      "conversationStarter": "Muistatko, miltä Murusta tuntui, kun päivä oli ohi? Mikä auttaa sinua rauhoittumaan samalla tavalla?"
+    },
+    "own-thing": {
+      "title": "Hipun oma juttu",
+      "subtitleShort": "Rajat ja rohkeus",
+      "description": "Hippu haluaa rakentaa majan eri tavalla kuin muut ehdottavat, ja tarvitsee rohkeutta sanoa se ääneen.",
+      "emotionalSkill": "Oman tahdon ilmaiseminen, vaikka se olisi erilainen",
+      "pagesBig": [
+        "Hipun ystävät halusivat rakentaa majan sinisellä huovalla, ihan kuten aina ennenkin.",
+        "Mutta tänään Hipulla oli erilainen idea — lehdistä tehty maja, matala ja salainen, kuin pesä.",
+        "Hipun tassuja hieman jännitti. Entä jos muut nauraisivat?",
+        "\"Haluaisin kokeilla omaa tapaani tänään\", Hippu sanoi äänellä, joka oli pieni mutta vakaa.",
+        "Syntyi hiljainen hetki. Sitten yksi ystävistä virnisti. \"Lehtipesä? Se kuulostaa vielä paremmalta!\"",
+        "Hippu tunsi ylpeyttä — ei siksi, että idea voitti, vaan siksi, että Hippu sanoi sen ääneen."
+      ],
+      "pagesLittle": [
+        "Hipulla oli idea.",
+        "Se oli erilainen kuin muilla.",
+        "Hippua jännitti.",
+        "Hippu sanoi sen silti.",
+        "Ystävät pitivät siitä!",
+        "Hippu tunsi olevansa rohkea."
+      ],
+      "chapters": [
+        { "title": "Erilainen idea", "time": "0:00" },
+        { "title": "Jännittää", "time": "1:00" },
+        { "title": "Sanotaan se ääneen", "time": "2:10" },
+        { "title": "Rohkea olo", "time": "3:15" }
+      ],
+      "microSupportSkill": "Oman tahdon ilmaiseminen ja rajan asettaminen",
+      "microSupportActions": [
+        "Kun lapsesi on eri mieltä ystävän kanssa, vastusta kiusausta tasoitella tilannetta heti.",
+        "Kehu ääneen sanomista erikseen siitä, \"voittiko\" idea vai ei.",
+        "Harjoitelkaa yhdessä pieniä rohkeita lauseita: \"Haluaisin kokeilla omaa tapaani.\"",
+        "Muistuta, ettei erilainen idea heikennä ystävyyttä."
+      ],
+      "conversationStarter": "Muistatko, kun Hippu halusi kokeilla jotain erilaista? Onko sinulle käynyt joskus samoin?"
+    },
+    "tricky-puzzle": {
+      "title": "Lumo ja hankala pulma",
+      "subtitleShort": "Pettymys ja ratkaisut",
+      "description": "Lumon palapelin pala ei sovi mihinkään, ja turhautuminen kasvaa — kunnes uusi tapa katsoa asiaa auttaa.",
+      "emotionalSkill": "Turhautumisen käsittely ja uuden tavan kokeilu",
+      "pagesBig": [
+        "Lumo oli rakentanut isoa palapeliä koko iltapäivän, ja jäljellä oli enää yksi pala.",
+        "Mutta miten päin Lumo palaa käänsikin, se ei vain sopinut.",
+        "Lumon korvat lyyhistyivät. \"Tämä on mahdotonta\", Lumo tuhahti ja työnsi palan sivuun.",
+        "Lumo veti syvään henkeä, niin kuin Nuppu oli kerran näyttänyt, ja katsoi palapeliä uudelleen — tällä kertaa ylösalaisin.",
+        "Ja siinä se oli: aukko, jota Lumo ei ollut huomannut, juuri oikean muotoinen.",
+        "Pala napsahti paikalleen. \"Joskus\", Lumo sanoi, \"täytyy vain katsoa asiaa eri tavalla.\""
+      ],
+      "pagesLittle": [
+        "Yksi pala ei sopinut.",
+        "Lumoa harmitti.",
+        "Lumo veti syvään henkeä.",
+        "Lumo katsoi uudelleen.",
+        "Pala sopi!",
+        "Lumo oli ylpeä."
+      ],
+      "chapters": [
+        { "title": "Viimeinen pala", "time": "0:00" },
+        { "title": "Se ei sovi", "time": "1:00" },
+        { "title": "Syvä henkäys", "time": "2:00" },
+        { "title": "Uusi tapa katsoa", "time": "3:05" }
+      ],
+      "microSupportSkill": "Turhautumisen sietäminen ja uudelleen yrittäminen",
+      "microSupportActions": [
+        "Anna turhautumisen olla hetki ennen kuin tarjoat apua.",
+        "Näytä esimerkkiä syvään hengittämisestä ennen kuin yritätte vaikeaa asiaa uudelleen.",
+        "Kysy \"mitä muuta voisimme kokeilla?\" antamatta suoraan vastausta.",
+        "Juhlista yrittämistä, ei vain ratkaistua palapeliä."
+      ],
+      "conversationStarter": "Muistatko, miten Lumo ratkaisi hankalan pulman? Mitä sinä teet, kun jokin tuntuu mahdottomalta?"
+    }
+  }
+}
