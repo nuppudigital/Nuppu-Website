@@ -1,13 +1,23 @@
 import type { ReactNode } from 'react';
+import { StatusBar } from './StatusBar';
 
-export function MobileScreen({ children }: { children: ReactNode }) {
+export function MobileScreen({
+  children,
+  bgClassName = 'bg-nuppu-page',
+  statusBarDark = false,
+  nav,
+}: {
+  children: ReactNode;
+  bgClassName?: string;
+  statusBarDark?: boolean;
+  nav?: ReactNode;
+}) {
   return (
-    <div className="min-h-screen w-full flex items-center justify-center bg-gradient-to-br from-[#D4C5F9]/15 via-white to-[#C9BBF5]/15 py-6">
-      <div
-        className="relative w-full max-w-md bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col"
-        style={{ minHeight: 812 }}
-      >
-        {children}
+    <div className="app-viewport">
+      <div className={`phone-shell ${bgClassName}`}>
+        <StatusBar dark={statusBarDark} />
+        <div className="screen-scroll">{children}</div>
+        {nav}
       </div>
     </div>
   );

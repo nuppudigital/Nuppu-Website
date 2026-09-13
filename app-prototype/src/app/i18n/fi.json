@@ -1,0 +1,662 @@
+{
+  "common": {
+    "back": "Takaisin",
+    "continue": "Jatka",
+    "done": "Valmis",
+    "cancel": "Peruuta",
+    "close": "Sulje",
+    "edit": "Muokkaa",
+    "save": "Tallenna",
+    "skip": "Ohita",
+    "or": "tai"
+  },
+  "nav": {
+    "home": "Koti",
+    "stories": "Sadut",
+    "friends": "Ystävät",
+    "adults": "Aikuiset"
+  },
+  "splash": {
+    "tagline": "Lapsesi paras ystävä tunnetaidoissa",
+    "preparing": "Valmistellaan satuja…",
+    "footer": "Nuppu Digital Oy · Tiedot pysyvät EU:ssa"
+  },
+  "auth": {
+    "welcomeBack": "Tervetuloa takaisin",
+    "emailLabel": "Sähköposti",
+    "emailPlaceholder": "emmi@example.fi",
+    "passwordLabel": "Salasana",
+    "forgotPassword": "Unohditko salasanan?",
+    "signIn": "Kirjaudu sisään",
+    "createAccount": "Luo uusi tili",
+    "parentNote": "Tili on aina vanhemman hallinnassa. Lapsi ei kirjaudu itse.",
+    "createTitle": "Luo tilisi",
+    "nameLabel": "Nimesi",
+    "namePlaceholder": "Emmi",
+    "createButton": "Luo tili",
+    "backToSignIn": "Onko sinulla jo tili? Kirjaudu sisään"
+  },
+  "welcome": {
+    "greeting": "✨ Tervetuloa! Olen Nuppu.",
+    "body": "Lapsesi paras ystävä tunnetaidoissa. Tarjoan lempeitä satuja, jotka tukevat tunnetaitoja ja turvallista kehitystä.",
+    "cta": "Aloitetaan",
+    "footer": "Kaikki sisältö on ikätasoista ja suunniteltu yhdessä kasvatuksen ammattilaisten kanssa."
+  },
+  "aiConsent": {
+    "title": "Tekoälyn käyttö lapsen sisällössä",
+    "body": "Nuppu käyttää tekoälyä tuottaakseen lapsellesi ikätasoista ja turvallista sisältöä, kuten satuja ja tunneharjoituksia. Tekoäly voi käyttää lapsesi etunimeä ja ikäryhmää sisällön personointiin.",
+    "checkbox": "Hyväksyn tekoälyn käytön lapseni sisällön personointiin",
+    "learnMore": "Lue lisää tekoälyn käytöstä",
+    "accept": "Hyväksy ja jatka",
+    "cancel": "Peruuta"
+  },
+  "aiInfo": {
+    "title": "Tekoälyn käyttö Nuppu-sovelluksessa",
+    "bullets": [
+      "Tekoälyä käytetään rajatusti satujen ja tunne- sekä kaveritaitosisällön luomiseen.",
+      "Lapsella ei ole vapaata keskustelua tekoälyn kanssa.",
+      "Tekoäly voi käyttää lapsen etunimeä ja ikäryhmää sisällön personointiin.",
+      "Tietoja ei käytetä profilointiin tai tekoälymallien kouluttamiseen.",
+      "Voit muuttaa tai peruuttaa suostumuksesi milloin tahansa asetuksista."
+    ],
+    "calloutTitle": "Rajoitettu ja valvottu.",
+    "calloutBody": "Kaikki sisältö tarkistetaan ennen kuin lapsi näkee sen. Tiedot käsitellään EU:ssa.",
+    "close": "Sulje"
+  },
+  "onboardingName": {
+    "title": "Mikä on lapsesi nimi?",
+    "hint": "Pelkkä etunimi tai lempinimi riittää. Nimi näkyy vain saduissa, eikä sitä käytetä tunnistamiseen.",
+    "safety": "Emme kysy sukunimeä, syntymäaikaa emmekä sijaintia — koskaan.",
+    "placeholder": "esim. Venla"
+  },
+  "onboardingAge": {
+    "title": "Kuka tänään liittyy mukaan?",
+    "footer": "Ikäryhmä auttaa meitä valitsemaan lapsellesi sopivan kielen, teemat ja sisällön. Tarkkaa ikää ei tallenneta."
+  },
+  "ageBands": {
+    "little": {
+      "name": "Pikku Nuppu",
+      "range": "2–4 vuotta",
+      "desc": "Lyhyitä, rauhallisia satuja ja tunnehetkiä."
+    },
+    "big": {
+      "name": "Iso Nuppu",
+      "range": "5–8 vuotta",
+      "desc": "Satuja ystävyydestä, rohkeudesta ja arjesta."
+    },
+    "super": {
+      "name": "Super Nuppu",
+      "range": "9–12 vuotta",
+      "desc": "Syvempiä tarinoita ja pohdintaa tunteista."
+    }
+  },
+  "onboardingInterests": {
+    "title": "Mistä {name} pitää?",
+    "customLabel": "Lisää omia kiinnostuksen kohteita",
+    "customPlaceholder": "esim. \"lohikäärmeet\"",
+    "customAdd": "Lisää kiinnostuksen kohde",
+    "customHint": "Lisää enintään 3 omaa kiinnostuksen kohdetta satujen ideoiksi.",
+    "freeTopicLabel": "Vapaa aihe · vapaaehtoinen",
+    "freeTopicPlaceholder": "esim. \"syyssade\"",
+    "freeTopicHint": "Yksi lyhyt aihe, 1–3 sanaa.",
+    "callout": "Kirjoitettu aihe tarkistetaan aina ja muokataan lapsellesi turvalliseksi ja ikätasoiseksi.",
+    "done": "Valmis"
+  },
+  "interestTags": {
+    "animals": "Eläimet",
+    "nature": "Luonto",
+    "space": "Avaruus",
+    "crafts": "Askartelu",
+    "music": "Musiikki",
+    "sports": "Liikunta",
+    "baking": "Leipominen",
+    "vehicles": "Ajoneuvot",
+    "sea": "Meri",
+    "dinosaurs": "Dinosaurukset",
+    "friends": "Ystävät",
+    "home": "Koti ja arki"
+  },
+  "freeTopic": {
+    "header": "Vapaa aihe",
+    "calloutTitle": "Kokeillaanko toista aihetta?",
+    "calloutBody": "Tämä aihe voi tuntua pelottavalta. Valitaan yhdessä jotain lempeämpää.",
+    "suggestionsLabel": "Ehdotuksemme",
+    "demoTitle": "Demo · näin suodatin toimii",
+    "demoBody": "Tuotannossa suodatus tapahtuu aina palvelimella. Syötettä ei koskaan välitetä tekoälylle raakana tekstinä.",
+    "chooseSuggestion": "Valitse ehdotus",
+    "skip": "Ohita vapaa aihe",
+    "suggestions": [
+      "Ystävä pimeässä",
+      "Metsän eläimet",
+      "Rohkeus"
+    ]
+  },
+  "childCard": {
+    "editName": "Muokkaa nimeä",
+    "interests": "Kiinnostuksen kohteet",
+    "personalization": "Personointi",
+    "personalizationDesc": "Nimi näkyy saduissa",
+    "on": "Päällä",
+    "off": "Pois",
+    "storiesRead": "Luettuja satuja",
+    "thisWeek": "Tällä viikolla {count}",
+    "favouriteFriend": "Lempihahmo",
+    "edit": "Muokkaa",
+    "startStory": "Aloita satu"
+  },
+  "home": {
+    "greeting": "Hei {name}!",
+    "moodQuestion": "Miltä sinusta tuntuu?",
+    "continueReading": "Jatka satua",
+    "forYouToday": "Tänään sinulle",
+    "all": "Kaikki",
+    "bedtimeStory": "Iltasatu",
+    "bedtimeStoryDesc": "Rauhallinen satu nukkumaan käyntiin",
+    "page": "Sivu {page} / {total}"
+  },
+  "moods": {
+    "happy": "Iloinen",
+    "sad": "Surullinen",
+    "energetic": "Energinen",
+    "angry": "Vihainen",
+    "tired": "Väsynyt",
+    "nervous": "Jännittää"
+  },
+  "categories": {
+    "all": "Kaikki",
+    "feelings": "Tunteet",
+    "friendship": "Ystävyys",
+    "courage": "Rohkeus",
+    "safety": "Turva",
+    "thinking": "Ajattelu"
+  },
+  "stories": {
+    "title": "Sadut",
+    "libraryHeader": "{age} · {range} · {count} satua",
+    "readable": "Luettava",
+    "min": "{count} min"
+  },
+  "friends": {
+    "title": "Nuppu ja ystävät",
+    "subtitle": "Jokainen ystävä auttaa erilaisessa tunteessa."
+  },
+  "storyDetail": {
+    "emotionalSkill": "Tunnetaito",
+    "readStory": "Lue satu",
+    "listen": "Kuuntele",
+    "preview": "Esikatselu",
+    "audioNote": "Äänisadun kuuntelu on tässä demossa esikatselu."
+  },
+  "reader": {
+    "nextPage": "Seuraava sivu",
+    "next": "Seuraava"
+  },
+  "audioPlayer": {
+    "label": "Äänisatu",
+    "previewBadge": "Esikatselu · näytenauhoite",
+    "narrator": "Lukija: {character} · {skill}",
+    "chapters": "Luvut",
+    "prototypeNote": "Prototyyppi: soitin on täysin suunniteltu, mutta äänite on tilapäinen. Oikea kerronta äänitetään ennen julkaisua."
+  },
+  "endOfStory": {
+    "title": "Satu on luettu.",
+    "subtitle": "Hyvin tehty, {name}. Nyt saa levätä.",
+    "skillLabel": "Tämän sadun tunnetaito",
+    "tipsNote": "Vinkit vanhemmalle löytyvät Aikuisten nurkasta.",
+    "readAgain": "Lue uudelleen",
+    "backHome": "Takaisin kotiin"
+  },
+  "parentGate": {
+    "title": "Tämä osio on aikuisille",
+    "instructions": "Vahvista pitämällä painiketta pohjassa kolmen sekunnin ajan.",
+    "holdButton": "Pidä pohjassa…",
+    "note": "Ei salasanaa — vain pieni este, jota pieni lapsi ei ohita.",
+    "backToChild": "Takaisin lapsen tilaan"
+  },
+  "adultCorner": {
+    "title": "Aikuisten nurkka",
+    "subtitle": "Asetukset, tuki ja tieto — vain sinulle.",
+    "items": {
+      "aiPersonalization": {
+        "label": "Tekoäly ja personointi",
+        "on": "Päällä · käyttää etunimeä",
+        "off": "Pois"
+      },
+      "microSupport": {
+        "label": "Mikrotuki vanhemmalle",
+        "desc": "12 vinkkiä · päivitetty"
+      },
+      "nuppuLetter": {
+        "label": "Nuppu-kirje",
+        "desc": "Elokuun teema: pettymys"
+      },
+      "safety": {
+        "label": "Turvallisuus ja tietosuoja",
+        "desc": "Näin tekoälyä käytetään"
+      },
+      "subscription": {
+        "label": "Tilaus"
+      },
+      "childProfiles": {
+        "label": "Lapsen profiilit",
+        "desc": "{name} · lisää profiili"
+      },
+      "language": {
+        "label": "Kieli",
+        "desc": "Suomi / English"
+      },
+      "feedback": {
+        "label": "Palaute ja ilmoitus sisällöstä"
+      }
+    }
+  },
+  "aiPersonalization": {
+    "title": "Tekoäly ja personointi",
+    "toggleTitle": "Tekoäly käytössä sisällön personointiin",
+    "toggleDesc": "Käyttää lapsen etunimeä ja ikäryhmää tarinoissa.",
+    "previewLabel": "Näin se näkyy lapselle",
+    "on": "Päällä",
+    "off": "Pois",
+    "previewOn": "{name} istui nurmikolle…",
+    "previewOff": "Nuppu istui nurmikolle…",
+    "permittedThemes": "Sallitut teemat",
+    "themes": {
+      "feelings": "Tunteet",
+      "friendship": "Ystävyys",
+      "safeEveryday": "Turvallinen arki",
+      "natureAnimals": "Luonto ja eläimet",
+      "imagination": "Mielikuvitus",
+      "boundaries": "Rajat"
+    },
+    "freeTopicAllowed": "Vapaa aihe sallittu",
+    "freeTopicAllowedDesc": "Lapsi voi ehdottaa 1–3 sanan aiheen",
+    "disable": "Poista tekoälyn käyttö"
+  },
+  "aiSafety": {
+    "title": "Näin tekoälyä käytetään",
+    "subtitle": "Jokainen satu kulkee saman turvaketjun läpi. Lapsi ei koskaan keskustele tekoälyn kanssa.",
+    "steps": [
+      {
+        "title": "Esitarkistus",
+        "desc": "Syöte tarkistetaan ennen tekoälyä"
+      },
+      {
+        "title": "Normalisointi",
+        "desc": "Aihe muutetaan hallituksi tunnisteeksi"
+      },
+      {
+        "title": "Tekoälyn luonti",
+        "desc": "Lukittu ohje, ei muokattavissa"
+      },
+      {
+        "title": "Jälkitarkistus",
+        "desc": "Sisältö tarkistetaan ennen näyttöä"
+      },
+      {
+        "title": "Varasisältö",
+        "desc": "Käsin kirjoitettu, aina turvallinen"
+      }
+    ],
+    "demoTitle": "Tässä demossa",
+    "demoBody": "Demo käyttää kokonaan vaihetta 5 — käsin kirjoitettua varasisältöä. Yhtään tekoälykutsua ei tehdä, eikä mitään tietoa lähetetä laitteelta.",
+    "badges": {
+      "noProfiling": "Ei profilointia",
+      "noConversation": "Ei keskustelua",
+      "dataInEU": "Tiedot EU:ssa"
+    }
+  },
+  "subscription": {
+    "title": "Tilaus",
+    "current": "Nykyinen",
+    "perMonth": "/kk",
+    "basic": {
+      "name": "Basic",
+      "price": "3,99",
+      "features": [
+        {
+          "text": "Lyhyet sadut, 2–3 min",
+          "included": true
+        },
+        {
+          "text": "Nuppu ja ystävät seikkailevat",
+          "included": true
+        },
+        {
+          "text": "Satuja ei personoida",
+          "included": false
+        },
+        {
+          "text": "Ei vanhemman tukimateriaalia",
+          "included": false
+        }
+      ]
+    },
+    "premium": {
+      "name": "Premium",
+      "price": "5,99",
+      "features": [
+        {
+          "text": "Sadut personoidaan lapselle",
+          "included": true
+        },
+        {
+          "text": "Hieman pidemmät sadut",
+          "included": true
+        },
+        {
+          "text": "Mikrotuki ja tukimateriaalit",
+          "included": true
+        },
+        {
+          "text": "Kaikki Basic-sisältö",
+          "included": true
+        }
+      ]
+    },
+    "billingNote": "Laskutus hoidetaan App Storen tai Google Playn kautta. Tilaus uusiutuu kuukausittain ja sen voi peruuttaa milloin tahansa — peruutus astuu voimaan laskutuskauden lopussa.",
+    "demoNote": "Demo: hinnat ovat esimerkkejä. Maksamista ei voi tehdä tässä prototyypissä."
+  },
+  "microSupport": {
+    "title": "Mikrotuki",
+    "skillLabel": "Sadun tunnetaito",
+    "actionsLabel": "Pieniä tekoja arkeen",
+    "conversationStarterLabel": "Keskustelunavaus",
+    "privateNote": "Nämä vinkit näkyvät vain sinulle."
+  },
+  "nuppuLetter": {
+    "title": "Nuppu-kirje",
+    "theme": "Elokuun teema: pettymys",
+    "body": "Joka kuukausi Nuppu-kirje kertoo lyhyesti tunneteemasta, jota lapsesi on satujen kautta käsitellyt — sekä muutamia lempeitä ideoita siitä keskustelemiseen kotona.",
+    "closing": "Tässä kuussa: miten lapset kokevat pettymyksen, ja pieniä tapoja olla sen kanssa yhdessä."
+  },
+  "childProfiles": {
+    "title": "Lapsen profiilit",
+    "addProfile": "Lisää profiili",
+    "addProfileNote": "Useamman lapsen profiilit ovat tulossa myöhemmässä päivityksessä."
+  },
+  "languageSettings": {
+    "title": "Kieli",
+    "description": "Valitse sovelluksessa käytettävä kieli.",
+    "english": "English",
+    "finnish": "Suomi"
+  },
+  "feedback": {
+    "title": "Palaute ja ilmoitus sisällöstä",
+    "description": "Kerro meille, mikä toimii, mikä ei, tai ilmoita sadusta, joka ei tunnu oikealta.",
+    "placeholder": "Kirjoita palautteesi tähän…",
+    "submit": "Lähetä palaute",
+    "thanks": "Kiitos — palautteesi on kirjattu (vain demo, mitään ei oikeasti lähetetty)."
+  },
+  "characters": {
+    "nuppu": {
+      "name": "Nuppu",
+      "role": "Tunneopas ja ystävyys",
+      "skills": "Tunteiden tunnistaminen, empatia, itsesäätely",
+      "intro": "Nuppu on lempeä pupu, joka kulkee lapsen rinnalla kaikissa tunteissa. Nuppu osaa nimetä tunteita ja huomaa pienetkin asiat. Hän ei koskaan sano, että tunne on väärä, vaan auttaa ymmärtämään mistä se tuli ja minne se voi mennä."
+    },
+    "muru": {
+      "name": "Muru",
+      "role": "Turva ja lohdutus",
+      "skills": "Turva, rauhoittuminen, pettymyksen sietäminen",
+      "intro": "Muru on rauhallinen, lempeä ja aina valmis kuuntelemaan. Hän muistuttaa, että kaikki tunteet ovat sallittuja. Hänen seurassaan saa olla hiljaa, surullinen tai väsynyt, juuri sellainen kuin on!"
+    },
+    "hippu": {
+      "name": "Hippu",
+      "role": "Uteliaisuus ja rajat",
+      "skills": "Oman tahdon ilmaiseminen, rajat, rohkeus",
+      "intro": "Hippu on utelias ja itsenäinen kissa, joka tykkää kokeilla uutta. Hän pohtii paljon: mitä minä haluan, miltä minusta tuntuu ja uskallanko sanoa sen ääneen. Hippu opettaa, että omat rajat ovat tärkeitä, ja niitä saa muuttaa."
+    },
+    "lumo": {
+      "name": "Lumo",
+      "role": "Ajattelu ja ongelmanratkaisu",
+      "skills": "Pettymys, ristiriidat, joustavuus",
+      "intro": "Lumo on nokkela ja tarkkanäköinen kettu, joka auttaa pohtimaan tilanteita monesta kulmasta. Hän ei anna valmiita vastauksia, vaan kysyy hyviä kysymyksiä. Lumolta oppii, että virheet ovat osa oppimista ja vaikeat tunteetkin voivat opettaa."
+    }
+  },
+  "storyContent": {
+    "nupun-kiukkupilvi": {
+      "title": "Nupun kiukkupilvi",
+      "subtitleShort": "Kiukun käsitteleminen",
+      "description": "Nuppu ei halua lopettaa leikkiä, ja suuri kiukku valtaa hänet — kunnes äiti auttaa Nuppua löytämään tavan päästää kiukusta irti.",
+      "emotionalSkill": "Kiukun tunnistaminen ja rauhoittuminen",
+      "pagesBig": [
+        "Pastellimetsässä oli ilta. Taivaalla oli muutamia vaaleanviolettejä pilviä, ja puiden latvojen takaa pilkisti vielä pieni kaistale persikan väristä aurinkoa. Metsän eläimet alkoivat valmistautua yöunille.\n\nMyös Nuppu-pupun kotona oli iltatoimien aika.\n\nNuppu istui lattialla rakentamassa palikoista tornia.",
+        "Nuppu: ”Nyt on aika kerätä palikat ja mennä pesemään hampaat.”\n\nNuppu: ”Mutta minä rakennan vielä!”\n\nHän asetti tornin päälle keltaisen palikan.",
+        "Äiti: ”Torni saa jäädä odottamaan. Voit jatkaa sitä huomenna.”\n\nNuppu katsoi torniaan. Hän ei halunnut lopettaa. Ei ollenkaan.",
+        "Nuppu: ”En mene hammaspesulle!”\n\nÄiti ojensi kätensä kohti lattialla olevia palikoita.",
+        "Silloin Nupun sisällä tapahtui jotakin. Hänen korviaan alkoi kuumottaa. Hampaat puristuivat tiukasti yhteen ja käpälät jännittyivät nyrkkiin.\n\nJa yhtäkkiä—\n\nNuppu: ”EN HALUA NUKKUMAAN!”",
+        "Hän potkaisi palikkatornia. Palikat lensivät pitkin lattiaa. Nuppu tuijotti niitä. Hänen sydämensä hakkasi nopeasti.",
+        "Äiti istui Nupun lähelle.\n\nÄiti: ”Sinussa taitaa olla nyt oikein suuri kiukku.”\n\nNuppu: ”NIIN ON!”",
+        "Äiti: ”Kyllä kiukku saa tulla. Mutta palikoita ei saa potkia. Mietitäänpä yhdessä, miten voisimme saada kiukun pienentymään.”",
+        "Nuppu ei sanonut mitään. Hän huomasi nyrkkiin puristuneet käpälänsä, kuumat korvansa sekä raskaat silmäluomensa.\n\nNuppu haukotteli.\n\nNuppu: ”Minua väsyttää.”",
+        "Äiti: ”Niin taitaa väsyttää. Joskus väsyneenä pienikin harmitus voi tuntua valtavan suurelta.”\n\nNuppu katsoi lattialla lojuvia palikoita. Kiukku oli yhä hänen kehossaan. Nyt Nuppu kuitenkin tiesi, mikä tunne se oli.",
+        "Nuppu: ”Miten kiukkua pienennetään?”\n\nÄiti mietti hetken.\n\nÄiti: ”Haluaisitko mennä hetkeksi yhdessä rauhoittumispaikkaasi?”",
+        "Nuppu nyökkäsi. Hänellä oli huoneensa ikkunan vieressä oma pieni rauhoittumispaikka, jonka hän oli tehnyt yhdessä äitinsä kanssa. Nuppu otti lempi pehmolelunsa kainaloonsa ja istuutui äitinsä kanssa rauhoittumispaikan pehmeille tyynyille.",
+        "Äiti: ”Katsopa noita pilviä. Mitä jos kuvittelisimme, että tuo suuri pilvi tuossa on sinun kiukkusi?”\n\nOli tuulinen ilta ja pilvet liikkuivat nopeasti.\n\nÄiti: ”Kun pilvi katoaa näkyvistä, niin kiukkukin leijailee tiehensä pilven mukana.”",
+        "Nuppu keskittyi tuijottamaan pilveä ja katsoi, kun se kuljetti hänen kiukkuaan yhä kauemmas ja kauemmas. Lopulta pilvi katosi näkyvistä.\n\nNupun käpälät eivät enää olleet aivan niin tiukasti nyrkissä. Korvien kuumotus oli laantunut.",
+        "Nuppu: ”Kiukku on vielä vähän täällä.”\n\nÄiti: ”Kiukun murusia saattoi vielä jäädä, mutta sen ei tarvitsekaan kadota heti kokonaan.”",
+        "Nuppu katseli lattialle levinneitä palikoita.\n\nNuppu: ”Minä potkaisin tornin nurin. Se ei ollut kivasti tehty.”\n\nÄiti: ”Ei. Mutta voit miettiä, mitä voisit tehdä nyt, kun kiukku on vähän helpottanut.”",
+        "Nuppu nosti yhden palikan lattialta. Sitten toisen.\n\nNuppu: ”Voisin kerätä nämä.”\n\nÄiti auttoi Nuppua. Yhdessä he laittoivat palikat koriin.",
+        "Nuppu: ”Huomenna rakennan tornin uudestaan.”\n\nÄiti: ”Se kuulostaa hyvältä suunnitelmalta.”",
+        "Sitten Nuppu pesi hampaansa ja kömpi pehmeän peittonsa alle. Ulkona Pastellimetsä oli jo aivan hiljainen. Nuppu painoi päänsä tyynyyn.",
+        "Nuppu: ”Äiti?”\n\nÄiti: ”Niin?”\n\nNuppu: ”Jos minulle tulee huomenna kiukku, voidaanko valita taas yhdessä kiukkupilvi?”\n\nÄiti: ”Totta kai.”",
+        "Nuppu mietti hetken pilveä, jonka mukana hänen kiukkunsa oli leijaillut pois. Kiukku oli tullut suurena ja kuumana. Sitten Nuppu oli huomannut sen. Hän oli kuunnellut kehoaan ja rauhoittunut yhdessä äitinsä kanssa. Ja vähitellen kiukku oli muuttunut pienemmäksi.\n\nPastellimetsän kuunvalo kurkisti ikkunasta sisään.\n\nNuppu haukotteli vielä kerran ja sulki silmänsä. Ja ennen kuin äiti ehti sanoa hyvää yötä, pieni pupu oli jo unessa."
+      ],
+      "pagesLittle": [
+        "Nuppu rakensi tornia palikoista.",
+        "Äiti sanoi, että on aika mennä nukkumaan.",
+        "Nuppu suuttui kovasti ja potkaisi tornin nurin.",
+        "Äiti istui Nupun viereen. ”Sinulla on suuri kiukku”, äiti sanoi.",
+        "He menivät yhdessä rauhoittumispaikkaan.",
+        "He kuvittelivat, että kiukku oli pilvi, joka lensi pois.",
+        "Nuppu rauhoittui ja keräsi palikat yhdessä äidin kanssa.",
+        "Sitten Nuppu meni nukkumaan ja nukahti pian."
+      ],
+      "chapters": [
+        {
+          "title": "Torni ennen nukkumaanmenoa",
+          "time": "0:00"
+        },
+        {
+          "title": "Kiukku tulee",
+          "time": "1:20"
+        },
+        {
+          "title": "Rauhoittumispaikka",
+          "time": "2:40"
+        },
+        {
+          "title": "Pilvi kuljettaa kiukun pois",
+          "time": "3:40"
+        },
+        {
+          "title": "Valmiina nukkumaan",
+          "time": "4:50"
+        }
+      ],
+      "microSupportSkill": "Kiukun huomaaminen kehossa ja rauhoittumiskeinon löytäminen",
+      "microSupportActions": [
+        "Nimeä tunne käytöksen sijaan: ”Sinussa taitaa olla nyt oikein suuri kiukku.”",
+        "Anna tunteen olla olemassa ennen ratkaisujen etsimistä — kiukku saa tulla, mutta asioita ei saa potkia.",
+        "Kokeilkaa yhteistä rauhoittumispaikkaa kotona, jossa on jotain pehmeää ja tuttua lähellä.",
+        "Käyttäkää yhdessä mielikuvaa, esimerkiksi pilveä, joka kuljettaa tunteen pois, jotta kiukun helpottamista on helpompi kuvitella."
+      ],
+      "conversationStarter": "Muistatko Nupun kiukkupilven? Millainen sinun oma rauhoittumispaikkasi voisi olla?"
+    },
+    "nupun-suuri-ilo": {
+      "title": "Nupun suuri ilo",
+      "subtitleShort": "Ison innostuksen käsitteleminen",
+      "description": "Nuppu pursuaa iloa kevätjuhlapäivästä — kunnes into vie hänet ystävien edelle. Leea-pöllö opettaa Nupulle kolme askelta ison tunteen rauhoittamiseen.",
+      "emotionalSkill": "Ison innostuksen huomaaminen ja kehon rauhoittaminen",
+      "pagesBig": [
+        "Pastellimetsä oli rauhallinen ja kaunis paikka.\n\nPuut näyttivät siltä kuin ne olisi maalattu vesiväreillä – vaaleanpunaisiksi, mintunvihreiksi ja taivaansinisiksi. Metsässä asui pieni pupu nimeltään Nuppu. Hän oli utelias ja innostui helposti.\n\nEräänä kevätaamuna Nuppu heräsi jo ennen auringonnousua.",
+        "Nuppu: – Tänään on kevätjuhla!\n\nNupun sisällä kupli.\n\nRinnassa tuntui lämmin poreilu.\n\nTassut liikkuivat melkein itsestään.",
+        "Nuppu: – Minulla on valtavan iso ilo.\n\nEhkä suurin ilo ikinä!\n\nNuppu pomppi ulos kotikolostaan. Polulla hän kohtasi Salli-siilin.",
+        "Nuppu: – HUOMENTA, Salli!\n\nNuppu huusi niin kovaa, että linnut lehahtivat lentoon.\n\nSalli: – Huomenta… Oletpa sinä vauhdissa.",
+        "Nuppu ei pysähtynyt. Ilo työnsi häntä eteenpäin kuin näkymätön tuuli. Matka jatkui kohti kevätjuhlaa.",
+        "Kevätjuhlassa leikittiin juoksuleikkiä. Kaikki asettuivat viivalle ja odottivat lähtömerkkiä.\n\nKertoja: – Valmiit… paikoillanne…\n\nNupun sydän hakkasi. Hän halusi jo juosta.",
+        "Ennen kuin lähtömerkki kuului, Nuppu syöksähti matkaan.\n\nLumo: – Hei! Odota! Me emme olleet vielä valmiita!\n\nNuppu pysähtyi.",
+        "Yhtäkkiä vatsassa tuntui oudolta. Ilo ei ollut enää kevyt. Se tuntui raskaalta ja vähän nololta.\n\nNuppu: – Minä vain innostuin liikaa.\n\nNuppu sanoi hiljaa ja katsoi maahan.",
+        "Tilannetta oli seurannut viisas Leea-pöllö. Hän lennähti Nupun viereen.\n\nLeea: – Ilo on tärkeä ja ihana tunne.\n\nLeea: – Joskus tunne kasvaa kuitenkin niin suureksi, että toimimme liian nopeasti.",
+        "Nuppu: – En halunnut olla epäreilu.\n\nNuppu: – Miten voin rauhoittua?",
+        "Leea nyökkäsi.\n\nLeea: – Harjoittelemalla. Tehdään kolme asiaa.\n\nLeea opetti Nupulle kolme askelta rauhoittumiseen.",
+        "Leea: – Ihan ensimmäisenä: pysähdy.\n\nLeea: – Älä tee mitään hetkeen.",
+        "Leea: – Seuraavaksi: tunne kehosi.\n\nLeea: – Paina käpälät maahan ja tunnustele maata niiden alla. Missä ilo tuntuu? Tuntuuko se rinnassa? Vatsassa? Jaloissa?",
+        "Leea: – Viimeisenä: hengitä.\n\nLeea: – Hitaasti sisään…\n\nLeea: – ja rauhallisesti ulos.\n\nLeea: – Sitten sano vielä mielessäsi: “Olen tosi iloinen.”",
+        "Nuppu seurasi Leea-pöllön ohjeita.\n\nHän hengitti sisään…\n\nja ulos.",
+        "Vähitellen kupliva ilo muuttui pehmeäksi ja lämpimäksi.\n\nSe ei enää pomppinut ympäriinsä. Se ei enää työntänyt Nuppua eteenpäin. Ilo pysyi mukana – mutta rauhallisena.",
+        "Nuppu: – Olen edelleen iloinen.\n\nNuppu: – Mutta olen myös rauhallinen.\n\nNuppu palasi takaisin muiden luokse.",
+        "Nuppu: – Anteeksi, että lähdin liian aikaisin. Innostuin niin paljon, etten pystynyt odottamaan. Pelataanko uudestaan?\n\nLumo-kettu hymyili.\n\nLumo: – Pelataan. Nyt kaikki yhdessä.",
+        "Tällä kertaa Nuppu odotti lähtömerkkiä.\n\nHän tunsi kuplivan ilon, mutta hengitti ja piti sen sopivan kokoisena.",
+        "Juoksun jälkeen Nuppu istui ystäviensä kanssa evästauolle.\n\nNuppu: – Tänään opin, että jopa iloa pitää joskus vähän rauhoittaa.\n\nNuppu: – Tunne saa olla iso, mutta minä voin silti pysähtyä.",
+        "Leea-pöllö nyökkäsi tyytyväisenä.\n\nLeea: – Hyvätkin tunteet voivat joskus kasvaa liian suuriksi. On tärkeää, että opimme rauhoittumaan, jotta osaamme toimia viisaasti.",
+        "Pastellimetsän kevät jatkui.\n\nIlo oli edelleen mukana –\n\nei liian suurena,\n\nei liian pienenä,\n\nvaan viisaasti kannettuna."
+      ],
+      "pagesLittle": [
+        "Tänään on kevätjuhla! Nuppu oli tosi iloinen.",
+        "Ilo oli niin suuri, että Nuppu juoksi liian aikaisin eikä odottanut ystäviä.",
+        "Ystävät jäivät ihmettelemään. Nuppua hävetti vähän.",
+        "Leea-pöllö opetti Nupulle kolme askelta: pysähdy, tunne kehosi, hengitä.",
+        "Nuppu hengitti rauhassa, ja ilo muuttui pehmeäksi.",
+        "Nuppu pyysi anteeksi ja pelasi uudestaan ystävien kanssa.",
+        "Tällä kertaa Nuppu osasi odottaa vuoroaan."
+      ],
+      "chapters": [
+        {
+          "title": "Suuri ilo juhlapäivänä",
+          "time": "0:00"
+        },
+        {
+          "title": "Juokseminen edellä",
+          "time": "1:10"
+        },
+        {
+          "title": "Kolme askelta rauhoittumiseen",
+          "time": "2:20"
+        },
+        {
+          "title": "Yhdessä leikkimässä taas",
+          "time": "4:00"
+        }
+      ],
+      "microSupportSkill": "Innostuneen lapsen auttaminen pysähtymään ennen toimimista",
+      "microSupportActions": [
+        "Nimeä myös hyvä tunne, ei vain hankalat: ”Sinulla on nyt ihan valtava ilo!”",
+        "Harjoitelkaa yhdessä kolme askelta: pysähdy, tunne kehosi, hengitä.",
+        "Harjoitelkaa lähtömerkin odottamista leikeissä, jotta pysähtyminen tulee tutuksi.",
+        "Kehu huomaamista ja takaisin tulemista, ei vain sitä, että asia meni heti oikein."
+      ],
+      "conversationStarter": "Muistatko, miten Nuppu opetteli hengittämään ja odottamaan? Mitä sinun kehossasi tapahtuu, kun olet tosi innoissasi?"
+    },
+    "pastellimetsan-taitopaiva": {
+      "title": "Pastellimetsän taitopäivä",
+      "subtitleShort": "Itsensä vertaaminen muihin",
+      "description": "Taitopäivänä Nuppu katselee, kun Muru, Hippu ja Lumo näyttävät taitojaan, ja alkaa tuntea itsensä pieneksi — kunnes vaikeuksiin joutunut pieni lintu auttaa Nupun löytämään oman vahvuutensa.",
+      "emotionalSkill": "Oma arvo ja vertailun välttäminen",
+      "pagesBig": [
+        "Pastellimetsässä taivas oli tänään vaaleansininen. Puiden lehdet heiluivat hiljaa tuulessa.\n\nPienen kotikolon ovi aukesi. Sieltä kurkisti Nuppu-pupu.\n\nNuppu: ”Tänään on Pastellimetsän taitopäivä!”",
+        "Kerran vuodessa metsän ystävät kokoontuivat suurelle kukkaniitylle näyttämään asioita, joita he osasivat.\n\nNuppu pomppi polkua pitkin. Pian hän tapasi Muru-karhun, joka seisoi suuren kiven vieressä.",
+        "Muru: ”Katso tätä!”\n\nHän tarttui kiveen tassuillaan.\n\nMuru: ”Yyyyksi… kaksi… kolme!”\n\nMuru nosti kiven ilmaan.",
+        "Nuppu: ”Vau! Oletpa sinä vahva!”\n\nNuppu katsoi omia pieniä tassujaan. Minä en osaa nostaa noin suurta kiveä, hän ajatteli. Nuppu jatkoi matkaa, mutta nyt hypyt olivat vähän pienempiä.",
+        "Polun mutkassa istui Hippu-kissa. Hippu oli asetellut maahan kolme käpyä. Yhtäkkiä hän loikkasi. Hippu lensi kaikkien kolmen kävyn yli ja laskeutui pehmeästi tassuilleen.\n\nHippu: ”Tadaa!”",
+        "Nuppu: ”Vau! Oletpa sinä taitava hyppäämään!”\n\nNuppu kokeili itse. Hän otti vauhtia. Yksi, kaksi, kolme… LOIKKA! TÖMPS. Nuppu osui toiseen käpyyn ja kierähti pehmeään sammaleeseen. Hippu auttoi hänet ylös.",
+        "Hippu: ”Ei haittaa, Nuppu. Minäkin olen harjoitellut tätä tosi monta kertaa.”\n\nMutta Nuppu katsoi varpaitaan. Minä en osaa hypätä niin kuin Hippu, hän ajatteli.\n\nNuppu jatkoi taas matkaa. Hypyt olivat entistäkin pienempiä.",
+        "Kun Nuppu saapui kukkaniitylle, Lumo-kettu oli jo siellä. Lumon ympärille oli kerääntynyt monta metsän eläintä.\n\nLumo: ”Katsokaa!”\n\nHän oli rakentanut oksista, lehdistä ja kukista suuren, kauniin tähden. Kaikki taputtivat. Nuppukin taputti. Sitten hänen korvansa painuivat alas. Muru oli vahva. Hippu oli ketterä. Lumo keksi hienoja asioita.",
+        "Nuppu: ”Entä minä?”\n\nNuppu kuiskasi ja hiipi suuren päivänkakkaran taakse piiloon.",
+        "Hetken kuluttua Muru, Hippu ja Lumo löysivät hänet.\n\nMuru: ”Nuppu, miksi olet täällä yksin?”\n\nNuppu oli hetken hiljaa.\n\nNuppu: ”Minusta tuntuu, etten ole hyvä missään.”",
+        "Ystävät istuutuivat hänen viereensä. Kukaan ei kiirehtinyt vastaamaan. Tuuli heilutti päivänkakkaroita.\n\nLopulta Lumo kysyi:\n\nLumo: ”Miltä sinusta tuntuu juuri nyt?”",
+        "Nuppu: ”Surulliselta.”\n\nSitten hän mietti vielä vähän.\n\nNuppu: ”Ja… surkean pieneltä.”",
+        "Hippu: ”Joskus minustakin tuntuu siltä, kun vertaan itseäni muihin.”\n\nMuru: ”Niin minustakin. Vaikka olen vahva, en osaa kiivetä puuhun yhtä nopeasti kuin Hippu.”\n\nHippu: ”Minä taas en jaksaisi kantaa kiveä edes kahta askelta!”",
+        "Nuppu nosti katseensa.\n\nNuppu: ”Etkö?”\n\nHippu: ”En todellakaan.”",
+        "Lumo: ”Meidän ei tarvitse osata samoja asioita ollaksemme tärkeitä.”",
+        "Nuppu mietti ystäviensä puheita. Silloin läheisestä pensaasta kuului pieni ääni. ”Piip… piip…” Ystävät kääntyivät katsomaan. Pieni linnunpoikanen kökötti maassa. Se oli pudonnut matalalta oksalta eikä uskaltanut liikkua.",
+        "Muru lähestyi sitä. Linnunpoikanen perääntyi. Hippu yritti mennä lähemmäksi, mutta linnunpoikanen vapisi.\n\nSilloin Nuppu istuutui pienen välimatkan päähän poikasesta. Nuppu ei yrittänyt nostaa lintua. Hän ei yrittänyt saada sitä liikkumaan. Hän vain istui.",
+        "Nuppu: ”Sinua taitaa pelottaa.”\n\nNuppu: ”Saat olla siinä ihan rauhassa. Minä voin odottaa kanssasi.”\n\nNuppu hengitti hitaasti. Sisään. Ja ulos. Pian linnunpoikanenkin rauhoittui. Se otti varovasti yhden pienen askeleen. Sitten toisen. Lopulta se kipitti Nupun viereen.",
+        "Ystävät katsoivat hiljaa.\n\nMuru: ”Nuppu, sinä huomasit, mitä linnunpoikanen tarvitsi.”\n\nHippu: ”Ja osasit olla kärsivällinen.”\n\nLumo: ”Ja lempeä.”",
+        "Nuppu räpäytti silmiään. Hän ei ollut koskaan ajatellut, että nekin voisivat olla taitoja.\n\nMyöhemmin linnunpoikasen emo löysi poikasensa ja lennähti sen luokse. Nuppu palasi ystäviensä kanssa kukkaniitylle. Siellä jokainen sai tehdä pienen tähden ja kirjoittaa tai piirtää siihen oman vahvuutensa.",
+        "Muru piirsi vahvat tassut ja Hippu taas suuren loikan. Lumo piirsi pienen hehkulampun, koska hän keksi mielellään uusia asioita. Nuppu jäi miettimään. Sitten hän piirsi tähteensä suuren sydämen.\n\nNuppu: ”Minun vahvuuteni on se, että osaan huomata toisten tunteita.”",
+        "Hän mietti vielä hetken.\n\nNuppu: ”Ja minä olen hyvä Nuppu.”\n\nLumo: ”Juuri niin.”",
+        "Nuppu hymyili. Hän ymmärsi jotakin tärkeää. Hänen ei tarvinnut olla Murun kaltainen. Hänen ei tarvinnut olla Hipun kaltainen. Eikä hänen tarvinnut olla Lumon kaltainen. Hän sai olla Nuppu. Nuppu, joka harjoitteli joitakin asioita. Nuppu, joka osasi jo monia asioita. Nuppu, joka joskus onnistui ja joskus taas ei. Ja silti Nuppu oli aina yhtä arvokas.",
+        "Kotimatkalla Nuppu pomppi polkua pitkin. Tällä kertaa hän ei miettinyt, hyppäsikö hän yhtä korkealle kuin Hippu. Hän pomppi juuri niin kuin Nuppu pomppii ja se tuntui oikein hyvältä.",
+        "Kun ilta laskeutui Pastellimetsään, Nuppu katsoi taivaalle. Siellä loisti monta tähteä. Toiset olivat kirkkaita, toiset pieniä. Jotkut näkyivät vain juuri ja juuri. Mutta yksikään tähti ei yrittänyt loistaa samalla tavalla kuin toinen.\n\nNuppu: ”Minun ei tarvitse olla paras ollakseni tärkeä.”\n\nNuppu: ”Olen arvokas, koska minä olen minä.”",
+        "Korkealla Pastellimetsän yllä yksi pieni tähti näytti tuikkivan hänelle takaisin."
+      ],
+      "pagesLittle": [
+        "Taitopäivänä ystävät näyttivät, mitä he osaavat.",
+        "Muru oli vahva, Hippu osasi hypätä ja Lumo keksi hienoja asioita.",
+        "Nuppu ei tiennyt, mitä hän osaa, ja meni piiloon.",
+        "Ystävät löysivät Nupun ja kuuntelivat häntä.",
+        "Sitten pieni lintu tarvitsi apua. Nuppu istui rauhassa sen vieressä.",
+        "Nuppu oli kärsivällinen ja lempeä. Se oli hänen oma taitonsa!",
+        "Nuppu ymmärsi: hän ei tarvitse olla paras ollakseen tärkeä."
+      ],
+      "pageCharacters": [
+        "nuppu",
+        "muru",
+        "muru",
+        "nuppu",
+        "hippu",
+        "hippu",
+        "nuppu",
+        "lumo",
+        "nuppu",
+        "nuppu",
+        "lumo",
+        "nuppu",
+        "hippu",
+        "hippu",
+        "lumo",
+        "nuppu",
+        "nuppu",
+        "nuppu",
+        "nuppu",
+        "nuppu",
+        "nuppu",
+        "nuppu",
+        "nuppu",
+        "nuppu",
+        "nuppu",
+        "nuppu"
+      ],
+      "pageCharactersLittle": [
+        "nuppu",
+        "muru",
+        "nuppu",
+        "lumo",
+        "nuppu",
+        "nuppu",
+        "nuppu"
+      ],
+      "chapters": [
+        {
+          "title": "Taitopäivä alkaa",
+          "time": "0:00"
+        },
+        {
+          "title": "Jokaisen taidot",
+          "time": "1:30"
+        },
+        {
+          "title": "Pieneltä tuntuminen",
+          "time": "3:00"
+        },
+        {
+          "title": "Pienen linnun auttaminen",
+          "time": "5:30"
+        },
+        {
+          "title": "Nupun oma vahvuus",
+          "time": "7:30"
+        }
+      ],
+      "microSupportSkill": "Lapsen auttaminen arvostamaan omia vahvuuksiaan ilman vertailua",
+      "microSupportActions": [
+        "Huomaa ääneen, kun lapsesi on kärsivällinen tai ystävällinen, ei vain silloin, kun hän on nopea tai vahva.",
+        "Vältä lasten taitojen vertailua toisiinsa, edes kevyesti tai leikillään.",
+        "Kysy yhteisen leikin jälkeen ”mistä sinä pidit eniten?” sen sijaan, että kysyisit ”kuka oli paras?”",
+        "Muistuta, että jokaisella on erilaisia vahvuuksia, ja juuri se saa ryhmän toimimaan hyvin yhdessä."
+      ],
+      "conversationStarter": "Muistatko, missä Nuppu huomasi olevansa hyvä? Missä sinä olet hyvä, vaikka se ei liittyisikään nopeuteen tai voimaan?"
+    }
+  }
+}

@@ -1,100 +1,68 @@
 import { useNavigate } from 'react-router';
-import { ArrowLeft, Check } from 'lucide-react';
+import { Check, Minus } from 'lucide-react';
 import { MobileScreen } from '../../components/MobileScreen';
-import { useChild, type PlanTier } from '../../context/ChildContext';
+import { ProgressHeader } from '../../components/ProgressHeader';
+import { useChild, type SubscriptionPlan } from '../../context/ChildContext';
+import { useLanguage } from '../../i18n/LanguageContext';
 
-const PLANS: {
-  id: PlanTier;
-  name: string;
-  price: string;
-  features: string[];
-}[] = [
-  {
-    id: 'freemium',
-    name: 'Freemium',
-    price: '€4.99 / month',
-    features: [
-      'Nuppu the Bunny as the main storyteller',
-      'No personalization at this stage',
-      'Shorter stories (2–3 minutes)',
-      'No parent micro-support content',
-    ],
-  },
-  {
-    id: 'premium',
-    name: 'Premium',
-    price: '€6.99 / month',
-    features: [
-      'Personalized stories using name & interests',
-      'Longer stories (5–7 minutes)',
-      'Parent micro-support content unlocked',
-      'Full access to the Adult Corner tip library',
-    ],
-  },
-];
+interface Feature {
+  text: string;
+  included: boolean;
+}
+
+function PlanCard({ plan, highlighted }: { plan: SubscriptionPlan; highlighted: boolean }) {
+  const { t, tRaw } = useLanguage();
+  const { subscriptionPlan } = useChild();
+  const features = tRaw<Feature[]>(`subscription.${plan}.features`);
+
+  return (
+    <div className={`card-soft p-4 ${highlighted ? 'border-2 border-nuppu-blue-deep bg-nuppu-lavender-light' : ''}`}>
+      <div className="flex items-center justify-between">
+        <p className="font-display text-lg font-bold text-nuppu-dark">{t(`subscription.${plan}.name`)}</p>
+        {subscriptionPlan === plan && (
+          <span className="rounded-full bg-nuppu-butter px-3 py-1 text-xs font-bold text-[#8a641f]">
+            {t('subscription.current')}
+          </span>
+        )}
+      </div>
+      <p className="mt-1">
+        <span className="font-display text-2xl font-bold text-nuppu-dark">{t(`subscription.${plan}.price`)}</span>
+        <span className="text-sm font-semibold text-nuppu-gray"> {t('subscription.perMonth')}</span>
+      </p>
+      <ul className="mt-3 flex flex-col gap-2">
+        {features.map((feature) => (
+          <li
+            key={feature.text}
+            className={`flex items-start gap-2 text-sm ${feature.included ? 'text-nuppu-dark' : 'text-nuppu-gray'}`}
+          >
+            {feature.included ? (
+              <Check size={16} className="mt-0.5 shrink-0 text-nuppu-green" />
+            ) : (
+              <Minus size={16} className="mt-0.5 shrink-0 text-nuppu-border" />
+            )}
+            {feature.text}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
 
 export function Subscription() {
+  const { t } = useLanguage();
   const navigate = useNavigate();
-  const { plan, setPlan } = useChild();
 
   return (
     <MobileScreen>
-      <div className="flex-1 overflow-y-auto bg-gradient-to-br from-[#D4C5F9]/25 via-[#C9BBF5]/10 to-white">
-        <div className="bg-gradient-to-r from-[#6E4FD1] to-[#C9BBF5] px-6 pt-8 pb-6 flex items-center gap-3">
-          <button
-            onClick={() => navigate(-1)}
-            className="w-9 h-9 rounded-full bg-white/20 flex items-center justify-center"
-            aria-label="Back"
-          >
-            <ArrowLeft className="w-4 h-4 text-white" />
-          </button>
-          <h1 className="text-lg font-bold text-white">Subscription & Plan</h1>
-        </div>
+      <ProgressHeader onBack={() => navigate(-1)} title={t('subscription.title')} />
+      <div className="flex flex-1 flex-col gap-4 px-6 pt-3 pb-8">
+        <PlanCard plan="basic" highlighted={false} />
+        <PlanCard plan="premium" highlighted />
 
-        <div className="px-6 py-6">
-          <p className="text-xs text-[#6B6660] mb-5 leading-relaxed">
-            This is a demo switch for the prototype — toggle plans below to see how the app
-            experience changes for Freemium vs. Premium families, e.g. on the story completion
-            screen.
-          </p>
-
-          <div className="flex flex-col gap-4">
-            {PLANS.map((p) => {
-              const active = plan === p.id;
-              return (
-                <button
-                  key={p.id}
-                  onClick={() => setPlan(p.id)}
-                  className={`text-left rounded-2xl border-2 p-5 transition-all ${
-                    active ? 'border-[#6E4FD1] bg-[#C9BBF5]/10 shadow-md' : 'border-gray-200 bg-white'
-                  }`}
-                >
-                  <div className="flex items-center justify-between mb-1">
-                    <p className="text-base font-bold text-[#35322B]">{p.name}</p>
-                    {active && (
-                      <span className="text-[10px] font-bold text-white bg-[#6E4FD1] px-2 py-1 rounded-full">
-                        CURRENT
-                      </span>
-                    )}
-                  </div>
-                  <p className="text-sm font-semibold text-[#6E4FD1] mb-3">{p.price}</p>
-                  <ul className="space-y-2">
-                    {p.features.map((feature) => (
-                      <li key={feature} className="flex items-start gap-2 text-xs text-[#55504A]">
-                        <Check className="w-3.5 h-3.5 text-[#6E4FD1] shrink-0 mt-0.5" />
-                        <span>{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </button>
-              );
-            })}
-          </div>
-
-          <p className="text-[11px] text-[#6B6660] text-center mt-6 leading-relaxed">
-            Pricing shown for concept validation only — final pricing to be confirmed by the
-            Nuppu Digital team.
-          </p>
+        <div className="rounded-2xl bg-nuppu-lavender-light p-4 text-sm text-nuppu-dark">{t('subscription.billingNote')}</div>
+        <div className="rounded-2xl bg-nuppu-amber-bg p-4 text-sm text-nuppu-amber-text">
+          <strong>{t('subscription.demoNote').split(':')[0]}:</strong>
+          {t('subscription.demoNote').split(':').slice(1).join(':')}
         </div>
       </div>
     </MobileScreen>
