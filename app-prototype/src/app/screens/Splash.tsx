@@ -1,42 +1,46 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { MobileScreen } from '../components/MobileScreen';
-import { useLanguage } from '../i18n/LanguageContext';
+import { useLanguage, type Lang } from '../i18n/LanguageContext';
+import nuppuMark from '../../assets/png/NUPPU MARK.png';
 
 export function Splash() {
   const navigate = useNavigate();
-  const { t } = useLanguage();
+  const { t, language, setLanguage } = useLanguage();
   const [filled, setFilled] = useState(false);
 
   useEffect(() => {
     const fillTimer = setTimeout(() => setFilled(true), 80);
-    const navTimer = setTimeout(() => navigate('/login'), 1900);
-    return () => {
-      clearTimeout(fillTimer);
-      clearTimeout(navTimer);
-    };
-  }, [navigate]);
+    return () => clearTimeout(fillTimer);
+  }, []);
+
+  const languages: { id: Lang; label: string }[] = [
+    { id: 'en', label: 'EN' },
+    { id: 'fi', label: 'FI' },
+  ];
+
+  function choose(lang: Lang) {
+    setLanguage(lang);
+    navigate('/login');
+  }
 
   return (
     <MobileScreen bgClassName="bg-nuppu-butter">
+      <div className="flex justify-center gap-2 pt-6">
+        {languages.map((option) => (
+          <button
+            key={option.id}
+            onClick={() => choose(option.id)}
+            className={`rounded-full px-4 py-1.5 text-sm font-bold transition-colors ${
+              language === option.id ? 'bg-[#b7a3e6] text-white' : 'bg-white/50 text-nuppu-secondary'
+            }`}
+          >
+            {option.label}
+          </button>
+        ))}
+      </div>
       <div className="flex flex-1 flex-col items-center justify-center gap-4 px-10 text-center">
-        <svg width="72" height="52" viewBox="0 0 72 52" fill="none">
-          <path
-            d="M14 4C10 16 10 28 20 36C20 24 22 16 28 8"
-            stroke="#b7a3e6"
-            strokeWidth="8"
-            strokeLinecap="round"
-            fill="none"
-          />
-          <path
-            d="M58 4C62 16 62 28 52 36C52 24 50 16 44 8"
-            stroke="#b7a3e6"
-            strokeWidth="8"
-            strokeLinecap="round"
-            fill="none"
-          />
-        </svg>
-        <h1 className="font-display text-5xl font-extrabold tracking-wide text-[#b7a3e6]">NUPPU</h1>
+        <img src={nuppuMark} alt="Nuppu" className="h-24 w-24 object-contain" />
         <p className="font-display text-lg font-semibold text-nuppu-secondary">{t('splash.tagline')}</p>
       </div>
       <div className="flex flex-col items-center gap-3 px-10 pb-12">

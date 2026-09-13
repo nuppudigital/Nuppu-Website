@@ -1,10 +1,10 @@
 import type { Species } from '../components/CharacterAvatar';
 
-export type CharacterId = 'nuppu' | 'muru' | 'hippu' | 'lumo';
+export type CharacterId = 'nuppu' | 'muru' | 'hippu' | 'lumo' | 'common';
 
 export interface CharacterMeta {
   id: CharacterId;
-  species: Species;
+  species?: Species;
   wheelchair?: boolean;
   bgLight: string;
   bgStrong: string;
@@ -12,6 +12,12 @@ export interface CharacterMeta {
 }
 
 export const CHARACTERS: Record<CharacterId, CharacterMeta> = {
+  common: {
+    id: 'common',
+    bgLight: 'bg-nuppu-lavender-light',
+    bgStrong: 'bg-nuppu-lavender',
+    textStrong: 'text-nuppu-blue-deep',
+  },
   nuppu: {
     id: 'nuppu',
     species: 'bunny',

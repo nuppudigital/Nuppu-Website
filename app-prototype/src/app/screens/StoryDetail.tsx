@@ -3,9 +3,9 @@ import { useNavigate, useParams } from 'react-router';
 import { MobileScreen } from '../components/MobileScreen';
 import { IconButton } from '../components/IconButton';
 import { Button } from '../components/Button';
-import { CharacterAvatar } from '../components/CharacterAvatar';
+import { StoryCover } from '../components/StoryCover';
 import { CHARACTERS } from '../data/characters';
-import { useStoryCatalog } from '../hooks/useStoryCatalog';
+import { useStoryCatalog, coverCharacterId } from '../hooks/useStoryCatalog';
 import { useChild } from '../context/ChildContext';
 import { useLanguage } from '../i18n/LanguageContext';
 
@@ -18,7 +18,7 @@ export function StoryDetail() {
 
   const story = resolve(storyId);
   if (!story) return null;
-  const character = CHARACTERS[story.characterId];
+  const character = CHARACTERS[coverCharacterId(story)];
 
   return (
     <MobileScreen>
@@ -26,18 +26,16 @@ export function StoryDetail() {
         <div className="absolute left-4 top-2">
           <IconButton icon={ChevronLeft} onClick={() => navigate(-1)} aria-label={t('common.back')} className="bg-white/90" />
         </div>
-        {story.photoUrl ? (
-          <img src={story.photoUrl} alt="" className="h-full w-full object-cover" />
-        ) : (
-          <CharacterAvatar species={character.species} wheelchair={character.wheelchair} className="h-48 w-auto" />
-        )}
+        <StoryCover photoUrl={story.photoUrl} character={character} avatarClassName="h-48 w-auto" />
       </div>
 
       <div className="flex flex-1 flex-col gap-4 px-6 pt-5">
         <div className="flex flex-wrap gap-2">
-          <span className={`rounded-full px-3 py-1 text-xs font-bold ${character.bgLight} ${character.textStrong}`}>
-            {t(`characters.${story.characterId}.name`)}
-          </span>
+          {character.species && (
+            <span className={`rounded-full px-3 py-1 text-xs font-bold ${character.bgLight} ${character.textStrong}`}>
+              {t(`characters.${character.id}.name`)}
+            </span>
+          )}
           <span className="chip">
             {t(`ageBands.${ageBand}.name`)}
           </span>

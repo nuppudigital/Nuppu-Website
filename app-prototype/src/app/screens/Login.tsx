@@ -6,14 +6,10 @@ import { Bilingual } from '../components/Bilingual';
 import { Input } from '../components/Input';
 import { Button } from '../components/Button';
 import { useLanguage } from '../i18n/LanguageContext';
+import nuppuMark from '../../assets/png/NUPPU MARK.png';
 
 function LogoMark() {
-  return (
-    <svg width="48" height="34" viewBox="0 0 72 52" fill="none">
-      <path d="M14 4C10 16 10 28 20 36C20 24 22 16 28 8" stroke="#b7a3e6" strokeWidth="8" strokeLinecap="round" fill="none" />
-      <path d="M58 4C62 16 62 28 52 36C52 24 50 16 44 8" stroke="#b7a3e6" strokeWidth="8" strokeLinecap="round" fill="none" />
-    </svg>
-  );
+  return <img src={nuppuMark} alt="Nuppu" className="h-12 w-12 object-contain" />;
 }
 
 export function Login() {

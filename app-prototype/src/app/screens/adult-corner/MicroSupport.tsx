@@ -2,9 +2,9 @@ import { useNavigate, useParams } from 'react-router';
 import { MessageCircle } from 'lucide-react';
 import { MobileScreen } from '../../components/MobileScreen';
 import { ProgressHeader } from '../../components/ProgressHeader';
-import { CharacterAvatar } from '../../components/CharacterAvatar';
+import { StoryCover } from '../../components/StoryCover';
 import { CHARACTERS } from '../../data/characters';
-import { useStoryCatalog } from '../../hooks/useStoryCatalog';
+import { useStoryCatalog, coverCharacterId } from '../../hooks/useStoryCatalog';
 import { useChild } from '../../context/ChildContext';
 import { useLanguage } from '../../i18n/LanguageContext';
 
@@ -17,7 +17,7 @@ export function MicroSupport() {
 
   const story = resolve(storyId ?? '') ?? resolve(continueReading?.storyId ?? '') ?? all[0];
   if (!story) return null;
-  const character = CHARACTERS[story.characterId];
+  const character = CHARACTERS[coverCharacterId(story)];
 
   return (
     <MobileScreen>
@@ -25,11 +25,7 @@ export function MicroSupport() {
       <div className="flex flex-1 flex-col gap-5 px-6 pt-3 pb-8">
         <div className="card-soft flex items-center gap-3 bg-nuppu-lavender-light p-4">
           <span className={`flex h-14 w-14 shrink-0 overflow-hidden items-center justify-center rounded-xl ${character.bgLight}`}>
-            {story.photoUrl ? (
-              <img src={story.photoUrl} alt="" className="h-full w-full object-cover" />
-            ) : (
-              <CharacterAvatar species={character.species} wheelchair={character.wheelchair} className="h-10 w-auto" />
-            )}
+            <StoryCover photoUrl={story.photoUrl} character={character} avatarClassName="h-10 w-auto" />
           </span>
           <div>
             <p className="text-xs font-bold uppercase tracking-wide text-nuppu-blue-deep">{t('microSupport.skillLabel')}</p>

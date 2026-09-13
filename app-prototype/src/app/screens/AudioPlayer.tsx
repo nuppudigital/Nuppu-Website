@@ -3,9 +3,9 @@ import { ChevronLeft, Play, Pause, RotateCcw, RotateCw, Moon, ShieldCheck } from
 import { useNavigate, useParams } from 'react-router';
 import { MobileScreen } from '../components/MobileScreen';
 import { IconButton } from '../components/IconButton';
-import { CharacterAvatar } from '../components/CharacterAvatar';
+import { StoryCover } from '../components/StoryCover';
 import { CHARACTERS } from '../data/characters';
-import { useStoryCatalog } from '../hooks/useStoryCatalog';
+import { useStoryCatalog, coverCharacterId } from '../hooks/useStoryCatalog';
 import { useLanguage } from '../i18n/LanguageContext';
 import { parseMinSec, formatMinSec } from '../utils/time';
 
@@ -47,7 +47,7 @@ export function AudioPlayer() {
   }, [speed]);
 
   if (!story) return null;
-  const character = CHARACTERS[story.characterId];
+  const character = CHARACTERS[coverCharacterId(story)];
 
   const togglePlay = () => {
     if (hasRealAudio && audioRef.current) {
@@ -95,11 +95,7 @@ export function AudioPlayer() {
 
       <div className="flex flex-1 flex-col items-center gap-1 px-6 pt-2">
         <div className={`relative flex h-40 w-40 items-center justify-center overflow-hidden rounded-3xl ${character.bgLight}`}>
-          {story.photoUrl ? (
-            <img src={story.photoUrl} alt="" className="h-full w-full object-cover" />
-          ) : (
-            <CharacterAvatar species={character.species} wheelchair={character.wheelchair} className="h-28 w-auto" />
-          )}
+          <StoryCover photoUrl={story.photoUrl} character={character} avatarClassName="h-28 w-auto" />
           {!hasRealAudio && (
             <span className="absolute -bottom-3 rounded-full bg-nuppu-butter px-3 py-1 text-[11px] font-bold text-[#8a641f] shadow">
               {t('audioPlayer.previewBadge')}
@@ -109,10 +105,9 @@ export function AudioPlayer() {
 
         <h1 className="mt-5 text-center font-display text-xl font-bold text-nuppu-dark">{story.title}</h1>
         <p className="text-center text-sm text-nuppu-gray">
-          {t('audioPlayer.narrator', {
-            character: t(`characters.${story.characterId}.name`),
-            skill: story.subtitleShort,
-          })}
+          {character.species
+            ? t('audioPlayer.narrator', { character: t(`characters.${character.id}.name`), skill: story.subtitleShort })
+            : story.subtitleShort}
         </p>
 
         <div className="mt-6 w-full">

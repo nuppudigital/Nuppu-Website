@@ -3,15 +3,15 @@ import { useNavigate } from 'react-router';
 import { MobileScreen } from '../components/MobileScreen';
 import { BottomNav } from '../components/BottomNav';
 import { IconButton } from '../components/IconButton';
-import { CharacterAvatar } from '../components/CharacterAvatar';
+import { StoryCover } from '../components/StoryCover';
 import { MOOD_LIST } from '../data/moods';
 import { CHARACTERS } from '../data/characters';
-import { useStoryCatalog, useLibraryCategories } from '../hooks/useStoryCatalog';
+import { useStoryCatalog, useLibraryCategories, coverCharacterId } from '../hooks/useStoryCatalog';
 import { useChild, type MoodId } from '../context/ChildContext';
 import { useLanguage } from '../i18n/LanguageContext';
 
 export function Home() {
-  const { t } = useLanguage();
+  const { t, language, toggleLanguage } = useLanguage();
   const navigate = useNavigate();
   const { name, mood, setMood, continueReading, ageBand } = useChild();
   const { all: stories } = useStoryCatalog();
@@ -22,7 +22,7 @@ export function Home() {
   const continueStory = continueReading ? stories.find((s) => s.id === continueReading.storyId) : undefined;
   const continuePages = continueStory ? (ageBand === 'little' ? continueStory.pagesLittle : continueStory.pagesBig).length : 0;
 
-  const forYouToday = stories.filter((s) => s.id !== continueReading?.storyId).slice(0, 2);
+  const forYouToday = stories;
 
   return (
     <MobileScreen nav={<BottomNav />}>
@@ -32,7 +32,15 @@ export function Home() {
             <p className="font-display text-2xl font-bold text-nuppu-dark">{t('home.greeting', { name })}</p>
             <p className="mt-1 text-lg font-semibold text-nuppu-secondary">{t('home.moodQuestion')}</p>
           </div>
-          <IconButton icon={Lock} onClick={() => navigate('/parent-gate')} aria-label={t('adultCorner.title')} />
+          <div className="flex items-center gap-2">
+            <button
+              onClick={toggleLanguage}
+              className="rounded-full border-2 border-nuppu-border bg-white px-3 py-1.5 text-sm font-bold text-nuppu-dark"
+            >
+              {language.toUpperCase()}
+            </button>
+            <IconButton icon={Lock} onClick={() => navigate('/parent-gate')} aria-label={t('adultCorner.title')} />
+          </div>
         </div>
 
         <div className="flex gap-2 overflow-x-auto pb-1">
@@ -55,14 +63,14 @@ export function Home() {
             <h2 className="mb-2 font-display text-lg font-bold text-nuppu-dark">{t('home.continueReading')}</h2>
             <button
               onClick={() => navigate(`/stories/${continueStory.id}/read`)}
-              className={`card-soft flex w-full items-center gap-3 p-3 text-left ${CHARACTERS[continueStory.characterId].bgLight}`}
+              className={`card-soft flex w-full items-center gap-3 p-3 text-left ${CHARACTERS[coverCharacterId(continueStory)].bgLight}`}
             >
-              <span className={`flex h-14 w-14 shrink-0 overflow-hidden items-center justify-center rounded-xl ${CHARACTERS[continueStory.characterId].bgLight}`}>
-                {continueStory.photoUrl ? (
-                  <img src={continueStory.photoUrl} alt="" className="h-full w-full object-cover" />
-                ) : (
-                  <CharacterAvatar species={CHARACTERS[continueStory.characterId].species} className="h-10 w-auto" />
-                )}
+              <span className={`flex h-14 w-14 shrink-0 overflow-hidden items-center justify-center rounded-xl ${CHARACTERS[coverCharacterId(continueStory)].bgLight}`}>
+                <StoryCover
+                  photoUrl={continueStory.photoUrl}
+                  character={CHARACTERS[coverCharacterId(continueStory)]}
+                  avatarClassName="h-10 w-auto"
+                />
               </span>
               <span className="flex-1">
                 <span className="block font-bold text-nuppu-dark">{continueStory.title}</span>
@@ -92,7 +100,7 @@ export function Home() {
           </div>
           <div className="grid grid-cols-2 gap-3">
             {forYouToday.map((story) => {
-              const character = CHARACTERS[story.characterId];
+              const character = CHARACTERS[coverCharacterId(story)];
               return (
                 <button
                   key={story.id}
@@ -100,11 +108,7 @@ export function Home() {
                   className="flex flex-col overflow-hidden rounded-2xl border border-nuppu-border bg-white text-left"
                 >
                   <span className={`flex h-24 items-center justify-center overflow-hidden ${character.bgLight}`}>
-                    {story.photoUrl ? (
-                      <img src={story.photoUrl} alt="" className="h-full w-full object-cover" />
-                    ) : (
-                      <CharacterAvatar species={character.species} wheelchair={character.wheelchair} className="h-16 w-auto" />
-                    )}
+                    <StoryCover photoUrl={story.photoUrl} character={character} avatarClassName="h-16 w-auto" />
                   </span>
                   <span className="p-2.5">
                     <span className="block text-sm font-bold leading-snug text-nuppu-dark">{story.title}</span>
@@ -119,7 +123,7 @@ export function Home() {
         </div>
 
         <button
-          onClick={() => navigate('/stories/quiet-evening')}
+          onClick={() => navigate('/stories')}
           className="card-soft flex items-center gap-3 bg-nuppu-butter-light p-4 text-left"
         >
           <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-white">

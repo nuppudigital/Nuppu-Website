@@ -1,4 +1,5 @@
-import { X, Sparkles, BookOpen, Heart } from 'lucide-react';
+import { useState } from 'react';
+import { X, Sparkles, BookOpen, Heart, Pencil, Check } from 'lucide-react';
 import { useNavigate } from 'react-router';
 import { MobileScreen } from '../../components/MobileScreen';
 import { IconButton } from '../../components/IconButton';
@@ -13,8 +14,26 @@ import { useLanguage } from '../../i18n/LanguageContext';
 export function ChildCard() {
   const { t } = useLanguage();
   const navigate = useNavigate();
-  const { name, ageBand, avatarSpecies, interests, personalizationOn, storiesReadTotal, storiesReadThisWeek, favouriteFriendId } =
-    useChild();
+  const {
+    name,
+    setName,
+    ageBand,
+    avatarSpecies,
+    interests,
+    personalizationOn,
+    storiesReadTotal,
+    storiesReadThisWeek,
+    favouriteFriendId,
+  } = useChild();
+  const [editingName, setEditingName] = useState(false);
+  const [nameDraft, setNameDraft] = useState(name);
+
+  function saveName() {
+    const trimmed = nameDraft.trim();
+    if (trimmed) setName(trimmed);
+    else setNameDraft(name);
+    setEditingName(false);
+  }
 
   const bandIcon = AGE_BAND_LIST.find((b) => b.id === ageBand)?.icon;
   const friend = CHARACTERS[favouriteFriendId as keyof typeof CHARACTERS];
@@ -28,7 +47,31 @@ export function ChildCard() {
         <div className="mx-auto flex h-28 w-28 items-center justify-center rounded-full bg-white shadow-md">
           <CharacterAvatar species={avatarSpecies} className="h-20 w-auto" />
         </div>
-        <h1 className="mt-3 font-display text-2xl font-bold text-nuppu-dark">{name}</h1>
+        {editingName ? (
+          <div className="mt-3 flex items-center justify-center gap-2">
+            <input
+              autoFocus
+              value={nameDraft}
+              onChange={(e) => setNameDraft(e.target.value)}
+              onKeyDown={(e) => e.key === 'Enter' && saveName()}
+              className="rounded-xl border-2 border-nuppu-blue-deep bg-white px-3 py-1.5 text-center font-display text-2xl font-bold text-nuppu-dark outline-none"
+            />
+            <IconButton icon={Check} onClick={saveName} aria-label={t('common.save')} />
+          </div>
+        ) : (
+          <div className="mt-3 flex items-center justify-center gap-2">
+            <h1 className="font-display text-2xl font-bold text-nuppu-dark">{name}</h1>
+            <IconButton
+              icon={Pencil}
+              size={16}
+              onClick={() => {
+                setNameDraft(name);
+                setEditingName(true);
+              }}
+              aria-label={t('childCard.editName')}
+            />
+          </div>
+        )}
         <div className="mt-2 flex items-center justify-center gap-2">
           <span className="chip">
             {bandIcon} {t(`ageBands.${ageBand}.name`)}

@@ -4,9 +4,9 @@ import { useNavigate } from 'react-router';
 import { MobileScreen } from '../components/MobileScreen';
 import { BottomNav } from '../components/BottomNav';
 import { Chip } from '../components/Chip';
-import { CharacterAvatar } from '../components/CharacterAvatar';
+import { StoryCover } from '../components/StoryCover';
 import { CHARACTERS } from '../data/characters';
-import { useStoryCatalog, useLibraryCategories } from '../hooks/useStoryCatalog';
+import { useStoryCatalog, useLibraryCategories, coverCharacterId } from '../hooks/useStoryCatalog';
 import { useChild } from '../context/ChildContext';
 import { useLanguage } from '../i18n/LanguageContext';
 
@@ -46,7 +46,7 @@ export function StoryLibrary() {
 
         <div className="flex flex-col gap-3">
           {stories.map((story) => {
-            const character = CHARACTERS[story.characterId];
+            const character = CHARACTERS[coverCharacterId(story)];
             return (
               <button
                 key={story.id}
@@ -54,11 +54,7 @@ export function StoryLibrary() {
                 className="card-soft flex items-center gap-3 p-3 text-left"
               >
                 <span className={`flex h-16 w-16 shrink-0 overflow-hidden items-center justify-center rounded-xl ${character.bgLight}`}>
-                  {story.photoUrl ? (
-                    <img src={story.photoUrl} alt="" className="h-full w-full object-cover" />
-                  ) : (
-                    <CharacterAvatar species={character.species} wheelchair={character.wheelchair} className="h-12 w-auto" />
-                  )}
+                  <StoryCover photoUrl={story.photoUrl} character={character} avatarClassName="h-12 w-auto" />
                 </span>
                 <span className="flex-1">
                   <span className="block font-bold text-nuppu-dark">{story.title}</span>

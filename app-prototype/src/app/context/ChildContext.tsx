@@ -2,10 +2,11 @@ import { createContext, useContext, useState, type ReactNode } from 'react';
 
 export type AgeBand = 'little' | 'big' | 'super';
 export type AvatarSpecies = 'bunny' | 'bear' | 'cat' | 'fox';
-export type MoodId = 'happy' | 'sad' | 'angry' | 'tired' | 'nervous';
+export type MoodId = 'happy' | 'sad' | 'energetic' | 'angry' | 'tired' | 'nervous';
 export type SubscriptionPlan = 'basic' | 'premium';
 
 export const DEFAULT_PERMITTED_THEMES = ['feelings', 'friendship', 'safeEveryday', 'natureAnimals', 'imagination'];
+export const MAX_CUSTOM_INTERESTS = 3;
 
 interface ContinueReading {
   storyId: string;
@@ -21,6 +22,9 @@ interface ChildContextValue {
   setAvatarSpecies: (species: AvatarSpecies) => void;
   interests: string[];
   toggleInterest: (id: string) => void;
+  customInterests: string[];
+  addCustomInterest: (label: string) => void;
+  removeCustomInterest: (label: string) => void;
   freeTopic: string;
   setFreeTopic: (topic: string) => void;
   consentGiven: boolean;
@@ -53,6 +57,7 @@ export function ChildProvider({ children }: { children: ReactNode }) {
   const [ageBand, setAgeBand] = useState<AgeBand>('big');
   const [avatarSpecies, setAvatarSpecies] = useState<AvatarSpecies>('cat');
   const [interests, setInterests] = useState<string[]>(['animals', 'nature', 'crafts', 'baking', 'friends']);
+  const [customInterests, setCustomInterests] = useState<string[]>([]);
   const [freeTopic, setFreeTopic] = useState('');
   const [consentGiven, setConsentGiven] = useState(false);
   const [onboardingComplete, setOnboardingComplete] = useState(false);
@@ -70,6 +75,20 @@ export function ChildProvider({ children }: { children: ReactNode }) {
 
   const toggleInterest = (id: string) => {
     setInterests((prev) => (prev.includes(id) ? prev.filter((i) => i !== id) : [...prev, id]));
+  };
+
+  const addCustomInterest = (label: string) => {
+    const trimmed = label.trim();
+    if (!trimmed) return;
+    setCustomInterests((prev) =>
+      prev.length >= MAX_CUSTOM_INTERESTS || prev.some((i) => i.toLowerCase() === trimmed.toLowerCase())
+        ? prev
+        : [...prev, trimmed],
+    );
+  };
+
+  const removeCustomInterest = (label: string) => {
+    setCustomInterests((prev) => prev.filter((i) => i !== label));
   };
 
   const toggleTheme = (id: string) => {
@@ -94,6 +113,9 @@ export function ChildProvider({ children }: { children: ReactNode }) {
     setAvatarSpecies,
     interests,
     toggleInterest,
+    customInterests,
+    addCustomInterest,
+    removeCustomInterest,
     freeTopic,
     setFreeTopic,
     consentGiven,

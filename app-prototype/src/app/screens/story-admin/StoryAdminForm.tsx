@@ -255,7 +255,7 @@ export function StoryAdminForm() {
                     selected ? 'border-nuppu-blue-deep bg-nuppu-lavender-light' : 'border-nuppu-border'
                   }`}
                 >
-                  <CharacterAvatar species={character.species} wheelchair={character.wheelchair} className="h-10 w-auto" />
+                  <CharacterAvatar species={character.species!} wheelchair={character.wheelchair} className="h-10 w-auto" />
                   <span className="text-xs font-bold text-nuppu-dark">{t(`characters.${character.id}.name`)}</span>
                 </button>
               );

@@ -138,12 +138,21 @@ h3,
   overflow: hidden;
 }
 
+/* Tablets: fill more of the screen instead of shrinking to a phone-sized card */
 @media (min-width: 481px) {
+  .phone-shell {
+    max-width: 600px;
+  }
+}
+
+/* Real desktop/laptop browsers only (mouse pointer): show a framed phone-mockup preview */
+@media (min-width: 1024px) and (hover: hover) and (pointer: fine) {
   .app-viewport {
     padding: 2.5rem 1rem;
   }
 
   .phone-shell {
+    max-width: 430px;
     min-height: 844px;
     border-radius: 2.75rem;
     box-shadow: 0 30px 60px -20px rgba(50, 45, 71, 0.35);

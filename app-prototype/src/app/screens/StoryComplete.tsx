@@ -3,7 +3,7 @@ import { MobileScreen } from '../components/MobileScreen';
 import { Button } from '../components/Button';
 import { CharacterAvatar } from '../components/CharacterAvatar';
 import { CHARACTERS } from '../data/characters';
-import { useStoryCatalog } from '../hooks/useStoryCatalog';
+import { useStoryCatalog, coverCharacterId } from '../hooks/useStoryCatalog';
 import { useChild } from '../context/ChildContext';
 import { useLanguage } from '../i18n/LanguageContext';
 
@@ -16,8 +16,8 @@ export function StoryComplete() {
 
   const story = resolve(storyId);
   if (!story) return null;
-  const character = CHARACTERS[story.characterId];
-  const showPair = story.characterId !== 'nuppu';
+  const character = CHARACTERS[coverCharacterId(story)];
+  const showPair = character.id !== 'nuppu' && Boolean(character.species);
 
   return (
     <MobileScreen bgClassName="bg-nuppu-butter-light">
@@ -26,8 +26,8 @@ export function StoryComplete() {
         <p className="mt-2 text-nuppu-secondary">{t('endOfStory.subtitle', { name })}</p>
 
         <div className="mt-10 flex items-end justify-center">
-          <CharacterAvatar species={CHARACTERS.nuppu.species} className="h-40 w-auto" />
-          {showPair && (
+          <CharacterAvatar species="bunny" className="h-40 w-auto" />
+          {showPair && character.species && (
             <CharacterAvatar
               species={character.species}
               wheelchair={character.wheelchair}

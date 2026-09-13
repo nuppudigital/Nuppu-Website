@@ -4,9 +4,9 @@ import { useNavigate, useParams } from 'react-router';
 import { MobileScreen } from '../components/MobileScreen';
 import { IconButton } from '../components/IconButton';
 import { Button } from '../components/Button';
-import { CharacterAvatar } from '../components/CharacterAvatar';
+import { StoryCover } from '../components/StoryCover';
 import { CHARACTERS } from '../data/characters';
-import { useStoryCatalog } from '../hooks/useStoryCatalog';
+import { useStoryCatalog, coverCharacterId } from '../hooks/useStoryCatalog';
 import { useChild } from '../context/ChildContext';
 import { useLanguage } from '../i18n/LanguageContext';
 
@@ -26,7 +26,8 @@ export function Reader() {
   const [page, setPage] = useState(startPage);
 
   if (!story) return null;
-  const character = CHARACTERS[story.characterId];
+  const pageCharacterIds = isLittle ? story.pageCharactersLittle : story.pageCharacters;
+  const character = CHARACTERS[pageCharacterIds?.[page] ?? coverCharacterId(story)];
   const isLast = page === pages.length - 1;
 
   const goNext = () => {
@@ -72,11 +73,7 @@ export function Reader() {
 
       <div className="flex flex-1 flex-col gap-6 px-6 pt-4">
         <div className={`flex h-48 shrink-0 items-center justify-center overflow-hidden rounded-2xl ${character.bgLight}`}>
-          {story.photoUrl ? (
-            <img src={story.photoUrl} alt="" className="h-full w-full object-cover" />
-          ) : (
-            <CharacterAvatar species={character.species} wheelchair={character.wheelchair} className="h-32 w-auto" />
-          )}
+          <StoryCover photoUrl={story.photoUrl} character={character} avatarClassName="h-32 w-auto" />
         </div>
         <p
           className={`whitespace-pre-line leading-relaxed text-nuppu-dark ${

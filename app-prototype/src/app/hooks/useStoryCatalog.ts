@@ -1,6 +1,7 @@
 import { useLanguage } from '../i18n/LanguageContext';
 import { useCustomStories } from '../context/CustomStoriesContext';
 import { STORY_LIST, getStoryMeta } from '../data/stories';
+import { BUILT_IN_AUDIO } from '../data/storyAudio';
 import { LIBRARY_CATEGORY_LIST } from '../data/interestTags';
 import type { CharacterId } from '../data/characters';
 
@@ -23,6 +24,9 @@ export interface ResolvedStory {
   emotionalSkill: string;
   pagesBig: string[];
   pagesLittle: string[];
+  pageCharacters?: CharacterId[];
+  pageCharactersLittle?: CharacterId[];
+  defaultCharacterId?: CharacterId;
   microSupportSkill: string;
   microSupportActions: string[];
   conversationStarter: string;
@@ -51,6 +55,9 @@ export function useStoryCatalog() {
         emotionalSkill: custom.emotionalSkill[language],
         pagesBig: pages,
         pagesLittle: pages,
+        pageCharacters: undefined,
+        pageCharactersLittle: undefined,
+        defaultCharacterId: undefined,
         microSupportSkill: custom.emotionalSkill[language],
         microSupportActions: custom.microSupportActions[language],
         conversationStarter: custom.conversationStarter[language],
@@ -67,13 +74,16 @@ export function useStoryCatalog() {
       durationMin: meta.durationMin,
       categories: meta.categories,
       photoUrl: undefined,
-      audioUrl: undefined,
+      audioUrl: BUILT_IN_AUDIO[id],
       title: t(`storyContent.${id}.title`),
       subtitleShort: t(`storyContent.${id}.subtitleShort`),
       description: t(`storyContent.${id}.description`),
       emotionalSkill: t(`storyContent.${id}.emotionalSkill`),
       pagesBig: tRaw<string[]>(`storyContent.${id}.pagesBig`),
       pagesLittle: tRaw<string[]>(`storyContent.${id}.pagesLittle`),
+      pageCharacters: tRaw<CharacterId[]>(`storyContent.${id}.pageCharacters`),
+      pageCharactersLittle: tRaw<CharacterId[]>(`storyContent.${id}.pageCharactersLittle`),
+      defaultCharacterId: meta.defaultCharacterId,
       microSupportSkill: t(`storyContent.${id}.microSupportSkill`),
       microSupportActions: tRaw<string[]>(`storyContent.${id}.microSupportActions`),
       conversationStarter: t(`storyContent.${id}.conversationStarter`),
@@ -85,6 +95,13 @@ export function useStoryCatalog() {
   const all = allIds.map(resolve).filter((s): s is ResolvedStory => Boolean(s));
 
   return { resolve, all };
+}
+
+/** For a "common" story (not owned by one character), use its assigned default
+ * character's picture if it has one, otherwise the neutral Nuppu logo mark. */
+export function coverCharacterId(story: Pick<ResolvedStory, 'characterId' | 'defaultCharacterId'>): CharacterId {
+  if (story.characterId !== 'common') return story.characterId;
+  return story.defaultCharacterId ?? 'common';
 }
 
 export interface LibraryCategory {

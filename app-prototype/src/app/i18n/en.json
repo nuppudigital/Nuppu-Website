@@ -74,12 +74,28 @@
     "footer": "The age group helps us choose the right language, themes and content for your child. The exact age is never stored."
   },
   "ageBands": {
-    "little": { "name": "Little Nuppu", "range": "Ages 2–4", "desc": "Short, calm stories and gentle emotional moments." },
-    "big": { "name": "Big Nuppu", "range": "Ages 5–8", "desc": "Stories about friendship, courage and everyday life." },
-    "super": { "name": "Super Nuppu", "range": "Ages 9–12", "desc": "Deeper stories and reflection on feelings." }
+    "little": {
+      "name": "Little Nuppu",
+      "range": "Ages 2–4",
+      "desc": "Short, calm stories and gentle emotional moments."
+    },
+    "big": {
+      "name": "Big Nuppu",
+      "range": "Ages 5–8",
+      "desc": "Stories about friendship, courage and everyday life."
+    },
+    "super": {
+      "name": "Super Nuppu",
+      "range": "Ages 9–12",
+      "desc": "Deeper stories and reflection on feelings."
+    }
   },
   "onboardingInterests": {
     "title": "What does {name} like?",
+    "customLabel": "Add your own interests",
+    "customPlaceholder": "e.g. \"dragons\"",
+    "customAdd": "Add interest",
+    "customHint": "Add up to 3 of your own interests for story ideas.",
     "freeTopicLabel": "Free topic · optional",
     "freeTopicPlaceholder": "e.g. \"autumn rain\"",
     "freeTopicHint": "One short topic, 1–3 words.",
@@ -109,9 +125,14 @@
     "demoBody": "In production, filtering always happens on the server. Input is never passed to the AI as raw text.",
     "chooseSuggestion": "Choose a suggestion",
     "skip": "Skip free topic",
-    "suggestions": ["A friend in the dark", "Forest animals", "Courage"]
+    "suggestions": [
+      "A friend in the dark",
+      "Forest animals",
+      "Courage"
+    ]
   },
   "childCard": {
+    "editName": "Edit name",
     "interests": "Interests",
     "personalization": "Personalization",
     "personalizationDesc": "Name appears in stories",
@@ -136,6 +157,7 @@
   "moods": {
     "happy": "Happy",
     "sad": "Sad",
+    "energetic": "Energetic",
     "angry": "Angry",
     "tired": "Tired",
     "nervous": "Nervous"
@@ -195,14 +217,37 @@
     "title": "Adult Corner",
     "subtitle": "Settings, support and information — for you only.",
     "items": {
-      "aiPersonalization": { "label": "AI & Personalization", "on": "On · uses first name", "off": "Off" },
-      "microSupport": { "label": "Micro-support for parents", "desc": "12 tips · updated" },
-      "nuppuLetter": { "label": "Nuppu Letter", "desc": "August theme: disappointment" },
-      "safety": { "label": "Safety & privacy", "desc": "How AI is used" },
-      "subscription": { "label": "Subscription" },
-      "childProfiles": { "label": "Child profiles", "desc": "{name} · add a profile" },
-      "language": { "label": "Language", "desc": "English / Suomi" },
-      "feedback": { "label": "Feedback & content reporting" }
+      "aiPersonalization": {
+        "label": "AI & Personalization",
+        "on": "On · uses first name",
+        "off": "Off"
+      },
+      "microSupport": {
+        "label": "Micro-support for parents",
+        "desc": "12 tips · updated"
+      },
+      "nuppuLetter": {
+        "label": "Nuppu Letter",
+        "desc": "August theme: disappointment"
+      },
+      "safety": {
+        "label": "Safety & privacy",
+        "desc": "How AI is used"
+      },
+      "subscription": {
+        "label": "Subscription"
+      },
+      "childProfiles": {
+        "label": "Child profiles",
+        "desc": "{name} · add a profile"
+      },
+      "language": {
+        "label": "Language",
+        "desc": "English / Suomi"
+      },
+      "feedback": {
+        "label": "Feedback & content reporting"
+      }
     }
   },
   "aiPersonalization": {
@@ -231,11 +276,26 @@
     "title": "How AI is used",
     "subtitle": "Every story passes through the same safety chain. The child never converses with the AI.",
     "steps": [
-      { "title": "Pre-check", "desc": "Input is validated before any AI use" },
-      { "title": "Normalisation", "desc": "Topic becomes a controlled label" },
-      { "title": "AI generation", "desc": "Locked prompt, not modifiable" },
-      { "title": "Post-check", "desc": "Output is validated before display" },
-      { "title": "Fallback content", "desc": "Hand-written, always safe" }
+      {
+        "title": "Pre-check",
+        "desc": "Input is validated before any AI use"
+      },
+      {
+        "title": "Normalisation",
+        "desc": "Topic becomes a controlled label"
+      },
+      {
+        "title": "AI generation",
+        "desc": "Locked prompt, not modifiable"
+      },
+      {
+        "title": "Post-check",
+        "desc": "Output is validated before display"
+      },
+      {
+        "title": "Fallback content",
+        "desc": "Hand-written, always safe"
+      }
     ],
     "demoTitle": "In this demo",
     "demoBody": "The demo runs entirely on step 5 — hand-written fallback content. No AI call is made, and no data leaves the device.",
@@ -253,20 +313,44 @@
       "name": "Basic",
       "price": "3.99",
       "features": [
-        { "text": "Short stories, 2–3 min", "included": true },
-        { "text": "Nuppu and friends adventure together", "included": true },
-        { "text": "Stories are not personalised", "included": false },
-        { "text": "No parental support material", "included": false }
+        {
+          "text": "Short stories, 2–3 min",
+          "included": true
+        },
+        {
+          "text": "Nuppu and friends adventure together",
+          "included": true
+        },
+        {
+          "text": "Stories are not personalised",
+          "included": false
+        },
+        {
+          "text": "No parental support material",
+          "included": false
+        }
       ]
     },
     "premium": {
       "name": "Premium",
       "price": "5.99",
       "features": [
-        { "text": "Stories are personalised for your child", "included": true },
-        { "text": "Slightly longer stories", "included": true },
-        { "text": "Micro-support and guidance material", "included": true },
-        { "text": "Everything in Basic", "included": true }
+        {
+          "text": "Stories are personalised for your child",
+          "included": true
+        },
+        {
+          "text": "Slightly longer stories",
+          "included": true
+        },
+        {
+          "text": "Micro-support and guidance material",
+          "included": true
+        },
+        {
+          "text": "Everything in Basic",
+          "included": true
+        }
       ]
     },
     "billingNote": "Billing is handled through the App Store or Google Play. The subscription renews monthly and can be cancelled at any time — cancellation takes effect at the end of the period.",
@@ -307,171 +391,272 @@
     "nuppu": {
       "name": "Nuppu",
       "role": "Emotional guide & friendship",
-      "skills": "Recognising emotions, empathy, self-regulation"
+      "skills": "Recognising emotions, empathy, self-regulation",
+      "intro": "Nuppu is a gentle bunny who walks alongside your child through every feeling. Nuppu can name emotions and notices even the small things. Nuppu never says a feeling is wrong — instead, Nuppu helps you understand where it came from and where it can go."
     },
     "muru": {
       "name": "Muru",
       "role": "Safety & comfort",
-      "skills": "Security, calming down, coping with disappointment"
+      "skills": "Security, calming down, coping with disappointment",
+      "intro": "Muru is calm, gentle, and always ready to listen. Muru reminds us that every feeling is allowed. Around Muru, it's okay to be quiet, sad, or tired — exactly as you are!"
     },
     "hippu": {
       "name": "Hippu",
       "role": "Curiosity & boundaries",
-      "skills": "Expressing one's own will, boundaries, courage"
+      "skills": "Expressing one's own will, boundaries, courage",
+      "intro": "Hippu is a curious, independent cat who loves trying new things. Hippu thinks a lot: what do I want, how do I feel, and do I dare say it out loud. Hippu teaches that your own boundaries matter, and that they're allowed to change."
     },
     "lumo": {
       "name": "Lumo",
       "role": "Thinking & problem-solving",
-      "skills": "Disappointment, conflict, flexibility"
+      "skills": "Disappointment, conflict, flexibility",
+      "intro": "Lumo is a clever, observant fox who helps you look at situations from many angles. Lumo doesn't give ready-made answers — Lumo asks good questions instead. From Lumo you learn that mistakes are part of learning, and that even hard feelings can teach us something."
     }
   },
   "storyContent": {
-    "big-feeling": {
-      "title": "Nuppu and the Big Feeling",
-      "subtitleShort": "Recognising emotions",
-      "description": "Venla's day goes wrong and something feels big in her chest. Nuppu sits down beside her, in no hurry at all — together they give the feeling a name.",
-      "emotionalSkill": "Recognising and naming emotions",
+    "nupun-kiukkupilvi": {
+      "title": "Nuppu's Anger Cloud",
+      "subtitleShort": "Handling anger",
+      "description": "Nuppu doesn't want to stop playing and a big anger comes rushing in — until Mom helps Nuppu find a way to let it float away.",
+      "emotionalSkill": "Recognising anger and calming down",
       "pagesBig": [
-        "Venla's day had gone all wrong. First her tower of blocks fell down. Then she couldn't find her favourite red socks.",
-        "By the time she got outside, something big and heavy had settled in her chest. It felt like carrying a stone.",
-        "She didn't want to play. She didn't want to talk. She just wanted to sit very still.",
-        "Venla sat down on the grass. Something in her chest felt big and tight, as if a stone were sitting there.\n\nNuppu sat down beside her and said nothing at all. Nuppu was simply there.",
-        "They sat together for a long time, watching the clouds drift slowly by.",
-        "\"Can I ask what this feeling is called?\" Nuppu said gently, after a while.",
-        "Venla thought about it. \"It's heavy,\" she said. \"And it makes me want to cry.\"",
-        "\"That sounds like disappointment,\" said Nuppu. \"It's alright to feel that. It just means today was hard.\"",
-        "Slowly, as they named it together, the stone in Venla's chest began to feel a little lighter.",
-        "\"Thank you for sitting with me,\" Venla said. Nuppu smiled. \"That's what friends are for.\""
+        "It was evening in the Pastel Forest. A few pale lavender clouds drifted across the sky, and a thin strip of peach-coloured sun still peeked out from behind the treetops. The forest animals were getting ready for bed.\n\nAt Nuppu the bunny's home, it was bedtime routine too.\n\nNuppu sat on the floor, building a tower out of blocks.",
+        "Nuppu: “Now it's time to gather the blocks and go brush your teeth.”\n\nNuppu: “But I'm still building!”\n\nHe placed a yellow block on top of the tower.",
+        "Mom: “The tower can wait. You can keep building it tomorrow.”\n\nNuppu looked at his tower. He didn't want to stop. Not at all.",
+        "Nuppu: “I'm not going to brush my teeth!”\n\nMom reached her hand toward the blocks on the floor.",
+        "Then something happened inside Nuppu. His ears began to feel hot. His teeth pressed tightly together and his paws clenched into fists.\n\nAnd suddenly—\n\nNuppu: “I DON'T WANT TO GO TO SLEEP!”",
+        "He kicked the block tower. Blocks flew across the floor. Nuppu stared at them. His heart was pounding fast.",
+        "Mom sat down close to Nuppu.\n\nMom: “It seems like you have some really big anger right now.”\n\nNuppu: “YES I DO!”",
+        "Mom: “Anger is allowed to come. But blocks may not be kicked. Let's think together about how we could help the anger get smaller.”",
+        "Nuppu didn't say anything. He noticed his clenched paws, his hot ears, and his heavy eyelids.\n\nNuppu yawned.\n\nNuppu: “I'm tired.”",
+        "Mom: “I think you might be. Sometimes, when we're tired, even a small annoyance can feel enormous.”\n\nNuppu looked at the blocks scattered on the floor. The anger was still in his body. But now Nuppu knew what the feeling was.",
+        "Nuppu: “How do you make anger smaller?”\n\nMom thought for a moment.\n\nMom: “Would you like to go to your calm-down spot together for a little while?”",
+        "Nuppu nodded. Next to his window, he had his own little calm-down spot that he had made together with his mom. Nuppu tucked his favourite stuffed toy under his arm and sat down with Mom on the soft cushions of the calm-down spot.",
+        "Mom: “Look at those clouds. What if we imagined that big cloud over there is your anger?”\n\nIt was a windy evening, and the clouds were moving fast.\n\nMom: “When the cloud disappears from view, the anger drifts away with it, too.”",
+        "Nuppu focused on watching the cloud, and saw it carry his anger further and further away. At last, the cloud disappeared from sight.\n\nNuppu's paws weren't clenched quite so tightly into fists anymore. The heat in his ears had faded.",
+        "Nuppu: “The anger is still a little bit here.”\n\nMom: “A few crumbs of anger might still be left — and it doesn't have to disappear all at once, either.”",
+        "Nuppu looked at the blocks scattered across the floor.\n\nNuppu: “I kicked the tower over. That wasn't a nice thing to do.”\n\nMom: “No, it wasn't. But you can think about what you could do now, now that the anger has eased a little.”",
+        "Nuppu picked up one block from the floor. Then another.\n\nNuppu: “I could pick these up.”\n\nMom helped Nuppu. Together they put the blocks into the basket.",
+        "Nuppu: “Tomorrow I'll build the tower again.”\n\nMom: “That sounds like a good plan.”",
+        "Then Nuppu brushed his teeth and climbed under his soft blanket. Outside, the Pastel Forest was already completely quiet. Nuppu rested his head on the pillow.",
+        "Nuppu: “Mom?”\n\nMom: “Yes?”\n\nNuppu: “If I get angry again tomorrow, can we choose an anger cloud together again?”\n\nMom: “Of course.”",
+        "Nuppu thought for a moment about the cloud that had carried his anger away. The anger had arrived big and hot. Then Nuppu had noticed it. He had listened to his body and calmed down together with his mom. And little by little, the anger had grown smaller.\n\nMoonlight from the Pastel Forest peeked in through the window.\n\nNuppu yawned once more and closed his eyes. And before Mom could even say goodnight, the little bunny was already fast asleep."
       ],
       "pagesLittle": [
-        "Venla felt sad.",
-        "Something big was in her chest.",
-        "Nuppu sat down next to her.",
-        "Nuppu said nothing. Nuppu just stayed.",
-        "Slowly, Venla felt a little better."
+        "Nuppu was building a tower out of blocks.",
+        "Mom said it was time to go to sleep.",
+        "Nuppu got very angry and kicked the tower down.",
+        "Mom sat close. “You have big anger,” Mom said.",
+        "They went to the calm-down spot together.",
+        "They imagined the anger was a cloud floating away.",
+        "Nuppu calmed down and picked up the blocks with Mom.",
+        "Then Nuppu went to bed and fell asleep."
       ],
       "chapters": [
-        { "title": "A big feeling arrives", "time": "0:00" },
-        { "title": "Nuppu sits down beside her", "time": "1:12" },
-        { "title": "The feeling gets a name", "time": "2:48" },
-        { "title": "The stone grows lighter", "time": "4:20" }
+        {
+          "title": "A tower before bedtime",
+          "time": "0:00"
+        },
+        {
+          "title": "The anger arrives",
+          "time": "1:20"
+        },
+        {
+          "title": "A calm-down spot",
+          "time": "2:40"
+        },
+        {
+          "title": "The cloud carries it away",
+          "time": "3:40"
+        },
+        {
+          "title": "Ready for bed",
+          "time": "4:50"
+        }
       ],
-      "microSupportSkill": "Noticing a feeling and naming it out loud",
+      "microSupportSkill": "Noticing anger in the body and finding a way to calm down",
       "microSupportActions": [
-        "Name the feeling out loud for your child: \"It looks like something is upsetting you.\"",
-        "Don't rush to fix it. Sit beside them and let the feeling be there a moment.",
-        "Share a short example of your own: \"Something upset me today too, when…\"",
-        "Remind them that the feeling will pass. It is not dangerous."
+        "Name the feeling instead of only the behaviour: “You seem to have big anger right now.”",
+        "Let the feeling exist before problem-solving — anger is allowed, hurting things is not.",
+        "Try a shared calm-down spot at home, with something soft and familiar nearby.",
+        "Use an image together, like a cloud carrying the feeling away, to make it easier to picture the anger easing."
       ],
-      "conversationStarter": "Do you remember when Nuppu felt something big in the chest? Do you ever feel like that?"
+      "conversationStarter": "Do you remember Nuppu's anger cloud? What could your own calm-down spot look like?"
     },
-    "quiet-evening": {
-      "title": "Muru's Quiet Evening",
-      "subtitleShort": "Safety and calming down",
-      "description": "Muru has run and played all day, and now it's time to slow down, watch the stars, and rest.",
-      "emotionalSkill": "Feeling safe and calming down for the night",
+    "nupun-suuri-ilo": {
+      "title": "Nuppu's Big Joy",
+      "subtitleShort": "Handling big excitement",
+      "description": "Nuppu is bursting with joy about spring festival day — until excitement rushes them ahead of their friends. Leea the owl teaches Nuppu three steps to calm a big feeling.",
+      "emotionalSkill": "Noticing big excitement and calming the body",
       "pagesBig": [
-        "The sun had gone down, and the sky outside Muru's window turned a soft purple.",
-        "Muru had run and played and laughed all day, and now Muru's whole body felt heavy and warm.",
-        "\"I think today wore me right out,\" Muru said with a big yawn.",
-        "Muru wheeled slowly over to the window and watched the first stars appear, one by one.",
-        "\"It's alright to be tired,\" Muru whispered. \"Tired just means it's time to rest.\"",
-        "Muru pulled the blanket up close, closed both eyes, and let the quiet evening settle in."
+        "The Pastel Forest was a calm and beautiful place.\n\nThe trees looked as if they'd been painted in watercolours – pale pink, minty green, and sky blue. A little rabbit named Nuppu lived in the forest. Nuppu was curious and got excited easily.\n\nOne spring morning, Nuppu woke up even before sunrise.",
+        "Nuppu: – Today is the spring festival!\n\nSomething bubbled inside Nuppu.\n\nA warm fizzy feeling filled his chest.\n\nHis paws moved almost on their own.",
+        "Nuppu: – I have such huge joy.\n\nMaybe the biggest joy ever!\n\nNuppu bounced out of his burrow. On the path, he met Salli the hedgehog.",
+        "Nuppu: – GOOD MORNING, Salli!\n\nNuppu shouted so loudly that the birds flew up in fright.\n\nSalli: – Good morning… You're certainly in a hurry.",
+        "Nuppu didn't stop. Joy pushed him forward like an invisible wind. The journey continued on toward the spring festival.",
+        "At the spring festival, they were playing a running game. Everyone lined up and waited for the starting signal.\n\nNarrator: – Get ready… on your marks…\n\nNuppu's heart was pounding. He already wanted to run.",
+        "Before the starting signal sounded, Nuppu shot off down the path.\n\nLumo: – Hey! Wait! We weren't ready yet!\n\nNuppu stopped.",
+        "Suddenly, his stomach felt strange. The joy wasn't light anymore. It felt heavy, and a little embarrassing.\n\nNuppu: – I just got too excited.\n\nNuppu said quietly, looking at the ground.",
+        "Wise Leea the owl had been watching the whole thing. She flew down beside Nuppu.\n\nLeea: – Joy is an important and wonderful feeling.\n\nLeea: – But sometimes a feeling grows so big that we act too quickly.",
+        "Nuppu: – I didn't mean to be unfair.\n\nNuppu: – How can I calm down?",
+        "Leea nodded.\n\nLeea: – By practising. Let's do three things.\n\nLeea taught Nuppu three steps for calming down.",
+        "Leea: – First of all: stop.\n\nLeea: – Don't do anything for a moment.",
+        "Leea: – Next: feel your body.\n\nLeea: – Press your paws to the ground and feel the earth beneath them. Where does the joy feel strongest? In your chest? Your tummy? Your legs?",
+        "Leea: – Lastly: breathe.\n\nLeea: – Slowly in…\n\nLeea: – and calmly out.\n\nLeea: – Then say to yourself, in your mind: “I am really happy.”",
+        "Nuppu followed Leea the owl's instructions.\n\nHe breathed in…\n\nand out.",
+        "Little by little, the fizzy joy turned soft and warm.\n\nIt no longer bounced around everywhere. It no longer pushed Nuppu forward. The joy stayed with him – but calmly now.",
+        "Nuppu: – I'm still happy.\n\nNuppu: – But I'm calm too.\n\nNuppu went back to the others.",
+        "Nuppu: – I'm sorry I ran off too soon. I got so excited that I couldn't wait. Can we play again?\n\nLumo the fox smiled.\n\nLumo: – Let's play. All together this time.",
+        "This time, Nuppu waited for the starting signal.\n\nHe felt the fizzy joy, but he breathed, and kept it just the right size.",
+        "After the race, Nuppu sat with his friends for a snack break.\n\nNuppu: – Today I learned that even joy sometimes needs a little calming down.\n\nNuppu: – A feeling is allowed to be big, but I can still stop and think.",
+        "Leea the owl nodded, pleased.\n\nLeea: – Even good feelings can sometimes grow too big. It's important that we learn to calm down, so that we know how to act wisely.",
+        "Spring in the Pastel Forest carried on.\n\nJoy was still there –\n\nnot too big,\n\nnot too small,\n\nbut carried wisely."
       ],
       "pagesLittle": [
-        "It is night time.",
-        "Muru is tired.\nNow it's good to be quiet.",
-        "The stars come out.",
-        "Muru feels warm and safe.",
-        "It is time to rest.",
-        "Goodnight, Muru."
+        "Today is the spring festival! Nuppu felt so happy.",
+        "The joy was so big that Nuppu ran off too soon and didn't wait for friends.",
+        "The friends were surprised. Nuppu felt a little embarrassed.",
+        "Leea the owl taught Nuppu three steps: stop, feel your body, breathe.",
+        "Nuppu breathed slowly, and the joy became soft.",
+        "Nuppu said sorry and played again with the friends.",
+        "This time, Nuppu knew how to wait for their turn."
       ],
       "chapters": [
-        { "title": "A tired evening", "time": "0:00" },
-        { "title": "Watching the stars", "time": "1:05" },
-        { "title": "It's alright to rest", "time": "2:20" },
-        { "title": "A quiet goodnight", "time": "3:30" }
+        {
+          "title": "Big joy on festival day",
+          "time": "0:00"
+        },
+        {
+          "title": "Running ahead",
+          "time": "1:10"
+        },
+        {
+          "title": "Three steps to calm down",
+          "time": "2:20"
+        },
+        {
+          "title": "Playing together again",
+          "time": "4:00"
+        }
       ],
-      "microSupportSkill": "Feeling safe and calming down for the night",
+      "microSupportSkill": "Helping an excited child pause before acting",
       "microSupportActions": [
-        "Slow your own voice down first — children borrow our calm.",
-        "Name what's coming next: \"Bath, story, then sleep.\" Predictability feels safe.",
-        "Sit close for a few quiet minutes before lights out, without any screens.",
-        "If big feelings show up at bedtime, that's normal — tiredness makes everything feel bigger."
+        "Name the good feeling too, not just the tricky ones: “You have such big joy right now!”",
+        "Teach the three steps together: stop, feel your body, breathe.",
+        "Practise waiting for a starting signal in games, so pausing becomes familiar.",
+        "Praise noticing and returning to apologise, not just “getting it right” the first time."
       ],
-      "conversationStarter": "Do you remember how Muru felt when the day was over? What helps you feel that same kind of calm?"
+      "conversationStarter": "Do you remember how Nuppu learned to breathe and wait? What happens in your body when you're really excited?"
     },
-    "own-thing": {
-      "title": "Hippu's Own Thing",
-      "subtitleShort": "Boundaries and courage",
-      "description": "Hippu wants to build a fort a different way than the others suggest, and has to find the courage to say so.",
-      "emotionalSkill": "Saying what you want, even when it's different",
+    "pastellimetsan-taitopaiva": {
+      "title": "The Pastel Forest Skill Day",
+      "subtitleShort": "Comparing yourself to others",
+      "description": "On Skill Day, Nuppu watches Muru, Hippu and Lumo show off their talents and starts to feel small — until a little bird in trouble helps Nuppu discover a strength of their own.",
+      "emotionalSkill": "Self-worth and not comparing yourself to others",
       "pagesBig": [
-        "Hippu's friends wanted to build the fort with the blue blanket, just like always.",
-        "But today, Hippu had a different idea — a fort made of leaves, low and secret, like a den.",
-        "Hippu's paws felt a little shaky. What if the others laughed?",
-        "\"I'd like to try it my way today,\" Hippu said, voice small but steady.",
-        "There was a pause. Then one friend grinned. \"A leaf den? That sounds even better!\"",
-        "Hippu felt proud — not because the idea won, but because Hippu had said it out loud."
+        "In the Pastel Forest, the sky was pale blue today. The leaves on the trees swayed quietly in the wind.\n\nThe door of a little burrow opened. Nuppu the bunny peeked out.\n\nNuppu: “Today is Pastel Forest Skill Day!”",
+        "Once a year, the forest friends gathered at the big flower meadow to show off the things they could do.\n\nNuppu bounced along the path. He soon met Muru the bear, standing beside a big rock.",
+        "Muru: “Watch this!”\n\nHe gripped the rock with his paws.\n\nMuru: “Onnnne… two… three!”\n\nMuru lifted the rock into the air.",
+        "Nuppu: “Wow! You're so strong!”\n\nNuppu looked at his own small paws. I can't lift a rock that big, he thought. Nuppu continued on his way, but now his hops were a little smaller.",
+        "Around a bend in the path sat Hippu the cat. Hippu had lined up three pinecones on the ground. Suddenly, she leapt. Hippu flew over all three pinecones and landed softly on her paws.\n\nHippu: “Ta-da!”",
+        "Nuppu: “Wow! You're so skilled at jumping!”\n\nNuppu tried it himself. He took a run-up. One, two, three… JUMP! THUMP. Nuppu hit the second pinecone and tumbled into the soft moss. Hippu helped him up.",
+        "Hippu: “It's okay, Nuppu. I've practised this so many times too.”\n\nBut Nuppu looked at his toes. I can't jump like Hippu can, he thought.\n\nNuppu continued on his way. His hops were even smaller now.",
+        "When Nuppu arrived at the flower meadow, Lumo the fox was already there. Lots of forest animals had gathered around Lumo.\n\nLumo: “Look!”\n\nHe had built a big, beautiful star out of twigs, leaves, and flowers. Everyone clapped. Nuppu clapped too. Then his ears drooped down. Muru was strong. Hippu was agile. Lumo came up with clever things.",
+        "Nuppu: “What about me?”\n\nNuppu whispered, and crept away to hide behind a big daisy.",
+        "After a little while, Muru, Hippu, and Lumo found him.\n\nMuru: “Nuppu, why are you here all alone?”\n\nNuppu was quiet for a moment.\n\nNuppu: “I feel like I'm not good at anything.”",
+        "The friends sat down beside him. No one rushed to answer. The wind swayed the daisies.\n\nAt last, Lumo asked:\n\nLumo: “How do you feel right now?”",
+        "Nuppu: “Sad.”\n\nThen he thought a little more.\n\nNuppu: “And… pathetically small.”",
+        "Hippu: “Sometimes I feel that way too, when I compare myself to others.”\n\nMuru: “Me too. Even though I'm strong, I can't climb a tree as fast as Hippu.”\n\nHippu: “And I couldn't carry a rock even two steps!”",
+        "Nuppu looked up.\n\nNuppu: “Really? You couldn't?”\n\nHippu: “Not at all.”",
+        "Lumo: “We don't need to be good at the same things to be important.”",
+        "Nuppu thought about what his friends had said. Just then, a small sound came from a nearby bush. “Peep… peep…” The friends turned to look. A little baby bird was huddled on the ground. It had fallen from a low branch and was too scared to move.",
+        "Muru approached it. The baby bird backed away. Hippu tried to get closer, but the baby bird trembled.\n\nThen Nuppu sat down a little distance from the chick. Nuppu didn't try to pick the bird up. He didn't try to make it move. He just sat there.",
+        "Nuppu: “You must be scared.”\n\nNuppu: “You can stay right there, quite calmly. I can wait here with you.”\n\nNuppu breathed slowly. In. And out. Soon, the baby bird began to calm down too. It carefully took one small step. Then another. At last, it scurried over to sit beside Nuppu.",
+        "The friends watched quietly.\n\nMuru: “Nuppu, you noticed what the little bird needed.”\n\nHippu: “And you knew how to be patient.”\n\nLumo: “And gentle.”",
+        "Nuppu blinked. He had never thought that those things could be skills too.\n\nLater, the baby bird's mother found her chick and flew down to it. Nuppu went back to the flower meadow with his friends. There, everyone got to make a little star and write or draw their own strength on it.",
+        "Muru drew strong paws, and Hippu drew a big leap. Lumo drew a little lightbulb, because he loved coming up with new ideas. Nuppu thought for a while. Then he drew a big heart on his star.\n\nNuppu: “My strength is that I can notice other people's feelings.”",
+        "He thought for one more moment.\n\nNuppu: “And I am a good Nuppu.”\n\nLumo: “Exactly right.”",
+        "Nuppu smiled. He understood something important. He didn't need to be like Muru. He didn't need to be like Hippu. And he didn't need to be like Lumo. He got to be Nuppu. Nuppu, who was practising some things. Nuppu, who already knew how to do many things. Nuppu, who sometimes succeeded and sometimes didn't. And Nuppu was always just as valuable, no matter what.",
+        "On the way home, Nuppu bounced along the path. This time, he wasn't thinking about whether he jumped as high as Hippu. He bounced exactly the way Nuppu bounces, and it felt really good.",
+        "As evening fell over the Pastel Forest, Nuppu looked up at the sky. Many stars were shining up there. Some were bright, some were small. Some could only just barely be seen. But not one single star was trying to shine the same way as another.\n\nNuppu: “I don't have to be the best to be important.”\n\nNuppu: “I am valuable, because I am me.”",
+        "High above the Pastel Forest, one little star seemed to twinkle right back at him."
       ],
       "pagesLittle": [
-        "Hippu had an idea.",
-        "It was different from the others.",
-        "Hippu felt shy.",
-        "Hippu said it anyway.",
-        "The friends liked it!",
-        "Hippu felt brave."
+        "On Skill Day, the friends showed what they could do.",
+        "Muru was strong, Hippu could jump far, and Lumo made clever things.",
+        "Nuppu didn't know what they were good at, and went to hide.",
+        "The friends found Nuppu and listened to how they felt.",
+        "Then a little bird needed help. Nuppu sat calmly beside it.",
+        "Nuppu was patient and gentle. That was their very own skill!",
+        "Nuppu understood: you don't have to be the best to be important."
+      ],
+      "pageCharacters": [
+        "nuppu",
+        "muru",
+        "muru",
+        "nuppu",
+        "hippu",
+        "hippu",
+        "nuppu",
+        "lumo",
+        "nuppu",
+        "nuppu",
+        "lumo",
+        "nuppu",
+        "hippu",
+        "hippu",
+        "lumo",
+        "nuppu",
+        "nuppu",
+        "nuppu",
+        "nuppu",
+        "nuppu",
+        "nuppu",
+        "nuppu",
+        "nuppu",
+        "nuppu",
+        "nuppu",
+        "nuppu"
+      ],
+      "pageCharactersLittle": [
+        "nuppu",
+        "muru",
+        "nuppu",
+        "lumo",
+        "nuppu",
+        "nuppu",
+        "nuppu"
       ],
       "chapters": [
-        { "title": "A different idea", "time": "0:00" },
-        { "title": "Feeling shaky", "time": "1:00" },
-        { "title": "Saying it out loud", "time": "2:10" },
-        { "title": "Feeling brave", "time": "3:15" }
+        {
+          "title": "Skill Day begins",
+          "time": "0:00"
+        },
+        {
+          "title": "Everyone's talents",
+          "time": "1:30"
+        },
+        {
+          "title": "Feeling small",
+          "time": "3:00"
+        },
+        {
+          "title": "Helping the little bird",
+          "time": "5:30"
+        },
+        {
+          "title": "Nuppu's own strength",
+          "time": "7:30"
+        }
       ],
-      "microSupportSkill": "Expressing your own will and setting a boundary",
+      "microSupportSkill": "Helping a child value their own strengths without comparing",
       "microSupportActions": [
-        "When your child disagrees with a friend, resist jumping in to smooth it over right away.",
-        "Praise the act of speaking up, separately from whether the idea \"won\".",
-        "Practise small brave sentences together: \"I'd like to try it my way.\"",
-        "Remind them that having a different idea doesn't make a friendship weaker."
+        "Notice out loud when your child shows patience or kindness, not only visible skills like speed or strength.",
+        "Avoid ranking children's abilities against each other, even lightly or as a joke.",
+        "Ask “what did you enjoy trying?” instead of “who was best?” after group activities.",
+        "Remind them that everyone has different strengths, and that is what makes a group work well together."
       ],
-      "conversationStarter": "Do you remember when Hippu wanted to try something different? Has that ever happened to you?"
-    },
-    "tricky-puzzle": {
-      "title": "Lumo and the Tricky Puzzle",
-      "subtitleShort": "Disappointment and solutions",
-      "description": "Lumo's puzzle piece won't fit anywhere, and frustration builds — until a new way of looking at it helps.",
-      "emotionalSkill": "Handling frustration and trying a new way",
-      "pagesBig": [
-        "Lumo had been building the big puzzle all afternoon, and only one piece was left.",
-        "But no matter which way Lumo turned it, the piece simply would not fit.",
-        "Lumo's ears drooped. \"This is impossible,\" Lumo huffed, pushing the piece away.",
-        "Lumo took a deep breath, the way Nuppu had once shown, and looked at the puzzle again — upside down this time.",
-        "And there it was: a gap Lumo hadn't noticed before, exactly the right shape.",
-        "The piece clicked into place. \"Sometimes,\" Lumo said, \"you just need to look at it differently.\""
-      ],
-      "pagesLittle": [
-        "One piece would not fit.",
-        "Lumo felt cross.",
-        "Lumo took a deep breath.",
-        "Lumo looked again.",
-        "The piece fit!",
-        "Lumo felt proud."
-      ],
-      "chapters": [
-        { "title": "The last piece", "time": "0:00" },
-        { "title": "It won't fit", "time": "1:00" },
-        { "title": "Taking a breath", "time": "2:00" },
-        { "title": "A new way to look", "time": "3:05" }
-      ],
-      "microSupportSkill": "Coping with frustration and trying again",
-      "microSupportActions": [
-        "Let the frustration be there for a moment before offering to help.",
-        "Model taking a breath together before trying a hard task again.",
-        "Ask \"what's one other way we could try this?\" instead of giving the answer.",
-        "Celebrate the trying, not just the solved puzzle."
-      ],
-      "conversationStarter": "Do you remember how Lumo solved the tricky puzzle? What do you do when something feels impossible?"
+      "conversationStarter": "Do you remember what Nuppu turned out to be really good at? What is something you are good at that isn't about being fastest or strongest?"
     }
   }
 }

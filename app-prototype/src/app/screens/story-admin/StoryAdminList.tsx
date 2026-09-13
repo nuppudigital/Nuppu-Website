@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router';
 import { MobileScreen } from '../../components/MobileScreen';
 import { IconButton } from '../../components/IconButton';
 import { Button } from '../../components/Button';
-import { CharacterAvatar } from '../../components/CharacterAvatar';
+import { StoryCover } from '../../components/StoryCover';
 import { CHARACTERS } from '../../data/characters';
 import { useCustomStories } from '../../context/CustomStoriesContext';
 import { useStoryCatalog, useLibraryCategories } from '../../hooks/useStoryCatalog';
@@ -41,11 +41,7 @@ export function StoryAdminList() {
             return (
               <div key={story.id} className="card-soft flex items-center gap-3 p-3">
                 <span className={`flex h-14 w-14 shrink-0 overflow-hidden items-center justify-center rounded-xl ${character.bgLight}`}>
-                  {story.photoUrl ? (
-                    <img src={story.photoUrl} alt="" className="h-full w-full object-cover" />
-                  ) : (
-                    <CharacterAvatar species={character.species} wheelchair={character.wheelchair} className="h-10 w-auto" />
-                  )}
+                  <StoryCover photoUrl={story.photoUrl} character={character} avatarClassName="h-10 w-auto" />
                 </span>
                 <span className="flex-1 min-w-0">
                   <span className="block truncate font-bold text-nuppu-dark">{story.title}</span>
