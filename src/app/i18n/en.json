@@ -18,7 +18,9 @@
     "rights": "All rights reserved.",
     "privacy": "Privacy Policy",
     "terms": "Terms of Service",
-    "cookies": "Cookie Policy"
+    "cookies": "Cookie Policy",
+    "legalName": "Nuppu Digital Oy",
+    "legalLine": "Business ID: 3579737-1 · Kuusamantie 5-9 A 1, 04330 Lahela, Finland"
   },
   "cookieConsent": {
     "message": "We use only strictly necessary cookies to run this site. If we ever add optional analytics, we'll ask first. Read our",
@@ -162,6 +164,7 @@
       "title": "Pilot price",
       "amount": "29 €",
       "per": "/ 30 min",
+      "vatNote": "(includes VAT 25.5%)",
       "text": "During the pilot phase, we're building Nuppu together with families. Their feedback helps us make the service even more useful as everyday support."
     },
     "booking": {
@@ -183,6 +186,11 @@
       "messageLabel": "Write a Message *",
       "messagePlaceholder": "Tell us which package or service you're interested in, and anything else that would help us prepare for your consultation.",
       "messageHint": "Please tell us what you're interested in — you must fill this in before payment.",
+      "agreeToTerms": {
+        "prefix": "I have read and accept the ",
+        "linkText": "terms, delivery, and cancellation terms",
+        "suffix": "."
+      },
       "redirecting": "Redirecting to secure payment…",
       "bookPay": "Book & Pay — €29",
       "paytrailNote": "You'll be redirected to Paytrail's secure checkout (bank, card, or mobile payment). Card and bank details are handled entirely by Paytrail and never touch Nuppu's servers."
@@ -193,6 +201,7 @@
       "phone": "Please enter a valid phone number, or leave it empty",
       "message": "Please write a message describing what you're interested in before booking",
       "slot": "Please choose a time for your consultation",
+      "terms": "You must accept the terms, delivery, and cancellation terms before paying.",
       "slotTaken": "That time was just booked by someone else - please choose another.",
       "noRedirect": "No payment redirect URL was returned.",
       "generic": "Something went wrong. Please try again later."
@@ -394,7 +403,19 @@
       "description": "Read Nuppu terms of service, acceptable use, and legal terms for website access."
     },
     "title": "Terms of Service",
-    "updated": "Last updated: March 30, 2026",
+    "updated": "Last updated: September 11, 2026",
+    "company": {
+      "title": "Company information",
+      "text": "The emotional-support consultation is provided by Nuppu Digital Oy (Business ID / Y-tunnus: 3579737-1). Address: Kuusamantie 5-9 A 1, 04330 Lahela, Finland. Email: info@nuppuapp.fi."
+    },
+    "delivery": {
+      "title": "Delivery terms",
+      "text": "The 30-minute emotional-skills consultation is delivered remotely at your booked time. You can choose whether it happens as a video call or a phone call - just tell us your preference in the booking form's message field. A confirmation, along with a video-call link or your call time, is emailed to you once payment succeeds."
+    },
+    "cancellation": {
+      "title": "Cancellation terms",
+      "text": "You can cancel or reschedule free of charge by contacting info@nuppuapp.fi at least 24 hours before your booked time - we'll refund the payment in full. Cancellations made less than 24 hours in advance, or no-shows, are not eligible for a refund. This policy does not limit any rights you have under Finnish consumer protection law."
+    },
     "use": {
       "title": "Use of the Website",
       "text": "You agree to use Nuppu website content for lawful purposes only and to avoid misuse of forms, content, or infrastructure."

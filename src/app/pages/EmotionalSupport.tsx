@@ -89,7 +89,7 @@ export function EmotionalSupport() {
   const [searchParams, setSearchParams] = useSearchParams();
   const returnStatus = searchParams.get("payment"); // success | cancelled | pending | error | null
 
-  const [formData, setFormData] = useState({ name: "", email: "", phone: "", message: "" });
+  const [formData, setFormData] = useState({ name: "", email: "", phone: "", message: "", agreeToTerms: false });
   const [paymentState, setPaymentState] = useState<PaymentUiState>("idle");
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -152,8 +152,9 @@ export function EmotionalSupport() {
   }, [returnStatus, searchParams, setSearchParams]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    const { name, value, type } = e.target;
+    const nextValue = type === "checkbox" ? (e.target as HTMLInputElement).checked : value;
+    setFormData((prev) => ({ ...prev, [name]: nextValue }));
   };
 
   const validate = () => {
@@ -175,6 +176,10 @@ export function EmotionalSupport() {
     }
     if (!formData.message.trim()) {
       setErrorMessage(t("emotionalSupport.errors.message"));
+      return false;
+    }
+    if (!formData.agreeToTerms) {
+      setErrorMessage(t("emotionalSupport.errors.terms"));
       return false;
     }
     return true;
@@ -330,6 +335,7 @@ export function EmotionalSupport() {
               {t("emotionalSupport.price.amount")}{" "}
               <span className="text-lg font-normal text-gray-600 dark:text-gray-300">{t("emotionalSupport.price.per")}</span>
             </p>
+            <p className="text-sm text-gray-500 dark:text-gray-400">{t("emotionalSupport.price.vatNote")}</p>
             <p className="mt-4 text-gray-600 dark:text-gray-300">
               {t("emotionalSupport.price.text")}
             </p>
@@ -500,6 +506,26 @@ export function EmotionalSupport() {
                     {t("emotionalSupport.booking.messageHint")}
                   </p>
                 </div>
+              </div>
+
+              <div className="flex items-start gap-2">
+                <input
+                  type="checkbox"
+                  id="agree-to-terms"
+                  name="agreeToTerms"
+                  checked={formData.agreeToTerms}
+                  onChange={handleInputChange}
+                  required
+                  disabled={paymentState === "loading"}
+                  className="mt-1 w-4 h-4 flex-shrink-0"
+                />
+                <label htmlFor="agree-to-terms" className="text-sm text-gray-600 dark:text-gray-300">
+                  {t("emotionalSupport.booking.agreeToTerms.prefix")}
+                  <Link to="/terms#delivery" className="text-purple-600 dark:text-purple-400 underline" target="_blank" rel="noopener noreferrer">
+                    {t("emotionalSupport.booking.agreeToTerms.linkText")}
+                  </Link>
+                  {t("emotionalSupport.booking.agreeToTerms.suffix")}
+                </label>
               </div>
 
               {paymentState === "error" && errorMessage && (

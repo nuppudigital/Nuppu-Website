@@ -18,7 +18,9 @@
     "rights": "Kaikki oikeudet pidätetään.",
     "privacy": "Tietosuojaseloste",
     "terms": "Käyttöehdot",
-    "cookies": "Evästekäytäntö"
+    "cookies": "Evästekäytäntö",
+    "legalName": "Nuppu Digital Oy",
+    "legalLine": "Y-tunnus: 3579737-1 · Kuusamantie 5-9 A 1, 04330 Lahela"
   },
   "cookieConsent": {
     "message": "Käytämme vain välttämättömiä evästeitä sivuston toimintaan. Jos lisäämme joskus valinnaisia analytiikkaevästeitä, kysymme ensin. Lue",
@@ -162,6 +164,7 @@
       "title": "Pilottihinta",
       "amount": "29 €",
       "per": "/ 30 min",
+      "vatNote": "(sisältää alv 25,5 %)",
       "text": "Pilottivaiheessa rakennamme Nuppua yhdessä perheiden kanssa. Palautteen avulla kehitämme palvelusta entistä hyödyllisemmän arjen tueksi."
     },
     "booking": {
@@ -183,6 +186,11 @@
       "messageLabel": "Kirjoita viesti *",
       "messagePlaceholder": "Kerro, mistä palvelusta tai paketista olet kiinnostunut, ja muuta hyödyllistä tietoa ohjausta varten.",
       "messageHint": "Kerro, mistä olet kiinnostunut — tämä on täytettävä ennen maksua.",
+      "agreeToTerms": {
+        "prefix": "Olen lukenut ja hyväksyn ",
+        "linkText": "käyttö-, toimitus- ja peruutusehdot",
+        "suffix": "."
+      },
       "redirecting": "Siirrytään turvalliseen maksuun…",
       "bookPay": "Varaa ja maksa — 29 €",
       "paytrailNote": "Sinut ohjataan Paytrailin turvalliseen maksupalveluun (pankki-, kortti- tai mobiilimaksu). Kortti- ja pankkitiedot käsittelee kokonaan Paytrail, eivätkä ne koskaan päädy Nupun palvelimille."
@@ -193,6 +201,7 @@
       "phone": "Anna kelvollinen puhelinnumero tai jätä kenttä tyhjäksi",
       "message": "Kirjoita viesti siitä, mistä olet kiinnostunut ennen varausta",
       "slot": "Valitse ohjausajan ajankohta",
+      "terms": "Sinun täytyy hyväksyä käyttö-, toimitus- ja peruutusehdot ennen maksamista.",
       "slotTaken": "Joku muu ehti varata juuri tuon ajan – valitse toinen aika.",
       "noRedirect": "Maksun ohjausosoitetta ei saatu.",
       "generic": "Jotain meni vikaan. Yritä myöhemmin uudelleen."
@@ -394,7 +403,19 @@
       "description": "Lue Nupun käyttöehdot ja verkkosivuston käyttöä koskevat ehdot."
     },
     "title": "Käyttöehdot",
-    "updated": "Viimeksi päivitetty: 30.3.2026",
+    "updated": "Viimeksi päivitetty: 11.9.2026",
+    "company": {
+      "title": "Yrityksen tiedot",
+      "text": "Emotionaalisen tuen etäohjauksen tarjoaa Nuppu Digital Oy (Y-tunnus: 3579737-1). Osoite: Kuusamantie 5-9 A 1, 04330 Lahela. Sähköposti: info@nuppuapp.fi."
+    },
+    "delivery": {
+      "title": "Toimitusehdot",
+      "text": "30 minuutin tunnetaito-ohjaus toteutetaan etäyhteydellä varaamanasi ajankohtana. Voit valita, käydäänkö keskustelu videopuhelun tai puhelinsoiton kautta - kerro toivomastaan tavasta varauslomakkeen viestikentässä. Vahvistus sekä mahdollinen videopuhelulinkki tai soittoaika lähetetään sähköpostiisi maksun onnistuttua."
+    },
+    "cancellation": {
+      "title": "Peruutusehdot",
+      "text": "Voit perua tai siirtää varauksesi maksutta ottamalla yhteyttä info@nuppuapp.fi:hin vähintään 24 tuntia ennen varattua ajankohtaa - palautamme maksun kokonaan. Alle 24 tuntia ennen tehty peruutus tai paikalle saapumatta jättäminen ei oikeuta palautukseen. Tämä käytäntö ei rajoita kuluttajansuojalain mukaisia oikeuksiasi."
+    },
     "use": {
       "title": "Sivuston käyttö",
       "text": "Sitoudut käyttämään Nupun verkkosivuston sisältöä vain lainmukaisiin tarkoituksiin ja välttämään lomakkeiden, sisällön tai infrastruktuurin väärinkäyttöä."

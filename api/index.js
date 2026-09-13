@@ -528,6 +528,17 @@ function formatEuros(amountCents) {
   return `€${(amountCents / 100).toFixed(2)}`;
 }
 
+// customerName/customerMessage are user-supplied - escape before interpolating into HTML emails
+function escapeHtml(value) {
+  return String(value).replace(/[&<>"']/g, (char) => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#39;",
+  })[char]);
+}
+
 async function sendPaymentReceiptToCompany(payment) {
   if (!mailTransport) {
     console.warn("Payment notification to company skipped: SMTP is not configured");
@@ -586,13 +597,13 @@ async function sendPaymentReceiptToCustomer(payment) {
   ].join("\n");
 
   const html = `
-    <p>Hi ${payment.customerName},</p>
+    <p>Hi ${escapeHtml(payment.customerName)},</p>
     <p>Thanks for your payment — your booking is confirmed!</p>
     <p>
-      <strong>Service:</strong> ${payment.service}<br />
-      <strong>When:</strong> ${scheduledText}<br />
+      <strong>Service:</strong> ${escapeHtml(payment.service)}<br />
+      <strong>When:</strong> ${escapeHtml(scheduledText)}<br />
       <strong>Amount paid:</strong> ${formatEuros(payment.amountCents)}<br />
-      <strong>Reference:</strong> ${payment.paytrailReference}
+      <strong>Reference:</strong> ${escapeHtml(payment.paytrailReference)}
     </p>
     <p>We'll see you then — reach out if anything changes.</p>
   `;
@@ -1064,6 +1075,20 @@ app.delete("/api/availability/blocks/:id", rateLimitAdmin, requireAdmin, require
 
 app.post("/api/payments/create", rateLimitPayments, requireDatabase, async (req, res) => {
   try {
+    // Paytrail's published test secret is public knowledge, so anyone could self-forge a
+    // "paid" webhook against it - never let a booking actually run on test credentials
+    // once this is deployed as the live site (see paytrailClient.js's usingTestCredentials).
+    if (NODE_ENV === "production" && paytrailUsingTestCredentials) {
+      console.error(
+        "Refusing to create a payment: running in production with Paytrail's TEST credentials. " +
+          "Set PAYTRAIL_MERCHANT_ID and PAYTRAIL_SECRET_KEY to real values.",
+      );
+      return res.status(503).json({
+        status: "error",
+        message: "Payments are temporarily unavailable. Please try again later or contact us.",
+      });
+    }
+
     const { service, customerName, customerEmail, customerPhone, customerMessage, scheduledAt } = req.body ?? {};
 
     if (!service || !SERVICE_PRICES_CENTS[service]) {

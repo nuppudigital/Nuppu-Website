@@ -6,7 +6,7 @@ export default function Terms() {
 
   usePageMeta(t("terms.meta.title"), t("terms.meta.description"));
 
-  const sections = ["use", "ip", "liability", "contact"];
+  const sections = ["company", "delivery", "cancellation", "use", "ip", "liability", "contact"];
 
   return (
     <div className="w-full bg-white">
@@ -19,7 +19,7 @@ export default function Terms() {
 
           <div className="space-y-8 text-[#55504A] leading-relaxed">
             {sections.map((key) => (
-              <section key={key}>
+              <section key={key} id={key}>
                 <h2 className="text-2xl text-[#35322B] mb-3" style={{ fontFamily: "Nunito, sans-serif" }}>
                   {t(`terms.${key}.title`)}
                 </h2>
