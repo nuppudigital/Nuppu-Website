@@ -53,7 +53,7 @@ interface ChildContextValue {
 const ChildContext = createContext<ChildContextValue | null>(null);
 
 export function ChildProvider({ children }: { children: ReactNode }) {
-  const [name, setName] = useState('Venla');
+  const [name, setName] = useState('');
   const [ageBand, setAgeBand] = useState<AgeBand>('big');
   const [avatarSpecies, setAvatarSpecies] = useState<AvatarSpecies>('cat');
   const [interests, setInterests] = useState<string[]>(['animals', 'nature', 'crafts', 'baking', 'friends']);

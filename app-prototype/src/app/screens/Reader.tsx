@@ -19,14 +19,15 @@ export function Reader() {
 
   const story = resolve(storyId);
   const isLittle = ageBand === 'little';
-  const pages = story ? (isLittle ? story.pagesLittle : story.pagesBig) : [];
+  // Full story length for every age band for now, regardless of isLittle.
+  const pages = story ? story.pagesBig : [];
 
   const startPage =
     continueReading?.storyId === storyId && continueReading.page <= pages.length ? continueReading.page - 1 : 0;
   const [page, setPage] = useState(startPage);
 
   if (!story) return null;
-  const pageCharacterIds = isLittle ? story.pageCharactersLittle : story.pageCharacters;
+  const pageCharacterIds = story.pageCharacters;
   const character = CHARACTERS[pageCharacterIds?.[page] ?? coverCharacterId(story)];
   const isLast = page === pages.length - 1;
 
@@ -75,13 +76,7 @@ export function Reader() {
         <div className={`flex h-48 shrink-0 items-center justify-center overflow-hidden rounded-2xl ${character.bgLight}`}>
           <StoryCover photoUrl={story.photoUrl} character={character} avatarClassName="h-32 w-auto" />
         </div>
-        <p
-          className={`whitespace-pre-line leading-relaxed text-nuppu-dark ${
-            isLittle ? 'text-center font-display text-2xl font-bold' : 'text-lg'
-          }`}
-        >
-          {pages[page]}
-        </p>
+        <p className="whitespace-pre-line leading-relaxed text-nuppu-dark text-lg">{pages[page]}</p>
       </div>
 
       <div className="flex items-center gap-3 px-6 pb-10 pt-4">
