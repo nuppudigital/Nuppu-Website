@@ -67,7 +67,7 @@
     "title": "What is your child's name?",
     "hint": "A first name or nickname is enough. The name appears only inside stories and is never used to identify your child.",
     "safety": "We never ask for a surname, a date of birth or a location.",
-    "placeholder": "e.g. Venla"
+    "placeholder": "Nickname"
   },
   "onboardingAge": {
     "title": "Who's joining today?",

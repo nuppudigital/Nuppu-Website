@@ -21,7 +21,7 @@ export function Splash() {
 
   function choose(lang: Lang) {
     setLanguage(lang);
-    navigate('/login');
+    navigate('/welcome');
   }
 
   return (

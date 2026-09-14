@@ -67,7 +67,7 @@
     "title": "Mikä on lapsesi nimi?",
     "hint": "Pelkkä etunimi tai lempinimi riittää. Nimi näkyy vain saduissa, eikä sitä käytetä tunnistamiseen.",
     "safety": "Emme kysy sukunimeä, syntymäaikaa emmekä sijaintia — koskaan.",
-    "placeholder": "esim. Venla"
+    "placeholder": "Lempinimi"
   },
   "onboardingAge": {
     "title": "Kuka tänään liittyy mukaan?",
