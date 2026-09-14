@@ -104,13 +104,13 @@ export default function Home() {
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4">
-                <Link
-                  to="/contact"
+                <a
+                  href="/app-preview/"
                   className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-[#6E4FD1] to-[#C9BBF5] text-white rounded-full hover:shadow-xl hover:scale-105 transition-all duration-300"
                 >
                   {t("home.contactUs")}
                   <ArrowRight size={20} />
-                </Link>
+                </a>
                 <Link
                   to="/characters"
                   className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-[#6E4FD1] border-2 border-[#6E4FD1] rounded-full hover:bg-[#6E4FD1] hover:text-white transition-all duration-300"

@@ -605,15 +605,26 @@ export default function About() {
               <p className="text-lg text-white/85 mb-8 leading-relaxed max-w-xl">
                 {t("home.appPreview.subtitle")}
               </p>
-              <button
-                type="button"
-                onClick={() => setShowComingSoon(true)}
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-[#6E4FD1] rounded-full hover:shadow-2xl hover:scale-105 transition-all duration-300"
-              >
-                <Smartphone size={20} />
-                {t("home.appPreview.button")}
-                <ArrowRight size={20} />
-              </button>
+              {Date.now() >= APP_LAUNCH_DATE.getTime() ? (
+                <a
+                  href="/app-preview/"
+                  className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-[#6E4FD1] rounded-full hover:shadow-2xl hover:scale-105 transition-all duration-300"
+                >
+                  <Smartphone size={20} />
+                  {t("home.appPreview.button")}
+                  <ArrowRight size={20} />
+                </a>
+              ) : (
+                <button
+                  type="button"
+                  onClick={() => setShowComingSoon(true)}
+                  className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-[#6E4FD1] rounded-full hover:shadow-2xl hover:scale-105 transition-all duration-300"
+                >
+                  <Smartphone size={20} />
+                  {t("home.appPreview.button")}
+                  <ArrowRight size={20} />
+                </button>
+              )}
             </div>
 
             <motion.div
