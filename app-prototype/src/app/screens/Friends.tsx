@@ -28,7 +28,7 @@ export function Friends() {
               className="flex overflow-hidden rounded-2xl border border-nuppu-border bg-white text-left"
             >
               <div className={`flex w-24 shrink-0 items-center justify-center py-3 ${character.bgLight}`}>
-                <CharacterAvatar species={character.species!} wheelchair={character.wheelchair} className="h-16 w-auto" />
+                <CharacterAvatar species={character.species!} wheelchair={character.wheelchair} className="h-16 w-auto" realArt />
               </div>
               <div className="flex-1 p-4">
                 <p className={`font-display font-bold ${character.textStrong}`}>{t(`characters.${character.id}.name`)}</p>
@@ -51,7 +51,7 @@ export function Friends() {
           >
             <div className="mb-3 flex items-start justify-between">
               <div className={`flex h-20 w-20 shrink-0 items-center justify-center rounded-2xl ${openCharacter.bgLight}`}>
-                <CharacterAvatar species={openCharacter.species!} wheelchair={openCharacter.wheelchair} className="h-14 w-auto" />
+                <CharacterAvatar species={openCharacter.species!} wheelchair={openCharacter.wheelchair} className="h-14 w-auto" realArt />
               </div>
               <IconButton icon={X} onClick={() => setOpenId(null)} aria-label={t('common.close')} />
             </div>

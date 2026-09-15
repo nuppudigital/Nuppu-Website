@@ -1,44 +1,25 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { MobileScreen } from '../components/MobileScreen';
-import { useLanguage, type Lang } from '../i18n/LanguageContext';
+import { useLanguage } from '../i18n/LanguageContext';
 import nuppuMark from '../../assets/png/NUPPU MARK.png';
 
 export function Splash() {
   const navigate = useNavigate();
-  const { t, language, setLanguage } = useLanguage();
+  const { t } = useLanguage();
   const [filled, setFilled] = useState(false);
 
   useEffect(() => {
     const fillTimer = setTimeout(() => setFilled(true), 80);
-    return () => clearTimeout(fillTimer);
-  }, []);
-
-  const languages: { id: Lang; label: string }[] = [
-    { id: 'en', label: 'EN' },
-    { id: 'fi', label: 'FI' },
-  ];
-
-  function choose(lang: Lang) {
-    setLanguage(lang);
-    navigate('/welcome');
-  }
+    const navigateTimer = setTimeout(() => navigate('/welcome'), 1800);
+    return () => {
+      clearTimeout(fillTimer);
+      clearTimeout(navigateTimer);
+    };
+  }, [navigate]);
 
   return (
     <MobileScreen bgClassName="bg-nuppu-butter">
-      <div className="flex justify-center gap-2 pt-6">
-        {languages.map((option) => (
-          <button
-            key={option.id}
-            onClick={() => choose(option.id)}
-            className={`rounded-full px-4 py-1.5 text-sm font-bold transition-colors ${
-              language === option.id ? 'bg-[#b7a3e6] text-white' : 'bg-white/50 text-nuppu-secondary'
-            }`}
-          >
-            {option.label}
-          </button>
-        ))}
-      </div>
       <div className="flex flex-1 flex-col items-center justify-center gap-4 px-10 text-center">
         <img src={nuppuMark} alt="Nuppu" className="h-24 w-24 object-contain" />
         <p className="font-display text-lg font-semibold text-nuppu-secondary">{t('splash.tagline')}</p>
