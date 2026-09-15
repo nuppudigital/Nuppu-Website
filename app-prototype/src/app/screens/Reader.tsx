@@ -27,8 +27,7 @@ export function Reader() {
   const [page, setPage] = useState(startPage);
 
   if (!story) return null;
-  const pageCharacterIds = story.pageCharacters;
-  const character = CHARACTERS[pageCharacterIds?.[page] ?? coverCharacterId(story)];
+  const character = CHARACTERS[coverCharacterId(story)];
   const isLast = page === pages.length - 1;
 
   const goNext = () => {
