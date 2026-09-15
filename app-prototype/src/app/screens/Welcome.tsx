@@ -23,7 +23,7 @@ export function Welcome() {
         </div>
 
         <div className="flex flex-1 items-center justify-center py-6">
-          <CharacterAvatar species="bunny" className="h-56 w-auto" />
+          <CharacterAvatar species="bunny" className="h-56 w-auto" realArt />
         </div>
       </div>
 
