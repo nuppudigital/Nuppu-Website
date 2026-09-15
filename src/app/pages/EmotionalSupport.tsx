@@ -20,7 +20,7 @@ const HELSINKI_TZ = "Europe/Helsinki";
 // once BOOKING_PAUSED_UNTIL passes, the real booking form comes back on its own
 // — no redeploy or manual flip needed. To change the window, edit these two lines.
 const BOOKING_PAUSED_FROM = new Date("2026-08-27T00:00:00");
-const BOOKING_PAUSED_UNTIL = new Date("2026-09-14T00:00:00");
+const BOOKING_PAUSED_UNTIL = new Date("2026-09-20T00:00:00");
 
 function isBookingPaused(): boolean {
   const now = new Date();
