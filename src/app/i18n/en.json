@@ -412,6 +412,10 @@
       "title": "Delivery terms",
       "text": "The 30-minute emotional-skills consultation is delivered remotely at your booked time. You can choose whether it happens as a video call or a phone call - just tell us your preference in the booking form's message field. A confirmation, along with a video-call link or your call time, is emailed to you once payment succeeds."
     },
+    "payment": {
+      "title": "Payment Service Provider",
+      "text": "Paytrail Plc acts as a collecting payment service provider and is an authorized payment institution. Paytrail Plc will be shown as the recipient on your bank or credit card statement. Paytrail Plc will forward the payment to the merchant. For complaints, please contact the website where the payment was made.\nPaytrail Plc\nInnova 2\nLutakonaukio 7\n40100 Jyväskylä\nPhone: +358 207 181 830\nBusiness ID 2122839-7\npaytrail.com/en/consumer/information-about-paying"
+    },
     "cancellation": {
       "title": "Cancellation terms",
       "text": "You can cancel or reschedule free of charge by contacting info@nuppuapp.fi at least 24 hours before your booked time - we'll refund the payment in full. Cancellations made less than 24 hours in advance, or no-shows, are not eligible for a refund. This policy does not limit any rights you have under Finnish consumer protection law."

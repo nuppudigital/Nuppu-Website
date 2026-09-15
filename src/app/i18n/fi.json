@@ -412,6 +412,10 @@
       "title": "Toimitusehdot",
       "text": "30 minuutin tunnetaito-ohjaus toteutetaan etäyhteydellä varaamanasi ajankohtana. Voit valita, käydäänkö keskustelu videopuhelun tai puhelinsoiton kautta - kerro toivomastaan tavasta varauslomakkeen viestikentässä. Vahvistus sekä mahdollinen videopuhelulinkki tai soittoaika lähetetään sähköpostiisi maksun onnistuttua."
     },
+    "payment": {
+      "title": "Maksupalveluntarjoaja",
+      "text": "Maksunvälityspalvelun toteuttajana ja maksupalveluntarjoajana toimii Paytrail Oyj (2122839-7) yhteistyössä suomalaisten pankkien ja luottolaitosten kanssa. Paytrail Oyj näkyy maksun saajana tiliotteella tai korttilaskulla ja välittää maksun kauppiaalle. Paytrail Oyj:llä on maksulaitoksen toimilupa. Reklamaatiotapauksissa pyydämme ottamaan ensisijaisesti yhteyttä tuotteen toimittajaan.\nPaytrail Oyj, y-tunnus: 2122839-7\nInnova 2\nLutakonaukio 7\n40100 Jyväskylä\nPuhelin: 0207 181830\npaytrail.com/kuluttaja/tietoa-maksamisesta"
+    },
     "cancellation": {
       "title": "Peruutusehdot",
       "text": "Voit perua tai siirtää varauksesi maksutta ottamalla yhteyttä info@nuppuapp.fi:hin vähintään 24 tuntia ennen varattua ajankohtaa - palautamme maksun kokonaan. Alle 24 tuntia ennen tehty peruutus tai paikalle saapumatta jättäminen ei oikeuta palautukseen. Tämä käytäntö ei rajoita kuluttajansuojalain mukaisia oikeuksiasi."
