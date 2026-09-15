@@ -4,14 +4,14 @@ import { MobileScreen } from '../../components/MobileScreen';
 import { ProgressHeader } from '../../components/ProgressHeader';
 import { Bilingual } from '../../components/Bilingual';
 import { Button } from '../../components/Button';
-import { CharacterAvatar } from '../../components/CharacterAvatar';
 import { useChild } from '../../context/ChildContext';
 import { useLanguage } from '../../i18n/LanguageContext';
+import friends from '../../../assets/png/Friends.png';
 
 export function NameStep() {
   const { t } = useLanguage();
   const navigate = useNavigate();
-  const { name, setName, avatarSpecies } = useChild();
+  const { name, setName } = useChild();
 
   return (
     <MobileScreen>
@@ -39,7 +39,7 @@ export function NameStep() {
         </div>
 
         <div className="flex flex-1 items-end justify-center pb-4">
-          <CharacterAvatar species={avatarSpecies} className="h-40 w-auto" />
+          <img src={friends} alt="Nuppu and friends" className="h-56 w-auto object-contain" />
         </div>
       </div>
       <div className="px-6 pb-10">
